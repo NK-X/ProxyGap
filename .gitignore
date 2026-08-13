@@ -13,3 +13,6 @@ env/
 .idea/
 Thumbs.db
 .DS_Store
+
+# The canonical internal context contains private planning information.
+PROJECT_CONTEXT.md

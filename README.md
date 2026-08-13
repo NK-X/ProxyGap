@@ -1,70 +1,83 @@
-# ProxyGap Ant-v5/PPO Canonical Implementation
+# ProxyGap: Reward Misspecification in Quadruped Locomotion
 
-## Revision gate (10 August 2026)
+ProxyGap is a student research project investigating whether a PPO-controlled
+quadruped can obtain a higher numerical training reward while exhibiting an
+undesirable locomotion trade-off. The simulation uses Gymnasium MuJoCo
+`Ant-v5`; the manipulated reward parameter is `ctrl_cost_weight`.
 
-Formal v1 is a completed retrospective exploratory study. Prospective v2 is **not frozen and must not be run yet**. The controlling records are:
+## Important status
 
-- `protocols/formal_v1_retrospective_analysis_20260810.md`;
-- `protocols/prospective_v2_protocol_draft_20260810.md`;
-- `docs/METRIC_DEFINITIONS_V2_20260810.md`;
-- `configs/prospective_v2_revision_gate_20260810.json`.
+This repository is a **pre-revision source snapshot** shared for team review.
+It contains the implementation used for the completed exploratory `formal-v1`
+study. It is not the current development branch and must not be presented as a
+finished proof of reward hacking.
 
-Different `ctrl_cost_weight` conditions optimise different numerical reward definitions. Reports must distinguish `condition_objective_return` from the fixed-weight `common_rescored_return`; neither is a scalar true-performance measure. The historical `fall` field is a legacy alias. Prospective reporting uses low-z collapse, high-z excursion, non-finite termination and TimeLimit truncation.
+- `formal-v1`: completed, retrospective and exploratory.
+- Historical shaping: forward-reward reweighting, not the intended bounded
+  mitigation intervention.
+- Prospective v2: draft and blocked; do not run it as a formal experiment.
+- Training seed is the independent replication unit. Checkpoints and evaluation
+  episodes are repeated observations, not extra independent samples.
 
-Run the revision-gate validator before any timed pilot. A blocked result is currently expected because scientific parameters still require approval:
+See [Project Overview](docs/PROJECT_OVERVIEW.md),
+[Experiment Status](docs/EXPERIMENT_STATUS.md), and
+[Repository Guide](docs/REPOSITORY_GUIDE.md) before interpreting the code.
+
+## Project structure
+
+| Path | Purpose |
+|---|---|
+| `src/proxygap/` | Environment wrapper, metrics, PPO training and protocol validation |
+| `scripts/` | Runnable inspection, smoke-test, training, evaluation and analysis commands |
+| `configs/` | Versioned environment and experiment settings |
+| `tests/` | Automated engineering checks |
+| `docs/` | Metric definitions and team-facing methodological notes |
+| `protocols/` | Formal-v1 retrospective record and blocked prospective draft |
+| `results/` | Explanation of which generated outputs may be shared separately |
+
+## Installation on Windows
+
+Install Miniforge or Miniconda, open PowerShell in this repository, then run:
 
 ```powershell
-python scripts/validate_prospective_protocol.py `
-  --config configs/prospective_v2_revision_gate_20260810.json
-```
-
-Do not bypass a blocked status by changing the configuration status string.
-
-This directory contains the canonical Ant-v5/PPO implementation for the ProxyGap study.
-The legacy 2D grid/DQN project is retained separately as historical material.
-
-The formal v1 experiment is complete:
-
-- The main coefficient sweep tested control-cost weights `0.5`, `0.25`, `0.125` and `0.0625`.
-- The historical exploratory forward-reweighting condition used control-cost weight `0.0625` with forward-progress weight `1.0`; it is not Proposal-conformant mitigation.
-- Core reference, divergent and shaped comparisons use three training seeds; the intermediate coefficient conditions use one seed.
-- Every condition uses six fixed checkpoints from 50k to 300k and ten paired deterministic evaluation episodes per checkpoint.
-- Reward components and disaggregated diagnostics are logged separately from the observed proxy return.
-- Pilot and formal evidence remain in separate artifact directories.
-
-Recommended PowerShell session:
-
-```powershell
-conda activate D:\ProxyGap\envs\proxygap-ant
-Set-Location D:\ProxyGap\proxygap_ant
-$env:MPLCONFIGDIR = "D:\ProxyGap\matplotlib_cache"
-$env:MUJOCO_GL = "disable"
+conda env create -f environment.yml
+conda activate proxygap-ant
+python -m pip install -e .
 python -m pytest tests
-python scripts\validate_formal_outputs.py --config configs\formal_v1_coefficients_20260808.json
-python scripts\validate_formal_outputs.py --config configs\formal_v1_shaped_20260808.json
-python scripts\validate_formal_outputs.py --config configs\formal_v1_core_replication_20260808.json
-python scripts\analyse_formal_results.py
 ```
 
-Formal result tables, six report-ready figures and the concise results note are in:
+CUDA is not required. The baseline is CPU-only.
 
-```text
-D:\ProxyGap\proxygap_ant\artifacts\formal\combined_v1_20260809
-```
-
-To reproduce the three paired 300k trajectory videos, use a rendering-capable backend:
+## Minimum verification
 
 ```powershell
-$env:MUJOCO_GL = "glfw"
-python scripts\render_formal_videos.py
+python scripts/inspect_ant_reference.py
+python scripts/smoke_train_benchmark.py
 ```
 
-The versioned formal configurations are retained in `configs`. The runner supports
-`--resume` and skips only conditions whose models, evaluation CSV and runtime CSV
-are complete. Raw formal outputs should not be edited; regenerate the combined
-tables and figures with `scripts\analyse_formal_results.py`.
+These commands verify installation and engineering feasibility only. A passed
+smoke test is not scientific evidence for reward misspecification.
 
-The canonical research design, parameter-lock history and interpretation limits are
-recorded in `D:\ProxyGap\PROJECT_CONTEXT.md`. The formal evidence is exploratory:
-three training seeds are not sufficient for strong inferential or general robotics
-claims, and Ant-v5 control effort is not a direct physical-energy measurement.
+## Reproducing experiments
+
+Read [Reproducibility](docs/REPRODUCIBILITY.md) before running any training.
+Generated models, raw logs, figures and videos are intentionally excluded from
+Git because they are large or derived artifacts.
+
+## Scientific interpretation
+
+Different values of `ctrl_cost_weight` define different numerical reward
+functions. Raw condition-specific returns must therefore not be ranked as if
+they were measurements on one common scale. The repository also computes a
+fixed-weight common rescore, but this is a benchmark comparator rather than a
+ground-truth measure of locomotion quality.
+
+The strongest defensible formal-v1 interpretation is a simulation-specific,
+multi-objective trade-off across reward, forward progress, action magnitude,
+termination, lateral drift and torso orientation.
+
+## Team workflow
+
+Create a branch for each change and open a pull request. Do not edit raw result
+files or silently alter locked configuration files. See
+[Contributing](CONTRIBUTING.md).
