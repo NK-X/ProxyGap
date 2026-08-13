@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "config_id": "prospective_v2_revision_gate_20260810",
+  "status": "revision_gate_open_do_not_run",
+  "created_date": "2026-08-10",
+  "proposal": {
+    "path": "C:\\Users\\18522\\Documents\\Codex\\2026-08-09\\wo\\work\\pdfs\\inputs\\proposal.pdf",
+    "sha256": "4E78D9803FDB7F7A8176702E4BB20FC382E3322D5B3DE1E8414FBCF1BCE67AD9",
+    "controlling_locations": ["pages 1-3"]
+  },
+  "study_records": {
+    "retrospective_v1": "protocols/formal_v1_retrospective_analysis_20260810.md",
+    "prospective_v2": "protocols/prospective_v2_protocol_draft_20260810.md",
+    "metric_definitions": "docs/METRIC_DEFINITIONS_V2_20260810.md",
+    "adjudication": "artifacts/audit/rigorous_academic_work_20260810/METHOD_CRITIC_ADJUDICATION_20260810.md"
+  },
+  "environment": {
+    "id": "Ant-v5",
+    "algorithm": "PPO",
+    "device": "cpu",
+    "primary_variable": "ctrl_cost_weight",
+    "common_rescore_ctrl_cost_weight": 0.5
+  },
+  "seed_partitions": {
+    "development_training_seeds": [20260811, 20260812],
+    "development_evaluation_seeds": [60260810, 60260811, 60260812, 60260813, 60260814],
+    "held_out_training_seeds": [20260821, 20260822, 20260823, 20260824, 20260825],
+    "held_out_evaluation_seeds": [70260810, 70260811, 70260812, 70260813, 70260814, 70260815, 70260816, 70260817, 70260818, 70260819]
+  },
+  "timed_pilot": {
+    "status": "blocked_until_revision_gate_closes",
+    "target_timesteps": 50000,
+    "checkpoint_timesteps": [25000, 50000],
+    "evaluation_episodes_initial": 5,
+    "role": "revised pipeline, scale, failure, precision and runtime validation only",
+    "must_not_support": [
+      "coefficient threshold",
+      "mitigation efficacy",
+      "no-harm",
+      "formal reward hacking",
+      "generalisation"
+    ]
+  },
+  "conditions": {
+    "default_comparator": {"ctrl_cost_weight": 0.5},
+    "selected_reduced_cost": {"ctrl_cost_weight": 0.0625},
+    "prospective_candidate_types": ["effort_only", "orientation_only", "combined"]
+  },
+  "intervention": {
+    "effort_signal": "sum_j(action_j ** 2) per environment step; dimensionless; range [0, 8]",
+    "orientation_signal": "torso tilt angle from world vertical in radians; range [0, pi]",
+    "effort_formula": "-lambda_effort * tanh(squared_action_step / scale_effort)",
+    "orientation_formula": "-lambda_orientation * tanh(torso_tilt_rad / scale_orientation)",
+    "effort_scale": null,
+    "orientation_scale_rad": null,
+    "effort_cap_lambda": null,
+    "orientation_cap_lambda": null,
+    "recommended_values_requiring_user_approval": {
+      "effort_scale": 2.0,
+      "orientation_scale_rad": 0.5,
+      "effort_cap_lambda": 0.25,
+      "orientation_cap_lambda": 0.25,
+      "rationale": "Each component is bounded to at most 0.25 reward units per step; the proposed scales lie within the fixed action and angle domains. These are design choices, not empirically established constants."
+    }
+  },
+  "metric_parameters": {
+    "effort_distance_min": null,
+    "recommended_effort_distance_min_requiring_user_approval": 0.1,
+    "effort_distance_sensitivity_candidates": [0.05, 0.1, 0.25, 0.5],
+    "action_saturation_threshold": 0.95,
+    "torso_tilt_unit": "radian",
+    "position_unit": "MuJoCo simulation length unit",
+    "primary_diagnostic": "net_forward_progress",
+    "protected_diagnostics": [
+      "low_z_termination",
+      "high_z_termination",
+      "non_finite_termination",
+      "lateral_drift_mean_abs",
+      "lateral_drift_max_abs",
+      "torso_tilt_rms",
+      "torso_tilt_p95",
+      "mean_squared_action_per_step",
+      "action_saturation_rate",
+      "episode_length"
+    ]
+  },
+  "claim_decisions_requiring_user_approval": {
+    "analysis_route": null,
+    "allowed_analysis_route_values": ["descriptive_only", "margin_based_mitigation"],
+    "smallest_meaningful_progress_improvement": null,
+    "protected_harm_margins": null,
+    "attribution_scope": null,
+    "allowed_attribution_scope_values": ["combined_only_no_component_attribution", "effort_orientation_combined_ablation"]
+  },
+  "ppo": {
+    "policy": "MlpPolicy",
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.0,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "policy_kwargs": {
+      "net_arch": {"pi": [64, 64], "vf": [64, 64]},
+      "activation_fn": "Tanh"
+    },
+    "device": "cpu"
+  },
+  "records": {
+    "training_monitor": true,
+    "evaluation_step_logs_gzip": true,
+    "resolved_config": true,
+    "package_lock": true,
+    "source_hash_manifest": true,
+    "failed_and_resumed_run_records": true
+  },
+  "video_rule": {
+    "policy_selection": "median final-checkpoint mean net progress; lower training seed breaks exact ties",
+    "episode_selection": "episode closest to the selected policy's median final-checkpoint net progress; lower evaluation seed breaks exact ties",
+    "checkpoint_reuse": [50000, 150000, 300000]
+  }
+}

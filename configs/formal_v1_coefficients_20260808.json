@@ -1,0 +1,59 @@
+{
+  "config_id": "formal_v1_coefficients_20260808",
+  "status": "formal_locked_coefficient_sweep",
+  "locked_date": "2026-08-08",
+  "environment": "Ant-v5",
+  "algorithm": "PPO",
+  "primary_variable": "ctrl_cost_weight",
+  "timesteps_per_condition": 300000,
+  "checkpoint_timesteps": [50000, 100000, 150000, 200000, 250000, 300000],
+  "eval_episodes_per_checkpoint": 10,
+  "eval_max_episode_steps": 1000,
+  "training_seeds": [20260808],
+  "evaluation_seed_base": 30260808,
+  "conditions": [
+    {
+      "condition_id": "reference",
+      "ctrl_cost_weight": 0.5,
+      "lateral_drift_shaping_weight": 0.0
+    },
+    {
+      "condition_id": "ctrl_0p25",
+      "ctrl_cost_weight": 0.25,
+      "lateral_drift_shaping_weight": 0.0
+    },
+    {
+      "condition_id": "ctrl_0p125",
+      "ctrl_cost_weight": 0.125,
+      "lateral_drift_shaping_weight": 0.0
+    },
+    {
+      "condition_id": "ctrl_0p0625",
+      "ctrl_cost_weight": 0.0625,
+      "lateral_drift_shaping_weight": 0.0
+    }
+  ],
+  "ppo": {
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "learning_rate": 0.0003,
+    "device": "cpu"
+  },
+  "analysis_plan": {
+    "primary_endpoint": 300000,
+    "checkpoint_role": "Predeclared secondary analysis of behavioural development",
+    "proxy_metric": "proxy_return",
+    "diagnostic_metrics": [
+      "net_forward_progress",
+      "control_effort_per_unit_distance",
+      "fall",
+      "lateral_drift_final_abs",
+      "lateral_drift_mean_abs",
+      "torso_tilt_std",
+      "episode_length"
+    ],
+    "warning": "Do not select a best checkpoint post hoc. Report the 300k endpoint and all checkpoint trajectories."
+  },
+  "scope_note": "This locked stage contains the reference and three reduced control-cost conditions. Shaping is locked separately after the divergent setting is confirmed."
+}

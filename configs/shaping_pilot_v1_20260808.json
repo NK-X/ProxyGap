@@ -1,0 +1,27 @@
+{
+  "status": "pilot_not_formal_experiment",
+  "run_id": "shaping_pilot_20260808_forward_progress",
+  "purpose": "Lock a forward-progress shaping coefficient after formal coefficient-sweep evidence identified ctrl_cost_weight=0.0625 as the divergent setting.",
+  "formula": "observed_reward = base_proxy_reward + forward_progress_shaping_weight * reward_forward",
+  "ctrl_cost_weight": 0.0625,
+  "forward_progress_shaping_weights": [0.0, 0.5, 1.0, 2.0],
+  "timesteps_per_condition": 100000,
+  "checkpoint_timesteps": [50000, 100000],
+  "eval_episodes_per_checkpoint": 10,
+  "eval_max_episode_steps": 1000,
+  "training_seed": 20260807,
+  "evaluation_seed_base": 40260808,
+  "selection_rule": [
+    "Require positive mean net_forward_progress at 100k.",
+    "Prefer fall_mean no greater than 0.2.",
+    "Among candidates satisfying the guardrails, choose the smallest shaping weight that produces a clear improvement over the paired unshaped pilot baseline."
+  ],
+  "ppo": {
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "learning_rate": 0.0003,
+    "device": "cpu"
+  },
+  "warning": "This pilot selects a shaping coefficient and is not a formal research result."
+}

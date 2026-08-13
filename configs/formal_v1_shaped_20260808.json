@@ -1,0 +1,36 @@
+{
+  "config_id": "formal_v1_shaped_20260808",
+  "status": "formal_locked_shaping_condition",
+  "locked_date": "2026-08-08",
+  "environment": "Ant-v5",
+  "algorithm": "PPO",
+  "timesteps_per_condition": 300000,
+  "checkpoint_timesteps": [50000, 100000, 150000, 200000, 250000, 300000],
+  "eval_episodes_per_checkpoint": 10,
+  "eval_max_episode_steps": 1000,
+  "training_seeds": [20260808],
+  "evaluation_seed_base": 30260808,
+  "conditions": [
+    {
+      "condition_id": "shaped_ctrl_0p0625_forward_1p0",
+      "ctrl_cost_weight": 0.0625,
+      "forward_progress_shaping_weight": 1.0,
+      "lateral_drift_shaping_weight": 0.0
+    }
+  ],
+  "shaping_formula": "observed_reward = base_proxy_reward + 1.0 * reward_forward",
+  "selection_evidence": "configs/shaping_pilot_v1_20260808.json and artifacts/pilot/shaping_pilot_20260808_forward_progress",
+  "ppo": {
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "learning_rate": 0.0003,
+    "device": "cpu"
+  },
+  "analysis_plan": {
+    "primary_endpoint": 300000,
+    "checkpoint_role": "Predeclared secondary analysis of mitigation development",
+    "comparison_condition": "ctrl_0p0625",
+    "warning": "Evaluate observed proxy return and all disaggregated diagnostics; do not select a best checkpoint post hoc."
+  }
+}

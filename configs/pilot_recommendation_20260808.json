@@ -1,0 +1,72 @@
+{
+  "status": "recommendation_requires_user_approval",
+  "date": "2026-08-08",
+  "canonical_design_unchanged": {
+    "environment": "Ant-v5",
+    "algorithm": "PPO",
+    "primary_variable": "ctrl_cost_weight",
+    "evaluation": "disaggregated diagnostic metrics, not an aggregate true-performance scalar"
+  },
+  "pilot_runs": [
+    {
+      "run_id": "coefficient_pilot_20260808_local_small",
+      "timesteps_per_condition": 4096,
+      "ppo_n_epochs": 1,
+      "assessment": "Useful for pipeline and runtime evidence only; too short and too weak to reveal reliable locomotion."
+    },
+    {
+      "run_id": "coefficient_pilot_20260808_20k",
+      "timesteps_per_condition": 20000,
+      "ppo_n_epochs": 1,
+      "assessment": "Still dominated by survival reward; insufficient for locking a divergent condition."
+    },
+    {
+      "run_id": "learning_sanity_reference_50k",
+      "timesteps_per_condition": 50000,
+      "ppo_n_epochs": 10,
+      "assessment": "Reference-only sanity check showed movement and instability/fall signals, confirming that stronger PPO updates are needed."
+    },
+    {
+      "run_id": "coefficient_pilot_20260808_50k_fullppo",
+      "timesteps_per_condition": 50000,
+      "ppo_n_epochs": 10,
+      "assessment": "Most useful current pilot evidence for coefficient selection and runtime estimation."
+    }
+  ],
+  "candidate_ctrl_cost_weights_tested": [0.5, 0.25, 0.125, 0.0625],
+  "recommended_formal_ctrl_cost_weights": [0.5, 0.25, 0.125, 0.0625],
+  "recommendation_rationale": [
+    "The values form a plausible halving sequence from the Ant-v5 reference ctrl_cost_weight of 0.5.",
+    "None of the reduced values is zero or an obviously absurd straw-man condition.",
+    "The 50k full-PPO pilot showed different behavioural profiles across the reduced conditions.",
+    "The 0.25 condition is the strongest current candidate for proxy-performance divergence, especially at the 75% checkpoint, where proxy return and forward progress were high but lateral drift was also high.",
+    "The 0.125 condition is a plausible milder under-penalisation condition and should remain in the formal sweep.",
+    "The 0.0625 condition is more aggressive but still non-zero; it provides a boundary case for the plausible reduced range."
+  ],
+  "recommended_formal_training_budget_options": [
+    {
+      "timesteps_per_condition": 100000,
+      "role": "faster formal run",
+      "estimated_total_sec_with_5_conditions_5_eval_episodes": 936.3,
+      "caveat": "May remain early-stage for Ant-v5 locomotion."
+    },
+    {
+      "timesteps_per_condition": 200000,
+      "role": "recommended balance if time allows",
+      "estimated_total_sec_with_5_conditions_5_eval_episodes": 1802.1,
+      "caveat": "Still not a broad statistical study, but more credible for observing optimisation effects."
+    }
+  ],
+  "recommended_primary_seed": 20260808,
+  "recommended_eval_episodes_per_checkpoint": 5,
+  "recommended_ppo_settings": {
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "device": "cpu"
+  },
+  "shaping_status": "not_locked",
+  "recommended_shaping_next_step": "Use the formal or pre-formal confirmation evidence to select the divergent condition before defining shaping coefficients.",
+  "not_formal_findings_warning": "The pilot outputs must not be described as final research results."
+}
+

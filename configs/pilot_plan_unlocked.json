@@ -1,0 +1,20 @@
+{
+  "status": "unlocked_pilot_plan",
+  "warning": "Do not treat null values or candidate lists as locked formal experiment parameters.",
+  "primary_variable": "ctrl_cost_weight",
+  "reference_ctrl_cost_weight": 0.5,
+  "reduced_ctrl_cost_weights": null,
+  "formal_total_timesteps": null,
+  "primary_seed": null,
+  "evaluation_episodes_per_checkpoint": null,
+  "checkpoints_fraction": [0.25, 0.5, 0.75, 1.0],
+  "fall_definition": "Ant-v5 terminated=True under terminate_when_unhealthy=True; final wording remains to be locked.",
+  "stability_metric": "torso tilt variability from root quaternion; exact aggregation remains to be locked.",
+  "shaping_condition": {
+    "status": "not_locked",
+    "formula": null,
+    "coefficients": null,
+    "rule": "Define only after a pilot identifies reproducible proxy-performance divergence."
+  }
+}
+

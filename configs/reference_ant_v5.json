@@ -1,0 +1,18 @@
+{
+  "status": "reference_defaults_observed_locally",
+  "environment": "Ant-v5",
+  "source": "Gymnasium local introspection",
+  "observed_date": "2026-08-08",
+  "ctrl_cost_weight": 0.5,
+  "forward_reward_weight": 1.0,
+  "healthy_reward": 1.0,
+  "terminate_when_unhealthy": true,
+  "healthy_z_range": [0.2, 1.0],
+  "contact_cost_weight": 0.0005,
+  "frame_skip": 5,
+  "dt": 0.05,
+  "observation_shape": [105],
+  "action_shape": [8],
+  "notes": "Only ctrl_cost_weight is the planned independent variable in the primary study."
+}
+
