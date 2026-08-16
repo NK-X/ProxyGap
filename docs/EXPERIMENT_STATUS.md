@@ -9,6 +9,7 @@
 | Orientation/lateral/action-slew candidates | Development evidence; complete intent gate not passed |
 | Target-speed and action-rate experiment | Development mechanism evidence; 1M extension complete |
 | Body-dynamics and gSDE matrix | Development mechanism evidence; matrix complete |
+| Body-dynamics ordinary-exploration replication | Protocol frozen; local execution pending |
 | Natural or specified gait evaluation | Scientifically unresolved |
 | Final mitigation candidate | Not frozen |
 | Held-out formal comparison | Not authorised |
@@ -42,4 +43,5 @@ methodological reflection. They must not be described as independent formal
 confirmation.
 
 See `docs/RESEARCH_DIRECTION_20260816.md` and
-`docs/TEAM_PROGRESS_UPDATE_20260816.md`.
+`docs/TEAM_PROGRESS_UPDATE_20260816.md`. The next bounded test and its release
+boundary are recorded in `docs/FUTURE_TESTING_DIRECTION_20260817.md`.

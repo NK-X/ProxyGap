@@ -48,7 +48,11 @@ def keep_windows_awake() -> None:
 
 
 def validate_config(config: dict) -> None:
-    if config.get("status") != "frozen_authorised_development_matrix":
+    allowed_statuses = {
+        "frozen_authorised_development_matrix",
+        "frozen_authorised_final_development_replication",
+    }
+    if config.get("status") not in allowed_statuses:
         raise ValueError("Development configuration is not frozen")
     if config.get("formal_launch") != "prohibited":
         raise ValueError("Formal launch must remain prohibited")
@@ -62,18 +66,31 @@ def validate_config(config: dict) -> None:
         )
         for condition in config["conditions"]
     }
-    expected = {
-        (False, False, -1),
-        (True, False, -1),
-        (False, True, 8),
-        (True, True, 8),
-    }
+    design = config.get("design_type", "body_by_gsde_factorial")
+    if design == "body_by_gsde_factorial":
+        expected = {
+            (False, False, -1),
+            (True, False, -1),
+            (False, True, 8),
+            (True, True, 8),
+        }
+    elif design == "ordinary_exploration_body_replication":
+        expected = {
+            (False, False, -1),
+            (True, False, -1),
+        }
+    else:
+        raise ValueError(f"Unknown development design_type: {design}")
     if factors != expected:
-        raise ValueError("Frozen two-by-two mechanism matrix changed")
+        raise ValueError("Frozen mechanism condition set changed")
     if set(config["training_seeds"]) & set(config["reserved_formal_training_seeds"]):
         raise ValueError("Development and reserved formal seeds overlap")
-    if config["evaluation_seeds"] != list(range(51501, 51511)):
-        raise ValueError("Paired evaluation seeds changed")
+    evaluation_seed_base = int(config["evaluation_seed_base"])
+    expected_evaluation_seeds = list(
+        range(evaluation_seed_base, evaluation_seed_base + int(config["eval_episodes_per_checkpoint"]))
+    )
+    if config["evaluation_seeds"] != expected_evaluation_seeds:
+        raise ValueError("Paired evaluation seeds are inconsistent with the declared base and episode count")
 
 
 def run_task(task: dict) -> dict:

@@ -4,6 +4,7 @@ artifacts/
 *.csv.gz
 *.gif
 *.mp4
+*.inspect.ndjson
 *.pt
 *.pth
 *.onnx

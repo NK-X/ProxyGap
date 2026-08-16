@@ -57,6 +57,12 @@ Two questions remain open:
 See [Team Progress Update](docs/TEAM_PROGRESS_UPDATE_20260816.md) for the full
 plain-language summary.
 
+The next bounded local test is declared in
+[Future Testing Direction](docs/FUTURE_TESTING_DIRECTION_20260817.md). Its
+protocol, configuration and executable code are public, while newly generated
+models, logs, videos and result tables remain local until a separate evidence
+review authorises a later release.
+
 ## Repository structure
 
 | Path | Purpose |
@@ -69,12 +75,16 @@ plain-language summary.
 | `docs/` | Research direction, metric contracts and reproducibility notes |
 | `reports/` | Development audit reports with explicit claim boundaries |
 | `results/development_20260816/` | Lightweight summaries, figures and video indexes |
-| `presentations/` | Editable team-update presentation |
+| `presentations/` | Editable English and Chinese team-update presentations |
 
 Large model checkpoints, compressed step logs and MP4 files are intentionally
 excluded from Git. Their indexes are retained so that the corresponding local
 evidence can be located and regenerated without presenting videos as
 independent replications.
+
+Future experiment plans, versioned configurations and implementation changes
+are committed before or alongside execution. New experiment outputs are not
+automatically published.
 
 ## Installation on Windows
 

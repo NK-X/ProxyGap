@@ -8,7 +8,7 @@
 - compact development summaries, endpoint tables, QA records and figures;
 - video indexes containing condition IDs, seeds, checkpoint, file name and
   SHA-256 digest;
-- the editable team progress presentation.
+- editable English and Chinese team progress presentations.
 
 ## Intentionally excluded
 
@@ -32,3 +32,12 @@ formal protocol. It is not a held-out confirmation result.
 
 The historical formal-v1 material is retained for provenance. Its earlier
 `ctrl_cost_weight` sweep is not the current central research design.
+
+## Future-test publication boundary
+
+The repository publishes future scientific direction, frozen development
+protocols, executable configurations, code and engineering tests. It does not
+automatically publish the outputs of a new run. In particular, new model
+archives, step-level logs, full MP4 files, recovery folders and unreviewed
+result summaries remain local. A result may be added only after its evidence
+status, privacy, file size, provenance and claim boundary have been audited.

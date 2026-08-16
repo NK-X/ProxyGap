@@ -16,6 +16,7 @@ from run_body_smoothness_gsde_matrix import validate_config  # noqa: E402
 
 
 CONFIG = ROOT / "configs" / "body_smoothness_gsde_matrix_v1_20260816.json"
+REPLICATION_CONFIG = ROOT / "configs" / "body_dynamics_replication_v1_20260817.json"
 
 
 def test_body_smoothness_matrix_is_frozen_balanced_and_seed_separated() -> None:
@@ -40,6 +41,19 @@ def test_body_penalty_scale_and_weight_are_calibration_pinned() -> None:
     )
     assert np.isclose(body["maximum_combined_penalty_per_step"], 0.1)
     assert body["estimated_mean_combined_penalty_per_step"] < 0.03
+
+
+def test_body_replication_is_frozen_paired_and_excludes_gsde() -> None:
+    config = json.loads(REPLICATION_CONFIG.read_text(encoding="utf-8"))
+    validate_config(config)
+    factors = {
+        (item["body_dynamics_enabled"], item["use_sde"])
+        for item in config["conditions"]
+    }
+    assert factors == {(False, False), (True, False)}
+    assert config["training_seeds"] == [41601, 41602, 41603]
+    assert config["evaluation_seeds"] == list(range(51601, 51611))
+    assert not set(config["training_seeds"]) & set(config["reserved_formal_training_seeds"])
 
 
 def test_factorial_contrast_uses_paired_training_seeds(tmp_path: Path, monkeypatch) -> None:
