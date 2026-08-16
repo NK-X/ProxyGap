@@ -71,3 +71,21 @@ This direction, the protocol, configuration, runner and tests are public. New
 models, logs, videos, recovery files and unreviewed result summaries remain in
 the local workspace. They require a separate evidence audit before any later
 public release.
+
+## Reproducible commands
+
+```powershell
+python scripts/run_body_smoothness_gsde_matrix.py `
+  --config configs/body_dynamics_replication_v1_20260817.json --smoke
+
+python scripts/run_body_smoothness_gsde_matrix.py `
+  --config configs/body_dynamics_replication_v1_20260817.json
+
+python scripts/analyse_body_dynamics_replication.py
+
+python scripts/render_body_smoothness_gsde_videos.py `
+  --config configs/body_dynamics_replication_v1_20260817.json `
+  --output-dir-name 8_17_trials_1
+```
+
+The smoke output and all full-run outputs are ignored by Git.

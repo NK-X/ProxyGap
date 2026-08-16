@@ -1,7 +1,8 @@
-"""Render one fixed full-horizon endpoint replay for all twelve policies."""
+"""Render one fixed full-horizon endpoint replay for a frozen body experiment."""
 
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 from pathlib import Path
@@ -10,17 +11,35 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG = ROOT / "configs" / "body_smoothness_gsde_matrix_v1_20260816.json"
-EVALUATION_SEED = 51501
-ENDPOINT = 1_000_000
+DEFAULT_CONFIG = ROOT / "configs" / "body_smoothness_gsde_matrix_v1_20260816.json"
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
+    parser.add_argument("--evaluation-seed", type=int, default=None)
+    parser.add_argument("--output-dir-name", default=None)
+    return parser.parse_args()
 
 
 def main() -> None:
-    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    args = parse_args()
+    config = json.loads(args.config.resolve().read_text(encoding="utf-8"))
     shared = config["shared_reward"]
     body = config["body_dynamics"]
     run_root = ROOT / config["execution"]["output_root"]
-    video_root = run_root / "8_16_trials_4"
+    evaluation_seed = (
+        int(args.evaluation_seed)
+        if args.evaluation_seed is not None
+        else int(config["evaluation_seeds"][0])
+    )
+    endpoint = int(config["timesteps_per_condition"])
+    default_output_name = (
+        "8_16_trials_4"
+        if config["config_id"] == "body_smoothness_gsde_matrix_v1_20260816"
+        else "full_horizon_videos"
+    )
+    video_root = run_root / (args.output_dir_name or default_output_name)
     video_root.mkdir(parents=True, exist_ok=True)
     renderer = ROOT / "scripts" / "render_stage1_full_video.py"
     xml_file = ROOT / "assets" / "ant_render_large_floor.xml"
@@ -40,10 +59,10 @@ def main() -> None:
                 / condition_id
                 / "models"
                 / condition_id
-                / f"checkpoint_{ENDPOINT}.zip"
+                / f"checkpoint_{endpoint}.zip"
             )
             output = video_root / (
-                f"{condition_id}__tr{training_seed}__ev{EVALUATION_SEED}__t{ENDPOINT}.mp4"
+                f"{condition_id}__tr{training_seed}__ev{evaluation_seed}__t{endpoint}.mp4"
             )
             command = [
                 sys.executable,
@@ -67,8 +86,8 @@ def main() -> None:
                 "--roll_pitch_angular_velocity_shaping_weight", str(angular_weight),
                 "--roll_pitch_angular_velocity_shaping_scale", str(body["roll_pitch_angular_velocity_shaping_scale"]),
                 "--training_seed", str(training_seed),
-                "--evaluation_seed", str(EVALUATION_SEED),
-                "--target_timesteps", str(ENDPOINT),
+                "--evaluation_seed", str(evaluation_seed),
+                "--target_timesteps", str(endpoint),
                 "--max_steps", "1000",
                 "--fps", "20",
                 "--augment_previous_applied_action",
@@ -88,7 +107,7 @@ def main() -> None:
                 {
                     "condition_id": condition_id,
                     "training_seed": training_seed,
-                    "evaluation_seed": EVALUATION_SEED,
+                    "evaluation_seed": evaluation_seed,
                     "body_dynamics_enabled": enabled,
                     "use_sde": bool(item["use_sde"]),
                     "trajectory_frames": manifest["trajectory_frames"],

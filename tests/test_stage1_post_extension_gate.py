@@ -19,6 +19,12 @@ def sha256(path: Path) -> str:
     return digest.hexdigest().upper()
 
 
+def sha256_text_canonical(path: Path) -> str:
+    """Hash committed text content independently of Windows newline checkout."""
+    payload = path.read_bytes().replace(b"\r\n", b"\n")
+    return hashlib.sha256(payload).hexdigest().upper()
+
+
 def require_local_evidence(path: Path) -> None:
     if not path.exists():
         pytest.skip(f"full local evidence package is not included: {path}")
@@ -79,5 +85,5 @@ def test_post_extension_gate_evidence_hashes_match_files() -> None:
 def test_post_extension_gate_parent_hashes_match_frozen_v4() -> None:
     gate = load_gate()
     parent = gate["parent_budget_extension"]
-    assert sha256(ROOT / parent["config_path"]) == parent["config_sha256"]
-    assert sha256(ROOT / parent["protocol_path"]) == parent["protocol_sha256"]
+    assert sha256_text_canonical(ROOT / parent["config_path"]) == parent["config_sha256"]
+    assert sha256_text_canonical(ROOT / parent["protocol_path"]) == parent["protocol_sha256"]

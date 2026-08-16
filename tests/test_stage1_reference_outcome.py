@@ -15,11 +15,17 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest().upper()
 
 
+def sha256_text_canonical(path: Path) -> str:
+    """Hash committed text content independently of Windows newline checkout."""
+    payload = path.read_bytes().replace(b"\r\n", b"\n")
+    return hashlib.sha256(payload).hexdigest().upper()
+
+
 def test_v7_outcome_matches_frozen_parent_and_evidence_hashes() -> None:
     outcome = json.loads(OUTCOME.read_text(encoding="utf-8"))
     parent = outcome["parent_frozen_design"]
-    assert sha256(ROOT / parent["config_path"]) == parent["config_sha256"]
-    assert sha256(ROOT / parent["protocol_path"]) == parent["protocol_sha256"]
+    assert sha256_text_canonical(ROOT / parent["config_path"]) == parent["config_sha256"]
+    assert sha256_text_canonical(ROOT / parent["protocol_path"]) == parent["protocol_sha256"]
     for evidence in outcome["evidence"].values():
         path = ROOT / evidence["path"]
         if not path.exists():
