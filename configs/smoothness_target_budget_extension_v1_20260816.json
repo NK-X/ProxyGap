@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "config_id": "smoothness_target_budget_extension_v1_20260816",
+  "status": "frozen_authorised_development_extension",
+  "formal_launch": "prohibited",
+  "environment": "Ant-v5",
+  "algorithm": "PPO",
+  "device": "cpu",
+  "purpose": "Distinguish 300k under-training from reward-scale failure before changing the target-tracking reward.",
+  "source_run_root": "artifacts/dev/smoothness_mechanism_v1",
+  "output_root": "artifacts/dev/smoothness_target_extension_1m_v1",
+  "source_target_timesteps": 300000,
+  "expected_source_model_timesteps": 301056,
+  "checkpoint_timesteps": [500000, 750000, 1000000],
+  "target_timesteps": 1000000,
+  "conditions": ["Ftrack__Ar0", "Ftrack__Ar0p2"],
+  "training_seeds": [41401, 41402, 41403],
+  "evaluation_seed_base": 51401,
+  "evaluation_seeds": [51401, 51402, 51403, 51404, 51405, 51406, 51407, 51408, 51409, 51410],
+  "evaluation_episodes_per_checkpoint": 10,
+  "evaluation_max_episode_steps": 1000,
+  "shared_reward": {
+    "ctrl_cost_weight": 0.5,
+    "orientation_shaping_weight": 0.1,
+    "orientation_shaping_function": "cosine",
+    "orientation_shaping_scale": 1.0,
+    "lateral_drift_shaping_weight": 0.05,
+    "lateral_drift_shaping_scale": 1.0,
+    "lateral_shaping_signal": "velocity_tanh_squared",
+    "lateral_velocity_target": 0.0,
+    "replace_forward_reward_with_tracking": true,
+    "forward_velocity_target": 1.0,
+    "forward_velocity_tracking_scale": 0.5
+  },
+  "condition_parameters": {
+    "Ftrack__Ar0": {"action_rate_shaping_weight": 0.0},
+    "Ftrack__Ar0p2": {"action_rate_shaping_weight": 0.2}
+  },
+  "observation": {
+    "augment_previous_applied_action": true,
+    "dimensions": 113
+  },
+  "constraint": {"action_slew_l2_limit": null},
+  "ppo": {
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.0,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "use_sde": false,
+    "torch_num_threads": 2,
+    "policy": "MlpPolicy",
+    "policy_kwargs": {"net_arch": [64, 64], "activation_fn": "Tanh"}
+  },
+  "continuation_deviation": {
+    "optimizer_state_restored": true,
+    "environment_state_restored": false,
+    "random_stream_restored_bitwise": false,
+    "mitigation": "Reload the saved optimiser and policy, recreate the identical environment, and reseed with the original training seed. Report as checkpoint continuation, not uninterrupted 1M training."
+  },
+  "execution": {
+    "max_workers": 4,
+    "task_order_seed": 8165101
+  },
+  "stopping_rule": "Complete all six source-policy continuations. Do not change reward coefficients from extension outcomes.",
+  "claim_boundary": "Development budget diagnostic only; continuation is not bitwise equivalent to uninterrupted training and cannot establish formal mitigation."
+}

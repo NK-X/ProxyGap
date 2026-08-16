@@ -153,13 +153,16 @@ def main() -> None:
                 lateral_drift_shaping_weight=float(
                     condition.get("lateral_drift_shaping_weight", 0.0)
                 ),
+                lateral_drift_shaping_scale=float(
+                    condition.get("lateral_drift_shaping_scale", 1.0)
+                ),
                 effort_shaping_weight=float(condition.get("effort_shaping_weight", 0.0)),
                 effort_shaping_scale=float(condition.get("effort_shaping_scale", 1.0)),
-                stability_shaping_weight=float(
-                    condition.get("stability_shaping_weight", 0.0)
+                orientation_shaping_weight=float(
+                    condition.get("orientation_shaping_weight", 0.0)
                 ),
-                stability_shaping_scale=float(
-                    condition.get("stability_shaping_scale", 1.0)
+                orientation_shaping_scale=float(
+                    condition.get("orientation_shaping_scale", 1.0)
                 ),
                 common_rescore_ctrl_cost_weight=float(
                     config.get("metric_parameters", {}).get(
@@ -199,6 +202,7 @@ def main() -> None:
                 ppo_policy=str(config["ppo_resolved"]["policy"]),
                 ppo_policy_kwargs=dict(config["ppo_resolved"]["policy_kwargs"]),
                 ppo_device=str(config["ppo_resolved"]["device"]),
+                ppo_torch_num_threads=int(config["ppo"].get("torch_num_threads", 1)),
             )
             condition_summary = summarise_evaluation(eval_rows)
             write_standard_outputs(

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "config_id": "body_smoothness_gsde_matrix_v1_20260816",
+  "status": "frozen_authorised_development_matrix",
+  "formal_launch": "prohibited",
+  "environment": "Ant-v5",
+  "algorithm": "PPO",
+  "device": "cpu",
+  "purpose": "Separate reward-level body-dynamics shaping from temporally correlated PPO exploration after action-output smoothing failed to remove hopping.",
+  "timesteps_per_condition": 1000000,
+  "checkpoint_timesteps": [250000, 500000, 750000, 1000000],
+  "training_seeds": [41501, 41502, 41503],
+  "evaluation_seed_base": 51501,
+  "evaluation_seeds": [51501, 51502, 51503, 51504, 51505, 51506, 51507, 51508, 51509, 51510],
+  "eval_episodes_per_checkpoint": 10,
+  "eval_max_episode_steps": 1000,
+  "reserved_formal_training_seeds": [42101, 42102, 42103, 42104, 42105],
+  "shared_reward": {
+    "ctrl_cost_weight": 0.5,
+    "orientation_shaping_weight": 0.1,
+    "orientation_shaping_function": "cosine",
+    "orientation_shaping_scale": 1.0,
+    "lateral_drift_shaping_weight": 0.05,
+    "lateral_drift_shaping_scale": 1.0,
+    "lateral_shaping_signal": "velocity_tanh_squared",
+    "lateral_velocity_target": 0.0,
+    "replace_forward_reward_with_tracking": true,
+    "forward_velocity_target": 1.0,
+    "forward_velocity_tracking_scale": 0.5,
+    "action_rate_shaping_weight": 0.2,
+    "augment_previous_applied_action": true,
+    "action_slew_l2_limit": null
+  },
+  "body_dynamics": {
+    "vertical_velocity_shaping_weight": 0.05,
+    "vertical_velocity_shaping_scale": 1.014092584749083,
+    "roll_pitch_angular_velocity_shaping_weight": 0.05,
+    "roll_pitch_angular_velocity_shaping_scale": 1.9893176307304792,
+    "scale_source": "Pooled 90th percentiles from six 1M development endpoints and 60 paired evaluation episodes.",
+    "maximum_combined_penalty_per_step": 0.1,
+    "estimated_mean_combined_penalty_per_step": 0.02897257038166606
+  },
+  "conditions": [
+    {"condition_id": "B0__G0", "body_dynamics_enabled": false, "use_sde": false, "sde_sample_freq": -1},
+    {"condition_id": "B1__G0", "body_dynamics_enabled": true, "use_sde": false, "sde_sample_freq": -1},
+    {"condition_id": "B0__G8", "body_dynamics_enabled": false, "use_sde": true, "sde_sample_freq": 8},
+    {"condition_id": "B1__G8", "body_dynamics_enabled": true, "use_sde": true, "sde_sample_freq": 8}
+  ],
+  "ppo": {
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.0,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "policy": "MlpPolicy",
+    "policy_kwargs": {"net_arch": [64, 64], "activation_fn": "Tanh"},
+    "torch_num_threads": 2
+  },
+  "execution": {
+    "output_root": "artifacts/dev/body_smoothness_gsde_matrix_v1",
+    "max_workers": 4,
+    "task_order_seed": 8165201
+  },
+  "stopping_rule": "Complete all twelve training tasks. Do not retune coefficients from matrix outcomes.",
+  "claim_boundary": "Development mechanism evidence only. The matrix does not define a natural gait, validate hardware safety, or authorise held-out formal claims."
+}

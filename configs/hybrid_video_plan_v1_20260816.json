@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "config_id": "hybrid_video_plan_v1_20260816",
+  "status": "predeclared_before_300k_results",
+  "role": "Qualitative audit only; videos cannot select a candidate or estimate uncertainty.",
+  "fixed_training_seed": 41301,
+  "fixed_evaluation_seed": 51301,
+  "endpoint_timesteps": 300000,
+  "baseline_progression_checkpoints": [100000, 200000],
+  "candidate_progression": "Use the first condition passing the numerical development gate; if none passes, omit candidate progression rather than selecting the best-looking video.",
+  "conditions_at_endpoint": "all_frozen_matrix_conditions",
+  "max_steps": 1000,
+  "fps": 20,
+  "pad_early_termination_to_horizon": true,
+  "render_xml_file": "assets/ant_render_large_floor.xml",
+  "claim_boundary": "Default flat-ground Ant-v5 simulation only. The enlarged floor is a render-only asset verified to preserve default dynamics."
+}

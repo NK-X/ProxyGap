@@ -1,0 +1,7 @@
+﻿"condition_id","training_seed","evaluation_seed","action_rate_shaping_weight","trajectory_frames","video_frames","padded_frames","termination_category","intent_compliant","video_path","video_sha256"
+"Ftrack__Ar0","41401","51401","0.0","1000","1000","0","none","False","not_committed/Ftrack__Ar0__tr41401__ev51401__t1000000.mp4","89cf97b2f513196573f3b9e84d35874190fe5f92a8119bbc4343bc0d2ffb60b0"
+"Ftrack__Ar0","41402","51401","0.0","1000","1000","0","none","False","not_committed/Ftrack__Ar0__tr41402__ev51401__t1000000.mp4","9d64121085b39462fb1348c13eebfd0c6e65514e90e4ef67bbdd78905844da3a"
+"Ftrack__Ar0","41403","51401","0.0","1000","1000","0","none","True","not_committed/Ftrack__Ar0__tr41403__ev51401__t1000000.mp4","5f577f357945121aad534b5207fd65860449a3fa61cc8435c8cac801db0d2cf4"
+"Ftrack__Ar0p2","41401","51401","0.2","1000","1000","0","none","False","not_committed/Ftrack__Ar0p2__tr41401__ev51401__t1000000.mp4","5ff6510ef6d06e316381b092300a365079a892abf0376aaab8a3b2b6d8fa88c3"
+"Ftrack__Ar0p2","41402","51401","0.2","1000","1000","0","none","False","not_committed/Ftrack__Ar0p2__tr41402__ev51401__t1000000.mp4","0c93b2fed8d442dc5e44cb4c7227ed93384c7f7a7f60403cf0734b1f32eaaec7"
+"Ftrack__Ar0p2","41403","51401","0.2","1000","1000","0","none","False","not_committed/Ftrack__Ar0p2__tr41403__ev51401__t1000000.mp4","b89991bee50e3db7106df8cecab8d2dab7ad7153a2bbe487e4ccb7a6377658b5"

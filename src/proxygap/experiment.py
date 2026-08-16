@@ -5,11 +5,13 @@ from __future__ import annotations
 import csv
 from datetime import datetime
 import json
+import math
 from pathlib import Path
 import time
 from typing import Any, Mapping, Sequence
 
 import numpy as np
+import torch
 from stable_baselines3 import PPO
 from stable_baselines3.common.monitor import Monitor
 from torch import nn
@@ -121,13 +123,27 @@ def evaluate_model(
     episodes: int,
     forward_progress_shaping_weight: float = 0.0,
     lateral_drift_shaping_weight: float = 0.0,
+    lateral_drift_shaping_scale: float = 1.0,
+    lateral_shaping_signal: str = "offset_tanh",
+    lateral_velocity_target: float = 0.0,
     effort_shaping_weight: float = 0.0,
     effort_shaping_scale: float = 1.0,
-    stability_shaping_weight: float = 0.0,
-    stability_shaping_scale: float = 1.0,
+    orientation_shaping_weight: float = 0.0,
+    orientation_shaping_scale: float = 1.0,
+    orientation_shaping_function: str = "tanh",
+    replace_forward_reward_with_tracking: bool = False,
+    forward_velocity_target: float = 1.0,
+    forward_velocity_tracking_scale: float = 0.5,
+    action_rate_shaping_weight: float = 0.0,
+    vertical_velocity_shaping_weight: float = 0.0,
+    vertical_velocity_shaping_scale: float = 1.0,
+    roll_pitch_angular_velocity_shaping_weight: float = 0.0,
+    roll_pitch_angular_velocity_shaping_scale: float = 1.0,
     common_rescore_ctrl_cost_weight: float = 0.5,
     effort_distance_min: float = 1e-8,
     action_saturation_threshold: float = 0.95,
+    augment_previous_applied_action: bool = False,
+    action_slew_l2_limit: float | None = None,
     target_timesteps: int = 0,
     actual_model_timesteps: int = 0,
     training_seed: int | None = None,
@@ -141,9 +157,11 @@ def evaluate_model(
         evaluation_seed = seed + episode
         step_log_path = None
         if step_log_dir is not None:
+            # Keep filenames compact for the traditional Windows MAX_PATH
+            # limit. The condition remains in the parent path and CSV rows.
             step_log_path = step_log_dir / (
-                f"{condition_id}__train_{training_seed if training_seed is not None else seed}"
-                f"__target_{target_timesteps}__eval_{evaluation_seed}.csv.gz"
+                f"tr{training_seed if training_seed is not None else seed}"
+                f"_t{target_timesteps}_ev{evaluation_seed}.csv.gz"
             )
         env = make_proxygap_ant_env(
             ctrl_cost_weight=ctrl_cost_weight,
@@ -152,13 +170,31 @@ def evaluate_model(
             max_episode_steps=max_episode_steps,
             forward_progress_shaping_weight=forward_progress_shaping_weight,
             lateral_drift_shaping_weight=lateral_drift_shaping_weight,
+            lateral_drift_shaping_scale=lateral_drift_shaping_scale,
+            lateral_shaping_signal=lateral_shaping_signal,
+            lateral_velocity_target=lateral_velocity_target,
             effort_shaping_weight=effort_shaping_weight,
             effort_shaping_scale=effort_shaping_scale,
-            stability_shaping_weight=stability_shaping_weight,
-            stability_shaping_scale=stability_shaping_scale,
+            orientation_shaping_weight=orientation_shaping_weight,
+            orientation_shaping_scale=orientation_shaping_scale,
+            orientation_shaping_function=orientation_shaping_function,
+            replace_forward_reward_with_tracking=replace_forward_reward_with_tracking,
+            forward_velocity_target=forward_velocity_target,
+            forward_velocity_tracking_scale=forward_velocity_tracking_scale,
+            action_rate_shaping_weight=action_rate_shaping_weight,
+            vertical_velocity_shaping_weight=vertical_velocity_shaping_weight,
+            vertical_velocity_shaping_scale=vertical_velocity_shaping_scale,
+            roll_pitch_angular_velocity_shaping_weight=(
+                roll_pitch_angular_velocity_shaping_weight
+            ),
+            roll_pitch_angular_velocity_shaping_scale=(
+                roll_pitch_angular_velocity_shaping_scale
+            ),
             common_rescore_ctrl_cost_weight=common_rescore_ctrl_cost_weight,
             effort_distance_min=effort_distance_min,
             action_saturation_threshold=action_saturation_threshold,
+            augment_previous_applied_action=augment_previous_applied_action,
+            action_slew_l2_limit=action_slew_l2_limit,
             step_log_path=step_log_path,
         )
         observation, _ = env.reset(seed=evaluation_seed)
@@ -178,6 +214,24 @@ def evaluate_model(
             "ctrl_cost_weight": ctrl_cost_weight,
             "forward_progress_shaping_weight": forward_progress_shaping_weight,
             "lateral_drift_shaping_weight": lateral_drift_shaping_weight,
+            "lateral_drift_shaping_scale": lateral_drift_shaping_scale,
+            "lateral_shaping_signal": lateral_shaping_signal,
+            "lateral_velocity_target": lateral_velocity_target,
+            "orientation_shaping_weight": orientation_shaping_weight,
+            "orientation_shaping_scale": orientation_shaping_scale,
+            "orientation_shaping_function": orientation_shaping_function,
+            "replace_forward_reward_with_tracking": replace_forward_reward_with_tracking,
+            "forward_velocity_target": forward_velocity_target,
+            "forward_velocity_tracking_scale": forward_velocity_tracking_scale,
+            "action_rate_shaping_weight": action_rate_shaping_weight,
+            "vertical_velocity_shaping_weight": vertical_velocity_shaping_weight,
+            "vertical_velocity_shaping_scale": vertical_velocity_shaping_scale,
+            "roll_pitch_angular_velocity_shaping_weight": (
+                roll_pitch_angular_velocity_shaping_weight
+            ),
+            "roll_pitch_angular_velocity_shaping_scale": (
+                roll_pitch_angular_velocity_shaping_scale
+            ),
             "training_seed": training_seed if training_seed is not None else seed,
             "seed": evaluation_seed,
             **summary,
@@ -210,33 +264,72 @@ def train_condition(
     ppo_policy: str = "MlpPolicy",
     ppo_policy_kwargs: Mapping[str, Any] | None = None,
     ppo_device: str = "cpu",
+    ppo_torch_num_threads: int | None = None,
+    ppo_use_sde: bool = False,
+    ppo_sde_sample_freq: int = -1,
     checkpoint_timesteps: Sequence[int] | None = None,
     forward_progress_shaping_weight: float = 0.0,
     lateral_drift_shaping_weight: float = 0.0,
+    lateral_drift_shaping_scale: float = 1.0,
+    lateral_shaping_signal: str = "offset_tanh",
+    lateral_velocity_target: float = 0.0,
     effort_shaping_weight: float = 0.0,
     effort_shaping_scale: float = 1.0,
-    stability_shaping_weight: float = 0.0,
-    stability_shaping_scale: float = 1.0,
+    orientation_shaping_weight: float = 0.0,
+    orientation_shaping_scale: float = 1.0,
+    orientation_shaping_function: str = "tanh",
+    replace_forward_reward_with_tracking: bool = False,
+    forward_velocity_target: float = 1.0,
+    forward_velocity_tracking_scale: float = 0.5,
+    action_rate_shaping_weight: float = 0.0,
+    vertical_velocity_shaping_weight: float = 0.0,
+    vertical_velocity_shaping_scale: float = 1.0,
+    roll_pitch_angular_velocity_shaping_weight: float = 0.0,
+    roll_pitch_angular_velocity_shaping_scale: float = 1.0,
     common_rescore_ctrl_cost_weight: float = 0.5,
     effort_distance_min: float = 1e-8,
     action_saturation_threshold: float = 0.95,
+    augment_previous_applied_action: bool = False,
+    action_slew_l2_limit: float | None = None,
     record_evaluation_steps: bool = False,
     evaluation_seed_base: int | None = None,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     """Train one condition and save models at predeclared checkpoints."""
+    if ppo_torch_num_threads is not None:
+        if int(ppo_torch_num_threads) <= 0:
+            raise ValueError("ppo_torch_num_threads must be positive")
+        torch.set_num_threads(int(ppo_torch_num_threads))
     raw_env = make_proxygap_ant_env(
         ctrl_cost_weight=ctrl_cost_weight,
         condition_id=condition_id,
         seed=seed,
         forward_progress_shaping_weight=forward_progress_shaping_weight,
         lateral_drift_shaping_weight=lateral_drift_shaping_weight,
+        lateral_drift_shaping_scale=lateral_drift_shaping_scale,
+        lateral_shaping_signal=lateral_shaping_signal,
+        lateral_velocity_target=lateral_velocity_target,
         effort_shaping_weight=effort_shaping_weight,
         effort_shaping_scale=effort_shaping_scale,
-        stability_shaping_weight=stability_shaping_weight,
-        stability_shaping_scale=stability_shaping_scale,
+        orientation_shaping_weight=orientation_shaping_weight,
+        orientation_shaping_scale=orientation_shaping_scale,
+        orientation_shaping_function=orientation_shaping_function,
+        replace_forward_reward_with_tracking=replace_forward_reward_with_tracking,
+        forward_velocity_target=forward_velocity_target,
+        forward_velocity_tracking_scale=forward_velocity_tracking_scale,
+        action_rate_shaping_weight=action_rate_shaping_weight,
+        vertical_velocity_shaping_weight=vertical_velocity_shaping_weight,
+        vertical_velocity_shaping_scale=vertical_velocity_shaping_scale,
+        roll_pitch_angular_velocity_shaping_weight=(
+            roll_pitch_angular_velocity_shaping_weight
+        ),
+        roll_pitch_angular_velocity_shaping_scale=(
+            roll_pitch_angular_velocity_shaping_scale
+        ),
         common_rescore_ctrl_cost_weight=common_rescore_ctrl_cost_weight,
         effort_distance_min=effort_distance_min,
         action_saturation_threshold=action_saturation_threshold,
+        augment_previous_applied_action=augment_previous_applied_action,
+        action_slew_l2_limit=action_slew_l2_limit,
     )
     monitor_path = output_root / "logs" / "training.monitor.csv"
     monitor_path.parent.mkdir(parents=True, exist_ok=True)
@@ -260,6 +353,8 @@ def train_condition(
         vf_coef=ppo_vf_coef,
         max_grad_norm=ppo_max_grad_norm,
         normalize_advantage=ppo_normalize_advantage,
+        use_sde=bool(ppo_use_sde),
+        sde_sample_freq=int(ppo_sde_sample_freq),
         policy_kwargs=policy_kwargs,
         seed=seed,
         device=ppo_device,
@@ -291,13 +386,31 @@ def train_condition(
             ctrl_cost_weight=ctrl_cost_weight,
             forward_progress_shaping_weight=forward_progress_shaping_weight,
             lateral_drift_shaping_weight=lateral_drift_shaping_weight,
+            lateral_drift_shaping_scale=lateral_drift_shaping_scale,
+            lateral_shaping_signal=lateral_shaping_signal,
+            lateral_velocity_target=lateral_velocity_target,
             effort_shaping_weight=effort_shaping_weight,
             effort_shaping_scale=effort_shaping_scale,
-            stability_shaping_weight=stability_shaping_weight,
-            stability_shaping_scale=stability_shaping_scale,
+            orientation_shaping_weight=orientation_shaping_weight,
+            orientation_shaping_scale=orientation_shaping_scale,
+            orientation_shaping_function=orientation_shaping_function,
+            replace_forward_reward_with_tracking=replace_forward_reward_with_tracking,
+            forward_velocity_target=forward_velocity_target,
+            forward_velocity_tracking_scale=forward_velocity_tracking_scale,
+            action_rate_shaping_weight=action_rate_shaping_weight,
+            vertical_velocity_shaping_weight=vertical_velocity_shaping_weight,
+            vertical_velocity_shaping_scale=vertical_velocity_shaping_scale,
+            roll_pitch_angular_velocity_shaping_weight=(
+                roll_pitch_angular_velocity_shaping_weight
+            ),
+            roll_pitch_angular_velocity_shaping_scale=(
+                roll_pitch_angular_velocity_shaping_scale
+            ),
             common_rescore_ctrl_cost_weight=common_rescore_ctrl_cost_weight,
             effort_distance_min=effort_distance_min,
             action_saturation_threshold=action_saturation_threshold,
+            augment_previous_applied_action=augment_previous_applied_action,
+            action_slew_l2_limit=action_slew_l2_limit,
             checkpoint_fraction=checkpoint_fraction,
             target_timesteps=target,
             actual_model_timesteps=actual_timesteps,
@@ -318,10 +431,37 @@ def train_condition(
                 "ctrl_cost_weight": ctrl_cost_weight,
                 "forward_progress_shaping_weight": forward_progress_shaping_weight,
                 "lateral_drift_shaping_weight": lateral_drift_shaping_weight,
+                "lateral_drift_shaping_scale": lateral_drift_shaping_scale,
+                "lateral_shaping_signal": lateral_shaping_signal,
+                "lateral_velocity_target": lateral_velocity_target,
                 "effort_shaping_weight": effort_shaping_weight,
-                "stability_shaping_weight": stability_shaping_weight,
+                "orientation_shaping_weight": orientation_shaping_weight,
+                "orientation_shaping_scale": orientation_shaping_scale,
+                "orientation_shaping_function": orientation_shaping_function,
+                "replace_forward_reward_with_tracking": replace_forward_reward_with_tracking,
+                "forward_velocity_target": forward_velocity_target,
+                "forward_velocity_tracking_scale": forward_velocity_tracking_scale,
+                "action_rate_shaping_weight": action_rate_shaping_weight,
+                "vertical_velocity_shaping_weight": vertical_velocity_shaping_weight,
+                "vertical_velocity_shaping_scale": vertical_velocity_shaping_scale,
+                "roll_pitch_angular_velocity_shaping_weight": (
+                    roll_pitch_angular_velocity_shaping_weight
+                ),
+                "roll_pitch_angular_velocity_shaping_scale": (
+                    roll_pitch_angular_velocity_shaping_scale
+                ),
+                "ppo_use_sde": bool(ppo_use_sde),
+                "ppo_sde_sample_freq": int(ppo_sde_sample_freq),
                 "common_rescore_ctrl_cost_weight": common_rescore_ctrl_cost_weight,
+                "action_observation_augmented": augment_previous_applied_action,
+                "action_constraint_enabled": action_slew_l2_limit is not None,
+                "action_slew_l2_limit": (
+                    action_slew_l2_limit
+                    if action_slew_l2_limit is not None
+                    else float("nan")
+                ),
                 "training_seed": seed,
+                "torch_num_threads": torch.get_num_threads(),
                 "checkpoint_fraction": checkpoint_fraction,
                 "target_timesteps": target,
                 "actual_model_timesteps": actual_timesteps,
@@ -340,13 +480,29 @@ def train_condition(
 
 def summarise_evaluation(eval_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Create simple pilot summaries without claiming formal conclusions."""
-    grouped: dict[tuple[str, float, float, float, float, int], list[dict[str, Any]]] = {}
+    grouped: dict[
+        tuple[str, float, float, float, float, str, bool, bool, str, float, int],
+        list[dict[str, Any]],
+    ] = {}
     for row in eval_rows:
+        raw_slew_limit = row.get("action_slew_l2_limit")
+        try:
+            numeric_slew_limit = float(raw_slew_limit)
+        except (TypeError, ValueError):
+            numeric_slew_limit = float("nan")
+        slew_limit_key = (
+            "none" if not np.isfinite(numeric_slew_limit) else str(numeric_slew_limit)
+        )
         key = (
             str(row["condition_id"]),
             float(row["ctrl_cost_weight"]),
             float(row.get("forward_progress_shaping_weight", 0.0)),
             float(row.get("lateral_drift_shaping_weight", 0.0)),
+            float(row.get("orientation_shaping_weight", 0.0)),
+            str(row.get("orientation_shaping_function", "tanh")),
+            bool(metric_value_as_float(row.get("action_observation_augmented", False))),
+            bool(metric_value_as_float(row.get("action_constraint_enabled", False))),
+            slew_limit_key,
             float(row["checkpoint_fraction"]),
             int(row.get("target_timesteps", 0)),
         )
@@ -360,11 +516,26 @@ def summarise_evaluation(eval_rows: list[dict[str, Any]]) -> list[dict[str, Any]
         "reward_shaping_sum",
         "reward_forward_shaping_sum",
         "reward_lateral_shaping_sum",
+        "reward_orientation_shaping_sum",
+        "reward_forward_tracking_sum",
+        "reward_forward_replacement_sum",
+        "reward_action_rate_shaping_sum",
+        "action_rate_penalty_sum",
+        "orientation_penalty_sum",
         "net_forward_progress",
         "net_forward_progress_per_step",
+        "episode_duration_seconds",
+        "mean_forward_velocity",
+        "fixed_horizon_mean_forward_velocity",
+        "net_displacement_direction_error_rad",
+        "net_displacement_direction_error_degrees",
         "cumulative_squared_action",
         "mean_squared_action_per_step",
         "action_saturation_rate",
+        "cumulative_squared_action_change",
+        "mean_squared_action_change_per_transition",
+        "normalised_action_roughness",
+        "action_change_transition_count",
         "effort_per_distance_defined",
         "cumulative_squared_action_per_unit_distance",
         "control_effort_per_unit_distance",
@@ -378,11 +549,26 @@ def summarise_evaluation(eval_rows: list[dict[str, Any]]) -> list[dict[str, Any]
         "lateral_drift_mean_abs",
         "lateral_drift_max_abs",
         "cumulative_lateral_path",
+        "cumulative_planar_path",
+        "forward_path_efficiency",
         "torso_tilt_mean",
         "torso_tilt_std",
         "torso_tilt_rms",
         "torso_tilt_p95",
         "torso_tilt_max",
+        "inverted_step_fraction",
+        "longest_inverted_run_seconds",
+        "sustained_inversion",
+        "full_horizon_completed",
+        "intent_compliant",
+        "action_slew_intervention_count",
+        "action_slew_intervention_rate",
+        "cumulative_action_correction_l2",
+        "mean_action_correction_l2",
+        "max_action_correction_l2",
+        "cumulative_proposed_squared_action_change",
+        "proposed_action_change_transition_count",
+        "proposed_normalised_action_roughness",
         "episode_length",
     ]
     summary_rows: list[dict[str, Any]] = []
@@ -391,6 +577,11 @@ def summarise_evaluation(eval_rows: list[dict[str, Any]]) -> list[dict[str, Any]
         ctrl_cost_weight,
         forward_progress_shaping_weight,
         lateral_drift_shaping_weight,
+        orientation_shaping_weight,
+        orientation_shaping_function,
+        action_observation_augmented,
+        action_constraint_enabled,
+        action_slew_l2_limit_key,
         checkpoint_fraction,
         target_timesteps,
     ), rows in grouped.items():
@@ -399,6 +590,15 @@ def summarise_evaluation(eval_rows: list[dict[str, Any]]) -> list[dict[str, Any]
             "ctrl_cost_weight": ctrl_cost_weight,
             "forward_progress_shaping_weight": forward_progress_shaping_weight,
             "lateral_drift_shaping_weight": lateral_drift_shaping_weight,
+            "orientation_shaping_weight": orientation_shaping_weight,
+            "orientation_shaping_function": orientation_shaping_function,
+            "action_observation_augmented": action_observation_augmented,
+            "action_constraint_enabled": action_constraint_enabled,
+            "action_slew_l2_limit": (
+                float(action_slew_l2_limit_key)
+                if action_slew_l2_limit_key != "none"
+                else float("nan")
+            ),
             "checkpoint_fraction": checkpoint_fraction,
             "target_timesteps": target_timesteps,
             "episodes": len(rows),
@@ -457,20 +657,42 @@ def select_representative_evaluation_seed(
         for seed, seed_rows in by_training_seed.items()
     }
     median_policy_progress = float(np.median(list(policy_means.values())))
+    policy_distances = {
+        seed: abs(value - median_policy_progress)
+        for seed, value in policy_means.items()
+    }
+    minimum_policy_distance = min(policy_distances.values())
     selected_training_seed = min(
-        policy_means,
-        key=lambda seed: (abs(policy_means[seed] - median_policy_progress), seed),
+        seed
+        for seed, distance in policy_distances.items()
+        if math.isclose(
+            distance,
+            minimum_policy_distance,
+            rel_tol=1e-12,
+            abs_tol=1e-12,
+        )
     )
     policy_rows = by_training_seed[selected_training_seed]
     median_episode_progress = float(
         np.median([float(row["net_forward_progress"]) for row in policy_rows])
     )
+    episode_distances = [
+        abs(float(row["net_forward_progress"]) - median_episode_progress)
+        for row in policy_rows
+    ]
+    minimum_episode_distance = min(episode_distances)
     selected_row = min(
-        policy_rows,
-        key=lambda row: (
-            abs(float(row["net_forward_progress"]) - median_episode_progress),
-            int(row["seed"]),
+        (
+            row
+            for row, distance in zip(policy_rows, episode_distances)
+            if math.isclose(
+                distance,
+                minimum_episode_distance,
+                rel_tol=1e-12,
+                abs_tol=1e-12,
+            )
         ),
+        key=lambda row: int(row["seed"]),
     )
     return {
         "condition_id": str(selected_row["condition_id"]),

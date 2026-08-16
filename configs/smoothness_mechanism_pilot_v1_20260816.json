@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "config_id": "smoothness_mechanism_pilot_v1_20260816",
+  "status": "frozen_authorised_development_matrix",
+  "formal_launch": "prohibited",
+  "environment": "Ant-v5",
+  "scope": "Default flat-ground Ant-v5 simulation only; exploratory mechanism pilot.",
+  "algorithm": "PPO",
+  "device": "cpu",
+  "research_question": "Do bounded forward-velocity tracking and a policy action-rate penalty reduce hopping and action roughness without destroying commanded forward locomotion?",
+  "design": "Two-by-two factorial mechanism screen. All non-focal reward, environment and PPO settings are held fixed.",
+  "ctrl_cost_weight": 0.5,
+  "shared_reward": {
+    "orientation_shaping_weight": 0.1,
+    "orientation_shaping_function": "cosine",
+    "orientation_shaping_scale": 1.0,
+    "lateral_drift_shaping_weight": 0.05,
+    "lateral_drift_shaping_scale": 1.0,
+    "lateral_shaping_signal": "velocity_tanh_squared",
+    "lateral_velocity_target": 0.0,
+    "forward_velocity_target": 1.0,
+    "forward_velocity_tracking_scale": 0.5
+  },
+  "conditions": [
+    {
+      "condition_id": "Flinear__Ar0",
+      "replace_forward_reward_with_tracking": false,
+      "action_rate_shaping_weight": 0.0
+    },
+    {
+      "condition_id": "Ftrack__Ar0",
+      "replace_forward_reward_with_tracking": true,
+      "action_rate_shaping_weight": 0.0
+    },
+    {
+      "condition_id": "Flinear__Ar0p2",
+      "replace_forward_reward_with_tracking": false,
+      "action_rate_shaping_weight": 0.2
+    },
+    {
+      "condition_id": "Ftrack__Ar0p2",
+      "replace_forward_reward_with_tracking": true,
+      "action_rate_shaping_weight": 0.2
+    }
+  ],
+  "action_rate_penalty": {
+    "formula": "sum((a_t-a_(t-1))^2)/(4*d)",
+    "action_dimension_d": 8,
+    "bounded_range": [0.0, 1.0],
+    "first_step_penalty": 0.0,
+    "applies_to": "proposed policy action",
+    "weight_rationale": "At the previously observed proposed roughness near 0.2-0.3, weight 0.2 contributes approximately -0.04 to -0.06 per step: material but smaller than the +1 healthy term."
+  },
+  "velocity_tracking_reward": {
+    "formula": "exp(-((v_x-v_x_star)/sigma_v)^2)",
+    "target_v_x_m_per_s": 1.0,
+    "sigma_v_m_per_s": 0.5,
+    "bounded_range": [0.0, 1.0],
+    "rationale": "The target matches the centre of the frozen 0.8-1.2 m/s intent interval; the reward is maximal at the command and removes unbounded incentive for faster hopping."
+  },
+  "observation": {
+    "augment_previous_applied_action_for_all_conditions": true,
+    "dimensions": 113,
+    "rationale": "All policies observe the prior action, so the action-rate objective is Markov and comparator observations remain identical."
+  },
+  "constraint": {
+    "action_slew_l2_limit": null,
+    "rationale": "The external slew projector is disabled so this pilot measures learned policy smoothness rather than mechanically filtered actions."
+  },
+  "training_seeds": [41401, 41402, 41403],
+  "seed_role": "New development seeds not used in the preceding hybrid-guardrail rounds; not reserved formal seeds.",
+  "reserved_formal_training_seeds": [42001, 42002, 42003, 42004, 42005, 42006, 42007, 42008],
+  "evaluation_seed_base": 51401,
+  "evaluation_seeds": [51401, 51402, 51403, 51404, 51405, 51406, 51407, 51408, 51409, 51410],
+  "eval_episodes_per_checkpoint": 10,
+  "eval_max_episode_steps": 1000,
+  "timesteps_per_condition": 300000,
+  "checkpoint_timesteps": [100000, 200000, 300000],
+  "record_evaluation_steps_during_training": true,
+  "ppo": {
+    "policy": "MlpPolicy",
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.0,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "use_sde": false,
+    "policy_kwargs": {"net_arch": [64, 64], "activation_fn": "Tanh"},
+    "torch_num_threads": 2
+  },
+  "execution": {
+    "max_workers": 4,
+    "task_order_seed": 8164101,
+    "output_root": "artifacts/dev/smoothness_mechanism_v1"
+  },
+  "primary_diagnostics": [
+    "fixed_horizon_mean_forward_velocity",
+    "normalised_action_roughness",
+    "proposed_normalised_action_roughness",
+    "no_floor_contact_step_fraction",
+    "prominent_takeoff_count_vz_ge_1p25",
+    "max_raw_floor_force_norm",
+    "forward_path_efficiency",
+    "net_displacement_direction_error_degrees",
+    "torso_tilt_rms",
+    "unhealthy_termination"
+  ],
+  "stopping_rule": "Complete the frozen 12-policy matrix. Do not tune the two candidate weights from its outcomes; use results only to choose the next predeclared mechanism question.",
+  "claim_boundary": "Development mechanism evidence only; no formal mitigation, natural-gait or real-robot claim."
+}

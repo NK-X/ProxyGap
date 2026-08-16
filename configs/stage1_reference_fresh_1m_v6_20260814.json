@@ -1,0 +1,172 @@
+{
+  "schema_version": 6,
+  "config_id": "stage1_reference_fresh_1m_v6_20260814",
+  "status": "authorised_reference_only_development_diagnostic",
+  "stage_scope": "stage_1_reference_competence_only_no_candidate_no_shaping",
+  "protocol_document": "protocols/STAGE1_REFERENCE_FRESH_1M_PROTOCOL_V6_20260814.md",
+  "parent_gate": {
+    "path": "configs/stage1_post_extension_gate_v5_20260814.json",
+    "sha256": "52044CA5CCBB941BB2B554108BBEAC6A6C113CD1D63D0E456BA39DF1145D053D"
+  },
+  "environment": "Ant-v5",
+  "algorithm": "PPO",
+  "device": "cpu",
+  "authorisation": {
+    "status": "user_authorised",
+    "date": "2026-08-14",
+    "scope": "Start a new stage-one training run; do not start shaping."
+  },
+  "research_role": {
+    "question": "Can the unchanged default Ant-v5/PPO reference configuration produce minimally competent locomotion in fresh uninterrupted training runs?",
+    "purpose": "Resolve whether the failed two-seed V4 reference gate is consistent with continuation discontinuity or small-sample variation, or instead indicates persistent baseline-configuration weakness.",
+    "independent_replication_unit": "training seed / independently trained policy",
+    "evaluation_episode_role": "nested repeated observation of a fixed trained policy; not an independent training replicate",
+    "primary_endpoint": 1000000,
+    "candidate_weight_testing": false,
+    "formal_confirmation": false,
+    "reward_shaping": false
+  },
+  "intended_behaviour": {
+    "task": "Sustained and effective net forward locomotion over a maximum 1,000-step episode while satisfying the finite-state and torso-height health rule.",
+    "health_scope": "Gymnasium Ant-v5 finite-state and torso-height rule only; not comprehensive robot health or physical safety.",
+    "diagnostics_remain_disaggregated": true,
+    "scalar_true_reward": "not_defined"
+  },
+  "ctrl_cost_weights": [0.5],
+  "training_seeds": [41201, 41202, 41203, 41204, 41205],
+  "reserved_formal_training_seeds": [42001, 42002, 42003, 42004, 42005, 42006, 42007, 42008],
+  "evaluation_seed_base": 51201,
+  "evaluation_seeds": [
+    51201,
+    51202,
+    51203,
+    51204,
+    51205,
+    51206,
+    51207,
+    51208,
+    51209,
+    51210,
+    51211,
+    51212,
+    51213,
+    51214,
+    51215,
+    51216,
+    51217,
+    51218,
+    51219,
+    51220
+  ],
+  "eval_episodes_per_checkpoint": 20,
+  "eval_max_episode_steps": 1000,
+  "timesteps_per_condition": 1000000,
+  "checkpoint_timesteps": [250000, 500000, 750000, 1000000],
+  "normalisation_enabled": false,
+  "reward": {
+    "forward_reward_weight": 1.0,
+    "healthy_reward": 1.0,
+    "contact_cost_weight": 0.0005,
+    "forward_progress_shaping_weight": 0.0,
+    "lateral_drift_shaping_weight": 0.0,
+    "effort_shaping_weight": 0.0,
+    "orientation_shaping_weight": 0.0,
+    "common_rescore_ctrl_cost_weight": 0.5
+  },
+  "ppo": {
+    "policy": "MlpPolicy",
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.0,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "use_sde": false,
+    "policy_kwargs": {
+      "net_arch": [64, 64],
+      "activation_fn": "Tanh"
+    },
+    "torch_num_threads": 2
+  },
+  "reference_competence_gate": {
+    "role": "Predeclared operational interpretability screen; not a literature-derived success threshold or physical-safety claim.",
+    "checkpoint": 1000000,
+    "per_policy": {
+      "unhealthy_termination_rate_max": 0.2,
+      "mean_forward_velocity_min_position_units_per_second": 0.1,
+      "joint_rule": "Both thresholds must be satisfied by the same independently trained policy."
+    },
+    "configuration_level": {
+      "supported_min_passing_policies": 4,
+      "inconclusive_min_passing_policies": 2,
+      "failed_max_passing_policies": 1,
+      "total_policies": 5,
+      "interpretation": "Descriptive prospective decision rule, not a null-hypothesis significance test."
+    }
+  },
+  "analysis_rules": {
+    "primary_endpoint": 1000000,
+    "intermediate_checkpoints": [250000, 500000, 750000],
+    "primary_unit": "training seed / trained policy",
+    "episode_aggregation": "Aggregate the 20 evaluation episodes within each trained policy before applying the policy gate.",
+    "checkpoint_dependence": "Checkpoints are repeated measurements of one evolving policy and are descriptive only.",
+    "negative_result_rule": "Retain and report every seed. Do not replace a failed policy or alter thresholds after inspection.",
+    "decision_if_supported": "Proceed to a separate held-out stage-one protocol freeze; do not automatically start candidate or shaping training.",
+    "decision_if_inconclusive_or_failed": "Freeze a separate reference-configuration pilot before changing normalisation, architecture or optimisation settings."
+  },
+  "stopping_and_failure_rules": {
+    "planned_stop": "After all five independently trained reference policies have been evaluated at the 1M primary endpoint.",
+    "retain_failures": true,
+    "replace_failed_seed": false,
+    "partial_task_rule": "Preserve any partial policy directory for audit and require manual adjudication before a rerun.",
+    "non_finite_rule": "Retain the affected policy and logs, record the failure, and do not substitute a new seed.",
+    "system_stop": "Stop only for non-finite training failure, unrecoverable I/O error, insufficient storage, or explicit user interruption."
+  },
+  "execution": {
+    "max_workers": 4,
+    "task_order_seed": 8142031,
+    "windows_sleep_prevention": true,
+    "output_root": "artifacts/exploration/stage1_reference_fresh_1m_v6_20260814"
+  },
+  "output_root": "artifacts/exploration/stage1_reference_fresh_1m_v6_20260814",
+  "task_order_seed": 8142031,
+  "max_workers": 4,
+  "software_record": {
+    "python": "3.11.15",
+    "torch": "2.13.0+cpu",
+    "cuda_available": false,
+    "gymnasium": "1.3.0",
+    "stable_baselines3": "2.9.0",
+    "mujoco": "3.11.0"
+  },
+  "source_hashes": [
+    {
+      "path": "src/proxygap/experiment.py",
+      "sha256": "EA87816D259A27486E8FA8F2E6D6C4F3DADF3B9FBEFD46A475C372012EEECE2F"
+    },
+    {
+      "path": "src/proxygap/ant_wrapper.py",
+      "sha256": "7019CF679769664C7A96C7AA5E359013487C1EB6B9C168A34A320632E8A6F547"
+    },
+    {
+      "path": "src/proxygap/metrics.py",
+      "sha256": "E8B29D519FBA6FD91C2B023A68050765433FF07BB4DC1A5A7CAAF85A387393BE"
+    },
+    {
+      "path": "scripts/resume_development_parallel.py",
+      "sha256": "1744466ED05AB88D1B349BB436616CE181456EB152448FA5C3AA57E295468807"
+    },
+    {
+      "path": "docs/STAGE1_METRIC_CONTRACT_20260814.md",
+      "sha256": "0D5C9716B0308DAECAFFC45FC21A367AA2FEFDE13FF184F3AE7F572D8F245F98"
+    }
+  ],
+  "formal_launch": "prohibited",
+  "shaping_launch": "prohibited",
+  "claim_boundary": "This reference-only development diagnostic can resolve baseline competence under the unchanged tested configuration. It cannot establish reward misspecification, reward hacking, an optimal coefficient, PPO generality or real-robot safety."
+}

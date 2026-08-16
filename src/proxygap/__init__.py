@@ -1,6 +1,16 @@
 """Canonical Ant-v5/PPO utilities for the ProxyGap project."""
 
-from .ant_wrapper import ProxyGapAntWrapper, STEP_LOG_SCHEMA, make_proxygap_ant_env
+from .ant_wrapper import (
+    bounded_squared_signal_penalty,
+    ProxyGapAntWrapper,
+    STEP_LOG_SCHEMA,
+    forward_velocity_tracking_value,
+    lateral_penalty_value,
+    make_proxygap_ant_env,
+    normalised_action_rate_penalty,
+    orientation_penalty_value,
+    project_action_l2_slew,
+)
 from .experiment import (
     CHECKPOINT_FRACTIONS,
     DEFAULT_PPO_CONFIG,
@@ -8,6 +18,16 @@ from .experiment import (
     evaluate_model,
     resolve_ppo_config,
     select_representative_evaluation_seed,
+)
+from .divergence import (
+    DEFAULT_EXTERNAL_HARM_METRICS,
+    PairwiseProxyContrast,
+    PairwiseWeightScreen,
+    SeedDivergenceContrast,
+    WeightDivergenceScreen,
+    choose_minimal_departure_candidate,
+    screen_pairwise_fixed_proxy,
+    screen_divergence_candidates,
 )
 from .metrics import (
     CSV_SCHEMA,
@@ -17,10 +37,18 @@ from .metrics import (
     quaternion_tilt_angle,
 )
 from .protocol import protocol_freeze_status, validate_prospective_protocol
+from .selection import (
+    CandidateSummary,
+    SelectionResult,
+    project_selection_inputs,
+    select_best_tested_coefficient,
+)
+from .two_experiment_protocol import validate_two_experiment_protocol
 
 __all__ = [
     "CHECKPOINT_FRACTIONS",
     "CSV_SCHEMA",
+    "bounded_squared_signal_penalty",
     "DEFAULT_PPO_CONFIG",
     "EpisodeMetrics",
     "ProxyGapAntWrapper",
@@ -30,9 +58,27 @@ __all__ = [
     "classify_termination",
     "common_rescored_return",
     "make_proxygap_ant_env",
+    "forward_velocity_tracking_value",
+    "lateral_penalty_value",
+    "normalised_action_rate_penalty",
+    "orientation_penalty_value",
+    "project_action_l2_slew",
     "quaternion_tilt_angle",
     "resolve_ppo_config",
     "select_representative_evaluation_seed",
     "protocol_freeze_status",
     "validate_prospective_protocol",
+    "DEFAULT_EXTERNAL_HARM_METRICS",
+    "PairwiseProxyContrast",
+    "PairwiseWeightScreen",
+    "SeedDivergenceContrast",
+    "WeightDivergenceScreen",
+    "choose_minimal_departure_candidate",
+    "screen_pairwise_fixed_proxy",
+    "screen_divergence_candidates",
+    "CandidateSummary",
+    "SelectionResult",
+    "project_selection_inputs",
+    "select_best_tested_coefficient",
+    "validate_two_experiment_protocol",
 ]

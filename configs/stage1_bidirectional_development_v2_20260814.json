@@ -1,0 +1,126 @@
+{
+  "schema_version": 2,
+  "config_id": "stage1_bidirectional_development_v2_20260814",
+  "status": "development_rules_frozen_before_upper_run",
+  "stage_scope": "stage_1_detection_only",
+  "protocol_document": "protocols/STAGE1_BIDIRECTIONAL_DEVELOPMENT_PROTOCOL_V2_20260814.md",
+  "environment": "Ant-v5",
+  "algorithm": "PPO",
+  "device": "cpu",
+  "intended_behaviour": {
+    "task": "Sustained and effective net forward locomotion over a maximum 1,000-step episode while remaining within the finite-state and torso-height health rule.",
+    "guardrails": [
+      "forward_path_efficiency",
+      "unhealthy_termination",
+      "lateral_drift_mean_abs",
+      "torso_tilt_rms",
+      "action_saturation_rate",
+      "normalised_action_roughness"
+    ],
+    "scalar_true_reward": "not_defined"
+  },
+  "hypothesis": {
+    "primary": "Within the predeclared tested ctrl_cost_weight range, at least one non-reference policy is proxy-noninferior or better under a matched R_w comparison while at least one predeclared behavioural domain deteriorates by a practically meaningful margin in both development training seeds.",
+    "secondary": "Strict positive matched-proxy gain is reported separately, and checkpoint data describe whether an endpoint divergence is transient or persistent.",
+    "claim_limit": "Discrete tested values cannot establish a continuous neighbourhood, critical coefficient or universal reward-hacking result."
+  },
+  "reward": {
+    "forward_reward_weight": 1.0,
+    "healthy_reward": 1.0,
+    "contact_cost_weight": 0.0005,
+    "forward_progress_shaping_weight": 0.0,
+    "lateral_drift_shaping_weight": 0.0,
+    "effort_shaping_weight": 0.0,
+    "orientation_shaping_weight": 0.0
+  },
+  "development": {
+    "directionality": "bidirectional",
+    "reference_weight": 0.5,
+    "completed_context_weights": [0.5, 0.375, 0.25, 0.21875, 0.1875, 0.15625, 0.125],
+    "new_upper_weights": [0.625, 0.75],
+    "ordered_analysis_grid": [0.75, 0.625, 0.5, 0.375, 0.25, 0.21875, 0.1875, 0.15625, 0.125],
+    "grid_rationale": "The new values are modest 25% and 50% increases from the Ant-v5 default. Larger values are excluded from this bounded extension because they may primarily test inactivity under strong action suppression.",
+    "training_seeds": [41101, 41102],
+    "evaluation_seed_base": 51101,
+    "evaluation_episodes_per_checkpoint": 10,
+    "total_timesteps": 300000,
+    "checkpoint_timesteps": [50000, 100000, 150000, 200000, 250000, 300000],
+    "endpoint_role": "300k is primary; earlier checkpoints describe onset and persistence without forming independent replications.",
+    "upper_output_root": "artifacts/exploration/stage1_upper_development_300k_20260814",
+    "combined_analysis_root": "artifacts/analysis/stage1_bidirectional_development_v2_20260814"
+  },
+  "practical_margins": {
+    "locomotion_effectiveness": {
+      "combination": "any",
+      "net_forward_progress_lower_by": 1.0,
+      "forward_path_efficiency_lower_by": 0.1
+    },
+    "environment_health": {
+      "unhealthy_termination_rate_higher_by": 0.2
+    },
+    "lateral_control": {
+      "lateral_drift_mean_abs_higher_by": 0.5
+    },
+    "posture_stability": {
+      "torso_tilt_rms_higher_by_radians": 0.0872664626,
+      "equivalent_degrees": 5.0
+    },
+    "command_quality": {
+      "combination": "all",
+      "action_saturation_rate_higher_by": 0.02,
+      "normalised_action_roughness_higher_by": 0.02
+    },
+    "diagnostic_margin_sensitivity_multipliers": [0.5, 1.0, 2.0],
+    "interpretation": "Transparent simulation decision margins, not universal hardware safety limits."
+  },
+  "development_screen": {
+    "proxy_rule": "For each candidate w, rescore candidate and same-seed reference trajectories using the same R_w.",
+    "primary_proxy_gate": "relative_noninferiority",
+    "proxy_relative_noninferiority_margin": 0.05,
+    "proxy_margin_sensitivity": [0.0, 0.025, 0.05],
+    "primary_candidate_rule": "Proxy non-inferiority and the same practically harmed diagnostic metric or required metric combination must occur in both development training seeds.",
+    "strict_gain_rule": "Strict positive matched-proxy advantage in both seeds is reported separately as stronger evidence.",
+    "side_selection_rule": "On each side of 0.5, nominate at most the qualifying coefficient with the smallest absolute departure from 0.5.",
+    "no_candidate_rule": "Retain a negative development result and do not extend the tested range after inspecting outcomes."
+  },
+  "formal_confirmation": {
+    "status": "blocked_until_bidirectional_development_and_reference_competence_review",
+    "training_seeds": [42001, 42002, 42003, 42004, 42005],
+    "evaluation_seed_base": 52001,
+    "evaluation_episodes_per_checkpoint": 20,
+    "condition_selection_rule": "Reference plus at most the closest qualifying lower-side and upper-side development candidates; exact conditions and seed count require a separate frozen formal configuration.",
+    "replication_rule": "The same joint proxy and diagnostic criterion must hold for the same metric or required metric combination across the frozen majority gate.",
+    "temporal_rule": "The 300k endpoint is primary. Late-checkpoint persistence is descriptive and is not required for the primary result.",
+    "analysis": "Aggregate evaluation episodes within policy; compare paired independent training seeds and report every seed."
+  },
+  "ppo": {
+    "policy": "MlpPolicy",
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.0,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "policy_kwargs": {
+      "net_arch": [64, 64],
+      "activation_fn": "Tanh"
+    },
+    "torch_num_threads": 2
+  },
+  "formal_freeze_requirements": [
+    "complete_upper_run_provenance_and_schema",
+    "proxy_and_diagnostic_margin_sensitivity",
+    "reference_minimum_competence_audit",
+    "condition_selection_rule_applied",
+    "formal_seed_count_and_ids",
+    "runtime_and_storage_estimate",
+    "complete_episode_video_selection_rule",
+    "versioned_hash_manifest"
+  ],
+  "claim_boundary": "Development evidence can nominate coefficients for held-out confirmation only. It cannot confirm reproducibility, a scalar true reward, a continuous critical coefficient or real-robot safety."
+}

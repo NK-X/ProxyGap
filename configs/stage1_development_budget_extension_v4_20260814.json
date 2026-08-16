@@ -1,0 +1,172 @@
+{
+  "schema_version": 4,
+  "config_id": "stage1_development_budget_extension_v4_20260814",
+  "status": "authorised_development_extension_scientifically_unresolved",
+  "stage_scope": "stage_1_detection_only_no_shaping",
+  "protocol_document": "protocols/STAGE1_DEVELOPMENT_BUDGET_EXTENSION_V4_20260814.md",
+  "parent_revision_gate": "protocols/STAGE1_PREFORMAL_REVISION_GATE_V3_20260814.md",
+  "environment": "Ant-v5",
+  "algorithm": "PPO",
+  "device": "cpu",
+  "authorisation": {
+    "status": "user_authorised",
+    "date": "2026-08-14",
+    "scope": "Extend the existing development policies to 1M while keeping stage two shaping blocked."
+  },
+  "research_role": {
+    "question": "Does the development proxy-diagnostic divergence persist when the same saved policies receive a larger optimisation budget, and does the reference reach a minimally interpretable locomotion state?",
+    "independent_replication_unit": "training seed / trained policy",
+    "evaluation_episode_role": "nested repeated observation, not an independent training replicate",
+    "candidate_reselection": "prohibited",
+    "formal_confirmation": false
+  },
+  "intended_behaviour": {
+    "task": "Sustained and effective net forward locomotion over a maximum 1,000-step episode while satisfying the finite-state and torso-height health rule.",
+    "diagnostics_remain_disaggregated": true,
+    "scalar_true_reward": "not_defined",
+    "corridor_constraint_status": "scientifically_unresolved; absolute and exposure-normalised lateral diagnostics will both be reported"
+  },
+  "reward": {
+    "forward_reward_weight": 1.0,
+    "healthy_reward": 1.0,
+    "contact_cost_weight": 0.0005,
+    "forward_progress_shaping_weight": 0.0,
+    "lateral_drift_shaping_weight": 0.0,
+    "effort_shaping_weight": 0.0,
+    "orientation_shaping_weight": 0.0
+  },
+  "budget_extension": {
+    "ctrl_cost_weights": [0.5, 0.21875, 0.125],
+    "training_seeds": [41101, 41102],
+    "evaluation_seeds": [51101, 51102, 51103, 51104, 51105, 51106, 51107, 51108, 51109, 51110],
+    "evaluation_max_episode_steps": 1000,
+    "source_target_timesteps": 300000,
+    "expected_source_model_timesteps": 301056,
+    "target_timesteps": 1000000,
+    "checkpoint_timesteps": [500000, 750000, 1000000],
+    "normalisation_enabled": false,
+    "environment_state_restored": false,
+    "rng_stream_restored": false,
+    "continuation_seed_rule": "Restart each continuation RNG stream with its original training-seed identifier and record the reset discontinuity."
+  },
+  "ppo": {
+    "policy": "MlpPolicy",
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.0,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "use_sde": false,
+    "policy_kwargs": {
+      "net_arch": [64, 64],
+      "activation_fn": "Tanh"
+    },
+    "torch_num_threads": 2
+  },
+  "source_policies": [
+    {
+      "condition_id": "reference",
+      "ctrl_cost_weight": 0.5,
+      "training_seed": 41101,
+      "path": "artifacts/development/candidate_confirmation_300k_20260813/runs/seed_41101/reference/models/reference/checkpoint_300000.zip",
+      "sha256": "72421178dcbcff1994887697c799bb36862dea98c4503a6448c8d2688db66934",
+      "expected_num_timesteps": 301056
+    },
+    {
+      "condition_id": "reference",
+      "ctrl_cost_weight": 0.5,
+      "training_seed": 41102,
+      "path": "artifacts/development/candidate_confirmation_300k_20260813/runs/seed_41102/reference/models/reference/checkpoint_300000.zip",
+      "sha256": "9c7dca080c72068f875057c44cef7803e8faed0d00a3338429694c01a04ff841",
+      "expected_num_timesteps": 301056
+    },
+    {
+      "condition_id": "ctrl_0p21875",
+      "ctrl_cost_weight": 0.21875,
+      "training_seed": 41101,
+      "path": "artifacts/exploration/stage1_dense_development_300k_20260814/runs/seed_41101/ctrl_0p21875/models/ctrl_0p21875/checkpoint_300000.zip",
+      "sha256": "0010b74e8458f3639bab1a63cfd7ae81ea7c4e26510b1a530ca50aa0a9705e84",
+      "expected_num_timesteps": 301056
+    },
+    {
+      "condition_id": "ctrl_0p21875",
+      "ctrl_cost_weight": 0.21875,
+      "training_seed": 41102,
+      "path": "artifacts/exploration/stage1_dense_development_300k_20260814/runs/seed_41102/ctrl_0p21875/models/ctrl_0p21875/checkpoint_300000.zip",
+      "sha256": "95a6a1be172113e58af41ecf9331cf08fbfac109c24ca8b3afdf9d1327ec334b",
+      "expected_num_timesteps": 301056
+    },
+    {
+      "condition_id": "ctrl_0p125",
+      "ctrl_cost_weight": 0.125,
+      "training_seed": 41101,
+      "path": "artifacts/exploration/expanded_core_300k_restarted_20260813/runs/seed_41101/ctrl_0p125/models/ctrl_0p125/checkpoint_300000.zip",
+      "sha256": "e099689a69c5eab7395ffdb773a9b623d6d9584e309e9c70f2879f483966b74d",
+      "expected_num_timesteps": 301056
+    },
+    {
+      "condition_id": "ctrl_0p125",
+      "ctrl_cost_weight": 0.125,
+      "training_seed": 41102,
+      "path": "artifacts/exploration/expanded_core_300k_restarted_20260813/runs/seed_41102/ctrl_0p125/models/ctrl_0p125/checkpoint_300000.zip",
+      "sha256": "c0bb37ebcf13b69f5ac0fc3e71efaec16b1e4c0024abc8c6c53b4f2b6acaa711",
+      "expected_num_timesteps": 301056
+    }
+  ],
+  "reference_competence_gate": {
+    "role": "predeclared operational interpretability screen, not a literature-derived success or physical-safety threshold",
+    "checkpoint": 1000000,
+    "must_hold_for_each_reference_training_seed": true,
+    "unhealthy_termination_rate_max": 0.2,
+    "mean_forward_velocity_min_position_units_per_second": 0.1,
+    "failure_consequence": "Formal held-out confirmation remains blocked; run a separately frozen baseline-configuration pilot rather than silently changing this extension."
+  },
+  "analysis_rules": {
+    "primary_extension_endpoint": 1000000,
+    "intermediate_checkpoints": [500000, 750000],
+    "candidate_comparisons": {
+      "0.21875": "primary local development candidate",
+      "0.125": "secondary mechanism/construct candidate"
+    },
+    "proxy_comparison": "For each candidate w, rescore candidate and same-training-seed reference trajectories under the same R_w.",
+    "diagnostics": [
+      "net_forward_progress",
+      "mean_forward_velocity",
+      "forward_path_efficiency",
+      "unhealthy_termination",
+      "lateral_drift_mean_abs",
+      "lateral displacement per unit forward progress",
+      "lateral path fraction",
+      "torso_tilt_rms",
+      "action_saturation_rate",
+      "normalised_action_roughness"
+    ],
+    "aggregation": "Aggregate evaluation episodes within each trained policy before comparing paired training seeds.",
+    "checkpoint_dependence": "500k, 750k and 1M are repeated measurements of the same continued policy, not independent replications.",
+    "negative_result_rule": "If the divergence does not persist, retain and report that result; do not change margins, weights or seeds after inspection."
+  },
+  "stopping_and_failure_rules": {
+    "planned_stop": "After all six policies have reached and been evaluated at 1M.",
+    "retain_failures": true,
+    "replace_failed_seed": false,
+    "partial_task_rule": "Do not silently resume an interrupted partial task; preserve it for forensic audit because each restart adds another environment/RNG discontinuity.",
+    "non_finite_rule": "Stop the affected policy, retain its logs, and report the failure without substituting a new seed."
+  },
+  "accuracy_matrix_requirement": {
+    "status": "requires_supervisor_or_TA_clarification",
+    "current_evidence": "The reported description of percentages and error rates resembles a normalised confusion matrix, but Ant-v5 PPO has no predeclared ground-truth and predicted classes.",
+    "clarification_question": "Do you mean a normalised confusion matrix? If yes, what are the ground-truth classes and predicted classes in this reinforcement-learning project?",
+    "rule": "Do not invent classification labels or call a diagnostic scorecard an accuracy matrix."
+  },
+  "output_root": "artifacts/exploration/stage1_budget_extension_1m_v4_20260814",
+  "task_order_seed": 8142028,
+  "formal_launch": "prohibited",
+  "shaping_launch": "prohibited",
+  "claim_boundary": "This extension is development evidence about budget sufficiency and persistence. It is not held-out confirmation, proof of reward hacking, a scalar true reward, a critical coefficient, or evidence about real-robot safety."
+}

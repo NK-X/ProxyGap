@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "config_id": "hybrid_intent_sensitivity_v1_20260816",
+  "status": "predeclared_before_300k_results",
+  "role": "Development construct-sensitivity analysis; not a second opportunity to select a favourable threshold.",
+  "environment_scope": "Default flat-ground Ant-v5 simulation only.",
+  "primary_endpoint_timesteps": 300000,
+  "fixed_safety_rules": {
+    "full_horizon_completed": true,
+    "unhealthy_termination": false,
+    "sustained_inversion": false
+  },
+  "frozen_reference": {
+    "forward_velocity_min": 0.8,
+    "forward_velocity_max": 1.2,
+    "torso_tilt_rms_degrees_max": 15.0,
+    "direction_error_degrees_max": 5.0,
+    "forward_path_efficiency_min": 0.9,
+    "normalised_action_roughness_max": 0.04,
+    "action_saturation_rate_max": 0.01
+  },
+  "sensitivity_grid": {
+    "forward_velocity_bands": [[0.7, 1.3], [0.8, 1.2], [0.9, 1.1]],
+    "torso_tilt_rms_degrees_max": [10.0, 15.0, 20.0],
+    "direction_error_degrees_max": [5.0, 10.0, 15.0],
+    "forward_path_efficiency_min": [0.8, 0.9, 0.95],
+    "normalised_action_roughness_max": [0.02, 0.04, 0.08],
+    "action_saturation_rate_max": [0.01, 0.03, 0.05]
+  },
+  "paired_replication_rule": "Candidate compliance must exceed paired R0_default__K0_none in at least two of three development training seeds.",
+  "interpretation": "Report the full grid distribution. The frozen reference remains primary even if another threshold combination is more favourable."
+}

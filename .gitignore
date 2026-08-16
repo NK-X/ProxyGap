@@ -1,14 +1,22 @@
 ﻿# Generated evidence, trained models, and local caches
 artifacts/
 *.zip
+*.csv.gz
 *.gif
 *.mp4
+*.pt
+*.pth
+*.onnx
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
 .venv/
 venv/
 env/
+output/
+recovery_archive/
 .vscode/
 .idea/
 Thumbs.db
@@ -16,3 +24,6 @@ Thumbs.db
 
 # The canonical internal context contains private planning information.
 PROJECT_CONTEXT.md
+
+# Superseded pre-result draft retained locally but not published.
+reports/SMOOTH_LOCOMOTION_MECHANISM_EXPLORATION_20260816_CN.md

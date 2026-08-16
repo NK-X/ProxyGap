@@ -9,11 +9,17 @@ from pathlib import Path
 import numpy as np
 
 from proxygap import (
+    bounded_squared_signal_penalty,
     CSV_SCHEMA,
     DEFAULT_PPO_CONFIG,
     EpisodeMetrics,
     common_rescored_return,
+    forward_velocity_tracking_value,
+    lateral_penalty_value,
     make_proxygap_ant_env,
+    normalised_action_rate_penalty,
+    orientation_penalty_value,
+    project_action_l2_slew,
     protocol_freeze_status,
     quaternion_tilt_angle,
 )
@@ -30,6 +36,25 @@ def test_reference_ctrl_cost_weight_is_applied() -> None:
     env = make_proxygap_ant_env(ctrl_cost_weight=0.5, condition_id="reference", seed=1)
     assert env.unwrapped._ctrl_cost_weight == 0.5
     env.close()
+
+
+def test_large_render_floor_xml_preserves_default_dynamics() -> None:
+    render_xml = Path(__file__).resolve().parents[1] / "assets" / "ant_render_large_floor.xml"
+    default_env = make_proxygap_ant_env(condition_id="default_xml")
+    render_env = make_proxygap_ant_env(condition_id="render_xml", xml_file=render_xml)
+    default_observation, _ = default_env.reset(seed=816)
+    render_observation, _ = render_env.reset(seed=816)
+    np.testing.assert_allclose(default_observation, render_observation, atol=0.0, rtol=0.0)
+    rng = np.random.default_rng(816)
+    for _ in range(25):
+        action = rng.uniform(-1.0, 1.0, size=default_env.action_space.shape)
+        default_step = default_env.step(action)
+        render_step = render_env.step(action)
+        np.testing.assert_allclose(default_step[0], render_step[0], atol=1e-12, rtol=0.0)
+        assert math.isclose(default_step[1], render_step[1], abs_tol=1e-12)
+        assert default_step[2:4] == render_step[2:4]
+    default_env.close()
+    render_env.close()
 
 
 def test_reduced_ctrl_cost_weight_is_the_only_reward_coefficient_changed_here() -> None:
@@ -60,6 +85,114 @@ def test_wrapper_reset_and_step_expose_proxygap_metrics() -> None:
     env.close()
 
 
+def test_action_slew_projection_is_identity_below_bound() -> None:
+    proposed = np.full(8, 0.1)
+    previous = np.zeros(8)
+    applied, intervened, requested_norm, correction_norm = project_action_l2_slew(
+        proposed,
+        previous,
+        limit=1.4,
+        action_low=-np.ones(8),
+        action_high=np.ones(8),
+    )
+    assert np.allclose(applied, proposed)
+    assert intervened is False
+    assert math.isclose(requested_norm, math.sqrt(0.08))
+    assert correction_norm == 0.0
+
+
+def test_action_slew_projection_hits_bound_above_limit() -> None:
+    proposed = np.ones(8)
+    previous = -np.ones(8)
+    applied, intervened, requested_norm, correction_norm = project_action_l2_slew(
+        proposed,
+        previous,
+        limit=1.4,
+        action_low=-np.ones(8),
+        action_high=np.ones(8),
+    )
+    assert intervened is True
+    assert math.isclose(requested_norm, 2.0 * math.sqrt(8.0))
+    assert math.isclose(np.linalg.norm(applied - previous), 1.4)
+    assert correction_norm > 0.0
+    assert np.all(applied >= -1.0)
+    assert np.all(applied <= 1.0)
+
+
+def test_guardrail_requires_previous_action_observation() -> None:
+    with np.testing.assert_raises(ValueError):
+        make_proxygap_ant_env(
+            condition_id="invalid_guardrail",
+            action_slew_l2_limit=1.4,
+            augment_previous_applied_action=False,
+        )
+
+
+def test_augmented_comparator_and_guardrail_share_113_observations() -> None:
+    comparator = make_proxygap_ant_env(
+        condition_id="augmented_comparator",
+        augment_previous_applied_action=True,
+    )
+    constrained = make_proxygap_ant_env(
+        condition_id="guardrail",
+        augment_previous_applied_action=True,
+        action_slew_l2_limit=1.4,
+    )
+    for env in (comparator, constrained):
+        observation, _ = env.reset(seed=123)
+        assert observation.shape == (113,)
+        assert np.allclose(observation[-8:], 0.0)
+    comparator_action = np.full(8, 0.25)
+    next_observation, _, _, _, info = comparator.step(comparator_action)
+    assert np.allclose(next_observation[-8:], comparator_action)
+    assert info["proxygap_action_constraint_enabled"] is False
+    comparator.close()
+    constrained.close()
+
+
+def test_guardrail_logs_proposed_applied_and_intervention_metrics() -> None:
+    env = make_proxygap_ant_env(
+        condition_id="guardrail",
+        augment_previous_applied_action=True,
+        action_slew_l2_limit=0.1,
+    )
+    env.reset(seed=124)
+    observation, _, _, _, info = env.step(np.ones(8))
+    assert info["proxygap_action_slew_intervened_step"] is True
+    assert math.isclose(info["proxygap_applied_action_change_l2_step"], 0.1)
+    assert info["proxygap_requested_action_change_l2_step"] > 0.1
+    assert np.allclose(observation[-8:], info["proxygap_applied_action"])
+    summary = env.episode_summary()
+    assert summary["action_slew_intervention_count"] == 1
+    assert summary["action_slew_intervention_rate"] == 1.0
+    assert summary["action_constraint_enabled"] is True
+    env.close()
+
+
+def test_intent_compliance_uses_all_frozen_dimensions() -> None:
+    metrics = EpisodeMetrics(
+        environment_dt=0.05,
+        action_dimension=8,
+        evaluation_horizon_steps=1000,
+    )
+    metrics.reset(initial_x=0.0, initial_y=0.0)
+    for step in range(1, 1001):
+        metrics.update(
+            action=np.zeros(8),
+            reward=0.0,
+            terminated=False,
+            truncated=step == 1000,
+            info={"x_position": step * 0.05, "y_position": 0.0},
+            torso_tilt=0.0,
+            torso_height=0.5,
+        )
+    summary = metrics.summary()
+    assert math.isclose(summary["fixed_horizon_mean_forward_velocity"], 1.0)
+    assert summary["net_displacement_direction_error_degrees"] == 0.0
+    assert summary["intent_compliant"] is True
+    assert summary["intent_failure_reasons"] == ""
+
+
 def test_episode_summary_contains_expected_schema_metrics() -> None:
     env = make_proxygap_ant_env(ctrl_cost_weight=0.5, condition_id="reference", seed=3)
     env.reset(seed=3)
@@ -73,18 +206,26 @@ def test_episode_summary_contains_expected_schema_metrics() -> None:
         "reward_contact_sum",
         "reward_survive_sum",
         "net_forward_progress",
+        "environment_dt",
+        "episode_duration_seconds",
+        "mean_forward_velocity",
         "control_effort",
         "control_effort_per_unit_distance",
         "condition_objective_return",
         "common_rescored_return",
         "cumulative_squared_action",
         "mean_squared_action_per_step",
+        "mean_squared_action_change_per_transition",
+        "normalised_action_roughness",
+        "action_change_transition_count",
         "action_saturation_rate",
         "unhealthy_termination",
         "termination_category",
         "low_z_termination",
         "high_z_termination",
         "lateral_drift_max_abs",
+        "cumulative_planar_path",
+        "forward_path_efficiency",
         "torso_tilt_rms",
         "torso_tilt_p95",
         "fall",
@@ -98,11 +239,183 @@ def test_episode_summary_contains_expected_schema_metrics() -> None:
     }
     assert expected.issubset(summary)
     assert summary["episode_length"] == 3
+    assert math.isclose(summary["environment_dt"], env.unwrapped.dt)
+    assert math.isclose(
+        summary["episode_duration_seconds"],
+        3 * env.unwrapped.dt,
+    )
     env.close()
+
+
+def test_velocity_and_normalised_action_roughness_have_explicit_units() -> None:
+    metrics = EpisodeMetrics(environment_dt=0.05, action_dimension=8)
+    metrics.reset(initial_x=0.0, initial_y=0.0)
+    metrics.update(
+        action=-np.ones(8),
+        reward=0.0,
+        terminated=False,
+        truncated=False,
+        info={"x_position": 0.5, "y_position": 0.0},
+        torso_tilt=0.0,
+    )
+    metrics.update(
+        action=np.ones(8),
+        reward=0.0,
+        terminated=False,
+        truncated=False,
+        info={"x_position": 1.0, "y_position": 0.0},
+        torso_tilt=0.0,
+    )
+    summary = metrics.summary()
+    assert math.isclose(summary["episode_duration_seconds"], 0.1)
+    assert math.isclose(summary["mean_forward_velocity"], 10.0)
+    assert math.isclose(summary["normalised_action_roughness"], 1.0)
 
 
 def test_quaternion_tilt_angle_for_identity_orientation() -> None:
     assert quaternion_tilt_angle(np.array([1.0, 0.0, 0.0, 0.0])) == 0.0
+
+
+def test_normalised_cosine_orientation_penalty_has_geometric_anchors() -> None:
+    assert orientation_penalty_value(0.0, function="cosine") == 0.0
+    assert math.isclose(
+        orientation_penalty_value(math.pi / 2.0, function="cosine"),
+        0.5,
+    )
+    assert math.isclose(
+        orientation_penalty_value(math.pi, function="cosine"),
+        1.0,
+    )
+
+
+def test_forward_velocity_tracking_has_bounded_command_anchors() -> None:
+    assert forward_velocity_tracking_value(1.0, target=1.0, scale=0.5) == 1.0
+    assert math.isclose(
+        forward_velocity_tracking_value(1.5, target=1.0, scale=0.5),
+        math.exp(-1.0),
+    )
+    assert 0.0 <= forward_velocity_tracking_value(3.0, target=1.0, scale=0.5) < 1.0
+
+
+def test_normalised_action_rate_penalty_has_fixed_action_range() -> None:
+    assert normalised_action_rate_penalty(np.ones(8), None) == 0.0
+    assert normalised_action_rate_penalty(np.zeros(8), np.zeros(8)) == 0.0
+    assert math.isclose(normalised_action_rate_penalty(np.ones(8), -np.ones(8)), 1.0)
+
+
+def test_bounded_squared_signal_penalty_has_finite_symmetric_anchors() -> None:
+    assert bounded_squared_signal_penalty(0.0, scale=2.0) == 0.0
+    assert math.isclose(
+        bounded_squared_signal_penalty(2.0, scale=2.0),
+        math.tanh(1.0),
+    )
+    assert math.isclose(
+        bounded_squared_signal_penalty(-2.0, scale=2.0),
+        math.tanh(1.0),
+    )
+    assert bounded_squared_signal_penalty(float("inf"), scale=2.0) == 1.0
+    with np.testing.assert_raises(ValueError):
+        bounded_squared_signal_penalty(0.0, scale=0.0)
+
+
+def test_body_dynamics_shaping_is_bounded_logged_and_reconciled() -> None:
+    env = make_proxygap_ant_env(
+        ctrl_cost_weight=0.5,
+        condition_id="body_dynamics_test",
+        seed=29,
+        vertical_velocity_shaping_weight=0.05,
+        vertical_velocity_shaping_scale=1.014092584749083,
+        roll_pitch_angular_velocity_shaping_weight=0.05,
+        roll_pitch_angular_velocity_shaping_scale=1.9893176307304792,
+    )
+    env.reset(seed=29)
+    _, reward, _, _, info = env.step(np.zeros(env.action_space.shape))
+    expected_vertical = bounded_squared_signal_penalty(
+        info["proxygap_root_vertical_velocity_step"],
+        scale=1.014092584749083,
+    )
+    expected_angular = bounded_squared_signal_penalty(
+        info["proxygap_root_roll_pitch_angular_speed_step"],
+        scale=1.9893176307304792,
+    )
+    assert math.isclose(info["vertical_velocity_penalty"], expected_vertical)
+    assert math.isclose(
+        info["roll_pitch_angular_velocity_penalty"], expected_angular
+    )
+    assert -0.05 <= info["reward_vertical_velocity_shaping"] <= 0.0
+    assert -0.05 <= info["reward_roll_pitch_angular_velocity_shaping"] <= 0.0
+    assert math.isclose(reward, info["reward_base_proxy"] + info["reward_shaping"])
+    summary = env.episode_summary()
+    assert math.isclose(
+        summary["reward_vertical_velocity_shaping_sum"],
+        info["reward_vertical_velocity_shaping"],
+    )
+    assert math.isclose(
+        summary["reward_roll_pitch_angular_velocity_shaping_sum"],
+        info["reward_roll_pitch_angular_velocity_shaping"],
+    )
+    env.close()
+
+
+def test_tracking_replaces_only_forward_term_and_rate_penalty_is_separate() -> None:
+    env = make_proxygap_ant_env(
+        ctrl_cost_weight=0.5,
+        condition_id="tracking_rate_test",
+        seed=19,
+        replace_forward_reward_with_tracking=True,
+        forward_velocity_target=1.0,
+        forward_velocity_tracking_scale=0.5,
+        action_rate_shaping_weight=0.4,
+        augment_previous_applied_action=True,
+    )
+    env.reset(seed=19)
+    _, reward_a, _, _, info_a = env.step(np.zeros(8))
+    _, reward_b, _, _, info_b = env.step(np.ones(8))
+    expected_a = (
+        info_a["reward_base_proxy"]
+        - info_a["reward_forward"]
+        + info_a["reward_forward_tracking"]
+    )
+    assert math.isclose(reward_a, expected_a)
+    assert math.isclose(info_b["action_rate_penalty"], 0.25)
+    assert math.isclose(info_b["reward_action_rate_shaping"], -0.1)
+    expected_b = (
+        info_b["reward_base_proxy"]
+        - info_b["reward_forward"]
+        + info_b["reward_forward_tracking"]
+        - 0.1
+    )
+    assert math.isclose(reward_b, expected_b)
+    summary = env.episode_summary()
+    assert summary["replace_forward_reward_with_tracking"] is True
+    assert summary["action_rate_penalty_sum"] > 0.0
+    env.close()
+
+
+def test_cosine_orientation_shaping_is_added_without_changing_base_reward() -> None:
+    env = make_proxygap_ant_env(
+        ctrl_cost_weight=0.5,
+        condition_id="cosine_test",
+        seed=9,
+        orientation_shaping_weight=0.4,
+        orientation_shaping_function="cosine",
+    )
+    env.reset(seed=9)
+    env._torso_tilt = lambda: math.pi / 2.0
+    _, reward, _, _, info = env.step(np.zeros(env.action_space.shape))
+    assert math.isclose(info["proxygap_orientation_penalty_step"], 0.5)
+    assert math.isclose(info["reward_orientation_shaping"], -0.2)
+    assert math.isclose(info["orientation_penalty"], 0.5)
+    assert math.isclose(reward, info["reward_base_proxy"] - 0.2)
+    assert info["proxygap_orientation_shaping_function"] == "cosine"
+    env.close()
+
+
+def test_invalid_orientation_shaping_configuration_is_rejected() -> None:
+    with np.testing.assert_raises(ValueError):
+        orientation_penalty_value(0.0, function="unknown")
+    with np.testing.assert_raises(ValueError):
+        orientation_penalty_value(0.0, function="cosine", scale=2.0)
 
 
 def test_control_effort_per_distance_is_nan_when_distance_is_zero() -> None:
@@ -117,6 +430,94 @@ def test_control_effort_per_distance_is_nan_when_distance_is_zero() -> None:
         torso_tilt=0.1,
     )
     assert math.isnan(metrics.summary()["control_effort_per_unit_distance"])
+
+
+def test_fixed_horizon_velocity_penalises_early_episode_end() -> None:
+    metrics = EpisodeMetrics(
+        environment_dt=0.05,
+        action_dimension=8,
+        evaluation_horizon_steps=1000,
+    )
+    metrics.reset(initial_x=0.0, initial_y=0.0)
+    metrics.update(
+        action=np.zeros(8),
+        reward=0.0,
+        terminated=True,
+        truncated=False,
+        info={"x_position": 1.0, "y_position": 0.0},
+        torso_tilt=0.0,
+        torso_height=1.1,
+    )
+    summary = metrics.summary()
+    assert math.isclose(summary["mean_forward_velocity"], 20.0)
+    assert math.isclose(summary["fixed_horizon_mean_forward_velocity"], 0.02)
+    assert summary["full_horizon_completed"] is False
+
+
+def test_sustained_inversion_uses_duration_not_single_frame() -> None:
+    metrics = EpisodeMetrics(
+        environment_dt=0.05,
+        action_dimension=8,
+        evaluation_horizon_steps=1000,
+        sustained_inversion_seconds=1.0,
+    )
+    metrics.reset(initial_x=0.0, initial_y=0.0)
+    for step in range(20):
+        metrics.update(
+            action=np.zeros(8),
+            reward=0.0,
+            terminated=False,
+            truncated=False,
+            info={"x_position": float(step), "y_position": 0.0},
+            torso_tilt=math.pi / 2.0,
+        )
+    summary = metrics.summary()
+    assert math.isclose(summary["inverted_step_fraction"], 1.0)
+    assert summary["longest_inverted_run_steps"] == 20
+    assert math.isclose(summary["longest_inverted_run_seconds"], 1.0)
+    assert summary["sustained_inversion"] is True
+
+
+def test_forward_path_efficiency_distinguishes_straight_and_lateral_motion() -> None:
+    straight = EpisodeMetrics()
+    straight.reset(initial_x=0.0, initial_y=0.0)
+    straight.update(
+        action=np.zeros(8),
+        reward=0.0,
+        terminated=False,
+        truncated=False,
+        info={"x_position": 1.0, "y_position": 0.0},
+        torso_tilt=0.0,
+    )
+    diagonal = EpisodeMetrics()
+    diagonal.reset(initial_x=0.0, initial_y=0.0)
+    diagonal.update(
+        action=np.zeros(8),
+        reward=0.0,
+        terminated=False,
+        truncated=False,
+        info={"x_position": 1.0, "y_position": 1.0},
+        torso_tilt=0.0,
+    )
+    assert math.isclose(straight.summary()["forward_path_efficiency"], 1.0)
+    assert diagonal.summary()["forward_path_efficiency"] < 1.0
+
+
+def test_live_summary_avoids_history_distribution_metrics() -> None:
+    metrics = EpisodeMetrics()
+    metrics.reset(initial_x=0.0, initial_y=0.0)
+    metrics.update(
+        action=np.zeros(8),
+        reward=1.0,
+        terminated=False,
+        truncated=False,
+        info={"x_position": 0.1, "y_position": 0.0},
+        torso_tilt=0.2,
+    )
+    live = metrics.live_summary()
+    assert live["net_forward_progress"] == 0.1
+    assert "torso_tilt_p95" not in live
+    assert "forward_path_efficiency" not in live
 
 
 def test_csv_schema_has_required_diagnostic_columns() -> None:
@@ -144,6 +545,25 @@ def test_csv_schema_has_required_diagnostic_columns() -> None:
         "lateral_drift_final_abs",
         "torso_tilt_std",
         "episode_length",
+        "fixed_horizon_mean_forward_velocity",
+        "inverted_step_fraction",
+        "longest_inverted_run_seconds",
+        "sustained_inversion",
+        "orientation_shaping_function",
+        "orientation_penalty_sum",
+        "reward_forward_tracking_sum",
+        "reward_forward_replacement_sum",
+        "action_rate_shaping_weight",
+        "reward_action_rate_shaping_sum",
+        "action_rate_penalty_sum",
+        "vertical_velocity_shaping_weight",
+        "vertical_velocity_shaping_scale",
+        "reward_vertical_velocity_shaping_sum",
+        "vertical_velocity_penalty_sum",
+        "roll_pitch_angular_velocity_shaping_weight",
+        "roll_pitch_angular_velocity_shaping_scale",
+        "reward_roll_pitch_angular_velocity_shaping_sum",
+        "roll_pitch_angular_velocity_penalty_sum",
     }
     assert required.issubset(set(CSV_SCHEMA))
 
@@ -290,22 +710,95 @@ def test_effort_ratio_uses_positive_locked_distance_threshold() -> None:
     assert summary["action_saturation_rate"] == 1.0
 
 
-def test_bounded_effort_and_orientation_terms_are_separate() -> None:
+def test_action_change_excludes_first_action_and_measures_transitions() -> None:
+    metrics = EpisodeMetrics()
+    metrics.reset(initial_x=0.0, initial_y=0.0)
+    for action in (np.zeros(8), np.zeros(8), np.ones(8)):
+        metrics.update(
+            action=action,
+            reward=0.0,
+            terminated=False,
+            truncated=False,
+            info={"x_position": 0.0, "y_position": 0.0},
+            torso_tilt=0.0,
+        )
+    summary = metrics.summary()
+    assert summary["action_change_transition_count"] == 2
+    assert summary["cumulative_squared_action_change"] == 8.0
+    assert summary["mean_squared_action_change_per_transition"] == 4.0
+
+
+def test_bounded_lateral_and_orientation_terms_are_separate_from_control_cost() -> None:
     env = make_proxygap_ant_env(
-        ctrl_cost_weight=0.0625,
+        ctrl_cost_weight=0.25,
         condition_id="bounded_combined",
         seed=6,
-        effort_shaping_weight=0.2,
-        effort_shaping_scale=2.0,
-        stability_shaping_weight=0.3,
-        stability_shaping_scale=0.5,
+        lateral_drift_shaping_weight=0.2,
+        lateral_drift_shaping_scale=1.0,
+        orientation_shaping_weight=0.3,
+        orientation_shaping_scale=0.5,
     )
     env.reset(seed=6)
     _, reward, _, _, info = env.step(np.ones(env.action_space.shape) * 0.5)
-    assert -0.2 <= info["reward_effort_shaping"] <= 0.0
-    assert -0.3 <= info["reward_stability_shaping"] <= 0.0
+    assert env.unwrapped._ctrl_cost_weight == 0.25
+    assert -0.2 <= info["reward_lateral_shaping"] <= 0.0
+    assert -0.3 <= info["reward_orientation_shaping"] <= 0.0
+    assert info["reward_effort_shaping"] == 0.0
     assert math.isclose(reward, info["reward_base_proxy"] + info["reward_shaping"])
     env.close()
+
+
+def test_velocity_lateral_penalty_is_bounded_symmetric_and_zero_at_command() -> None:
+    at_target = lateral_penalty_value(
+        lateral_offset=9.0,
+        lateral_velocity=0.0,
+        velocity_target=0.0,
+        signal="velocity_tanh_squared",
+        scale=1.0,
+    )
+    positive = lateral_penalty_value(
+        lateral_offset=0.0,
+        lateral_velocity=1.0,
+        velocity_target=0.0,
+        signal="velocity_tanh_squared",
+        scale=1.0,
+    )
+    negative = lateral_penalty_value(
+        lateral_offset=0.0,
+        lateral_velocity=-1.0,
+        velocity_target=0.0,
+        signal="velocity_tanh_squared",
+        scale=1.0,
+    )
+    assert at_target == 0.0
+    assert 0.0 < positive < 1.0
+    assert math.isclose(positive, negative)
+
+
+def test_velocity_lateral_reward_uses_observed_y_velocity_and_is_logged(
+    tmp_path: Path,
+) -> None:
+    step_log = tmp_path / "velocity_lateral.csv.gz"
+    env = make_proxygap_ant_env(
+        condition_id="velocity_lateral",
+        lateral_drift_shaping_weight=0.1,
+        lateral_shaping_signal="velocity_tanh_squared",
+        lateral_velocity_target=0.0,
+        step_log_path=step_log,
+    )
+    env.reset(seed=816)
+    _, reward, _, _, info = env.step(np.zeros(env.action_space.shape))
+    expected_penalty = math.tanh(float(info["y_velocity"]) ** 2)
+    assert math.isclose(info["lateral_penalty"], expected_penalty)
+    assert math.isclose(info["reward_lateral_shaping"], -0.1 * expected_penalty)
+    assert math.isclose(reward, info["reward_base_proxy"] + info["reward_shaping"])
+    env.close()
+    with gzip.open(step_log, "rt", encoding="utf-8", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    assert len(rows) == 1
+    assert rows[0]["lateral_shaping_signal"] == "velocity_tanh_squared"
+    assert math.isclose(float(rows[0]["lateral_velocity"]), float(info["y_velocity"]))
+    assert math.isclose(float(rows[0]["lateral_penalty_step"]), expected_penalty)
 
 
 def _force_termination_height(height: float, velocity: float) -> dict[str, object]:
@@ -351,6 +844,7 @@ def test_gzip_step_log_contains_reconstructable_fields(tmp_path) -> None:
         rows = list(csv.DictReader(handle))
     assert len(rows) == 1
     assert rows[0]["common_rescored_reward_step"] != ""
+    assert rows[0]["action_change_defined_step"] == "False"
     assert rows[0]["torso_height"] != ""
     assert rows[0]["termination_category"] == "none"
 
@@ -378,6 +872,31 @@ def test_representative_video_rule_is_deterministic() -> None:
     assert selected["evaluation_seed"] == 10
 
 
+def test_representative_video_rule_handles_two_seed_float_tie() -> None:
+    rows = [
+        {
+            "condition_id": "c",
+            "training_seed": 41101,
+            "seed": 51101,
+            "target_timesteps": 300000,
+            "net_forward_progress": 15.89582734186817,
+        },
+        {
+            "condition_id": "c",
+            "training_seed": 41102,
+            "seed": 51101,
+            "target_timesteps": 300000,
+            "net_forward_progress": 4.28982734186817,
+        },
+    ]
+    selected = select_representative_evaluation_seed(
+        rows,
+        final_target_timesteps=300000,
+    )
+    assert selected["training_seed"] == 41101
+    assert selected["evaluation_seed"] == 51101
+
+
 def test_revision_gate_config_reports_only_explicit_unresolved_decisions() -> None:
     config_path = (
         Path(__file__).resolve().parents[1]
@@ -385,6 +904,10 @@ def test_revision_gate_config_reports_only_explicit_unresolved_decisions() -> No
         / "prospective_v2_revision_gate_20260810.json"
     )
     config = json.loads(config_path.read_text(encoding="utf-8"))
+    assert (
+        config["proposal"]["distribution"]
+        == "external_controlling_source_not_distributed"
+    )
     status = protocol_freeze_status(config)
     codes = {item["code"] for item in status["blockers"]}
     assert status["status"] == "blocked"

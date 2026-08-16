@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "config_id": "stage1_formal_confirmation_proposal_v1_20260814",
+  "status": "blocked_pending_user_and_supervisor_decisions_do_not_run",
+  "stage_scope": "stage_1_detection_only_no_shaping",
+  "parent_development_config": {
+    "path": "configs/stage1_dense_development_v1_20260814.json",
+    "sha256": "36EE2D458EBF55D4D5651EC8E71A5C0A475C02BA019AF803EB25E4914A0320BE"
+  },
+  "environment": "Ant-v5",
+  "algorithm": "PPO",
+  "device": "cpu",
+  "hypothesis": "Within the predeclared tested control-cost range, at least one reduced-weight policy will achieve a higher matched proxy return than the reference while a predeclared behavioural diagnostic deteriorates by a practically meaningful margin. The held-out experiment will also test whether the non-monotonic development candidate-status pattern recurs; it will not claim a continuous critical threshold.",
+  "reward": {
+    "forward_reward_weight": 1.0,
+    "healthy_reward": 1.0,
+    "contact_cost_weight": 0.0005,
+    "shaping_weights": "all_zero",
+    "manipulated_variable": "ctrl_cost_weight"
+  },
+  "recommended_conditions": [
+    {"condition_id": "reference", "ctrl_cost_weight": 0.5, "role": "default comparator"},
+    {"condition_id": "ctrl_0p25", "ctrl_cost_weight": 0.25, "role": "upper non-candidate adjacent to first onset"},
+    {"condition_id": "ctrl_0p21875", "ctrl_cost_weight": 0.21875, "role": "first development candidate"},
+    {"condition_id": "ctrl_0p1875", "ctrl_cost_weight": 0.1875, "role": "immediate candidate-status exit"},
+    {"condition_id": "ctrl_0p15625", "ctrl_cost_weight": 0.15625, "role": "upper non-candidate adjacent to re-entry"},
+    {"condition_id": "ctrl_0p125", "ctrl_cost_weight": 0.125, "role": "development candidate at re-entry"}
+  ],
+  "seed_plan": {
+    "selection_status": "requires_user_decision_before_freeze",
+    "resource_limited": {
+      "training_seeds": [42001, 42002, 42003, 42004, 42005],
+      "interpretation": "descriptive replication only",
+      "joint_gate": "at least 4 of 5 training seeds",
+      "one_sided_sign_tail_under_p_0p5": 0.1875
+    },
+    "stronger_directional": {
+      "training_seeds": [42001, 42002, 42003, 42004, 42005, 42006, 42007, 42008],
+      "interpretation": "stronger directional consistency evidence, still conditional on the tested design",
+      "joint_gate": "at least 7 of 8 training seeds",
+      "one_sided_sign_tail_under_p_0p5": 0.03515625
+    }
+  },
+  "evaluation": {
+    "evaluation_seed_base": 52001,
+    "evaluation_episodes_per_checkpoint": 20,
+    "deterministic_policy": true,
+    "paired_initial_perturbations_across_conditions": true,
+    "max_episode_steps": 1000,
+    "checkpoint_timesteps": [50000, 100000, 150000, 200000, 250000, 300000],
+    "endpoint_role": "300k primary; 200k, 250k and 300k descriptive late window"
+  },
+  "decision_rule": {
+    "comparison": "For each candidate w, rescore the candidate and same-seed reference trajectories under the same R_w.",
+    "joint_seed_success": "Within one training seed, matched proxy advantage is positive and at least one predeclared diagnostic domain crosses its frozen practical margin. For an any-domain, the same constituent metric must satisfy the cross-seed gate; for command quality, both constituent metrics must do so.",
+    "primary_formal_gate_5_seed_plan": "At least 4 of 5 training seeds satisfy the joint rule for the same diagnostic domain and required constituent metric or metrics.",
+    "primary_formal_gate_8_seed_plan": "At least 7 of 8 training seeds satisfy the joint rule for the same diagnostic domain and required constituent metric or metrics.",
+    "topology_interpretation": "A condition that does not meet the positive gate is not proven equivalent to the reference. Report candidate-status topology under the fixed rule, not absence of divergence or a continuous threshold.",
+    "margin_sensitivity": [0.5, 1.0, 2.0],
+    "checkpoint_rule": "Checkpoint results are repeated measurements; they are not independent replications.",
+    "video_rule": "Render complete real-time trajectories only after numerical screening, using fixed evaluation seeds. Videos are qualitative diagnostics and cannot override the gate."
+  },
+  "exclusion_and_stopping": {
+    "no_seed_replacement": true,
+    "technical_rerun": "Permitted only for a documented infrastructure failure before a valid policy result; apply the same rule to every condition.",
+    "non_finite_metrics": "Retain and report the affected run; do not coerce to zero.",
+    "stop_after_frozen_matrix": "Do not add coefficients, alter margins or inspect shaping because the held-out result is inconvenient.",
+    "formal_launch": "prohibited_until_this_configuration_is_approved_and_versioned_as_frozen"
+  },
+  "runtime_estimate_on_measured_machine": {
+    "max_workers": 4,
+    "five_seed_six_condition_policy_count": 30,
+    "five_seed_wall_clock_minutes_training_plus_evaluation": 232.0,
+    "eight_seed_six_condition_policy_count": 48,
+    "eight_seed_wall_clock_minutes_training_plus_evaluation": 348.0,
+    "basis": "Measured maximum per-policy 300k training time plus doubled 10-episode evaluation time from the 2026-08-14 dense run; excludes video and scheduling overhead.",
+    "recommended_free_space_gb": 1.0
+  },
+  "blocking_decisions": [
+    "Accept the one-sided 0.125 to 0.5 mechanism range despite the Proposal_G6 centred-range wording.",
+    "Accept, revise or externally justify the practical diagnostic margins.",
+    "Choose the five-seed descriptive plan or the eight-seed stronger directional plan.",
+    "Approve the six-condition transition-preserving matrix or explicitly accept the information lost by a smaller matrix."
+  ],
+  "claim_boundary": "Even a positive formal result would establish only a reproducible proxy-diagnostic divergence under the tested Ant-v5, PPO, coefficient range, budgets, diagnostics and seeds. It would not establish a scalar true-performance optimum, a universal reward weight, a continuous phase transition or real-robot safety."
+}

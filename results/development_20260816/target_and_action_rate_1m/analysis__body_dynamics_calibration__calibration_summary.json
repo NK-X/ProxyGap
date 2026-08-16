@@ -1,0 +1,8 @@
+{
+  "status": "development_calibration_complete",
+  "endpoint_policies": 6,
+  "evaluation_episodes": 60,
+  "step_rows": 59106,
+  "penalty_family": "tanh((signal/scale)^2)",
+  "claim_boundary": "Development calibration only. Quantiles describe the current endpoint policies and do not define natural gait, safety, or an optimal reward."
+}

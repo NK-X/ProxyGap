@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "expected_evaluation_rows": 480,
+  "observed_evaluation_rows": 480,
+  "expected_policy_checkpoint_units": 48,
+  "observed_policy_checkpoint_units": 48,
+  "expected_endpoint_body_replays": 120,
+  "observed_endpoint_body_replays": 120,
+  "evaluation_duplicate_keys": 0,
+  "evaluation_missing_metric_values": 0,
+  "body_missing_metric_values": 0,
+  "evaluation_group_sizes": [
+    10
+  ],
+  "body_group_sizes": [
+    10
+  ]
+}

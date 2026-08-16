@@ -26,10 +26,28 @@ def validate_prospective_protocol(config: Mapping[str, Any]) -> list[dict[str, s
 
     proposal = dict(config.get("proposal", {}))
     proposal_path = Path(str(proposal.get("path", "")))
+    proposal_distribution = str(proposal.get("distribution", "bundled"))
     expected_hash = str(proposal.get("sha256", "")).upper()
-    if not proposal_path.is_file():
+    valid_hash_record = len(expected_hash) == 64 and all(
+        character in "0123456789ABCDEF" for character in expected_hash
+    )
+    external_reference = (
+        proposal_distribution == "external_controlling_source_not_distributed"
+    )
+    if external_reference:
+        if not proposal_path.name or proposal_path != Path(proposal_path.name):
+            add(
+                "PROPOSAL_REFERENCE_INVALID",
+                "The external controlling proposal must use a portable file-name reference.",
+            )
+        if not valid_hash_record:
+            add(
+                "PROPOSAL_HASH_INVALID",
+                "The external controlling proposal requires a recorded SHA-256 digest.",
+            )
+    elif not proposal_path.is_file():
         add("PROPOSAL_FILE_MISSING", "The controlling Proposal_G6 file is unavailable.")
-    elif not expected_hash or _sha256(proposal_path) != expected_hash:
+    elif not valid_hash_record or _sha256(proposal_path) != expected_hash:
         add("PROPOSAL_HASH_MISMATCH", "The controlling Proposal_G6 hash does not match.")
 
     partitions = dict(config.get("seed_partitions", {}))

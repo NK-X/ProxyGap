@@ -1,0 +1,121 @@
+{
+  "status": "complete",
+  "endpoint": 300000,
+  "evaluation_episode_rows": 120,
+  "policies": 12,
+  "conditions": 4,
+  "training_seeds": [
+    41401,
+    41402,
+    41403
+  ],
+  "contact_replay_evaluation_seed": 51401,
+  "hopping_dominant_flag_fraction": 1.0,
+  "condition_endpoint_means": {
+    "Flinear__Ar0": {
+      "training_seed": 41402.0,
+      "condition_objective_return": 395.2798911709244,
+      "base_proxy_return": 417.68492528353073,
+      "fixed_horizon_mean_forward_velocity": 0.07311184193334717,
+      "forward_path_efficiency": 0.29564148762956327,
+      "net_displacement_direction_error_degrees": 35.63653927774908,
+      "torso_tilt_rms": 0.7254834727883153,
+      "normalised_action_roughness": 0.02355408440532339,
+      "proposed_normalised_action_roughness": 0.02355408440532339,
+      "action_saturation_rate": 0.005738894227992854,
+      "intent_compliant": 0.0,
+      "unhealthy_termination": 0.6333333333333334,
+      "sustained_inversion": 0.19999999999999998
+    },
+    "Flinear__Ar0p2": {
+      "training_seed": 41402.0,
+      "condition_objective_return": 314.33320761336705,
+      "base_proxy_return": 325.6878737042989,
+      "fixed_horizon_mean_forward_velocity": 0.05810236040077676,
+      "forward_path_efficiency": 0.28771946223885464,
+      "net_displacement_direction_error_degrees": 45.64971935336041,
+      "torso_tilt_rms": 0.3370409094791249,
+      "normalised_action_roughness": 0.028620720288195182,
+      "proposed_normalised_action_roughness": 0.028620720288195182,
+      "action_saturation_rate": 0.006751698079953727,
+      "intent_compliant": 0.0,
+      "unhealthy_termination": 0.9,
+      "sustained_inversion": 0.03333333333333333
+    },
+    "Ftrack__Ar0": {
+      "training_seed": 41402.0,
+      "condition_objective_return": 1024.5955818863767,
+      "base_proxy_return": 1011.231307097562,
+      "fixed_horizon_mean_forward_velocity": 0.1731822519597641,
+      "forward_path_efficiency": 0.30956326367950854,
+      "net_displacement_direction_error_degrees": 20.041463138523188,
+      "torso_tilt_rms": 0.27497263262457433,
+      "normalised_action_roughness": 0.01303215658008357,
+      "proposed_normalised_action_roughness": 0.01303215658008357,
+      "action_saturation_rate": 4.1666666666666665e-05,
+      "intent_compliant": 0.0,
+      "unhealthy_termination": 0.0,
+      "sustained_inversion": 0.06666666666666667
+    },
+    "Ftrack__Ar0p2": {
+      "training_seed": 41402.0,
+      "condition_objective_return": 1005.0373026726598,
+      "base_proxy_return": 960.5930934736401,
+      "fixed_horizon_mean_forward_velocity": 0.13594896986300087,
+      "forward_path_efficiency": 0.2152553018498168,
+      "net_displacement_direction_error_degrees": 28.671984505143936,
+      "torso_tilt_rms": 0.23766658833644763,
+      "normalised_action_roughness": 0.012694443251594863,
+      "proposed_normalised_action_roughness": 0.012694443251594863,
+      "action_saturation_rate": 0.00019583333333333334,
+      "intent_compliant": 0.0,
+      "unhealthy_termination": 0.0,
+      "sustained_inversion": 0.03333333333333333
+    }
+  },
+  "factorial_effect_means": {
+    "fixed_horizon_mean_forward_velocity": {
+      "training_seed": 41402.0,
+      "tracking_main_effect": 0.08895850974432053,
+      "action_rate_main_effect": -0.026121381814666837,
+      "interaction": -0.022223800564192847
+    },
+    "forward_path_efficiency": {
+      "training_seed": 41402.0,
+      "tracking_main_effect": -0.029271192169546257,
+      "action_rate_main_effect": -0.05111499361020017,
+      "interaction": -0.08638593643898308
+    },
+    "net_displacement_direction_error_degrees": {
+      "training_seed": 41402.0,
+      "tracking_main_effect": -16.286405493721187,
+      "action_rate_main_effect": 9.321850721116041,
+      "interaction": -1.3826587089905924
+    },
+    "normalised_action_roughness": {
+      "training_seed": 41402.0,
+      "tracking_main_effect": -0.01322410243092007,
+      "action_rate_main_effect": 0.0023644612771915453,
+      "interaction": -0.005404349211360501
+    },
+    "proposed_normalised_action_roughness": {
+      "training_seed": 41402.0,
+      "tracking_main_effect": -0.01322410243092007,
+      "action_rate_main_effect": 0.0023644612771915453,
+      "interaction": -0.005404349211360501
+    },
+    "torso_tilt_rms": {
+      "training_seed": 41402.0,
+      "tracking_main_effect": -0.2749425806532091,
+      "action_rate_main_effect": -0.21287430379865857,
+      "interaction": 0.35113651902106374
+    },
+    "unhealthy_termination": {
+      "training_seed": 41402.0,
+      "tracking_main_effect": -0.7666666666666667,
+      "action_rate_main_effect": 0.13333333333333333,
+      "interaction": -0.26666666666666666
+    }
+  },
+  "claim_boundary": "Development mechanism screen. Contact replay uses one fixed evaluation seed per endpoint policy; it is not a formal prevalence estimate or a natural-gait classifier."
+}

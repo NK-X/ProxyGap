@@ -1,0 +1,88 @@
+{
+  "schema_version": 5,
+  "config_id": "stage1_post_extension_gate_v5_20260814",
+  "status": "development_candidate_identified_formal_launch_blocked",
+  "stage_scope": "stage_1_detection_only_no_shaping",
+  "parent_budget_extension": {
+    "config_path": "configs/stage1_development_budget_extension_v4_20260814.json",
+    "config_sha256": "2E8BE2F0B0A03848184A696AB0E179357F2D68E93EFFDCFBFCCF868FECAD9ED1",
+    "protocol_path": "protocols/STAGE1_DEVELOPMENT_BUDGET_EXTENSION_V4_20260814.md",
+    "protocol_sha256": "5C4628B022053E8DEB06319DD38E4CC721C644DCD8B1295BCBA8AFA160CA1414"
+  },
+  "evidence": {
+    "raw_episode_csv": "artifacts/exploration/stage1_budget_extension_1m_v4_20260814/logs/evaluation_metrics.csv",
+    "raw_episode_csv_sha256": "D5D4FC4059F0BEA16852F171EC3C950AE9E9FE81212FEFF0B8933A8C15740EDB",
+    "primary_adjudication": "artifacts/analysis/stage1_budget_extension_1m_v4_20260814_attempt2/stage1_budget_extension_adjudication.json",
+    "primary_adjudication_sha256": "4A8D6B197D151FF3158B5C7D858C22F48DCC5C0006271D3614D7924507DEC8F2",
+    "independent_verification": "artifacts/analysis/stage1_budget_extension_1m_v4_20260814_attempt2/independent_verification.json",
+    "independent_verification_sha256": "722E762E9B765C53119652504B42AB331CD05DD6622BF929DD616A5921B849E2"
+  },
+  "executed_matrix": {
+    "control_cost_weights": [0.5, 0.21875, 0.125],
+    "development_training_seeds": [41101, 41102],
+    "paired_evaluation_seeds": [51101, 51102, 51103, 51104, 51105, 51106, 51107, 51108, 51109, 51110],
+    "new_checkpoint_targets": [500000, 750000, 1000000],
+    "actual_timesteps": [501760, 751616, 1001472],
+    "shaping_weights": "all_zero"
+  },
+  "reference_competence": {
+    "frozen_rule": {
+      "unhealthy_termination_rate_max": 0.2,
+      "mean_forward_velocity_min": 0.1,
+      "must_hold_in_both_development_seeds": true
+    },
+    "seed_results": {
+      "41101": {
+        "unhealthy_termination_rate": 0.9,
+        "mean_forward_velocity": 1.1656754068951576,
+        "joint_gate_pass": false
+      },
+      "41102": {
+        "unhealthy_termination_rate": 0.6,
+        "mean_forward_velocity": 1.074907739892778,
+        "joint_gate_pass": false
+      }
+    },
+    "overall_pass": false
+  },
+  "development_candidate": {
+    "ctrl_cost_weight": 0.21875,
+    "endpoint": 1000000,
+    "matched_proxy_gain_both_seeds": true,
+    "consistently_harmed_domains": [
+      "locomotion_effectiveness",
+      "posture_stability"
+    ],
+    "unhealthy_termination_improved_both_seeds": true,
+    "classification": "strong_development_candidate_under_frozen_screen",
+    "claim_boundary": "proxy-diagnostic divergence and multi-objective trade-off; not confirmed reward hacking or scalar low overall performance"
+  },
+  "negative_construct_check": {
+    "ctrl_cost_weight": 0.125,
+    "endpoint": 1000000,
+    "matched_proxy_gain_both_seeds": false,
+    "classification": "does_not_meet_proxy_gate_at_endpoint"
+  },
+  "optimisation_trajectory": {
+    "classification": "non_monotonic_across_checkpoints",
+    "prohibit_claims": [
+      "continuous divergence from 300k to 1M",
+      "monotonic amplification",
+      "unique critical coefficient",
+      "global optimal coefficient"
+    ]
+  },
+  "unresolved_accuracy_matrix_requirement": {
+    "status": "requires_teaching_assistant_clarification",
+    "reason": "The PPO continuous-control task has no declared ground-truth and predicted classes.",
+    "question": "Do you mean a normalised confusion matrix? If yes, what are the ground-truth classes and predicted classes in this reinforcement-learning project?"
+  },
+  "required_next_gate": {
+    "name": "baseline_competence_resolution",
+    "preferred_first_test": "fresh_uninterrupted_1m_reference_only_development_replication",
+    "purpose": "distinguish a weak reference configuration from continuation discontinuity or two-seed variation before any held-out confirmation",
+    "requires_new_versioned_protocol_and_user_approval": true
+  },
+  "formal_launch": "prohibited",
+  "shaping_launch": "prohibited"
+}
