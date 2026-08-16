@@ -1,39 +1,90 @@
-# ProxyGap: Reward Misspecification in Quadruped Locomotion
+# ProxyGap: Reward Misspecification and Reward Shaping in Ant-v5
 
-ProxyGap is a student research project investigating whether a PPO-controlled
-quadruped can obtain a higher numerical training reward while exhibiting an
-undesirable locomotion trade-off. The simulation uses Gymnasium MuJoCo
-`Ant-v5`; the manipulated reward parameter is `ctrl_cost_weight`.
+ProxyGap is a student research project using Gymnasium `Ant-v5` and
+Stable-Baselines3 PPO to study whether a scalar reinforcement-learning reward
+reliably represents intended quadruped locomotion on the default flat-ground
+simulation task.
 
-## Important status
+## Updated research direction
 
-This repository is a **pre-revision source snapshot** shared for team review.
-It contains the implementation used for the completed exploratory `formal-v1`
-study. It is not the current development branch and must not be presented as a
-finished proof of reward hacking.
+The project no longer treats a one-directional `ctrl_cost_weight` sweep as the
+main experiment. That sweep remains historical exploratory evidence. The
+current study has two linked stages:
 
-- `formal-v1`: completed, retrospective and exploratory.
-- Historical shaping: forward-reward reweighting, not the intended bounded
-  mitigation intervention.
-- Prospective v2: draft and blocked; do not run it as a formal experiment.
-- Training seed is the independent replication unit. Checkpoints and evaluation
-  episodes are repeated observations, not extra independent samples.
+1. **Default-reward construct audit.** Test whether the documented Ant-v5
+   reward ranks independently trained policies consistently with a
+   predeclared, project-specific locomotion intention.
+2. **Bounded mitigation development.** Test whether targeted reward shaping,
+   an external control constraint, or a training mechanism reduces the
+   observed proxy-behaviour gap without materially damaging forward task
+   performance.
 
-See [Project Overview](docs/PROJECT_OVERVIEW.md),
-[Experiment Status](docs/EXPERIMENT_STATUS.md), and
-[Repository Guide](docs/REPOSITORY_GUIDE.md) before interpreting the code.
+The intended behaviour is not represented as an invented scalar "true
+reward". It is evaluated through separate task, posture, direction, path,
+action and termination diagnostics over a 1,000-step episode. See
+[Research Direction](docs/RESEARCH_DIRECTION_20260816.md) and
+[Intended Behaviour Contract](docs/INTENDED_BEHAVIOUR_CONTRACT_V2_20260816.md).
 
-## Project structure
+## Current scientific status
+
+All results added on 16 August 2026 are **development evidence**. They were
+used to diagnose mechanisms and refine the design; they are not held-out
+formal confirmation.
+
+- The default reward can coexist with repeated take-off, substantial flight
+  time and high raw MuJoCo contact-force diagnostics.
+- Orientation and lateral shaping reduced some failures but did not satisfy
+  the complete intended-behaviour gate.
+- An external action-slew projection constrained applied actions, while the
+  PPO policy continued to propose rough actions on most steps.
+- A 1 m/s target-tracking reward and an action-rate penalty improved command
+  tracking and policy-output smoothness after a 1M-step development extension,
+  but body-level hopping remained.
+- A bounded body-dynamics penalty reduced several hopping diagnostics under
+  ordinary PPO exploration. The tested gSDE setting failed in this exact
+  configuration and is rejected as a development candidate, not as a general
+  method.
+
+Two questions remain open:
+
+1. **Specified gait:** the project does not yet define or validate a crawl,
+   trot, pace or bound contact-phase pattern. "Natural gait" is therefore not
+   a supported outcome claim.
+2. **Learned control versus guardrail dependence:** smoother applied actions do
+   not prove that PPO learned a smooth policy when an external controller
+   intervenes on most steps.
+
+See [Team Progress Update](docs/TEAM_PROGRESS_UPDATE_20260816.md) for the full
+plain-language summary.
+
+The next bounded local test is declared in
+[Future Testing Direction](docs/FUTURE_TESTING_DIRECTION_20260817.md). Its
+protocol, configuration and executable code are public, while newly generated
+models, logs, videos and result tables remain local until a separate evidence
+review authorises a later release.
+
+## Repository structure
 
 | Path | Purpose |
 |---|---|
-| `src/proxygap/` | Environment wrapper, metrics, PPO training and protocol validation |
-| `scripts/` | Runnable inspection, smoke-test, training, evaluation and analysis commands |
-| `configs/` | Versioned environment and experiment settings |
-| `tests/` | Automated engineering checks |
-| `docs/` | Metric definitions and team-facing methodological notes |
-| `protocols/` | Formal-v1 retrospective record and blocked prospective draft |
-| `results/` | Explanation of which generated outputs may be shared separately |
+| `src/proxygap/` | Ant-v5 wrappers, metrics, evaluation and experiment logic |
+| `scripts/` | Training, evaluation, rendering, analysis and QA entry points |
+| `configs/` | Versioned historical and development configurations |
+| `protocols/` | Predeclared protocols, adjudications and deviation records |
+| `tests/` | Automated engineering and schema tests |
+| `docs/` | Research direction, metric contracts and reproducibility notes |
+| `reports/` | Development audit reports with explicit claim boundaries |
+| `results/development_20260816/` | Lightweight summaries, figures and video indexes |
+| `presentations/` | Editable English and Chinese team-update presentations |
+
+Large model checkpoints, compressed step logs and MP4 files are intentionally
+excluded from Git. Their indexes are retained so that the corresponding local
+evidence can be located and regenerated without presenting videos as
+independent replications.
+
+Future experiment plans, versioned configurations and implementation changes
+are committed before or alongside execution. New experiment outputs are not
+automatically published.
 
 ## Installation on Windows
 
@@ -46,38 +97,33 @@ python -m pip install -e .
 python -m pytest tests
 ```
 
-CUDA is not required. The baseline is CPU-only.
+CUDA is not required. The project is designed for CPU execution.
 
-## Minimum verification
+## Minimum engineering verification
 
 ```powershell
 python scripts/inspect_ant_reference.py
 python scripts/smoke_train_benchmark.py
+python -m pytest tests
 ```
 
-These commands verify installation and engineering feasibility only. A passed
-smoke test is not scientific evidence for reward misspecification.
+A successful smoke test demonstrates that the pipeline runs. It does not
+validate reward misspecification or mitigation.
 
-## Reproducing experiments
+## Research integrity boundaries
 
-Read [Reproducibility](docs/REPRODUCIBILITY.md) before running any training.
-Generated models, raw logs, figures and videos are intentionally excluded from
-Git because they are large or derived artifacts.
+- Training seeds create independently trained policies and are the replication
+  units. Evaluation episodes are paired measurements of fixed policies.
+- Videos provide qualitative audit evidence only and must be selected by a
+  prespecified rule.
+- Raw returns from different reward functions are not automatically comparable.
+- MuJoCo contact-force diagnostics are not calibrated physical safety units.
+- Conclusions are limited to default flat-ground Ant-v5 with PPO and the tested
+  budgets; no real-robot, terrain or external-disturbance claim is made.
 
-## Scientific interpretation
+## Historical material
 
-Different values of `ctrl_cost_weight` define different numerical reward
-functions. Raw condition-specific returns must therefore not be ranked as if
-they were measurements on one common scale. The repository also computes a
-fixed-weight common rescore, but this is a benchmark comparator rather than a
-ground-truth measure of locomotion quality.
-
-The strongest defensible formal-v1 interpretation is a simulation-specific,
-multi-objective trade-off across reward, forward progress, action magnitude,
-termination, lateral drift and torso orientation.
-
-## Team workflow
-
-Create a branch for each change and open a pull request. Do not edit raw result
-files or silently alter locked configuration files. See
-[Contributing](CONTRIBUTING.md).
+`formal-v1` and the earlier coefficient sweep are preserved for provenance.
+They can motivate the revised research question, but they must not be merged
+with the new development evidence as if all runs belonged to one frozen formal
+experiment.

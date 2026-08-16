@@ -4,7 +4,8 @@
   "status": "revision_gate_open_do_not_run",
   "created_date": "2026-08-10",
   "proposal": {
-    "path": "C:\\Users\\18522\\Documents\\Codex\\2026-08-09\\wo\\work\\pdfs\\inputs\\proposal.pdf",
+    "path": "Proposal_G6.pdf",
+    "distribution": "external_controlling_source_not_distributed",
     "sha256": "4E78D9803FDB7F7A8176702E4BB20FC382E3322D5B3DE1E8414FBCF1BCE67AD9",
     "controlling_locations": ["pages 1-3"]
   },

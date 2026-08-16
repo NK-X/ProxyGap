@@ -1,0 +1,151 @@
+{
+  "schema_version": 7,
+  "config_id": "stage1_reference_fresh_1m_outcome_v7_20260814",
+  "status": "engineering_validated_reference_configuration_inconclusive_formal_launch_blocked",
+  "stage_scope": "stage_1_reference_competence_only_no_candidate_no_shaping",
+  "parent_frozen_design": {
+    "config_path": "configs/stage1_reference_fresh_1m_v6_20260814.json",
+    "config_sha256": "DFFA763D4EB7EF3342D5FDAF770A6B9D0EAA966BC75127B5E6ABE8F611B6D44F",
+    "protocol_path": "protocols/STAGE1_REFERENCE_FRESH_1M_PROTOCOL_V6_20260814.md",
+    "protocol_sha256": "AEBC9A7DC67B2F2BFD42AA842AE194A5D82D84DD55FDF2A10B0D7F445AE84C43"
+  },
+  "executed_matrix": {
+    "environment": "Ant-v5",
+    "algorithm": "PPO",
+    "device": "cpu",
+    "ctrl_cost_weights": [0.5],
+    "training_seeds": [41201, 41202, 41203, 41204, 41205],
+    "evaluation_seeds": [
+      51201,
+      51202,
+      51203,
+      51204,
+      51205,
+      51206,
+      51207,
+      51208,
+      51209,
+      51210,
+      51211,
+      51212,
+      51213,
+      51214,
+      51215,
+      51216,
+      51217,
+      51218,
+      51219,
+      51220
+    ],
+    "checkpoint_targets": [250000, 500000, 750000, 1000000],
+    "actual_final_timesteps_per_policy": 1001472,
+    "model_checkpoints": 20,
+    "evaluation_rows": 400,
+    "runtime_rows": 20,
+    "shaping_weights": "all_zero"
+  },
+  "reference_competence": {
+    "frozen_per_policy_rule": {
+      "unhealthy_termination_rate_max": 0.2,
+      "mean_forward_velocity_min_position_units_per_second": 0.1,
+      "joint_rule": "Both thresholds must be satisfied by the same independently trained policy."
+    },
+    "frozen_configuration_rule": {
+      "supported": "4-5 passing policies",
+      "inconclusive": "2-3 passing policies",
+      "failed": "0-1 passing policies"
+    },
+    "policy_results": {
+      "41201": {
+        "unhealthy_termination_rate": 0.0,
+        "mean_forward_velocity": 0.9177087661674366,
+        "joint_gate_pass": true
+      },
+      "41202": {
+        "unhealthy_termination_rate": 0.6,
+        "mean_forward_velocity": 0.8058532352598521,
+        "joint_gate_pass": false
+      },
+      "41203": {
+        "unhealthy_termination_rate": 0.6,
+        "mean_forward_velocity": 0.8935732710786661,
+        "joint_gate_pass": false
+      },
+      "41204": {
+        "unhealthy_termination_rate": 0.0,
+        "mean_forward_velocity": 0.9103435954566572,
+        "joint_gate_pass": true
+      },
+      "41205": {
+        "unhealthy_termination_rate": 0.65,
+        "mean_forward_velocity": 1.140516541067308,
+        "joint_gate_pass": false
+      }
+    },
+    "passing_policies": 2,
+    "total_policies": 5,
+    "configuration_classification": "inconclusive",
+    "interpretation": "All five policies met the forward-velocity gate, but only two met the joint health-and-velocity gate. The unchanged reference configuration therefore lacks sufficient reproducibility for progression under the frozen rule."
+  },
+  "evidence": {
+    "raw_episode_csv": {
+      "path": "artifacts/exploration/stage1_reference_fresh_1m_v6_20260814/logs/evaluation_metrics.csv",
+      "sha256": "F88AAAD20943C6AF73667C78D51EF5ACA8D3DB2D9D2354BDCBB1F07BAE229281"
+    },
+    "training_runtime_csv": {
+      "path": "artifacts/exploration/stage1_reference_fresh_1m_v6_20260814/logs/training_runtime.csv",
+      "sha256": "00EE793D6D79156C5D4AD56603458A21FAEABC1ED4FF35B0D71CE94D5E967DF9"
+    },
+    "parallel_completion": {
+      "path": "artifacts/exploration/stage1_reference_fresh_1m_v6_20260814/parallel_completion.json",
+      "sha256": "9DC3BE746585197F2F9B34148729F45233CBD7AF96E63711583D70C34864B211"
+    },
+    "primary_adjudication": {
+      "path": "artifacts/analysis/stage1_reference_fresh_1m_v6_20260814/stage1_reference_adjudication.json",
+      "sha256": "B22A86398E102D28BCA439B193E598BA18B12184F9534526D6413B793AFAE512"
+    },
+    "independent_verification": {
+      "path": "artifacts/analysis/stage1_reference_fresh_1m_v6_20260814/independent_verification.json",
+      "sha256": "35C9DA7CC68FB04D38975F99F7897FB594273E3F6B55025F80FEC19236F32FF8",
+      "status": "pass"
+    },
+    "policy_gate_csv": {
+      "path": "artifacts/analysis/stage1_reference_fresh_1m_v6_20260814/reference_policy_gate.csv",
+      "sha256": "40398F14B419788D1D6A232802165BB01B970E56F144D909352EDDAE44C4B61C"
+    },
+    "qa_summary": {
+      "path": "artifacts/analysis/stage1_reference_fresh_1m_v6_20260814/qa_summary.json",
+      "sha256": "3E1EFEB554A7C11F190A8B32A939D6D76DB818C937FB1A8142EBF6D8D6CB97A6"
+    },
+    "model_manifest": {
+      "path": "artifacts/analysis/stage1_reference_fresh_1m_v6_20260814/model_sha256_manifest.csv",
+      "sha256": "AB0E6DC43589683CBF86C1EC75A8FDBC94D53AB1FDA4B574863FC226412E62FF"
+    },
+    "trajectory_figure_png": {
+      "path": "artifacts/analysis/stage1_reference_fresh_1m_v6_20260814/reference_competence_trajectory.png",
+      "sha256": "08AF164BF44BB425C2A36913E2AAB86FAF7F976F433ABBAE987F322510FACB46"
+    },
+    "trajectory_figure_pdf": {
+      "path": "artifacts/analysis/stage1_reference_fresh_1m_v6_20260814/reference_competence_trajectory.pdf",
+      "sha256": "05B030CCA110E751BBE303D60785D05003F18EB74161ABA91D4C48B613BD57FA"
+    }
+  },
+  "execution_record": {
+    "successful_attempt": 3,
+    "successful_wall_minutes": 94.29,
+    "run_bytes": 7433764,
+    "model_bytes": 6173691,
+    "attempt_1": "Stopped before the first checkpoint after throughput showed that the original outer timeout could terminate the queued fifth policy. No checkpoint outcome was inspected.",
+    "attempt_2": "Terminated by stale long-running tool-host state before any policy completed. Partial files are preserved and excluded from analysis; no outcome was inspected.",
+    "attempt_3": "Completed from fresh initialisation under the unchanged frozen scientific configuration using a detached hidden Windows process."
+  },
+  "decision": {
+    "reference_configuration": "inconclusive",
+    "stage_one_hypothesis_tested": false,
+    "candidate_weight_launch": "prohibited",
+    "formal_launch": "prohibited",
+    "shaping_launch": "prohibited",
+    "required_next_gate": "Freeze a minimal one-factor reference-configuration pilot before changing any PPO or normalisation setting. The factor and decision rule must be selected prospectively."
+  },
+  "claim_boundary": "This result is evidence of seed-dependent reference reliability under one unchanged Ant-v5/PPO configuration. It does not establish reward misspecification, reward hacking, the absence of reward misspecification, an optimal coefficient, PPO inadequacy, or real-robot safety."
+}

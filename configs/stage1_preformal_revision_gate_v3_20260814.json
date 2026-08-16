@@ -1,0 +1,87 @@
+{
+  "schema_version": 3,
+  "config_id": "stage1_preformal_revision_gate_v3_20260814",
+  "status": "scientifically_unresolved_formal_launch_blocked",
+  "stage_scope": "stage_1_detection_only_no_shaping",
+  "parent_development_config": {
+    "path": "configs/stage1_bidirectional_development_v2_20260814.json",
+    "sha256": "3FBC0F0BE67C5BB20CCE6A4480BBCED74F10EA40477F377B1DEFAEBB2746216F"
+  },
+  "parent_protocol": {
+    "path": "protocols/STAGE1_BIDIRECTIONAL_DEVELOPMENT_PROTOCOL_V2_20260814.md",
+    "sha256": "6AD615230550356E0CE7649D5664A5C0091EE4C3D067F36C48218F61B9769F9B"
+  },
+  "development_adjudication": {
+    "selected_lower_candidate": 0.21875,
+    "selected_upper_candidate": null,
+    "strict_proxy_gain_both_seeds": true,
+    "primary_harmed_domain": "lateral_control",
+    "late_checkpoints_positive": 3,
+    "diagnostic_margin_sensitivity": {
+      "0.5": true,
+      "1.0": true,
+      "2.0": false
+    },
+    "claim": "development nomination only"
+  },
+  "preformal_budget_extension": {
+    "execution_status": "proposed_not_authorised",
+    "conditions": [0.5, 0.21875, 0.125],
+    "training_seeds": [41101, 41102],
+    "evaluation_seeds": [51101, 51102, 51103, 51104, 51105, 51106, 51107, 51108, 51109, 51110],
+    "target_timesteps": 1000000,
+    "new_evaluation_targets": [500000, 750000, 1000000],
+    "resume_existing_300k_policies": true,
+    "all_ppo_hyperparameters_unchanged": true,
+    "normalisation_unchanged": true,
+    "shaping_weights": "all_zero",
+    "purpose": "Isolate training-budget sufficiency before altering architecture or preprocessing."
+  },
+  "proposed_reference_competence_rule": {
+    "approval_status": "requires_user_or_supervisor_decision",
+    "per_training_seed": {
+      "unhealthy_termination_rate_max": 0.2,
+      "mean_forward_velocity_min": 0.1
+    },
+    "must_hold_in_both_development_seeds": true,
+    "registered_ant_v5_reward_threshold": 6000.0,
+    "reward_threshold_role": "context_only_not_project_gate",
+    "scope": "simulation-level operational threshold, not hardware safety"
+  },
+  "provisional_formal_matrix": {
+    "approval_status": "requires_decision_after_budget_extension",
+    "reference": 0.5,
+    "primary_local_candidate": 0.21875,
+    "secondary_construct_candidate": 0.125,
+    "upper_candidate": null
+  },
+  "formal_seed_options": {
+    "resource_limited": {
+      "training_seeds": [42001, 42002, 42003, 42004, 42005],
+      "interpretation": "descriptive replication"
+    },
+    "stronger_directional": {
+      "training_seeds": [42001, 42002, 42003, 42004, 42005, 42006, 42007, 42008],
+      "interpretation": "stronger directional consistency, still conditional on this task"
+    }
+  },
+  "video_rule": {
+    "selection_source": "reference_condition_only",
+    "matched_training_and_evaluation_seed_across_conditions": true,
+    "tie_break": "lower numeric seed with floating-point tolerance",
+    "fps": 20,
+    "simulator_dt_seconds": 0.05,
+    "max_steps": 1000,
+    "playback_speed_ratio": 1.0,
+    "role": "qualitative audit only"
+  },
+  "blocking_decisions": [
+    "Freeze corridor-constrained versus generic forward-locomotion intent.",
+    "Approve or revise the proposed reference-competence thresholds.",
+    "Authorise the one-million-step development budget extension.",
+    "Freeze the post-extension formal condition matrix.",
+    "Choose five or eight formal training seeds."
+  ],
+  "formal_launch": "prohibited",
+  "claim_boundary": "No current result is held-out confirmation of high reward and low overall performance, a scalar true reward, a continuous critical coefficient, or real-robot safety."
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "config_id": "prospective_v3_weight_selection_draft_20260813",
+  "status": "rejected_exploration_not_canonical",
+  "purpose": "Separate proxy-only development selection from held-out behavioural evaluation.",
+  "candidate_ctrl_cost_weights": [0.0625, 0.125, 0.25, 0.5, 1.0],
+  "selection_rule": {
+    "metric": "common_rescored_return",
+    "checkpoint": "final_only",
+    "aggregation": "mean_episodes_within_training_seed_then_mean_development_training_seeds",
+    "tie_break": "closest_to_0.5_then_smaller_coefficient",
+    "forbidden_selection_inputs": [
+      "net_forward_progress",
+      "lateral_drift_mean_abs",
+      "lateral_drift_max_abs",
+      "torso_tilt_rms",
+      "torso_tilt_p95",
+      "unhealthy_termination",
+      "fall",
+      "action_saturation_rate",
+      "episode_length"
+    ]
+  },
+  "development_training_seeds": [20260811, 20260812],
+  "development_evaluation_seeds": [60260810, 60260811, 60260812, 60260813, 60260814],
+  "held_out_training_seeds": [20260821, 20260822, 20260823, 20260824, 20260825],
+  "held_out_evaluation_seeds": [70260810, 70260811, 70260812, 70260813, 70260814, 70260815, 70260816, 70260817, 70260818, 70260819],
+  "formal_conditions": [
+    {"condition_id": "C0_reference", "ctrl_cost_weight": 0.5},
+    {"condition_id": "C1_selected", "ctrl_cost_weight": "selected_w_star"},
+    {"condition_id": "C2_selected_shaped", "ctrl_cost_weight": "selected_w_star"}
+  ],
+  "negative_result_rule": "If selected_w_star equals 0.5, retain that result and do not replace it with the second-ranked candidate.",
+  "status_boundary": "Rejected after user clarification: the project diagnoses divergence across a plausible under-penalisation range; it does not select a coefficient using proxy score alone. Retained only as an audit record."
+}

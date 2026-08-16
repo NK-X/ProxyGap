@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "config_id": "two_experiment_revision_gate_20260813",
+  "status": "development_protocol_ready_heldout_blocked",
+  "environment": "Ant-v5",
+  "algorithm": "PPO",
+  "device": "cpu",
+  "design_identity": "Experiment 1 diagnoses proxy-diagnostic divergence across a bounded under-penalisation range. Experiment 2 keeps the diagnosed ctrl_cost_weight fixed and tests behaviour-targeted shaping.",
+  "bounded_multifidelity_exploration": {
+    "status": "engineering_and_candidate-prioritisation_only",
+    "total_timesteps": 100000,
+    "checkpoint_timesteps": [25000, 50000, 75000, 100000],
+    "early_window": [25000, 50000],
+    "late_window": [75000, 100000],
+    "training_seeds": [41001, 41002],
+    "evaluation_episodes_per_checkpoint": 5,
+    "torch_num_threads": 2,
+    "claim_prohibition": "This shortened horizon cannot lock the 300k divergent condition or authorise held-out shaping."
+  },
+  "candidate_confirmation": {
+    "status": "authorised_after_100k_priority_screen",
+    "priority_candidate_ctrl_cost_weight": 0.25,
+    "candidate_is_locked": false,
+    "conditions": [0.5, 0.25],
+    "training_seeds": [41101, 41102],
+    "evaluation_seed_base": 51101,
+    "total_timesteps": 300000,
+    "checkpoint_timesteps": [50000, 100000, 150000, 200000, 250000, 300000],
+    "evaluation_episodes_per_checkpoint": 10,
+    "confirmation_rule": "At 300k, both candidate-reference seed pairs must favour the candidate under R_0.25 and at least two prespecified external diagnostics must deteriorate in the same direction in both pairs.",
+    "failure_rule": "If confirmation fails, stop Experiment 2 and do not substitute another coefficient."
+  },
+  "experiment_1_detection": {
+    "reference_ctrl_cost_weight": 0.5,
+    "core_ctrl_cost_weights": [0.5, 0.375, 0.25, 0.125],
+    "boundary_sensitivity_weight": 0.0625,
+    "boundary_is_eligible_for_primary_candidate": false,
+    "range_rationale": "The core uses 100%, 75%, 50% and 25% of the documented Ant-v5 default. The historical 12.5% condition is retained only as a boundary sensitivity check.",
+    "fixed_reward_parameters": {
+      "forward_reward_weight": 1.0,
+      "healthy_reward": 1.0,
+      "contact_cost_weight": 0.0005
+    },
+    "development_training_seeds": [41001, 41002],
+    "development_evaluation_seed_base": 51001,
+    "total_timesteps": 300000,
+    "checkpoint_timesteps": [50000, 100000, 150000, 200000, 250000, 300000],
+    "early_window": [50000, 100000],
+    "late_window": [250000, 300000],
+    "evaluation_episodes_per_checkpoint": 10,
+    "screening_rule": {
+      "primary_pairwise_test": "At the fixed endpoint, rescore candidate and reference trajectories under the same candidate reward formula R_w.",
+      "within_fixed_weight_only": true,
+      "secondary_optimisation_pressure_test": "Within each fixed weight, compare early and late windows for reward increase plus diagnostic deterioration.",
+      "requires_candidate_proxy_advantage_in_both_development_seeds": true,
+      "requires_at_least_two_same_direction_external_harms": true,
+      "requires_same_external_harm_direction_in_both_development_seeds": true,
+      "eligible_reduced_weights": [0.375, 0.25, 0.125],
+      "multiple_candidate_rule": "Select the largest qualifying coefficient, i.e. the smallest departure from the default 0.5.",
+      "no_candidate_rule": "Stop before Experiment 2; do not lower the weight further or choose the strongest-looking non-qualifier."
+    },
+    "external_diagnostics": [
+      "forward_path_efficiency",
+      "lateral_drift_mean_abs",
+      "torso_tilt_rms",
+      "unhealthy_termination",
+      "action_saturation_rate"
+    ],
+    "explanatory_not_independent": [
+      "net_forward_progress",
+      "cumulative_squared_action",
+      "common_rescored_return",
+      "episode_length"
+    ]
+  },
+  "heldout_confirmation": {
+    "candidate_ctrl_cost_weight": null,
+    "training_seeds": [42001, 42002, 42003, 42004, 42005],
+    "evaluation_seed_base": 52001,
+    "conditions": ["C0_reference_0p5", "C1_detected_unshaped", "C2_detected_shaped"],
+    "analysis_route": "descriptive_paired_seed_effects",
+    "checkpoint_role": "The final 300k checkpoint is primary; all earlier checkpoints are dependent repeated measurements."
+  },
+  "experiment_2_shaping": {
+    "same_ctrl_cost_weight_as_detected_condition": true,
+    "allowed_signals": ["lateral_offset", "torso_orientation"],
+    "prohibited_signals": ["forward_reward", "squared_action_effort"],
+    "lateral_scale": null,
+    "lateral_cap_lambda": null,
+    "orientation_scale_rad": null,
+    "orientation_cap_lambda": null,
+    "mechanism_selection_rule": "Use only diagnostic dimensions that worsen consistently in Experiment 1 development data; freeze formula and parameters before held-out training.",
+    "no_detected_divergence_rule": "Do not run or claim mitigation if Experiment 1 identifies no eligible candidate."
+  },
+  "protected_diagnostics": [
+    "forward_path_efficiency",
+    "unhealthy_termination",
+    "other_unhealthy_termination",
+    "low_z_termination",
+    "high_z_termination",
+    "non_finite_termination",
+    "lateral_drift_mean_abs",
+    "lateral_drift_max_abs",
+    "torso_tilt_rms",
+    "torso_tilt_p95",
+    "action_saturation_rate"
+  ],
+  "claim_boundary": "The strongest planned claim is reproducible proxy-diagnostic divergence under tested Ant-v5 conditions. No scalar true-performance, universal optimal weight or general robotics claim is authorised."
+}

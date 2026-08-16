@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "config_id": "hybrid_intent_constraint_design_v1_20260816",
+  "status": "development_frozen_design_no_training_authorised",
+  "frozen_date": "2026-08-16",
+  "environment": "Ant-v5",
+  "algorithm": "PPO",
+  "intended_behaviour_document": "docs/INTENDED_BEHAVIOUR_CONTRACT_V2_20260816.md",
+  "external_constraint_document": "protocols/EXTERNAL_ACTION_SLEW_CONSTRAINT_V1_20260816.md",
+  "intended_behaviour": {
+    "official_task_summary": "Coordinate four legs to move in the positive x direction.",
+    "project_construct": "Track a declared forward command while remaining broadly upright, avoiding unhealthy termination and sustained inversion, limiting unintended lateral travel, and using smooth non-saturated actions with reasonable control effort.",
+    "scalar_true_performance": "not_defined",
+    "evaluation_horizon_steps": 1000,
+    "environment_dt_seconds": 0.05,
+    "full_horizon_seconds": 50.0,
+    "commands": {
+      "forward_velocity_m_per_s": 1.0,
+      "lateral_velocity_m_per_s": 0.0,
+      "yaw_rate_rad_per_s": 0.0
+    },
+    "episode_compliance": {
+      "requires_full_1000_steps": true,
+      "unhealthy_termination_allowed": false,
+      "fixed_horizon_forward_velocity_interval_m_per_s": [0.8, 1.2],
+      "sustained_inversion_tilt_threshold_degrees": 90.0,
+      "sustained_inversion_duration_seconds": 1.0,
+      "torso_tilt_rms_max_degrees": 15.0,
+      "net_displacement_direction_error_max_degrees": 5.0,
+      "forward_path_efficiency_min": 0.9,
+      "normalised_action_roughness_max": 0.04,
+      "action_saturation_abs_threshold": 0.95,
+      "action_saturation_fraction_max": 0.01
+    },
+    "formal_sensitivity_analysis_required": true,
+    "claim_boundary": "Project-specific operational intent, not a universal quadruped safety or naturalness standard."
+  },
+  "external_constraint": {
+    "id": "l2_action_slew_guardrail_v1",
+    "status": "development_frozen_candidate_not_implemented",
+    "location": "after_policy_before_environment",
+    "action_dimensions": 8,
+    "action_bounds": [-1.0, 1.0],
+    "delta_l2_per_control_step": 1.4,
+    "control_interval_seconds": 0.05,
+    "previous_applied_action_on_reset": "zeros",
+    "projection_uses_previous_applied_action": true,
+    "physical_torque_rate_calibrated": false,
+    "observation_augmentation": {
+      "default_observation_dimensions": 105,
+      "previous_applied_action_dimensions": 8,
+      "augmented_observation_dimensions": 113,
+      "applied_to_all_comparison_groups": true,
+      "new_baseline_training_required": true
+    },
+    "calibration": {
+      "source": "artifacts/analysis/stage1_reference_high_z_diagnostic_v8_20260814/step_traces",
+      "training_seeds": [41201, 41202, 41203, 41204, 41205],
+      "transition_count": 79430,
+      "pooled_p90_l2_action_change": 1.430823,
+      "threshold_rounding_decimals": 1,
+      "historical_fraction_above_threshold": 0.113332,
+      "uses_held_out_formal_data": false,
+      "role": "Development scale calibration only; does not establish effectiveness or hardware safety."
+    }
+  },
+  "design_strategy": {
+    "candidate_stage": "Bounded reward-by-constraint candidate matrix; candidate count may exceed 2x2.",
+    "formal_stage": "After selecting and freezing one reward package and one constraint, use a 2x2 ablation of R0/R* by K0/K*.",
+    "maximum_development_rounds_before_new_revision": 2,
+    "equal_training_budget_required": true,
+    "same_training_seed_ids_across_conditions": true,
+    "same_evaluation_seed_ids_across_conditions": true
+  },
+  "seed_semantics": {
+    "training_seed": "Controls an independent online PPO run, including initial parameters, exploration sampling, training reset perturbations and minibatch order.",
+    "evaluation_seed": "After training, controls reproducible Ant-v5 initial position and velocity perturbations while policy parameters remain fixed.",
+    "evaluation_seed_scope_limit": "Flat-ground initial-state variation only unless additional perturbation suites are explicitly implemented."
+  },
+  "execution": {
+    "constraint_wrapper_implemented": false,
+    "engineering_tests_passed": false,
+    "development_training_authorised": false,
+    "held_out_training_authorised": false,
+    "formal_training_authorised": false
+  }
+}

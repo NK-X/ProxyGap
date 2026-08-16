@@ -1,0 +1,230 @@
+{
+  "status": "development_mechanism_diagnostic_complete",
+  "condition_id": "Rt0p1_Rvy0__K1p1",
+  "training_seed": 41301,
+  "evaluation_seed": 51301,
+  "checkpoint_timesteps": 300000,
+  "replay_matches_logged_episode": true,
+  "replay_errors": {
+    "max_abs_x_position_error": 7.105427357601002e-15,
+    "max_abs_y_position_error": 8.881784197001252e-16,
+    "max_abs_torso_height_error": 5.551115123125783e-17,
+    "max_abs_reward_error": 4.440892098500626e-16
+  },
+  "jump_event": {
+    "definition": "step with maximum MuJoCo root z velocity in this episode",
+    "step": 361,
+    "time_seconds": 18.05,
+    "root_velocity_z_m_per_s": 2.540431494746883,
+    "root_velocity_x_m_per_s": 0.6172339203166863,
+    "root_velocity_y_m_per_s": -0.44179482334966397,
+    "torso_height_m": 0.5890373466873905,
+    "condition_objective_reward": 1.5858769306989855,
+    "forward_reward": 0.9743965107305641,
+    "control_reward": -0.3879711683146702,
+    "contact_reward": -0.0,
+    "orientation_shaping_reward": -0.0005484117169083758,
+    "raw_floor_force_norm": 0.0,
+    "raw_floor_normal_force": 0.0,
+    "preceding_four_step_max_floor_force_norm": 36.15439448463316,
+    "preceding_four_step_max_floor_normal_force": 30.88925724131429
+  },
+  "prominent_takeoff_events_vz_at_least_1p25_m_per_s": [
+    {
+      "step": 73,
+      "time_seconds": 3.6500000000000004,
+      "root_velocity_z_m_per_s": 1.9571149054120924,
+      "root_velocity_x_m_per_s": 1.227863771840645,
+      "root_velocity_y_m_per_s": -0.0744726141574206,
+      "objective_reward": 1.8944412938385276,
+      "preceding_four_step_max_floor_force_norm": 41.022924796899964
+    },
+    {
+      "step": 240,
+      "time_seconds": 12.0,
+      "root_velocity_z_m_per_s": 1.2952441789529612,
+      "root_velocity_x_m_per_s": 1.5358256723489279,
+      "root_velocity_y_m_per_s": -0.018177337395988164,
+      "objective_reward": 1.2111400542995996,
+      "preceding_four_step_max_floor_force_norm": 55.22239904114069
+    },
+    {
+      "step": 256,
+      "time_seconds": 12.8,
+      "root_velocity_z_m_per_s": 2.2834114734571473,
+      "root_velocity_x_m_per_s": 1.522965661168868,
+      "root_velocity_y_m_per_s": 0.22544760132445513,
+      "objective_reward": 1.9062184277995555,
+      "preceding_four_step_max_floor_force_norm": 75.64702513593369
+    },
+    {
+      "step": 282,
+      "time_seconds": 14.100000000000001,
+      "root_velocity_z_m_per_s": 1.2760291139589794,
+      "root_velocity_x_m_per_s": 0.955354525860476,
+      "root_velocity_y_m_per_s": -0.4973501498476059,
+      "objective_reward": 1.8298916209693032,
+      "preceding_four_step_max_floor_force_norm": 10.718631876272743
+    },
+    {
+      "step": 329,
+      "time_seconds": 16.45,
+      "root_velocity_z_m_per_s": 1.2695148906288598,
+      "root_velocity_x_m_per_s": 1.9628630405076193,
+      "root_velocity_y_m_per_s": -0.1570814715662685,
+      "objective_reward": 1.6485490770792253,
+      "preceding_four_step_max_floor_force_norm": 76.23771948869181
+    },
+    {
+      "step": 361,
+      "time_seconds": 18.05,
+      "root_velocity_z_m_per_s": 2.540431494746883,
+      "root_velocity_x_m_per_s": 0.6172339203166863,
+      "root_velocity_y_m_per_s": -0.44179482334966397,
+      "objective_reward": 1.5858769306989855,
+      "preceding_four_step_max_floor_force_norm": 36.15439448463316
+    },
+    {
+      "step": 553,
+      "time_seconds": 27.650000000000002,
+      "root_velocity_z_m_per_s": 1.2689314609681062,
+      "root_velocity_x_m_per_s": 1.1358674762843204,
+      "root_velocity_y_m_per_s": -0.25575666053234836,
+      "objective_reward": 0.7964020464204751,
+      "preceding_four_step_max_floor_force_norm": 23.71987507170946
+    },
+    {
+      "step": 566,
+      "time_seconds": 28.3,
+      "root_velocity_z_m_per_s": 1.2971029911921996,
+      "root_velocity_x_m_per_s": 1.7957863049750384,
+      "root_velocity_y_m_per_s": -0.9192897706932609,
+      "objective_reward": 1.8377838655321774,
+      "preceding_four_step_max_floor_force_norm": 119.24765649743276
+    },
+    {
+      "step": 598,
+      "time_seconds": 29.900000000000002,
+      "root_velocity_z_m_per_s": 1.361764816386684,
+      "root_velocity_x_m_per_s": 1.6533759440960025,
+      "root_velocity_y_m_per_s": 1.183067525073079,
+      "objective_reward": 2.2599300811448875,
+      "preceding_four_step_max_floor_force_norm": 74.14523675188691
+    },
+    {
+      "step": 675,
+      "time_seconds": 33.75,
+      "root_velocity_z_m_per_s": 1.5276823511662605,
+      "root_velocity_x_m_per_s": 1.3951415169242,
+      "root_velocity_y_m_per_s": -1.6225075839793364,
+      "objective_reward": 1.7750849411197305,
+      "preceding_four_step_max_floor_force_norm": 159.44345050538138
+    },
+    {
+      "step": 742,
+      "time_seconds": 37.1,
+      "root_velocity_z_m_per_s": 1.3359592236121154,
+      "root_velocity_x_m_per_s": 0.7191467770317893,
+      "root_velocity_y_m_per_s": -0.4454666843065839,
+      "objective_reward": 0.7850082749282469,
+      "preceding_four_step_max_floor_force_norm": 25.834394172578328
+    },
+    {
+      "step": 775,
+      "time_seconds": 38.75,
+      "root_velocity_z_m_per_s": 1.5133736115936858,
+      "root_velocity_x_m_per_s": 0.6223162368365016,
+      "root_velocity_y_m_per_s": 0.739947227264042,
+      "objective_reward": 1.3842874013120074,
+      "preceding_four_step_max_floor_force_norm": 81.29266479343738
+    },
+    {
+      "step": 789,
+      "time_seconds": 39.45,
+      "root_velocity_z_m_per_s": 1.4326596609249311,
+      "root_velocity_x_m_per_s": 2.6070524129811705,
+      "root_velocity_y_m_per_s": 0.5461450545291524,
+      "objective_reward": 1.2160549478457612,
+      "preceding_four_step_max_floor_force_norm": 13.665836432477375
+    },
+    {
+      "step": 905,
+      "time_seconds": 45.25,
+      "root_velocity_z_m_per_s": 1.9977083042452357,
+      "root_velocity_x_m_per_s": 2.8935466110825385,
+      "root_velocity_y_m_per_s": -0.03640558533778092,
+      "objective_reward": 2.528038881178878,
+      "preceding_four_step_max_floor_force_norm": 73.40939895245627
+    },
+    {
+      "step": 984,
+      "time_seconds": 49.2,
+      "root_velocity_z_m_per_s": 1.4559245262460674,
+      "root_velocity_x_m_per_s": 0.47265732089038165,
+      "root_velocity_y_m_per_s": 0.8732075167010463,
+      "objective_reward": 1.1622335888380555,
+      "preceding_four_step_max_floor_force_norm": 263.1277047800078
+    }
+  ],
+  "contact_and_gait": {
+    "no_floor_contact_step_fraction": 0.529,
+    "no_foot_contact_step_fraction": 0.536,
+    "front_pair_simultaneous_contact_fraction": 0.009,
+    "hind_pair_simultaneous_contact_fraction": 0.007,
+    "all_four_contact_fraction": 0.0,
+    "same_side_pair_contact_fraction": 0.103,
+    "diagonal_pair_contact_fraction": 0.034,
+    "per_foot_duty_factor": {
+      "front_left": 0.117,
+      "front_right": 0.182,
+      "hind_left": 0.163,
+      "hind_right": 0.15
+    },
+    "contact_transition_count": {
+      "front_left": 168,
+      "front_right": 284,
+      "hind_left": 253,
+      "hind_right": 210
+    },
+    "most_common_contact_patterns": [
+      [
+        "airborne",
+        536
+      ],
+      [
+        "front_right",
+        95
+      ],
+      [
+        "hind_right",
+        85
+      ],
+      [
+        "hind_left",
+        83
+      ],
+      [
+        "front_left",
+        58
+      ],
+      [
+        "front_right+hind_right",
+        53
+      ],
+      [
+        "front_left+hind_left",
+        45
+      ],
+      [
+        "front_right+hind_left",
+        24
+      ]
+    ]
+  },
+  "contact_cost_interpretation": {
+    "minimum_logged_reward_contact_step": -0.009000000000000001,
+    "raw_force_units": "MuJoCo constraint-force units; development diagnostic only",
+    "warning": "Gymnasium Ant contact cost clips external contact-force components before squaring. The logged contact reward is therefore not a linear measure of raw impact magnitude."
+  },
+  "claim_boundary": "Single deterministic evaluation episode; identifies a plausible mechanism but does not estimate population frequency or prove causality."
+}

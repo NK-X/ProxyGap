@@ -1,0 +1,136 @@
+{
+  "schema_version": 8,
+  "config_id": "stage1_reference_construct_adjudication_v8_20260814",
+  "status": "engineering_validated_reference_construct_insufficient_stage1_revision_required",
+  "stage_scope": "post_run_reference_diagnostic_no_training_no_candidate_no_shaping",
+  "parent_outcome": {
+    "path": "configs/stage1_reference_fresh_1m_outcome_v7_20260814.json",
+    "operational_result_retained": "2_of_5_policies_passed_the_frozen_v6_gate_inconclusive",
+    "scientific_revision": "The V6 gate is insufficient as a measure of human-intended stable quadrupedal locomotion."
+  },
+  "environment_rule": {
+    "healthy_z_range": [0.2, 1.0],
+    "terminate_when_unhealthy": true,
+    "decision": "Retain as the Gymnasium simulator termination rule; do not relabel it as comprehensive robot health."
+  },
+  "diagnostic_matrix": {
+    "training_seeds": [41201, 41202, 41203, 41204, 41205],
+    "evaluation_seeds": [
+      51201,
+      51202,
+      51203,
+      51204,
+      51205,
+      51206,
+      51207,
+      51208,
+      51209,
+      51210,
+      51211,
+      51212,
+      51213,
+      51214,
+      51215,
+      51216,
+      51217,
+      51218,
+      51219,
+      51220
+    ],
+    "models_replayed": 5,
+    "episodes_replayed": 100,
+    "step_trace_files": 100,
+    "matched_video_evaluation_seed": 51216,
+    "matched_video_selection_rule": "High-z termination in all three V6 gate-failing policies; lowest eligible evaluation seed breaks the tie.",
+    "matched_complete_videos": 5
+  },
+  "established_results": {
+    "replay_exactly_matched_original_endpoint": true,
+    "high_z_episodes": 37,
+    "time_limit_episodes": 63,
+    "other_episode_endings": 0,
+    "high_z_terminal_torso_height_range": [
+      1.00135575681398,
+      1.0844088879771898
+    ],
+    "high_z_terminal_vertical_velocity_range": [
+      0.1391311150336616,
+      2.63995835842203
+    ],
+    "high_z_height_gain_last_second_range": [
+      0.23207764905387507,
+      0.6214175455462961
+    ],
+    "policy_41204": {
+      "time_limit_episodes": 20,
+      "high_z_episodes": 0,
+      "step_weighted_inverted_proportion_post_hoc": 0.44795,
+      "step_weighted_height_below_0p3_proportion_post_hoc": 0.4278,
+      "episodes_majority_inverted_post_hoc": 9,
+      "matched_video_final_torso_height": 0.27,
+      "matched_video_final_torso_tilt_degrees": 156.2,
+      "interpretation": "A policy can satisfy the Gymnasium height-based health rule while moving for a substantial period in an inverted, low posture."
+    }
+  },
+  "epistemic_adjudication": {
+    "established_fact": [
+      "The three V6 gate-failing policies terminate through rapid upward high-z excursions rather than low-z collapse or non-finite state.",
+      "The height-only Gymnasium rule produces false positives relative to stable upright quadrupedal locomotion, as demonstrated by policy 41204.",
+      "The frozen proxy reward contains no direct torso-orientation or lateral-drift penalty."
+    ],
+    "supported_inference": "The observed seed dependence is compatible with stochastic PPO converging to different high-reward gait strategies that exploit omissions in the proxy and health construct.",
+    "unresolved": [
+      "The causal contribution of disabled observation normalisation.",
+      "Whether a different PPO architecture or optimiser setting would reduce the behaviour.",
+      "Absolute formal thresholds for uprightness, sustained inversion, lateral control and low posture."
+    ],
+    "unsupported_conclusions": [
+      "Confirmed reward hacking under the stage-one hypothesis",
+      "A causal claim that observation normalisation fixes the issue",
+      "A claim that Ant-v5 or PPO contains a software bug",
+      "A claim that changing the healthy-z interval is the correct remedy"
+    ]
+  },
+  "decision": {
+    "v7_numeric_classification": "retained_as_an_operational_result_only",
+    "v6_reference_competence_gate": "construct_insufficient_do_not_use_for_progression",
+    "change_healthy_z_range_now": false,
+    "run_normalisation_pilot_now": false,
+    "candidate_weight_launch": "prohibited",
+    "formal_launch": "prohibited",
+    "shaping_launch": "prohibited",
+    "required_next_gate": "Prospectively freeze the external human-intent and baseline-suitability contract while retaining the Gymnasium health rule as a separate simulator event. Only then decide whether a one-factor normalisation pilot is necessary."
+  },
+  "evidence": {
+    "primary_diagnostic": {
+      "path": "artifacts/analysis/stage1_reference_high_z_diagnostic_v8_20260814/high_z_diagnostic.json",
+      "sha256": "07082C03BB7915EC661E3C61D977FBA898F44C54BB7EF50FDB8C8D09D7C5266B"
+    },
+    "independent_verification": {
+      "path": "artifacts/analysis/stage1_reference_high_z_diagnostic_v8_20260814/independent_verification.json",
+      "sha256": "B0B3CA5868535CD8F4FF6C6A25EA1F3AE438809983CB6B4317599FD892516B36",
+      "status": "pass"
+    },
+    "policy_posture_table": {
+      "path": "artifacts/analysis/stage1_reference_high_z_diagnostic_v8_20260814/policy_posture_diagnostic.csv",
+      "sha256": "045B93AC26F648841CA28CF84720271A98A93FEFE59B2A72BEA4C95F1F523C54"
+    },
+    "matched_contact_sheet": {
+      "path": "artifacts/analysis/stage1_reference_high_z_diagnostic_v8_20260814/matched_video_contact_sheet.png",
+      "sha256": "1CF5B9FCDD6814F1F1B74129837B1C4949EBB3A706639C407EADF3464FB86329"
+    },
+    "failure_matrix": {
+      "path": "artifacts/analysis/stage1_reference_high_z_diagnostic_v8_20260814/high_z_failure_matrix.png",
+      "sha256": "5C3C4983B1CE1AF2160053A8DEBACAE69D783F4BABA446275C91C4ECF93F4BFA"
+    },
+    "matched_height_profiles": {
+      "path": "artifacts/analysis/stage1_reference_high_z_diagnostic_v8_20260814/matched_torso_height_profiles.png",
+      "sha256": "768AD1D7F7B0671DC04578C1ED35E874255E25C3B063113762DDF6F3F43B0590"
+    },
+    "posture_figure": {
+      "path": "artifacts/analysis/stage1_reference_high_z_diagnostic_v8_20260814/policy_posture_diagnostic.png",
+      "sha256": "41EF838BC4B636E43B5DB095293DB744DF361DF463202FB18735C144C6E03A5B"
+    }
+  },
+  "claim_boundary": "V8 identifies a construct defect and a plausible reward-specification mechanism in development data. It does not test the predeclared cross-weight stage-one hypothesis or constitute held-out confirmation."
+}

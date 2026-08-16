@@ -1,34 +1,47 @@
 # Experiment Status
 
-## Completed evidence
+## Status map
 
-### Formal v1
+| Workstream | Current status |
+|---|---|
+| Formal-v1 coefficient sweep | Completed retrospective exploratory evidence |
+| Default-reward construct audit | Development evidence; held-out confirmation not run |
+| Orientation/lateral/action-slew candidates | Development evidence; complete intent gate not passed |
+| Target-speed and action-rate experiment | Development mechanism evidence; 1M extension complete |
+| Body-dynamics and gSDE matrix | Development mechanism evidence; matrix complete |
+| Body-dynamics ordinary-exploration replication | Protocol frozen; local execution pending |
+| Natural or specified gait evaluation | Scientifically unresolved |
+| Final mitigation candidate | Not frozen |
+| Held-out formal comparison | Not authorised |
+| Real-robot deployment | Out of scope |
 
-- Status: completed retrospective exploratory study.
-- Environment and algorithm: Ant-v5 with PPO.
-- Coefficient sweep: `0.5`, `0.25`, `0.125` and `0.0625`.
-- Core comparison: three training seeds for the reference, reduced-cost and
-  historical shaped conditions.
-- Checkpoints: 50k, 100k, 150k, 200k, 250k and 300k.
-- Evaluation: ten paired deterministic episodes per checkpoint.
+## Historical formal-v1
 
-Formal v1 supports a descriptive multi-objective trade-off. It does not prove
-uniformly worse locomotion or formal reward hacking.
+Formal-v1 used an exploratory control-cost coefficient sweep and remains
+preserved for provenance. It supports a descriptive multi-objective trade-off,
+not a universal or confirmatory reward-hacking claim. Its historical shaped
+condition duplicated forward reward and is not the current mitigation design.
 
-## Historical shaping
+## Current direction
 
-The old shaped condition duplicated the forward-reward component at
-`ctrl_cost_weight=0.0625`. It is retained to preserve provenance, but it is not
-the intended bounded, behaviour-targeted mitigation experiment.
+```text
+default reward construct audit
+        -> bounded mechanism development
+        -> candidate freeze
+        -> untouched held-out training seeds
+        -> confirmatory comparison
+```
 
-## Not completed in this repository
+The present repository contains the first two components. A passed engineering
+test or a visually improved video cannot advance a candidate to formal status.
 
-- A prospectively frozen diagnosis using fresh held-out training seeds.
-- A bounded mitigation intervention applied at a reproducibly divergent weight.
-- Physical-robot, ROS, vision or real-energy evaluation.
+## Current evidence boundary
 
-## Interpretation warning
+All 16 August result summaries were produced with development seeds that
+informed the design. They may support mechanism selection, negative results and
+methodological reflection. They must not be described as independent formal
+confirmation.
 
-The private team repository contains the pre-revision implementation. New
-method-development work is deliberately isolated and is not silently merged
-with formal-v1 evidence.
+See `docs/RESEARCH_DIRECTION_20260816.md` and
+`docs/TEAM_PROGRESS_UPDATE_20260816.md`. The next bounded test and its release
+boundary are recorded in `docs/FUTURE_TESTING_DIRECTION_20260817.md`.
