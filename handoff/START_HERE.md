@@ -6,10 +6,12 @@
 2. `STATUS.md` - current scientific and engineering state.
 3. `current/README.md` - current V2 workflow.
 4. `current/RESEARCH_DIRECTION_V2.md` - next scientific design gate.
-5. `handoff/RUN_REGISTRY.csv` - experiment-family provenance.
-6. `handoff/DATA_DICTIONARY.md` - data and evidence meanings.
-7. `handoff/KNOWN_ISSUES.md` - unresolved problems and claim limits.
-8. `docs/REPRODUCIBILITY.md` and `CONTRIBUTING.md` - local setup and change rules.
+5. `docs/V2_FILE_GUIDE_AND_VIDEO_REPRODUCTION_CN.md` - task-oriented V2 file
+   map and video requirements for Chinese-speaking collaborators.
+6. `handoff/RUN_REGISTRY.csv` - experiment-family provenance.
+7. `handoff/DATA_DICTIONARY.md` - data and evidence meanings.
+8. `handoff/KNOWN_ISSUES.md` - unresolved problems and claim limits.
+9. `docs/REPRODUCIBILITY.md` and `CONTRIBUTING.md` - local setup and change rules.
 
 ## Repository versus full evidence bundle
 

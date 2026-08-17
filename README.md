@@ -20,6 +20,11 @@ For a project handover, begin with [`handoff/START_HERE.md`](handoff/START_HERE.
 and [`STATUS.md`](STATUS.md). The change from V1 to V2 is documented in
 [`CHANGELOG.md`](CHANGELOG.md).
 
+Chinese-speaking collaborators can use
+[`docs/V2_FILE_GUIDE_AND_VIDEO_REPRODUCTION_CN.md`](docs/V2_FILE_GUIDE_AND_VIDEO_REPRODUCTION_CN.md)
+for a task-oriented V2 file map and an evidence-based explanation of the video
+reproduction requirements.
+
 ## Current research direction
 
 V2 no longer treats a one-directional `ctrl_cost_weight` sweep as the main

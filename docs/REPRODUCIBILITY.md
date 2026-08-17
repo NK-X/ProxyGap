@@ -45,3 +45,10 @@ package versions, seeds, source commit SHA and a SHA-256 manifest.
 
 Headless training uses `MUJOCO_GL=disable`. Video rendering requires a supported
 rendering backend such as `glfw` on the host system.
+
+The public repository does not include the trained checkpoints or complete
+MP4 files needed to reconstruct historical videos. It also currently requires
+an explicit local install of `imageio` and `imageio-ffmpeg` for MP4 encoding.
+See [`V2_FILE_GUIDE_AND_VIDEO_REPRODUCTION_CN.md`](V2_FILE_GUIDE_AND_VIDEO_REPRODUCTION_CN.md)
+for the V2 file map, exact distinction between a rendering smoke test and a
+checkpoint replay, expected artifact paths, and error diagnosis.

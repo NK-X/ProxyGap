@@ -32,6 +32,8 @@ frozen fact.
 - `docs/INTENDED_BEHAVIOUR_CONTRACT_V2_20260816.md`: existing behaviour contract
   to be revised, not silently treated as final gait specification.
 - `docs/EXPERIMENT_STATUS.md`: detailed evidence status.
+- `docs/V2_FILE_GUIDE_AND_VIDEO_REPRODUCTION_CN.md`: Chinese V2 file map,
+  executable flow and video-reproduction troubleshooting.
 - `handoff/START_HERE.md`: transfer and reproduction order.
 
 ## Not yet frozen
