@@ -1,94 +1,87 @@
 # ProxyGap: Reward Misspecification and Reward Shaping in Ant-v5
 
 ProxyGap is a student research project using Gymnasium `Ant-v5` and
-Stable-Baselines3 PPO to study whether a scalar reinforcement-learning reward
-reliably represents intended quadruped locomotion on the default flat-ground
-simulation task.
+Stable-Baselines3 PPO. It studies whether the reward optimised by an agent
+reliably represents a predeclared, task-appropriate quadruped locomotion
+intention, and whether bounded reward shaping or external constraints can
+reduce an observed proxy-behaviour gap.
 
-## Updated research direction
+## Start here
 
-The project no longer treats a one-directional `ctrl_cost_weight` sweep as the
-main experiment. That sweep remains historical exploratory evidence. The
-current study has two linked stages:
+This repository contains two clearly separated research versions. They must
+not be analysed as one frozen experiment.
 
-1. **Default-reward construct audit.** Test whether the documented Ant-v5
-   reward ranks independently trained policies consistently with a
-   predeclared, project-specific locomotion intention.
-2. **Bounded mitigation development.** Test whether targeted reward shaping,
-   an external control constraint, or a training mechanism reduces the
-   observed proxy-behaviour gap without materially damaging forward task
-   performance.
+| Version | Role | Entry point |
+|---|---|---|
+| **V2 current** | Intended-gait specification, default-reward audit and bounded mitigation development | [`current/README.md`](current/README.md) |
+| **V1 legacy** | Historical `ctrl_cost_weight` sweep and retrospective exploratory evidence | [`legacy/weight_sweep_v1/README.md`](legacy/weight_sweep_v1/README.md) |
 
-The intended behaviour is not represented as an invented scalar "true
-reward". It is evaluated through separate task, posture, direction, path,
-action and termination diagnostics over a 1,000-step episode. See
-[Research Direction](docs/RESEARCH_DIRECTION_20260816.md) and
-[Intended Behaviour Contract](docs/INTENDED_BEHAVIOUR_CONTRACT_V2_20260816.md).
+For a project handover, begin with [`handoff/START_HERE.md`](handoff/START_HERE.md)
+and [`STATUS.md`](STATUS.md). The change from V1 to V2 is documented in
+[`CHANGELOG.md`](CHANGELOG.md).
 
-## Current scientific status
+## Current research direction
 
-All results added on 16 August 2026 are **development evidence**. They were
-used to diagnose mechanisms and refine the design; they are not held-out
-formal confirmation.
+V2 no longer treats a one-directional `ctrl_cost_weight` sweep as the main
+experiment. Its intended sequence is:
 
-- The default reward can coexist with repeated take-off, substantial flight
-  time and high raw MuJoCo contact-force diagnostics.
-- Orientation and lateral shaping reduced some failures but did not satisfy
-  the complete intended-behaviour gate.
-- An external action-slew projection constrained applied actions, while the
-  PPO policy continued to propose rough actions on most steps.
-- A 1 m/s target-tracking reward and an action-rate penalty improved command
-  tracking and policy-output smoothness after a 1M-step development extension,
-  but body-level hopping remained.
-- A bounded body-dynamics penalty reduced several hopping diagnostics under
-  ordinary PPO exploration. The tested gSDE setting failed in this exact
-  configuration and is rejected as a development candidate, not as a general
-  method.
+1. **Specify intended behaviour.** Convert the task, safety and gait-quality
+   requirements into measurable quantities without claiming that Ant-v5 is a
+   biologically faithful animal model.
+2. **Audit the default reward.** Test whether independently trained policies
+   ranked by the documented Ant-v5 proxy are also acceptable under the frozen
+   behavioural specification.
+3. **Develop bounded mitigation.** Compare a small number of predeclared reward
+   shaping and external-constraint mechanisms.
+4. **Freeze and confirm.** Use untouched training seeds only after the intended
+   behaviour, metrics, reward, constraints and exclusion rules are frozen.
 
-Two questions remain open:
+The phrase **natural gait** is not currently an authorised result claim. The
+next design gate is to operationalise a stable, coordinated, task-appropriate
+quadrupedal gait using contact sequence, posture, direction, smoothness and
+task diagnostics. See
+[`current/RESEARCH_DIRECTION_V2.md`](current/RESEARCH_DIRECTION_V2.md).
 
-1. **Specified gait:** the project does not yet define or validate a crawl,
-   trot, pace or bound contact-phase pattern. "Natural gait" is therefore not
-   a supported outcome claim.
-2. **Learned control versus guardrail dependence:** smoother applied actions do
-   not prove that PPO learned a smooth policy when an external controller
-   intervenes on most steps.
+## Scientific status
 
-See [Team Progress Update](docs/TEAM_PROGRESS_UPDATE_20260816.md) for the full
-plain-language summary.
+- V1 is retained as retrospective exploratory evidence, not confirmatory
+  proof of universal reward hacking.
+- Result summaries dated 16 August 2026 are development evidence.
+- Future-test protocols and code may be public before execution, but new
+  models, logs, videos and unreviewed result tables remain local.
+- No held-out V2 formal comparison has been authorised.
+- No real-robot, terrain, disturbance or biological-gait claim is in scope.
 
-The next bounded local test is declared in
-[Future Testing Direction](docs/FUTURE_TESTING_DIRECTION_20260817.md). Its
-protocol, configuration and executable code are public, while newly generated
-models, logs, videos and result tables remain local until a separate evidence
-review authorises a later release.
-
-## Repository structure
+## Repository layout
 
 | Path | Purpose |
 |---|---|
-| `src/proxygap/` | Ant-v5 wrappers, metrics, evaluation and experiment logic |
+| `current/` | Canonical V2 direction and decision gates |
+| `legacy/` | V1 status and provenance map; no raw evidence is rewritten |
+| `handoff/` | Transfer guide, data dictionary, run registry and file manifest |
+| `src/proxygap/` | Ant-v5 wrappers, reward decomposition, metrics and experiment logic |
 | `scripts/` | Training, evaluation, rendering, analysis and QA entry points |
-| `configs/` | Versioned historical and development configurations |
+| `configs/` | Immutable historical records and versioned development configurations |
 | `protocols/` | Predeclared protocols, adjudications and deviation records |
-| `tests/` | Automated engineering and schema tests |
-| `docs/` | Research direction, metric contracts and reproducibility notes |
-| `reports/` | Development audit reports with explicit claim boundaries |
-| `results/development_20260816/` | Lightweight summaries, figures and video indexes |
-| `presentations/` | Editable English and Chinese team-update presentations |
+| `tests/` | Engineering, metric and schema regression tests |
+| `docs/` | Detailed research notes and reproducibility guidance |
+| `reports/` | Reviewed development reports with explicit claim boundaries |
+| `results/` | Lightweight public summaries and sanitised video indexes only |
+| `presentations/` | Editable English and Chinese team updates |
 
-Large model checkpoints, compressed step logs and MP4 files are intentionally
-excluded from Git. Their indexes are retained so that the corresponding local
-evidence can be located and regenerated without presenting videos as
-independent replications.
+Existing executable paths remain in place so that historical commands and
+hashes continue to work. The `current/` and `legacy/` directories are
+navigation and governance layers, not duplicated source trees.
 
-Future experiment plans, versioned configurations and implementation changes
-are committed before or alongside execution. New experiment outputs are not
-automatically published.
+## Public-data boundary
+
+Git intentionally excludes trained model archives, compressed step logs,
+complete MP4 panels, recovery folders, environments and machine-specific
+paths. These materials belong in a separately verified handover bundle. The
+repository records their schemas, identifiers and provenance without
+presenting evaluation episodes or videos as independent replications.
 
 ## Installation on Windows
-
-Install Miniforge or Miniconda, open PowerShell in this repository, then run:
 
 ```powershell
 conda env create -f environment.yml
@@ -97,33 +90,17 @@ python -m pip install -e .
 python -m pytest tests
 ```
 
-CUDA is not required. The project is designed for CPU execution.
+CUDA is not required. Passing tests establishes implementation consistency; it
+does not establish construct validity or a scientific finding.
 
-## Minimum engineering verification
-
-```powershell
-python scripts/inspect_ant_reference.py
-python scripts/smoke_train_benchmark.py
-python -m pytest tests
-```
-
-A successful smoke test demonstrates that the pipeline runs. It does not
-validate reward misspecification or mitigation.
-
-## Research integrity boundaries
+## Research-integrity boundaries
 
 - Training seeds create independently trained policies and are the replication
-  units. Evaluation episodes are paired measurements of fixed policies.
-- Videos provide qualitative audit evidence only and must be selected by a
-  prespecified rule.
-- Raw returns from different reward functions are not automatically comparable.
-- MuJoCo contact-force diagnostics are not calibrated physical safety units.
-- Conclusions are limited to default flat-ground Ant-v5 with PPO and the tested
-  budgets; no real-robot, terrain or external-disturbance claim is made.
-
-## Historical material
-
-`formal-v1` and the earlier coefficient sweep are preserved for provenance.
-They can motivate the revised research question, but they must not be merged
-with the new development evidence as if all runs belonged to one frozen formal
-experiment.
+  units; evaluation episodes are nested repeated measurements.
+- Raw returns from different reward formulae are not automatically comparable.
+- Videos are prespecified qualitative audit evidence, not additional samples.
+- `common_rescored_return` is a comparator, not true human performance.
+- Raw and generated data are immutable; corrections create a new version and a
+  deviation record.
+- Conclusions are limited to the tested flat-ground Ant-v5, PPO configuration
+  and training budget.
