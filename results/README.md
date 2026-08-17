@@ -4,6 +4,14 @@
 team update: selected CSV/JSON result tables, compact figures, data-quality
 records and video indexes.
 
+`development_20260817/reward_iterations/` records the two later reward
+iterations using a path-sanitised manifest. The corresponding models, complete
+tables and videos remain local under the ignored `artifacts/` tree.
+
+`development_20260818/planar_translation_transition/` records the selected
+pre-pitch stop-to-positive-y development policy, configuration and video
+digests. Complete checkpoint matrices and MP4 files remain local artifacts.
+
 The following generated material is intentionally excluded from Git:
 
 - trained PPO model archives;

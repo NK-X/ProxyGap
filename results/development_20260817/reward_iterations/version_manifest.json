@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "record_id": "reward_iterations_20260817",
+  "evidence_status": "user_requested_development",
+  "research_direction": "V2",
+  "generated_artifacts_git_tracked": false,
+  "versions": [
+    {
+      "public_sequence_label": "reward-v1-foot-landing",
+      "configuration": "configs/foot_landing_velocity_v1_20260817.json",
+      "configuration_sha256": "f5bb12f5347c07bf418ece515c01dadaad120ee50bd9a832c5293ca65d10b0d8",
+      "condition_id": "F1__FOOT_LANDING",
+      "training": {
+        "matrix_policy_count": 6,
+        "candidate_policy_count": 3,
+        "nominal_steps_per_policy": 1000000,
+        "candidate_training_seeds": [41701, 41702, 41703],
+        "checkpoint_timesteps": [250000, 500000, 750000, 1000000],
+        "status": "complete",
+        "failures": 0
+      },
+      "selected_policy": {
+        "training_seed": 41703,
+        "evaluation_seed": 51710,
+        "checkpoint_timesteps": 1000000,
+        "model_filename": "checkpoint_1000000.zip",
+        "model_sha256": "fba1413eb4b26f5517189aa03bcc86a7b7767eb8f2f84743a115ff916d1def94"
+      },
+      "selected_policy_endpoint_mean_10_episodes": {
+        "fixed_horizon_mean_forward_velocity": 0.9553770927693442,
+        "net_displacement_direction_error_degrees": 1.5683350832918834,
+        "forward_path_efficiency": 0.8457830500054119,
+        "normalised_action_roughness": 0.00293582106234214,
+        "unhealthy_termination_count": 0
+      },
+      "representative_video": {
+        "filename": "F1__FOOT_LANDING__tr41703__ev51710__t1000000.mp4",
+        "sha256": "1c18de1e96c4a5f21f374c57f5451313785e0be27b8f725adea6f9c6891cb741",
+        "size_bytes": 2681480,
+        "frames": 1000,
+        "fps": 20,
+        "duration_seconds": 50.0
+      },
+      "execution_source_sha256": {
+        "src/proxygap/ant_wrapper.py": "80938f0e2144719aad96b7a462a61184be97e031337f7939bb5bab894d71c73a",
+        "src/proxygap/experiment.py": "91f474a66bf6ad9fdade3e663a59e5c97b2b416a92bc8140c9aebff924255f6f",
+        "src/proxygap/metrics.py": "a7bd3ad8534581cc7a20343175083ecf94ef13f1c76fd3ff1ca25094f3382fcc",
+        "scripts/run_body_smoothness_gsde_matrix.py": "7ba7447d3ebb3a48d822a157afd81aa6a3da8db170f02441aad5c78077b3fc8b"
+      }
+    },
+    {
+      "public_sequence_label": "reward-v2-pitch-balance",
+      "configuration": "configs/pitch_balance_v3_calibrated_20260817.json",
+      "configuration_sha256": "eb04d929dbfb01e1ce1822baf0851af946aaa2c6fc97f9194c204f8e2d41088b",
+      "condition_id": "P2__PITCH_BALANCE_CAL",
+      "training": {
+        "policy_count": 3,
+        "nominal_steps_per_policy": 1000000,
+        "training_seeds": [41901, 41902, 41903],
+        "checkpoint_timesteps": [250000, 500000, 750000, 1000000],
+        "status": "complete",
+        "failures": 0
+      },
+      "selected_policy": {
+        "training_seed": 41903,
+        "evaluation_seed": 51903,
+        "checkpoint_timesteps": 1000000,
+        "model_filename": "checkpoint_1000000.zip",
+        "model_sha256": "c4a5242a1a41080cfd0cd210868a186b52402547992ccdd5ba44144579413efe"
+      },
+      "selected_policy_endpoint_mean_10_episodes": {
+        "weighted_pitch_balance_score": 0.7578841595559856,
+        "pitch_balance_positive_time_seconds": 18.7,
+        "pitch_balance_negative_time_seconds": 23.705,
+        "pitch_balance_event_completed_count": 111.0,
+        "fixed_horizon_mean_forward_velocity": 0.8970054600983876,
+        "net_displacement_direction_error_degrees": 5.628938076474353,
+        "forward_path_efficiency": 0.8416849642703337,
+        "normalised_action_roughness": 0.017853389361564387,
+        "unhealthy_termination_count": 0
+      },
+      "representative_video": {
+        "filename": "P2__PITCH_BALANCE_CAL__tr41903__ev51903__t1000000.mp4",
+        "sha256": "e6af0a8a38fc9995a6df6a89ea16a39684c845a92019e11ce6dafad41e4d0f2a",
+        "size_bytes": 2930083,
+        "frames": 1000,
+        "fps": 20,
+        "duration_seconds": 50.0
+      },
+      "execution_source_sha256": {
+        "src/proxygap/ant_wrapper.py": "1ef73af610ce64bb9ee3e3acf0af3924b8dcd5584986cc35405219ee090bd0bd",
+        "src/proxygap/experiment.py": "bfd49e2094ad9ec3680ad1cfce730ecf4f899a7a62ab456875680693a6f094f1",
+        "src/proxygap/metrics.py": "19cea315653e9db7f8512c1b2e4fe3d885cd8b66e3a54ba4bf9bba44933071d4",
+        "scripts/run_body_smoothness_gsde_matrix.py": "0f4feefafd8f00c2882f5b9c00ea0a10872a19e818b909c9c6ad3ca2dca37617"
+      }
+    }
+  ],
+  "calibration_attempts": [
+    {
+      "configuration": "configs/pitch_balance_v2_20260817.json",
+      "pitch_balance_weight": 0.1,
+      "endpoint_weighted_scores": [0.202668, 0.206055, 0.012348],
+      "posthoc_reference_score": 0.500775,
+      "disposition": "retained_for_calibration_provenance_not_a_public_reward_version"
+    }
+  ],
+  "verification": {
+    "full_test_suite": {
+      "passed": 153,
+      "skipped": 3,
+      "failed": 0
+    },
+    "dependency_check": "no_broken_requirements",
+    "video_decode": "complete",
+    "video_hashes_match_manifests": true
+  },
+  "claim_boundary": "Development evidence only; no natural-gait, hardware-transfer, biological-fidelity or held-out formal claim."
+}

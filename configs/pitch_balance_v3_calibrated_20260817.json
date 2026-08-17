@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "config_id": "pitch_balance_v3_calibrated_r1_20260817",
+  "status": "frozen_user_requested_development",
+  "design_type": "pitch_balance_single",
+  "formal_launch": "prohibited",
+  "environment": "Ant-v5",
+  "algorithm": "PPO",
+  "device": "cpu",
+  "purpose": "Calibrated retraining after v2 weight 0.1 contributed only about 1 reward unit per episode and did not improve pitch-time balance over the prior policy.",
+  "timesteps_per_condition": 1000000,
+  "checkpoint_timesteps": [250000, 500000, 750000, 1000000],
+  "training_seeds": [41901, 41902, 41903],
+  "evaluation_seed_base": 51901,
+  "evaluation_seeds": [51901, 51902, 51903, 51904, 51905, 51906, 51907, 51908, 51909, 51910],
+  "eval_episodes_per_checkpoint": 10,
+  "eval_max_episode_steps": 1000,
+  "reserved_formal_training_seeds": [42101, 42102, 42103, 42104, 42105],
+  "shared_reward": {
+    "ctrl_cost_weight": 0.5,
+    "orientation_shaping_weight": 0.1,
+    "orientation_shaping_function": "cosine",
+    "orientation_shaping_scale": 1.0,
+    "lateral_drift_shaping_weight": 0.025,
+    "lateral_drift_shaping_scale": 1.0,
+    "lateral_shaping_signal": "velocity_tanh_squared",
+    "lateral_velocity_target": 0.0,
+    "replace_forward_reward_with_tracking": true,
+    "forward_velocity_target": 1.0,
+    "forward_velocity_tracking_scale": 0.5,
+    "forward_velocity_tracking_weight": 0.5,
+    "action_rate_shaping_weight": 0.2,
+    "augment_previous_applied_action": true,
+    "action_slew_l2_limit": null
+  },
+  "body_dynamics": {
+    "vertical_velocity_shaping_weight": 0.05,
+    "vertical_velocity_shaping_scale": 1.014092584749083,
+    "roll_pitch_angular_velocity_shaping_weight": 0.05,
+    "roll_pitch_angular_velocity_shaping_scale": 1.9893176307304792,
+    "source": "Retained unchanged from foot_landing_velocity_v1_20260817."
+  },
+  "foot_landing": {
+    "foot_geom_names": [
+      "left_ankle_geom",
+      "right_ankle_geom",
+      "third_ankle_geom",
+      "fourth_ankle_geom"
+    ],
+    "height_signal": "distal capsule sphere bottom in world coordinates",
+    "height_threshold_m": 0.03,
+    "gate": "foot_height_m <= height_threshold_m",
+    "lateral_velocity_target_m_per_s": 0.0,
+    "lateral_velocity_scale_m_per_s": 1.0,
+    "lateral_velocity_weight_per_foot": 0.025,
+    "vertical_velocity_target_m_per_s": 0.0,
+    "vertical_velocity_scale_m_per_s": 1.0,
+    "vertical_velocity_weight_per_foot": 0.025,
+    "penalty_function": "tanh(((velocity-target)/scale)^2)",
+    "aggregation": "sum over four feet",
+    "maximum_lateral_penalty_per_step": 0.1,
+    "maximum_vertical_penalty_per_step": 0.1,
+    "threshold_calibration": {
+      "source_checkpoint": "body_dynamics_replication_v1_20260817/B1__G0_REP/seed_41603/checkpoint_1000000",
+      "evaluation_seed": 51601,
+      "trajectory_steps": 1000,
+      "foot_step_fraction_at_or_below_threshold": 0.4888
+    }
+  },
+  "pitch_balance": {
+    "enabled": true,
+    "signed_pitch_signal": "arcsin(2*(w*y-z*x)) from normalised torso quaternion",
+    "landing_transition": "foot_height crosses from above to at-or-below 0.03 m",
+    "event_start": "first new landing transition after reset or prior completed event",
+    "event_end": "all four distinct feet have produced a new landing transition",
+    "positive_time": "environment steps with signed torso pitch > 0 within the active event",
+    "negative_time": "environment steps with signed torso pitch < 0 within the active event",
+    "neutral_time": "exactly zero or non-finite pitch steps, excluded from the balance denominator",
+    "balance_score": "1 - abs(T_positive-T_negative)/(T_positive+T_negative)",
+    "shaping_weight": 5.0,
+    "reward_timing": "weight * balance_score once, on the fourth distinct foot landing",
+    "maximum_reward_per_completed_event": 5.0,
+    "calibration": {
+      "v2_weight": 0.1,
+      "v2_endpoint_weighted_scores": [0.202668, 0.206055, 0.012348],
+      "prior_policy_reference_score": 0.500775,
+      "reason": "v2 pitch reward averaged only 0.07 to 1.34 per episode versus objective returns around 1330 to 1410"
+    }
+  },
+  "conditions": [
+    {
+      "condition_id": "P2__PITCH_BALANCE_CAL",
+      "body_dynamics_enabled": true,
+      "foot_landing_enabled": true,
+      "pitch_balance_enabled": true,
+      "use_sde": false,
+      "sde_sample_freq": -1
+    }
+  ],
+  "ppo": {
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.0,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "policy": "MlpPolicy",
+    "policy_kwargs": {"net_arch": [64, 64], "activation_fn": "Tanh"},
+    "torch_num_threads": 2
+  },
+  "execution": {
+    "output_root": "artifacts/dev/pitch_balance_v3_calibrated_20260817",
+    "max_workers": 3,
+    "task_order_seed": 8177301
+  },
+  "stopping_rule": "Complete the calibrated pitch-balance condition for all three development seeds without retuning the frozen coefficient.",
+  "claim_boundary": "User-requested development experiment only; no natural-gait, hardware-transfer or held-out formal claim is authorised."
+}

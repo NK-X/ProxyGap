@@ -28,6 +28,12 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--smoke", action="store_true")
+    parser.add_argument(
+        "--max-workers",
+        type=int,
+        default=None,
+        help="Execution-only worker override; reward and PPO settings are unchanged.",
+    )
     return parser.parse_args()
 
 
@@ -51,6 +57,7 @@ def validate_config(config: dict) -> None:
     allowed_statuses = {
         "frozen_authorised_development_matrix",
         "frozen_authorised_final_development_replication",
+        "frozen_user_requested_development",
     }
     if config.get("status") not in allowed_statuses:
         raise ValueError("Development configuration is not frozen")
@@ -58,16 +65,16 @@ def validate_config(config: dict) -> None:
         raise ValueError("Formal launch must remain prohibited")
     if config["checkpoint_timesteps"] != [250000, 500000, 750000, 1000000]:
         raise ValueError("Frozen checkpoint schedule changed")
-    factors = {
-        (
-            bool(condition["body_dynamics_enabled"]),
-            bool(condition["use_sde"]),
-            int(condition["sde_sample_freq"]),
-        )
-        for condition in config["conditions"]
-    }
     design = config.get("design_type", "body_by_gsde_factorial")
     if design == "body_by_gsde_factorial":
+        factors = {
+            (
+                bool(condition["body_dynamics_enabled"]),
+                bool(condition["use_sde"]),
+                int(condition["sde_sample_freq"]),
+            )
+            for condition in config["conditions"]
+        }
         expected = {
             (False, False, -1),
             (True, False, -1),
@@ -75,10 +82,44 @@ def validate_config(config: dict) -> None:
             (True, True, 8),
         }
     elif design == "ordinary_exploration_body_replication":
+        factors = {
+            (
+                bool(condition["body_dynamics_enabled"]),
+                bool(condition["use_sde"]),
+                int(condition["sde_sample_freq"]),
+            )
+            for condition in config["conditions"]
+        }
         expected = {
             (False, False, -1),
             (True, False, -1),
         }
+    elif design == "foot_landing_velocity_ablation":
+        factors = {
+            (
+                bool(condition["body_dynamics_enabled"]),
+                bool(condition["foot_landing_enabled"]),
+                bool(condition["use_sde"]),
+                int(condition["sde_sample_freq"]),
+            )
+            for condition in config["conditions"]
+        }
+        expected = {
+            (True, False, False, -1),
+            (True, True, False, -1),
+        }
+    elif design == "pitch_balance_single":
+        factors = {
+            (
+                bool(condition["body_dynamics_enabled"]),
+                bool(condition["foot_landing_enabled"]),
+                bool(condition["pitch_balance_enabled"]),
+                bool(condition["use_sde"]),
+                int(condition["sde_sample_freq"]),
+            )
+            for condition in config["conditions"]
+        }
+        expected = {(True, True, True, False, -1)}
     else:
         raise ValueError(f"Unknown development design_type: {design}")
     if factors != expected:
@@ -98,8 +139,12 @@ def run_task(task: dict) -> dict:
     condition = task["condition"]
     shared = config["shared_reward"]
     body = config["body_dynamics"]
+    foot = config.get("foot_landing", {})
+    pitch_balance = config.get("pitch_balance", {})
     ppo = config["ppo"]
     enabled = bool(condition["body_dynamics_enabled"])
+    foot_enabled = bool(condition.get("foot_landing_enabled", False))
+    pitch_balance_enabled = bool(condition.get("pitch_balance_enabled", False))
     root = Path(task["condition_root"])
     runtime_rows, eval_rows = train_condition(
         output_root=root,
@@ -121,6 +166,9 @@ def run_task(task: dict) -> dict:
         replace_forward_reward_with_tracking=True,
         forward_velocity_target=float(shared["forward_velocity_target"]),
         forward_velocity_tracking_scale=float(shared["forward_velocity_tracking_scale"]),
+        forward_velocity_tracking_weight=float(
+            shared.get("forward_velocity_tracking_weight", 1.0)
+        ),
         action_rate_shaping_weight=float(shared["action_rate_shaping_weight"]),
         vertical_velocity_shaping_weight=(
             float(body["vertical_velocity_shaping_weight"]) if enabled else 0.0
@@ -133,6 +181,41 @@ def run_task(task: dict) -> dict:
         ),
         roll_pitch_angular_velocity_shaping_scale=float(
             body["roll_pitch_angular_velocity_shaping_scale"]
+        ),
+        foot_landing_height_threshold=float(
+            foot.get("height_threshold_m", 0.03)
+        ),
+        foot_lateral_velocity_shaping_weight=(
+            float(foot.get("lateral_velocity_weight_per_foot", 0.0))
+            if foot_enabled
+            else 0.0
+        ),
+        foot_lateral_velocity_shaping_scale=float(
+            foot.get("lateral_velocity_scale_m_per_s", 1.0)
+        ),
+        foot_vertical_velocity_shaping_weight=(
+            float(foot.get("vertical_velocity_weight_per_foot", 0.0))
+            if foot_enabled
+            else 0.0
+        ),
+        foot_vertical_velocity_shaping_scale=float(
+            foot.get("vertical_velocity_scale_m_per_s", 1.0)
+        ),
+        pitch_balance_shaping_weight=(
+            float(pitch_balance.get("shaping_weight", 0.0))
+            if pitch_balance_enabled
+            else 0.0
+        ),
+        foot_geom_names=tuple(
+            foot.get(
+                "foot_geom_names",
+                (
+                    "left_ankle_geom",
+                    "right_ankle_geom",
+                    "third_ankle_geom",
+                    "fourth_ankle_geom",
+                ),
+            )
         ),
         augment_previous_applied_action=bool(shared["augment_previous_applied_action"]),
         action_slew_l2_limit=None,
@@ -184,7 +267,7 @@ def main() -> None:
     keep_windows_awake()
     smoke = bool(args.smoke)
     output_root = (
-        ROOT / "artifacts" / "smoke" / "body_smoothness_gsde_matrix_v1"
+        ROOT / "artifacts" / "smoke" / str(config["config_id"])
         if smoke
         else ROOT / config["execution"]["output_root"]
     )
@@ -196,7 +279,17 @@ def main() -> None:
     timesteps = 4096 if smoke else int(config["timesteps_per_condition"])
     checkpoints = [4096] if smoke else [int(v) for v in config["checkpoint_timesteps"]]
     eval_episodes = 2 if smoke else int(config["eval_episodes_per_checkpoint"])
-    max_workers = 2 if smoke else int(config["execution"]["max_workers"])
+    max_workers = (
+        2
+        if smoke
+        else (
+            int(args.max_workers)
+            if args.max_workers is not None
+            else int(config["execution"]["max_workers"])
+        )
+    )
+    if max_workers <= 0:
+        raise ValueError("max_workers must be positive")
     (output_root / "frozen_run_config.json").write_bytes(config_path.read_bytes())
 
     tasks = []
@@ -228,6 +321,8 @@ def main() -> None:
         "config_sha256": sha256(config_path),
         "tasks": len(tasks),
         "max_workers": max_workers,
+        "max_workers_configured": int(config["execution"]["max_workers"]),
+        "max_workers_overridden": args.max_workers is not None,
         "task_order": [
             {"condition_id": t["condition"]["condition_id"], "seed": t["training_seed"]}
             for t in tasks

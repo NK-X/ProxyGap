@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "date": "2026-08-18",
+  "status": "development_only",
+  "selected_config_id": "planar_translation_transition_v3_20260818",
+  "base_policy": {
+    "condition_id": "F1__FOOT_LANDING",
+    "training_seed": 41703,
+    "checkpoint_timesteps": 1000000,
+    "pitch_balance_reward_enabled": false,
+    "sha256": "fba1413eb4b26f5517189aa03bcc86a7b7767eb8f2f84743a115ff916d1def94"
+  },
+  "command_sequence_m_per_s": [[1.0, 0.0], [0.0, 0.0], [0.0, 1.0]],
+  "quarter_turn_action_permutation": [6, 7, 0, 1, 2, 3, 4, 5],
+  "training": {
+    "seeds": [42001, 42002, 42003],
+    "checkpoint_timesteps": [250000, 500000, 750000, 1000000],
+    "evaluation_episodes_per_checkpoint": 10,
+    "total_evaluation_episodes": 120,
+    "failed_tasks": 0
+  },
+  "selected_model": {
+    "training_seed": 42001,
+    "checkpoint_timesteps": 1000000,
+    "filename": "checkpoint_1000000.zip",
+    "bytes": 324668,
+    "sha256": "e337df745896c0c8670ac50754499fece3a1c92a84efbe29803b53bfc43f79ee"
+  },
+  "selected_model_ten_episode_means": {
+    "forward_phase_vx_m_per_s": 0.57,
+    "forward_phase_vy_m_per_s": 0.24,
+    "lateral_phase_vx_m_per_s": 0.12,
+    "lateral_phase_vy_m_per_s": 0.76,
+    "strict_stop_rate": 0.5,
+    "near_stop_rate": 0.8,
+    "yaw_error_rms_degrees": 12.8,
+    "falls": 0
+  },
+  "selected_video": {
+    "evaluation_seed": 52011,
+    "filename": "FINAL_planar_transition_seed_42001_step_1000000_eval_52011.mp4",
+    "bytes": 1168608,
+    "frames": 500,
+    "fps": 20,
+    "duration_seconds": 25.0,
+    "policy_device": "cuda",
+    "strict_stop_achieved": true,
+    "brake_duration_seconds": 1.5,
+    "fall": false,
+    "sha256": "4c6375103e08c310545dfadedff71956e274b485b215581652a5e8465683a949"
+  },
+  "config": {
+    "path": "configs/planar_translation_transition_v3_20260818.json",
+    "sha256": "f1d3ac14a08386424e43baa49bcff1ce01c90c5b0fc6c1bca255b10264a9e031"
+  },
+  "claim_boundary": "Flat-ground fixed 90-degree translation transition development only; no arbitrary heading, yaw steering, terrain, hardware or held-out formal claim."
+}

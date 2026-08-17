@@ -2,6 +2,7 @@
 
 from .ant_wrapper import (
     bounded_squared_signal_penalty,
+    PitchBalanceEventTracker,
     ProxyGapAntWrapper,
     STEP_LOG_SCHEMA,
     forward_velocity_tracking_value,
@@ -10,6 +11,7 @@ from .ant_wrapper import (
     normalised_action_rate_penalty,
     orientation_penalty_value,
     project_action_l2_slew,
+    quaternion_pitch_angle,
 )
 from .experiment import (
     CHECKPOINT_FRACTIONS,
@@ -37,6 +39,17 @@ from .metrics import (
     quaternion_tilt_angle,
 )
 from .protocol import protocol_freeze_status, validate_prospective_protocol
+from .planar_transition import (
+    PlanarCommandTransitionWrapper,
+    QUARTER_TURN_ACTION_PERMUTATION,
+    distill_quarter_turn_command_adapter,
+    make_planar_transition_env,
+    planar_velocity_tracking_value,
+    quarter_turn_action,
+    quaternion_yaw_angle,
+    transfer_pretrained_policy,
+    wrapped_angle_difference,
+)
 from .selection import (
     CandidateSummary,
     SelectionResult,
@@ -49,6 +62,7 @@ __all__ = [
     "CHECKPOINT_FRACTIONS",
     "CSV_SCHEMA",
     "bounded_squared_signal_penalty",
+    "PitchBalanceEventTracker",
     "DEFAULT_PPO_CONFIG",
     "EpisodeMetrics",
     "ProxyGapAntWrapper",
@@ -63,6 +77,7 @@ __all__ = [
     "normalised_action_rate_penalty",
     "orientation_penalty_value",
     "project_action_l2_slew",
+    "quaternion_pitch_angle",
     "quaternion_tilt_angle",
     "resolve_ppo_config",
     "select_representative_evaluation_seed",
@@ -81,4 +96,13 @@ __all__ = [
     "project_selection_inputs",
     "select_best_tested_coefficient",
     "validate_two_experiment_protocol",
+    "PlanarCommandTransitionWrapper",
+    "QUARTER_TURN_ACTION_PERMUTATION",
+    "distill_quarter_turn_command_adapter",
+    "make_planar_transition_env",
+    "planar_velocity_tracking_value",
+    "quarter_turn_action",
+    "quaternion_yaw_angle",
+    "transfer_pretrained_policy",
+    "wrapped_angle_difference",
 ]

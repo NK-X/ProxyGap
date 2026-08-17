@@ -20,6 +20,16 @@ For a project handover, begin with [`handoff/START_HERE.md`](handoff/START_HERE.
 and [`STATUS.md`](STATUS.md). The change from V1 to V2 is documented in
 [`CHANGELOG.md`](CHANGELOG.md).
 
+The two user-directed reward iterations trained on 17 August are recorded in
+[`docs/REWARD_ITERATION_HISTORY_20260817.md`](docs/REWARD_ITERATION_HISTORY_20260817.md),
+with a machine-readable, path-sanitised manifest in
+[`results/development_20260817/reward_iterations/version_manifest.json`](results/development_20260817/reward_iterations/version_manifest.json).
+
+The later pre-pitch planar translation transition is recorded in
+[`docs/PLANAR_TRANSLATION_TRANSITION_20260818.md`](docs/PLANAR_TRANSLATION_TRANSITION_20260818.md),
+with a path-sanitised manifest in
+[`results/development_20260818/planar_translation_transition/version_manifest.json`](results/development_20260818/planar_translation_transition/version_manifest.json).
+
 ## Current research direction
 
 V2 no longer treats a one-directional `ctrl_cost_weight` sweep as the main
@@ -104,3 +114,7 @@ does not establish construct validity or a scientific finding.
   deviation record.
 - Conclusions are limited to the tested flat-ground Ant-v5, PPO configuration
   and training budget.
+
+## License
+
+ProxyGap is open-source software released under the [MIT License](LICENSE).

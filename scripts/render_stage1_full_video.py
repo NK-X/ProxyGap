@@ -73,6 +73,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--replace_forward_reward_with_tracking", action="store_true")
     parser.add_argument("--forward_velocity_target", type=float, default=1.0)
     parser.add_argument("--forward_velocity_tracking_scale", type=float, default=0.5)
+    parser.add_argument("--forward_velocity_tracking_weight", type=float, default=1.0)
     parser.add_argument("--action_rate_shaping_weight", type=float, default=0.0)
     parser.add_argument("--vertical_velocity_shaping_weight", type=float, default=0.0)
     parser.add_argument("--vertical_velocity_shaping_scale", type=float, default=1.0)
@@ -82,9 +83,34 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--roll_pitch_angular_velocity_shaping_scale", type=float, default=1.0
     )
+    parser.add_argument("--foot_landing_height_threshold", type=float, default=0.03)
+    parser.add_argument(
+        "--foot_lateral_velocity_shaping_weight", type=float, default=0.0
+    )
+    parser.add_argument(
+        "--foot_lateral_velocity_shaping_scale", type=float, default=1.0
+    )
+    parser.add_argument(
+        "--foot_vertical_velocity_shaping_weight", type=float, default=0.0
+    )
+    parser.add_argument(
+        "--foot_vertical_velocity_shaping_scale", type=float, default=1.0
+    )
+    parser.add_argument("--pitch_balance_shaping_weight", type=float, default=0.0)
+    parser.add_argument(
+        "--foot_geom_names",
+        nargs=4,
+        default=(
+            "left_ankle_geom",
+            "right_ankle_geom",
+            "third_ankle_geom",
+            "fourth_ankle_geom",
+        ),
+    )
     parser.add_argument("--xml_file")
     parser.add_argument("--pad_to_horizon", action="store_true")
     parser.add_argument("--backend", default="glfw")
+    parser.add_argument("--device", choices=("cpu", "cuda"), default="cpu")
     parser.add_argument(
         "--ffmpeg_target",
         type=Path,
@@ -147,6 +173,7 @@ def overlay_frame(
     replace_forward_reward_with_tracking: bool,
     forward_velocity_target: float,
     action_rate_shaping_weight: float,
+    pitch_balance_shaping_weight: float,
     training_seed: int,
     evaluation_seed: int,
     step: int,
@@ -168,7 +195,8 @@ def overlay_frame(
     )
     font = load_font(18)
     small = load_font(14)
-    compact = load_font(12)
+    compact = load_font(11)
+    tiny = load_font(10)
     label = load_font(13)
 
     x = scene.width + 22
@@ -205,7 +233,7 @@ def overlay_frame(
     )
     draw.text(
         (x, 188),
-        f"target/rate lambda    {forward_velocity_target:g} / {action_rate_shaping_weight:g}",
+        f"target/rate/pitch    {forward_velocity_target:g} / {action_rate_shaping_weight:g} / {pitch_balance_shaping_weight:g}",
         fill=(224, 231, 238, 255),
         font=small,
     )
@@ -227,6 +255,15 @@ def overlay_frame(
     tilt_deg = math.degrees(
         float(info.get("proxygap_torso_tilt_step", float("nan")))
     )
+    pitch_deg = math.degrees(
+        float(info.get("proxygap_torso_pitch_step", float("nan")))
+    )
+    pitch_positive_time = (
+        int(info.get("proxygap_pitch_balance_event_positive_steps_step", 0)) * dt
+    )
+    pitch_negative_time = (
+        int(info.get("proxygap_pitch_balance_event_negative_steps_step", 0)) * dt
+    )
     line_3 = (
         f"shaped return    {float(info.get('proxygap_proxy_return', 0.0)):+.1f}\n"
         f"base proxy       {float(info.get('proxygap_base_proxy_return', 0.0)):+.1f}\n"
@@ -234,15 +271,19 @@ def overlay_frame(
         f"net progress    {float(info.get('proxygap_net_forward_progress', 0.0)):+.2f} m\n"
         f"mean velocity   {float(info.get('proxygap_mean_forward_velocity', 0.0)):+.2f} m/s\n"
         f"torso tilt      {tilt_deg:.1f} deg\n"
+        f"signed pitch   {pitch_deg:+.1f} deg\n"
         f"action delta    {float(info.get('proxygap_applied_action_change_l2_step', 0.0)):.2f}\n"
         f"rate penalty   {float(info.get('proxygap_action_rate_penalty_step', 0.0)):.3f}\n"
-        f"guardrail       {'ACTIVE' if info.get('proxygap_action_slew_intervened_step', False) else 'inactive'}"
+        f"feet grounded  {int(info.get('proxygap_foot_landing_active_count_step', 0))} / 4\n"
+        f"foot vy/vz r   {float(info.get('reward_foot_lateral_velocity_shaping', 0.0)):+.3f} / {float(info.get('reward_foot_vertical_velocity_shaping', 0.0)):+.3f}\n"
+        f"pitch event    {int(info.get('proxygap_pitch_balance_event_landed_count_step', 0))} / 4;  +{pitch_positive_time:.2f}/-{pitch_negative_time:.2f} s\n"
+        f"pitch score/r  {float(info.get('proxygap_pitch_balance_event_score_step', 0.0)):.2f} / {float(info.get('reward_pitch_balance_shaping', 0.0)):+.3f}"
     )
     draw.multiline_text(
-        (x, 248), line_2, fill=(224, 231, 238, 255), font=small, spacing=5
+        (x, 245), line_2, fill=(224, 231, 238, 255), font=compact, spacing=0
     )
     draw.multiline_text(
-        (x, 348), line_3, fill=(244, 194, 68, 255), font=compact, spacing=1
+        (x, 312), line_3, fill=(244, 194, 68, 255), font=tiny, spacing=0
     )
     if episode_ended:
         draw.rectangle((18, 18, scene.width - 18, 68), fill=(150, 25, 35, 220))
@@ -301,6 +342,7 @@ def main() -> None:
         replace_forward_reward_with_tracking=args.replace_forward_reward_with_tracking,
         forward_velocity_target=args.forward_velocity_target,
         forward_velocity_tracking_scale=args.forward_velocity_tracking_scale,
+        forward_velocity_tracking_weight=args.forward_velocity_tracking_weight,
         action_rate_shaping_weight=args.action_rate_shaping_weight,
         vertical_velocity_shaping_weight=args.vertical_velocity_shaping_weight,
         vertical_velocity_shaping_scale=args.vertical_velocity_shaping_scale,
@@ -310,10 +352,25 @@ def main() -> None:
         roll_pitch_angular_velocity_shaping_scale=(
             args.roll_pitch_angular_velocity_shaping_scale
         ),
+        foot_landing_height_threshold=args.foot_landing_height_threshold,
+        foot_lateral_velocity_shaping_weight=(
+            args.foot_lateral_velocity_shaping_weight
+        ),
+        foot_lateral_velocity_shaping_scale=(
+            args.foot_lateral_velocity_shaping_scale
+        ),
+        foot_vertical_velocity_shaping_weight=(
+            args.foot_vertical_velocity_shaping_weight
+        ),
+        foot_vertical_velocity_shaping_scale=(
+            args.foot_vertical_velocity_shaping_scale
+        ),
+        pitch_balance_shaping_weight=args.pitch_balance_shaping_weight,
+        foot_geom_names=tuple(args.foot_geom_names),
         augment_previous_applied_action=args.augment_previous_applied_action,
         action_slew_l2_limit=args.action_slew_l2_limit,
     )
-    model = PPO.load(model_path, device="cpu")
+    model = PPO.load(model_path, device=args.device)
     observation, _ = env.reset(seed=args.evaluation_seed)
     frames_written = 0
     trajectory_frames = 0
@@ -346,6 +403,7 @@ def main() -> None:
                     replace_forward_reward_with_tracking=args.replace_forward_reward_with_tracking,
                     forward_velocity_target=args.forward_velocity_target,
                     action_rate_shaping_weight=args.action_rate_shaping_weight,
+                    pitch_balance_shaping_weight=args.pitch_balance_shaping_weight,
                     training_seed=args.training_seed,
                     evaluation_seed=args.evaluation_seed,
                     step=frames_written + 1,
@@ -368,6 +426,7 @@ def main() -> None:
                 replace_forward_reward_with_tracking=args.replace_forward_reward_with_tracking,
                 forward_velocity_target=args.forward_velocity_target,
                 action_rate_shaping_weight=args.action_rate_shaping_weight,
+                pitch_balance_shaping_weight=args.pitch_balance_shaping_weight,
                 training_seed=args.training_seed,
                 evaluation_seed=args.evaluation_seed,
                 step=trajectory_frames,
@@ -415,6 +474,7 @@ def main() -> None:
         "replace_forward_reward_with_tracking": args.replace_forward_reward_with_tracking,
         "forward_velocity_target": args.forward_velocity_target,
         "forward_velocity_tracking_scale": args.forward_velocity_tracking_scale,
+        "forward_velocity_tracking_weight": args.forward_velocity_tracking_weight,
         "action_rate_shaping_weight": args.action_rate_shaping_weight,
         "vertical_velocity_shaping_weight": args.vertical_velocity_shaping_weight,
         "vertical_velocity_shaping_scale": args.vertical_velocity_shaping_scale,
@@ -424,6 +484,22 @@ def main() -> None:
         "roll_pitch_angular_velocity_shaping_scale": (
             args.roll_pitch_angular_velocity_shaping_scale
         ),
+        "foot_landing_height_threshold": args.foot_landing_height_threshold,
+        "foot_lateral_velocity_shaping_weight": (
+            args.foot_lateral_velocity_shaping_weight
+        ),
+        "foot_lateral_velocity_shaping_scale": (
+            args.foot_lateral_velocity_shaping_scale
+        ),
+        "foot_vertical_velocity_shaping_weight": (
+            args.foot_vertical_velocity_shaping_weight
+        ),
+        "foot_vertical_velocity_shaping_scale": (
+            args.foot_vertical_velocity_shaping_scale
+        ),
+        "pitch_balance_shaping_weight": args.pitch_balance_shaping_weight,
+        "foot_geom_names": list(args.foot_geom_names),
+        "policy_device": args.device,
         "render_xml_file": str(Path(args.xml_file).resolve()) if args.xml_file else None,
         "training_seed": args.training_seed,
         "evaluation_seed": args.evaluation_seed,

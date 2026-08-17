@@ -6,9 +6,11 @@ import csv
 import gzip
 import json
 from pathlib import Path
+import tempfile
 from typing import Any, TextIO
 
 import gymnasium as gym
+import mujoco
 import numpy as np
 
 from .metrics import (
@@ -31,6 +33,7 @@ STEP_LOG_SCHEMA = [
     "lateral_offset",
     "lateral_velocity",
     "torso_tilt_rad",
+    "torso_pitch_rad",
     "squared_action_step",
     "squared_action_change_step",
     "action_change_defined_step",
@@ -53,6 +56,7 @@ STEP_LOG_SCHEMA = [
     "reward_forward_replacement_step",
     "forward_velocity_target",
     "forward_velocity_tracking_scale",
+    "forward_velocity_tracking_weight",
     "reward_ctrl_step",
     "reward_contact_step",
     "reward_survive_step",
@@ -72,6 +76,29 @@ STEP_LOG_SCHEMA = [
     "roll_pitch_angular_velocity_penalty_step",
     "reward_vertical_velocity_shaping_step",
     "reward_roll_pitch_angular_velocity_shaping_step",
+    "foot_landing_height_threshold",
+    "foot_landing_active_count_step",
+    "foot_landing_mask_step",
+    "foot_contact_point_heights_step",
+    "foot_lateral_velocities_step",
+    "foot_vertical_velocities_step",
+    "foot_lateral_velocity_penalty_step",
+    "foot_vertical_velocity_penalty_step",
+    "foot_lateral_velocity_penalties_step",
+    "foot_vertical_velocity_penalties_step",
+    "reward_foot_lateral_velocity_shaping_step",
+    "reward_foot_vertical_velocity_shaping_step",
+    "foot_landing_transition_mask_step",
+    "pitch_balance_shaping_weight",
+    "pitch_balance_event_active_step",
+    "pitch_balance_event_started_step",
+    "pitch_balance_event_completed_step",
+    "pitch_balance_event_landed_count_step",
+    "pitch_balance_event_positive_steps_step",
+    "pitch_balance_event_negative_steps_step",
+    "pitch_balance_event_neutral_steps_step",
+    "pitch_balance_event_score_step",
+    "reward_pitch_balance_shaping_step",
     "terminated",
     "truncated",
     "termination_category",
@@ -82,6 +109,13 @@ SUPPORTED_ORIENTATION_SHAPING_FUNCTIONS = ("tanh", "cosine")
 SUPPORTED_LATERAL_SHAPING_SIGNALS = (
     "offset_tanh",
     "velocity_tanh_squared",
+)
+
+DEFAULT_FOOT_GEOM_NAMES = (
+    "left_ankle_geom",
+    "right_ankle_geom",
+    "third_ankle_geom",
+    "fourth_ankle_geom",
 )
 
 
@@ -229,6 +263,107 @@ def bounded_squared_signal_penalty(value: float, *, scale: float) -> float:
     return float(np.tanh(scaled * scaled))
 
 
+def quaternion_pitch_angle(quaternion_wxyz: np.ndarray) -> float:
+    """Return signed torso pitch in radians from a MuJoCo ``w, x, y, z`` quaternion."""
+    quaternion = np.asarray(quaternion_wxyz, dtype=np.float64)
+    norm = float(np.linalg.norm(quaternion))
+    if norm < EPSILON or not np.isfinite(norm):
+        return float("nan")
+    w, x, y, z = quaternion / norm
+    sine_pitch = 2.0 * (w * y - z * x)
+    return float(np.arcsin(np.clip(sine_pitch, -1.0, 1.0)))
+
+
+class PitchBalanceEventTracker:
+    """Track pitch-sign time from the first through fourth distinct foot landing."""
+
+    def __init__(self, foot_count: int = 4) -> None:
+        if foot_count <= 0:
+            raise ValueError("foot_count must be positive")
+        self.foot_count = int(foot_count)
+        self.reset()
+
+    def reset(self, initial_grounded: np.ndarray | None = None) -> None:
+        if initial_grounded is None:
+            grounded = np.zeros(self.foot_count, dtype=bool)
+        else:
+            grounded = np.asarray(initial_grounded, dtype=bool)
+            if grounded.shape != (self.foot_count,):
+                raise ValueError("initial_grounded must contain one flag per foot")
+        self.previous_grounded = grounded.copy()
+        self.active = False
+        self.landed = np.zeros(self.foot_count, dtype=bool)
+        self.positive_steps = 0
+        self.negative_steps = 0
+        self.neutral_steps = 0
+        self.completed_event_count = 0
+        self.balance_score_sum = 0.0
+        self.active_positive_step_sum = 0
+        self.active_negative_step_sum = 0
+        self.active_neutral_step_sum = 0
+
+    def update(
+        self,
+        grounded: np.ndarray,
+        signed_pitch: float,
+    ) -> dict[str, Any]:
+        current_grounded = np.asarray(grounded, dtype=bool)
+        if current_grounded.shape != (self.foot_count,):
+            raise ValueError("grounded must contain one flag per foot")
+        landing_transitions = current_grounded & ~self.previous_grounded
+        self.previous_grounded = current_grounded.copy()
+
+        started = False
+        if not self.active and bool(np.any(landing_transitions)):
+            self.active = True
+            self.landed.fill(False)
+            self.positive_steps = 0
+            self.negative_steps = 0
+            self.neutral_steps = 0
+            started = True
+        if self.active:
+            self.landed |= landing_transitions
+            if np.isfinite(signed_pitch) and signed_pitch > 0.0:
+                self.positive_steps += 1
+                self.active_positive_step_sum += 1
+            elif np.isfinite(signed_pitch) and signed_pitch < 0.0:
+                self.negative_steps += 1
+                self.active_negative_step_sum += 1
+            else:
+                self.neutral_steps += 1
+                self.active_neutral_step_sum += 1
+
+        completed = bool(self.active and np.all(self.landed))
+        landed_count = int(np.sum(self.landed)) if self.active else 0
+        positive_steps = int(self.positive_steps) if self.active else 0
+        negative_steps = int(self.negative_steps) if self.active else 0
+        neutral_steps = int(self.neutral_steps) if self.active else 0
+        score = 0.0
+        if completed:
+            signed_steps = positive_steps + negative_steps
+            if signed_steps > 0:
+                score = 1.0 - abs(positive_steps - negative_steps) / signed_steps
+            self.completed_event_count += 1
+            self.balance_score_sum += score
+            self.active = False
+            self.landed.fill(False)
+            self.positive_steps = 0
+            self.negative_steps = 0
+            self.neutral_steps = 0
+
+        return {
+            "landing_transitions": landing_transitions.copy(),
+            "started": started,
+            "completed": completed,
+            "active": self.active,
+            "landed_count": landed_count,
+            "positive_steps": positive_steps,
+            "negative_steps": negative_steps,
+            "neutral_steps": neutral_steps,
+            "score": float(score),
+        }
+
+
 class ProxyGapAntWrapper(gym.Wrapper):
     """Record condition objectives and external locomotion diagnostics."""
 
@@ -250,11 +385,19 @@ class ProxyGapAntWrapper(gym.Wrapper):
         replace_forward_reward_with_tracking: bool = False,
         forward_velocity_target: float = 1.0,
         forward_velocity_tracking_scale: float = 0.5,
+        forward_velocity_tracking_weight: float = 1.0,
         action_rate_shaping_weight: float = 0.0,
         vertical_velocity_shaping_weight: float = 0.0,
         vertical_velocity_shaping_scale: float = 1.0,
         roll_pitch_angular_velocity_shaping_weight: float = 0.0,
         roll_pitch_angular_velocity_shaping_scale: float = 1.0,
+        foot_landing_height_threshold: float = 0.03,
+        foot_lateral_velocity_shaping_weight: float = 0.0,
+        foot_lateral_velocity_shaping_scale: float = 1.0,
+        foot_vertical_velocity_shaping_weight: float = 0.0,
+        foot_vertical_velocity_shaping_scale: float = 1.0,
+        pitch_balance_shaping_weight: float = 0.0,
+        foot_geom_names: tuple[str, ...] = DEFAULT_FOOT_GEOM_NAMES,
         common_rescore_ctrl_cost_weight: float = DEFAULT_COMMON_RESCORE_CTRL_WEIGHT,
         effort_distance_min: float = EPSILON,
         action_saturation_threshold: float = DEFAULT_ACTION_SATURATION_THRESHOLD,
@@ -302,6 +445,15 @@ class ProxyGapAntWrapper(gym.Wrapper):
         self.forward_velocity_tracking_scale = float(
             forward_velocity_tracking_scale
         )
+        self.forward_velocity_tracking_weight = float(
+            forward_velocity_tracking_weight
+        )
+        if self.forward_velocity_tracking_weight < 0 or not np.isfinite(
+            self.forward_velocity_tracking_weight
+        ):
+            raise ValueError(
+                "forward velocity tracking weight must be finite and non-negative"
+            )
         forward_velocity_tracking_value(
             self.forward_velocity_target,
             target=self.forward_velocity_target,
@@ -337,6 +489,82 @@ class ProxyGapAntWrapper(gym.Wrapper):
         bounded_squared_signal_penalty(
             0.0, scale=self.roll_pitch_angular_velocity_shaping_scale
         )
+        self.foot_landing_height_threshold = float(foot_landing_height_threshold)
+        self.foot_lateral_velocity_shaping_weight = float(
+            foot_lateral_velocity_shaping_weight
+        )
+        self.foot_lateral_velocity_shaping_scale = float(
+            foot_lateral_velocity_shaping_scale
+        )
+        self.foot_vertical_velocity_shaping_weight = float(
+            foot_vertical_velocity_shaping_weight
+        )
+        self.foot_vertical_velocity_shaping_scale = float(
+            foot_vertical_velocity_shaping_scale
+        )
+        self.pitch_balance_shaping_weight = float(pitch_balance_shaping_weight)
+        if (
+            not np.isfinite(self.foot_landing_height_threshold)
+            or self.foot_landing_height_threshold < 0
+        ):
+            raise ValueError("foot landing height threshold must be finite and non-negative")
+        for name, weight in (
+            (
+                "foot_lateral_velocity_shaping_weight",
+                self.foot_lateral_velocity_shaping_weight,
+            ),
+            (
+                "foot_vertical_velocity_shaping_weight",
+                self.foot_vertical_velocity_shaping_weight,
+            ),
+            ("pitch_balance_shaping_weight", self.pitch_balance_shaping_weight),
+        ):
+            if weight < 0 or not np.isfinite(weight):
+                raise ValueError(f"{name} must be finite and non-negative")
+        bounded_squared_signal_penalty(
+            0.0, scale=self.foot_lateral_velocity_shaping_scale
+        )
+        bounded_squared_signal_penalty(
+            0.0, scale=self.foot_vertical_velocity_shaping_scale
+        )
+        self.foot_geom_names = tuple(str(name) for name in foot_geom_names)
+        if len(self.foot_geom_names) != 4 or len(set(self.foot_geom_names)) != 4:
+            raise ValueError("exactly four distinct foot geometry names are required")
+        geom_ids = tuple(
+            int(
+                mujoco.mj_name2id(
+                    self.unwrapped.model,
+                    mujoco.mjtObj.mjOBJ_GEOM,
+                    name,
+                )
+            )
+            for name in self.foot_geom_names
+        )
+        missing = [
+            name
+            for name, geom_id in zip(self.foot_geom_names, geom_ids)
+            if geom_id < 0
+        ]
+        foot_shaping_enabled = (
+            self.foot_lateral_velocity_shaping_weight > 0
+            or self.foot_vertical_velocity_shaping_weight > 0
+            or self.pitch_balance_shaping_weight > 0
+        )
+        if missing and foot_shaping_enabled:
+            raise ValueError(f"foot geometries not found in MuJoCo model: {missing}")
+        self._foot_geom_ids = () if missing else geom_ids
+        if self._foot_geom_ids and foot_shaping_enabled:
+            non_capsules = [
+                name
+                for name, geom_id in zip(self.foot_geom_names, self._foot_geom_ids)
+                if int(self.unwrapped.model.geom_type[geom_id])
+                != int(mujoco.mjtGeom.mjGEOM_CAPSULE)
+            ]
+            if non_capsules:
+                raise ValueError(
+                    "foot landing shaping currently requires capsule geometries: "
+                    f"{non_capsules}"
+                )
         self.common_rescore_ctrl_cost_weight = float(common_rescore_ctrl_cost_weight)
         self.effort_distance_min = float(effort_distance_min)
         self.action_saturation_threshold = float(action_saturation_threshold)
@@ -408,6 +636,20 @@ class ProxyGapAntWrapper(gym.Wrapper):
         self._vertical_velocity_penalty_sum = 0.0
         self._reward_roll_pitch_angular_velocity_shaping_sum = 0.0
         self._roll_pitch_angular_velocity_penalty_sum = 0.0
+        self._reward_foot_lateral_velocity_shaping_sum = 0.0
+        self._foot_lateral_velocity_penalty_sum = 0.0
+        self._reward_foot_vertical_velocity_shaping_sum = 0.0
+        self._foot_vertical_velocity_penalty_sum = 0.0
+        self._foot_landing_active_count_sum = 0
+        self._foot_landing_active_count_by_foot = np.zeros(4, dtype=np.int64)
+        self._foot_lateral_velocity_penalty_sum_by_foot = np.zeros(
+            4, dtype=np.float64
+        )
+        self._foot_vertical_velocity_penalty_sum_by_foot = np.zeros(
+            4, dtype=np.float64
+        )
+        self._pitch_balance_tracker = PitchBalanceEventTracker(foot_count=4)
+        self._reward_pitch_balance_shaping_sum = 0.0
         self._step_handle: TextIO | None = None
         self._step_writer: csv.DictWriter | None = None
         if step_log_path is not None:
@@ -434,6 +676,17 @@ class ProxyGapAntWrapper(gym.Wrapper):
         self._vertical_velocity_penalty_sum = 0.0
         self._reward_roll_pitch_angular_velocity_shaping_sum = 0.0
         self._roll_pitch_angular_velocity_penalty_sum = 0.0
+        self._reward_foot_lateral_velocity_shaping_sum = 0.0
+        self._foot_lateral_velocity_penalty_sum = 0.0
+        self._reward_foot_vertical_velocity_shaping_sum = 0.0
+        self._foot_vertical_velocity_penalty_sum = 0.0
+        self._foot_landing_active_count_sum = 0
+        self._foot_landing_active_count_by_foot.fill(0)
+        self._foot_lateral_velocity_penalty_sum_by_foot.fill(0.0)
+        self._foot_vertical_velocity_penalty_sum_by_foot.fill(0.0)
+        self._reward_pitch_balance_shaping_sum = 0.0
+        initial_grounded = self._foot_landing_kinematics()[3]
+        self._pitch_balance_tracker.reset(initial_grounded=initial_grounded)
         x_position, y_position = self._root_xy(info)
         self.metrics.reset(initial_x=x_position, initial_y=y_position)
         self._episode_index += 1
@@ -441,6 +694,57 @@ class ProxyGapAntWrapper(gym.Wrapper):
         info = dict(info)
         info.update(self._prefixed_summary())
         return self._augment_observation(observation), info
+
+    def _foot_landing_kinematics(
+        self,
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+        """Return distal-foot heights, lateral/vertical speeds and landing mask.
+
+        Ant's ankle capsules are authored from the ankle joint to the distal
+        contact sphere. MuJoCo compiles that distal endpoint onto the negative
+        local-z axis of each named geometry. Height is measured at the bottom
+        of the distal sphere relative to the world z=0 floor.
+        """
+        foot_count = len(self.foot_geom_names)
+        if not self._foot_geom_ids:
+            unavailable = np.full(foot_count, np.nan, dtype=np.float64)
+            return (
+                unavailable.copy(),
+                unavailable.copy(),
+                unavailable.copy(),
+                np.zeros(foot_count, dtype=bool),
+            )
+
+        model = self.unwrapped.model
+        data = self.unwrapped.data
+        qvel = np.asarray(data.qvel, dtype=np.float64)
+        heights = np.empty(foot_count, dtype=np.float64)
+        lateral_velocities = np.empty(foot_count, dtype=np.float64)
+        vertical_velocities = np.empty(foot_count, dtype=np.float64)
+        for index, geom_id in enumerate(self._foot_geom_ids):
+            rotation = np.asarray(data.geom_xmat[geom_id], dtype=np.float64).reshape(3, 3)
+            distal_center = (
+                np.asarray(data.geom_xpos[geom_id], dtype=np.float64)
+                - rotation[:, 2] * float(model.geom_size[geom_id, 1])
+            )
+            heights[index] = float(
+                distal_center[2] - float(model.geom_size[geom_id, 0])
+            )
+            jacobian_position = np.zeros((3, model.nv), dtype=np.float64)
+            jacobian_rotation = np.zeros((3, model.nv), dtype=np.float64)
+            mujoco.mj_jac(
+                model,
+                data,
+                jacobian_position,
+                jacobian_rotation,
+                distal_center,
+                int(model.geom_bodyid[geom_id]),
+            )
+            velocity = jacobian_position @ qvel
+            lateral_velocities[index] = float(velocity[1])
+            vertical_velocities[index] = float(velocity[2])
+        landing_mask = heights <= self.foot_landing_height_threshold
+        return heights, lateral_velocities, vertical_velocities, landing_mask
 
     def step(
         self,
@@ -509,6 +813,7 @@ class ProxyGapAntWrapper(gym.Wrapper):
         lateral_offset = abs(y_position - self.metrics.initial_y)
         lateral_velocity = self._root_y_velocity(info)
         torso_tilt = self._torso_tilt()
+        torso_pitch = self._torso_pitch()
         torso_height, state_is_finite = self._health_state()
         squared_action = float(np.sum(np.square(applied_action)))
         forward_velocity = self._root_x_velocity(info)
@@ -522,10 +827,13 @@ class ProxyGapAntWrapper(gym.Wrapper):
         forward_shaping_reward = self.forward_progress_shaping_weight * float(
             info.get("reward_forward", 0.0)
         )
-        forward_tracking_reward = forward_velocity_tracking_value(
-            forward_velocity,
-            target=self.forward_velocity_target,
-            scale=self.forward_velocity_tracking_scale,
+        forward_tracking_reward = (
+            self.forward_velocity_tracking_weight
+            * forward_velocity_tracking_value(
+                forward_velocity,
+                target=self.forward_velocity_target,
+                scale=self.forward_velocity_tracking_scale,
+            )
         )
         forward_replacement_reward = (
             forward_tracking_reward - float(info.get("reward_forward", 0.0))
@@ -573,6 +881,66 @@ class ProxyGapAntWrapper(gym.Wrapper):
             -self.roll_pitch_angular_velocity_shaping_weight
             * roll_pitch_angular_velocity_penalty
         )
+        (
+            foot_contact_point_heights,
+            foot_lateral_velocities,
+            foot_vertical_velocities,
+            foot_landing_mask,
+        ) = self._foot_landing_kinematics()
+        foot_lateral_velocity_penalties = np.asarray(
+            [
+                bounded_squared_signal_penalty(
+                    velocity,
+                    scale=self.foot_lateral_velocity_shaping_scale,
+                )
+                if active
+                else 0.0
+                for velocity, active in zip(
+                    foot_lateral_velocities,
+                    foot_landing_mask,
+                )
+            ],
+            dtype=np.float64,
+        )
+        foot_vertical_velocity_penalties = np.asarray(
+            [
+                bounded_squared_signal_penalty(
+                    velocity,
+                    scale=self.foot_vertical_velocity_shaping_scale,
+                )
+                if active
+                else 0.0
+                for velocity, active in zip(
+                    foot_vertical_velocities,
+                    foot_landing_mask,
+                )
+            ],
+            dtype=np.float64,
+        )
+        foot_lateral_velocity_penalty = float(
+            np.sum(foot_lateral_velocity_penalties)
+        )
+        foot_vertical_velocity_penalty = float(
+            np.sum(foot_vertical_velocity_penalties)
+        )
+        foot_lateral_velocity_shaping_reward = (
+            -self.foot_lateral_velocity_shaping_weight
+            * foot_lateral_velocity_penalty
+        )
+        foot_vertical_velocity_shaping_reward = (
+            -self.foot_vertical_velocity_shaping_weight
+            * foot_vertical_velocity_penalty
+        )
+        pitch_balance_event = self._pitch_balance_tracker.update(
+            foot_landing_mask,
+            torso_pitch,
+        )
+        pitch_balance_shaping_reward = (
+            self.pitch_balance_shaping_weight
+            * float(pitch_balance_event["score"])
+            if bool(pitch_balance_event["completed"])
+            else 0.0
+        )
         shaping_reward = (
             forward_shaping_reward
             + forward_replacement_reward
@@ -582,6 +950,9 @@ class ProxyGapAntWrapper(gym.Wrapper):
             + action_rate_shaping_reward
             + vertical_velocity_shaping_reward
             + roll_pitch_angular_velocity_shaping_reward
+            + foot_lateral_velocity_shaping_reward
+            + foot_vertical_velocity_shaping_reward
+            + pitch_balance_shaping_reward
         )
         self._reward_forward_tracking_sum += forward_tracking_reward
         self._reward_forward_replacement_sum += forward_replacement_reward
@@ -594,6 +965,23 @@ class ProxyGapAntWrapper(gym.Wrapper):
         )
         self._roll_pitch_angular_velocity_penalty_sum += (
             roll_pitch_angular_velocity_penalty
+        )
+        self._reward_foot_lateral_velocity_shaping_sum += (
+            foot_lateral_velocity_shaping_reward
+        )
+        self._foot_lateral_velocity_penalty_sum += foot_lateral_velocity_penalty
+        self._reward_foot_vertical_velocity_shaping_sum += (
+            foot_vertical_velocity_shaping_reward
+        )
+        self._foot_vertical_velocity_penalty_sum += foot_vertical_velocity_penalty
+        self._reward_pitch_balance_shaping_sum += pitch_balance_shaping_reward
+        self._foot_landing_active_count_sum += int(np.sum(foot_landing_mask))
+        self._foot_landing_active_count_by_foot += foot_landing_mask.astype(np.int64)
+        self._foot_lateral_velocity_penalty_sum_by_foot += (
+            foot_lateral_velocity_penalties
+        )
+        self._foot_vertical_velocity_penalty_sum_by_foot += (
+            foot_vertical_velocity_penalties
         )
         observed_reward = float(base_reward) + shaping_reward
         common_rescored_reward = float(
@@ -624,6 +1012,18 @@ class ProxyGapAntWrapper(gym.Wrapper):
         info["roll_pitch_angular_velocity_penalty"] = float(
             roll_pitch_angular_velocity_penalty
         )
+        info["reward_foot_lateral_velocity_shaping"] = float(
+            foot_lateral_velocity_shaping_reward
+        )
+        info["foot_lateral_velocity_penalty"] = foot_lateral_velocity_penalty
+        info["reward_foot_vertical_velocity_shaping"] = float(
+            foot_vertical_velocity_shaping_reward
+        )
+        info["foot_vertical_velocity_penalty"] = foot_vertical_velocity_penalty
+        info["reward_pitch_balance_shaping"] = float(
+            pitch_balance_shaping_reward
+        )
+        info["pitch_balance_event_score"] = float(pitch_balance_event["score"])
         info["orientation_penalty"] = float(orientation_penalty)
         info["reward_common_rescored"] = common_rescored_reward
         self.metrics.update(
@@ -644,6 +1044,7 @@ class ProxyGapAntWrapper(gym.Wrapper):
         summary.update(self._constraint_summary())
         info.update({f"proxygap_{key}": value for key, value in summary.items()})
         info["proxygap_torso_tilt_step"] = torso_tilt
+        info["proxygap_torso_pitch_step"] = torso_pitch
         info["proxygap_condition_id"] = self.condition_id
         info["proxygap_ctrl_cost_weight"] = self.ctrl_cost_weight
         info["proxygap_common_rescore_ctrl_cost_weight"] = (
@@ -671,12 +1072,64 @@ class ProxyGapAntWrapper(gym.Wrapper):
         info["proxygap_forward_velocity_tracking_scale"] = (
             self.forward_velocity_tracking_scale
         )
+        info["proxygap_forward_velocity_tracking_weight"] = (
+            self.forward_velocity_tracking_weight
+        )
         info["proxygap_forward_velocity_step"] = forward_velocity
         info["proxygap_action_rate_shaping_weight"] = self.action_rate_shaping_weight
         info["proxygap_action_rate_penalty_step"] = action_rate_penalty
         info["proxygap_root_vertical_velocity_step"] = root_vertical_velocity
         info["proxygap_root_roll_pitch_angular_speed_step"] = (
             root_roll_pitch_angular_speed
+        )
+        info["proxygap_foot_landing_height_threshold"] = (
+            self.foot_landing_height_threshold
+        )
+        info["proxygap_foot_landing_active_count_step"] = int(
+            np.sum(foot_landing_mask)
+        )
+        info["proxygap_foot_landing_mask_step"] = foot_landing_mask.copy()
+        info["proxygap_foot_landing_transition_mask_step"] = pitch_balance_event[
+            "landing_transitions"
+        ].copy()
+        info["proxygap_pitch_balance_event_active_step"] = bool(
+            pitch_balance_event["active"]
+        )
+        info["proxygap_pitch_balance_event_started_step"] = bool(
+            pitch_balance_event["started"]
+        )
+        info["proxygap_pitch_balance_event_completed_step"] = bool(
+            pitch_balance_event["completed"]
+        )
+        info["proxygap_pitch_balance_event_landed_count_step"] = int(
+            pitch_balance_event["landed_count"]
+        )
+        info["proxygap_pitch_balance_event_positive_steps_step"] = int(
+            pitch_balance_event["positive_steps"]
+        )
+        info["proxygap_pitch_balance_event_negative_steps_step"] = int(
+            pitch_balance_event["negative_steps"]
+        )
+        info["proxygap_pitch_balance_event_neutral_steps_step"] = int(
+            pitch_balance_event["neutral_steps"]
+        )
+        info["proxygap_pitch_balance_event_score_step"] = float(
+            pitch_balance_event["score"]
+        )
+        info["proxygap_foot_contact_point_heights_step"] = (
+            foot_contact_point_heights.copy()
+        )
+        info["proxygap_foot_lateral_velocities_step"] = (
+            foot_lateral_velocities.copy()
+        )
+        info["proxygap_foot_vertical_velocities_step"] = (
+            foot_vertical_velocities.copy()
+        )
+        info["proxygap_foot_lateral_velocity_penalties_step"] = (
+            foot_lateral_velocity_penalties.copy()
+        )
+        info["proxygap_foot_vertical_velocity_penalties_step"] = (
+            foot_vertical_velocity_penalties.copy()
         )
         info["proxygap_lateral_offset_step"] = lateral_offset
         info["proxygap_torso_height_step"] = torso_height
@@ -710,6 +1163,7 @@ class ProxyGapAntWrapper(gym.Wrapper):
             lateral_velocity=lateral_velocity,
             lateral_penalty=lateral_penalty,
             torso_tilt=torso_tilt,
+            torso_pitch=torso_pitch,
             squared_action=squared_action,
             squared_action_change=self.metrics.latest_squared_action_change,
             action_change_defined=bool(
@@ -742,6 +1196,22 @@ class ProxyGapAntWrapper(gym.Wrapper):
             roll_pitch_angular_velocity_shaping_reward=(
                 roll_pitch_angular_velocity_shaping_reward
             ),
+            foot_contact_point_heights=foot_contact_point_heights,
+            foot_lateral_velocities=foot_lateral_velocities,
+            foot_vertical_velocities=foot_vertical_velocities,
+            foot_landing_mask=foot_landing_mask,
+            foot_lateral_velocity_penalty=foot_lateral_velocity_penalty,
+            foot_vertical_velocity_penalty=foot_vertical_velocity_penalty,
+            foot_lateral_velocity_penalties=foot_lateral_velocity_penalties,
+            foot_vertical_velocity_penalties=foot_vertical_velocity_penalties,
+            foot_lateral_velocity_shaping_reward=(
+                foot_lateral_velocity_shaping_reward
+            ),
+            foot_vertical_velocity_shaping_reward=(
+                foot_vertical_velocity_shaping_reward
+            ),
+            pitch_balance_event=pitch_balance_event,
+            pitch_balance_shaping_reward=pitch_balance_shaping_reward,
             info=info,
             terminated=terminated,
             truncated=truncated,
@@ -775,6 +1245,7 @@ class ProxyGapAntWrapper(gym.Wrapper):
                 "replace_forward_reward_with_tracking": self.replace_forward_reward_with_tracking,
                 "forward_velocity_target": self.forward_velocity_target,
                 "forward_velocity_tracking_scale": self.forward_velocity_tracking_scale,
+                "forward_velocity_tracking_weight": self.forward_velocity_tracking_weight,
                 "reward_forward_tracking_sum": self._reward_forward_tracking_sum,
                 "reward_forward_replacement_sum": self._reward_forward_replacement_sum,
                 "action_rate_shaping_weight": self.action_rate_shaping_weight,
@@ -788,6 +1259,33 @@ class ProxyGapAntWrapper(gym.Wrapper):
                 "roll_pitch_angular_velocity_shaping_scale": self.roll_pitch_angular_velocity_shaping_scale,
                 "reward_roll_pitch_angular_velocity_shaping_sum": self._reward_roll_pitch_angular_velocity_shaping_sum,
                 "roll_pitch_angular_velocity_penalty_sum": self._roll_pitch_angular_velocity_penalty_sum,
+                "foot_geom_names": list(self.foot_geom_names),
+                "foot_landing_height_threshold": self.foot_landing_height_threshold,
+                "foot_landing_active_count_sum": self._foot_landing_active_count_sum,
+                "foot_landing_active_count_by_foot": self._foot_landing_active_count_by_foot.tolist(),
+                "foot_lateral_velocity_shaping_weight": self.foot_lateral_velocity_shaping_weight,
+                "foot_lateral_velocity_shaping_scale": self.foot_lateral_velocity_shaping_scale,
+                "reward_foot_lateral_velocity_shaping_sum": self._reward_foot_lateral_velocity_shaping_sum,
+                "foot_lateral_velocity_penalty_sum": self._foot_lateral_velocity_penalty_sum,
+                "foot_lateral_velocity_penalty_sum_by_foot": self._foot_lateral_velocity_penalty_sum_by_foot.tolist(),
+                "foot_vertical_velocity_shaping_weight": self.foot_vertical_velocity_shaping_weight,
+                "foot_vertical_velocity_shaping_scale": self.foot_vertical_velocity_shaping_scale,
+                "reward_foot_vertical_velocity_shaping_sum": self._reward_foot_vertical_velocity_shaping_sum,
+                "foot_vertical_velocity_penalty_sum": self._foot_vertical_velocity_penalty_sum,
+                "foot_vertical_velocity_penalty_sum_by_foot": self._foot_vertical_velocity_penalty_sum_by_foot.tolist(),
+                "pitch_balance_shaping_weight": self.pitch_balance_shaping_weight,
+                "reward_pitch_balance_shaping_sum": self._reward_pitch_balance_shaping_sum,
+                "pitch_balance_event_completed_count": self._pitch_balance_tracker.completed_event_count,
+                "pitch_balance_event_score_sum": self._pitch_balance_tracker.balance_score_sum,
+                "pitch_balance_event_score_mean": (
+                    self._pitch_balance_tracker.balance_score_sum
+                    / self._pitch_balance_tracker.completed_event_count
+                    if self._pitch_balance_tracker.completed_event_count > 0
+                    else float("nan")
+                ),
+                "pitch_balance_positive_time_seconds": self._pitch_balance_tracker.active_positive_step_sum * self.metrics.environment_dt,
+                "pitch_balance_negative_time_seconds": self._pitch_balance_tracker.active_negative_step_sum * self.metrics.environment_dt,
+                "pitch_balance_neutral_time_seconds": self._pitch_balance_tracker.active_neutral_step_sum * self.metrics.environment_dt,
             }
         )
         return summary
@@ -880,6 +1378,10 @@ class ProxyGapAntWrapper(gym.Wrapper):
         qpos = np.asarray(self.unwrapped.data.qpos, dtype=np.float64)
         return quaternion_tilt_angle(qpos[3:7])
 
+    def _torso_pitch(self) -> float:
+        qpos = np.asarray(self.unwrapped.data.qpos, dtype=np.float64)
+        return quaternion_pitch_angle(qpos[3:7])
+
     def _health_state(self) -> tuple[float, bool]:
         qpos = np.asarray(self.unwrapped.data.qpos, dtype=np.float64)
         qvel = np.asarray(self.unwrapped.data.qvel, dtype=np.float64)
@@ -900,6 +1402,7 @@ class ProxyGapAntWrapper(gym.Wrapper):
             "lateral_offset": values["lateral_offset"],
             "lateral_velocity": values["lateral_velocity"],
             "torso_tilt_rad": values["torso_tilt"],
+            "torso_pitch_rad": values["torso_pitch"],
             "squared_action_step": values["squared_action"],
             "squared_action_change_step": values["squared_action_change"],
             "action_change_defined_step": values["action_change_defined"],
@@ -936,6 +1439,7 @@ class ProxyGapAntWrapper(gym.Wrapper):
             "reward_forward_replacement_step": values["forward_replacement_reward"],
             "forward_velocity_target": self.forward_velocity_target,
             "forward_velocity_tracking_scale": self.forward_velocity_tracking_scale,
+            "forward_velocity_tracking_weight": self.forward_velocity_tracking_weight,
             "reward_ctrl_step": info.get("reward_ctrl", 0.0),
             "reward_contact_step": info.get("reward_contact", 0.0),
             "reward_survive_step": info.get("reward_survive", 0.0),
@@ -965,6 +1469,63 @@ class ProxyGapAntWrapper(gym.Wrapper):
             "reward_roll_pitch_angular_velocity_shaping_step": values[
                 "roll_pitch_angular_velocity_shaping_reward"
             ],
+            "foot_landing_height_threshold": self.foot_landing_height_threshold,
+            "foot_landing_active_count_step": int(
+                np.sum(values["foot_landing_mask"])
+            ),
+            "foot_landing_mask_step": json.dumps(
+                np.asarray(values["foot_landing_mask"], dtype=bool).tolist(),
+                separators=(",", ":"),
+            ),
+            "foot_contact_point_heights_step": json.dumps(
+                np.asarray(values["foot_contact_point_heights"]).tolist(),
+                separators=(",", ":"),
+            ),
+            "foot_lateral_velocities_step": json.dumps(
+                np.asarray(values["foot_lateral_velocities"]).tolist(),
+                separators=(",", ":"),
+            ),
+            "foot_vertical_velocities_step": json.dumps(
+                np.asarray(values["foot_vertical_velocities"]).tolist(),
+                separators=(",", ":"),
+            ),
+            "foot_lateral_velocity_penalty_step": values[
+                "foot_lateral_velocity_penalty"
+            ],
+            "foot_vertical_velocity_penalty_step": values[
+                "foot_vertical_velocity_penalty"
+            ],
+            "foot_lateral_velocity_penalties_step": json.dumps(
+                np.asarray(values["foot_lateral_velocity_penalties"]).tolist(),
+                separators=(",", ":"),
+            ),
+            "foot_vertical_velocity_penalties_step": json.dumps(
+                np.asarray(values["foot_vertical_velocity_penalties"]).tolist(),
+                separators=(",", ":"),
+            ),
+            "reward_foot_lateral_velocity_shaping_step": values[
+                "foot_lateral_velocity_shaping_reward"
+            ],
+            "reward_foot_vertical_velocity_shaping_step": values[
+                "foot_vertical_velocity_shaping_reward"
+            ],
+            "foot_landing_transition_mask_step": json.dumps(
+                np.asarray(
+                    values["pitch_balance_event"]["landing_transitions"],
+                    dtype=bool,
+                ).tolist(),
+                separators=(",", ":"),
+            ),
+            "pitch_balance_shaping_weight": self.pitch_balance_shaping_weight,
+            "pitch_balance_event_active_step": values["pitch_balance_event"]["active"],
+            "pitch_balance_event_started_step": values["pitch_balance_event"]["started"],
+            "pitch_balance_event_completed_step": values["pitch_balance_event"]["completed"],
+            "pitch_balance_event_landed_count_step": values["pitch_balance_event"]["landed_count"],
+            "pitch_balance_event_positive_steps_step": values["pitch_balance_event"]["positive_steps"],
+            "pitch_balance_event_negative_steps_step": values["pitch_balance_event"]["negative_steps"],
+            "pitch_balance_event_neutral_steps_step": values["pitch_balance_event"]["neutral_steps"],
+            "pitch_balance_event_score_step": values["pitch_balance_event"]["score"],
+            "reward_pitch_balance_shaping_step": values["pitch_balance_shaping_reward"],
             "terminated": values["terminated"],
             "truncated": values["truncated"],
             "termination_category": values["termination_category"],
@@ -996,11 +1557,19 @@ def make_proxygap_ant_env(
     replace_forward_reward_with_tracking: bool = False,
     forward_velocity_target: float = 1.0,
     forward_velocity_tracking_scale: float = 0.5,
+    forward_velocity_tracking_weight: float = 1.0,
     action_rate_shaping_weight: float = 0.0,
     vertical_velocity_shaping_weight: float = 0.0,
     vertical_velocity_shaping_scale: float = 1.0,
     roll_pitch_angular_velocity_shaping_weight: float = 0.0,
     roll_pitch_angular_velocity_shaping_scale: float = 1.0,
+    foot_landing_height_threshold: float = 0.03,
+    foot_lateral_velocity_shaping_weight: float = 0.0,
+    foot_lateral_velocity_shaping_scale: float = 1.0,
+    foot_vertical_velocity_shaping_weight: float = 0.0,
+    foot_vertical_velocity_shaping_scale: float = 1.0,
+    pitch_balance_shaping_weight: float = 0.0,
+    foot_geom_names: tuple[str, ...] = DEFAULT_FOOT_GEOM_NAMES,
     common_rescore_ctrl_cost_weight: float = DEFAULT_COMMON_RESCORE_CTRL_WEIGHT,
     effort_distance_min: float = EPSILON,
     action_saturation_threshold: float = DEFAULT_ACTION_SATURATION_THRESHOLD,
@@ -1013,11 +1582,34 @@ def make_proxygap_ant_env(
         "ctrl_cost_weight": float(ctrl_cost_weight),
         "render_mode": render_mode,
     }
+    temporary_xml_path: Path | None = None
     if xml_file is not None:
-        kwargs["xml_file"] = str(Path(xml_file).resolve())
+        resolved_xml_path = Path(xml_file).resolve()
+        if not resolved_xml_path.is_file():
+            raise FileNotFoundError(f"MuJoCo XML does not exist: {resolved_xml_path}")
+        try:
+            str(resolved_xml_path).encode("ascii")
+            mujoco_xml_path = resolved_xml_path
+        except UnicodeEncodeError:
+            # MuJoCo's Windows path loader can reject otherwise valid Unicode
+            # paths. Ant's public render XML is self-contained, so an ASCII-
+            # named temporary copy is sufficient and is removed after loading.
+            with tempfile.NamedTemporaryFile(
+                prefix="proxygap_mujoco_",
+                suffix=".xml",
+                delete=False,
+            ) as temporary_xml:
+                temporary_xml.write(resolved_xml_path.read_bytes())
+                temporary_xml_path = Path(temporary_xml.name)
+            mujoco_xml_path = temporary_xml_path
+        kwargs["xml_file"] = str(mujoco_xml_path)
     if max_episode_steps is not None:
         kwargs["max_episode_steps"] = int(max_episode_steps)
-    env = gym.make("Ant-v5", **kwargs)
+    try:
+        env = gym.make("Ant-v5", **kwargs)
+    finally:
+        if temporary_xml_path is not None:
+            temporary_xml_path.unlink(missing_ok=True)
     wrapped = ProxyGapAntWrapper(
         env=env,
         condition_id=condition_id,
@@ -1037,6 +1629,7 @@ def make_proxygap_ant_env(
         ),
         forward_velocity_target=float(forward_velocity_target),
         forward_velocity_tracking_scale=float(forward_velocity_tracking_scale),
+        forward_velocity_tracking_weight=float(forward_velocity_tracking_weight),
         action_rate_shaping_weight=float(action_rate_shaping_weight),
         vertical_velocity_shaping_weight=float(vertical_velocity_shaping_weight),
         vertical_velocity_shaping_scale=float(vertical_velocity_shaping_scale),
@@ -1046,6 +1639,21 @@ def make_proxygap_ant_env(
         roll_pitch_angular_velocity_shaping_scale=float(
             roll_pitch_angular_velocity_shaping_scale
         ),
+        foot_landing_height_threshold=float(foot_landing_height_threshold),
+        foot_lateral_velocity_shaping_weight=float(
+            foot_lateral_velocity_shaping_weight
+        ),
+        foot_lateral_velocity_shaping_scale=float(
+            foot_lateral_velocity_shaping_scale
+        ),
+        foot_vertical_velocity_shaping_weight=float(
+            foot_vertical_velocity_shaping_weight
+        ),
+        foot_vertical_velocity_shaping_scale=float(
+            foot_vertical_velocity_shaping_scale
+        ),
+        pitch_balance_shaping_weight=float(pitch_balance_shaping_weight),
+        foot_geom_names=tuple(foot_geom_names),
         common_rescore_ctrl_cost_weight=float(common_rescore_ctrl_cost_weight),
         effort_distance_min=float(effort_distance_min),
         action_saturation_threshold=float(action_saturation_threshold),

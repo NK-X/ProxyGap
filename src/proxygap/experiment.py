@@ -16,7 +16,7 @@ from stable_baselines3 import PPO
 from stable_baselines3.common.monitor import Monitor
 from torch import nn
 
-from .ant_wrapper import make_proxygap_ant_env
+from .ant_wrapper import DEFAULT_FOOT_GEOM_NAMES, make_proxygap_ant_env
 from .metrics import CSV_SCHEMA
 
 
@@ -134,11 +134,19 @@ def evaluate_model(
     replace_forward_reward_with_tracking: bool = False,
     forward_velocity_target: float = 1.0,
     forward_velocity_tracking_scale: float = 0.5,
+    forward_velocity_tracking_weight: float = 1.0,
     action_rate_shaping_weight: float = 0.0,
     vertical_velocity_shaping_weight: float = 0.0,
     vertical_velocity_shaping_scale: float = 1.0,
     roll_pitch_angular_velocity_shaping_weight: float = 0.0,
     roll_pitch_angular_velocity_shaping_scale: float = 1.0,
+    foot_landing_height_threshold: float = 0.03,
+    foot_lateral_velocity_shaping_weight: float = 0.0,
+    foot_lateral_velocity_shaping_scale: float = 1.0,
+    foot_vertical_velocity_shaping_weight: float = 0.0,
+    foot_vertical_velocity_shaping_scale: float = 1.0,
+    pitch_balance_shaping_weight: float = 0.0,
+    foot_geom_names: Sequence[str] = DEFAULT_FOOT_GEOM_NAMES,
     common_rescore_ctrl_cost_weight: float = 0.5,
     effort_distance_min: float = 1e-8,
     action_saturation_threshold: float = 0.95,
@@ -181,6 +189,7 @@ def evaluate_model(
             replace_forward_reward_with_tracking=replace_forward_reward_with_tracking,
             forward_velocity_target=forward_velocity_target,
             forward_velocity_tracking_scale=forward_velocity_tracking_scale,
+            forward_velocity_tracking_weight=forward_velocity_tracking_weight,
             action_rate_shaping_weight=action_rate_shaping_weight,
             vertical_velocity_shaping_weight=vertical_velocity_shaping_weight,
             vertical_velocity_shaping_scale=vertical_velocity_shaping_scale,
@@ -190,6 +199,19 @@ def evaluate_model(
             roll_pitch_angular_velocity_shaping_scale=(
                 roll_pitch_angular_velocity_shaping_scale
             ),
+            foot_landing_height_threshold=foot_landing_height_threshold,
+            foot_lateral_velocity_shaping_weight=(
+                foot_lateral_velocity_shaping_weight
+            ),
+            foot_lateral_velocity_shaping_scale=foot_lateral_velocity_shaping_scale,
+            foot_vertical_velocity_shaping_weight=(
+                foot_vertical_velocity_shaping_weight
+            ),
+            foot_vertical_velocity_shaping_scale=(
+                foot_vertical_velocity_shaping_scale
+            ),
+            pitch_balance_shaping_weight=pitch_balance_shaping_weight,
+            foot_geom_names=tuple(foot_geom_names),
             common_rescore_ctrl_cost_weight=common_rescore_ctrl_cost_weight,
             effort_distance_min=effort_distance_min,
             action_saturation_threshold=action_saturation_threshold,
@@ -223,6 +245,7 @@ def evaluate_model(
             "replace_forward_reward_with_tracking": replace_forward_reward_with_tracking,
             "forward_velocity_target": forward_velocity_target,
             "forward_velocity_tracking_scale": forward_velocity_tracking_scale,
+            "forward_velocity_tracking_weight": forward_velocity_tracking_weight,
             "action_rate_shaping_weight": action_rate_shaping_weight,
             "vertical_velocity_shaping_weight": vertical_velocity_shaping_weight,
             "vertical_velocity_shaping_scale": vertical_velocity_shaping_scale,
@@ -232,6 +255,17 @@ def evaluate_model(
             "roll_pitch_angular_velocity_shaping_scale": (
                 roll_pitch_angular_velocity_shaping_scale
             ),
+            "foot_landing_height_threshold": foot_landing_height_threshold,
+            "foot_lateral_velocity_shaping_weight": (
+                foot_lateral_velocity_shaping_weight
+            ),
+            "foot_lateral_velocity_shaping_scale": foot_lateral_velocity_shaping_scale,
+            "foot_vertical_velocity_shaping_weight": (
+                foot_vertical_velocity_shaping_weight
+            ),
+            "foot_vertical_velocity_shaping_scale": foot_vertical_velocity_shaping_scale,
+            "pitch_balance_shaping_weight": pitch_balance_shaping_weight,
+            "foot_geom_names": list(foot_geom_names),
             "training_seed": training_seed if training_seed is not None else seed,
             "seed": evaluation_seed,
             **summary,
@@ -281,11 +315,19 @@ def train_condition(
     replace_forward_reward_with_tracking: bool = False,
     forward_velocity_target: float = 1.0,
     forward_velocity_tracking_scale: float = 0.5,
+    forward_velocity_tracking_weight: float = 1.0,
     action_rate_shaping_weight: float = 0.0,
     vertical_velocity_shaping_weight: float = 0.0,
     vertical_velocity_shaping_scale: float = 1.0,
     roll_pitch_angular_velocity_shaping_weight: float = 0.0,
     roll_pitch_angular_velocity_shaping_scale: float = 1.0,
+    foot_landing_height_threshold: float = 0.03,
+    foot_lateral_velocity_shaping_weight: float = 0.0,
+    foot_lateral_velocity_shaping_scale: float = 1.0,
+    foot_vertical_velocity_shaping_weight: float = 0.0,
+    foot_vertical_velocity_shaping_scale: float = 1.0,
+    pitch_balance_shaping_weight: float = 0.0,
+    foot_geom_names: Sequence[str] = DEFAULT_FOOT_GEOM_NAMES,
     common_rescore_ctrl_cost_weight: float = 0.5,
     effort_distance_min: float = 1e-8,
     action_saturation_threshold: float = 0.95,
@@ -316,6 +358,7 @@ def train_condition(
         replace_forward_reward_with_tracking=replace_forward_reward_with_tracking,
         forward_velocity_target=forward_velocity_target,
         forward_velocity_tracking_scale=forward_velocity_tracking_scale,
+        forward_velocity_tracking_weight=forward_velocity_tracking_weight,
         action_rate_shaping_weight=action_rate_shaping_weight,
         vertical_velocity_shaping_weight=vertical_velocity_shaping_weight,
         vertical_velocity_shaping_scale=vertical_velocity_shaping_scale,
@@ -325,6 +368,13 @@ def train_condition(
         roll_pitch_angular_velocity_shaping_scale=(
             roll_pitch_angular_velocity_shaping_scale
         ),
+        foot_landing_height_threshold=foot_landing_height_threshold,
+        foot_lateral_velocity_shaping_weight=foot_lateral_velocity_shaping_weight,
+        foot_lateral_velocity_shaping_scale=foot_lateral_velocity_shaping_scale,
+        foot_vertical_velocity_shaping_weight=foot_vertical_velocity_shaping_weight,
+        foot_vertical_velocity_shaping_scale=foot_vertical_velocity_shaping_scale,
+        pitch_balance_shaping_weight=pitch_balance_shaping_weight,
+        foot_geom_names=tuple(foot_geom_names),
         common_rescore_ctrl_cost_weight=common_rescore_ctrl_cost_weight,
         effort_distance_min=effort_distance_min,
         action_saturation_threshold=action_saturation_threshold,
@@ -397,6 +447,7 @@ def train_condition(
             replace_forward_reward_with_tracking=replace_forward_reward_with_tracking,
             forward_velocity_target=forward_velocity_target,
             forward_velocity_tracking_scale=forward_velocity_tracking_scale,
+            forward_velocity_tracking_weight=forward_velocity_tracking_weight,
             action_rate_shaping_weight=action_rate_shaping_weight,
             vertical_velocity_shaping_weight=vertical_velocity_shaping_weight,
             vertical_velocity_shaping_scale=vertical_velocity_shaping_scale,
@@ -406,6 +457,21 @@ def train_condition(
             roll_pitch_angular_velocity_shaping_scale=(
                 roll_pitch_angular_velocity_shaping_scale
             ),
+            foot_landing_height_threshold=foot_landing_height_threshold,
+            foot_lateral_velocity_shaping_weight=(
+                foot_lateral_velocity_shaping_weight
+            ),
+            foot_lateral_velocity_shaping_scale=(
+                foot_lateral_velocity_shaping_scale
+            ),
+            foot_vertical_velocity_shaping_weight=(
+                foot_vertical_velocity_shaping_weight
+            ),
+            foot_vertical_velocity_shaping_scale=(
+                foot_vertical_velocity_shaping_scale
+            ),
+            pitch_balance_shaping_weight=pitch_balance_shaping_weight,
+            foot_geom_names=tuple(foot_geom_names),
             common_rescore_ctrl_cost_weight=common_rescore_ctrl_cost_weight,
             effort_distance_min=effort_distance_min,
             action_saturation_threshold=action_saturation_threshold,
@@ -441,6 +507,7 @@ def train_condition(
                 "replace_forward_reward_with_tracking": replace_forward_reward_with_tracking,
                 "forward_velocity_target": forward_velocity_target,
                 "forward_velocity_tracking_scale": forward_velocity_tracking_scale,
+                "forward_velocity_tracking_weight": forward_velocity_tracking_weight,
                 "action_rate_shaping_weight": action_rate_shaping_weight,
                 "vertical_velocity_shaping_weight": vertical_velocity_shaping_weight,
                 "vertical_velocity_shaping_scale": vertical_velocity_shaping_scale,
@@ -450,6 +517,21 @@ def train_condition(
                 "roll_pitch_angular_velocity_shaping_scale": (
                     roll_pitch_angular_velocity_shaping_scale
                 ),
+                "foot_landing_height_threshold": foot_landing_height_threshold,
+                "foot_lateral_velocity_shaping_weight": (
+                    foot_lateral_velocity_shaping_weight
+                ),
+                "foot_lateral_velocity_shaping_scale": (
+                    foot_lateral_velocity_shaping_scale
+                ),
+                "foot_vertical_velocity_shaping_weight": (
+                    foot_vertical_velocity_shaping_weight
+                ),
+                "foot_vertical_velocity_shaping_scale": (
+                    foot_vertical_velocity_shaping_scale
+                ),
+                "pitch_balance_shaping_weight": pitch_balance_shaping_weight,
+                "foot_geom_names": list(foot_geom_names),
                 "ppo_use_sde": bool(ppo_use_sde),
                 "ppo_sde_sample_freq": int(ppo_sde_sample_freq),
                 "common_rescore_ctrl_cost_weight": common_rescore_ctrl_cost_weight,
@@ -521,6 +603,13 @@ def summarise_evaluation(eval_rows: list[dict[str, Any]]) -> list[dict[str, Any]
         "reward_forward_replacement_sum",
         "reward_action_rate_shaping_sum",
         "action_rate_penalty_sum",
+        "reward_pitch_balance_shaping_sum",
+        "pitch_balance_event_completed_count",
+        "pitch_balance_event_score_sum",
+        "pitch_balance_event_score_mean",
+        "pitch_balance_positive_time_seconds",
+        "pitch_balance_negative_time_seconds",
+        "pitch_balance_neutral_time_seconds",
         "orientation_penalty_sum",
         "net_forward_progress",
         "net_forward_progress_per_step",

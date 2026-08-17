@@ -1,6 +1,6 @@
 # ProxyGap Status
 
-Last updated: 17 August 2026
+Last updated: 18 August 2026
 
 ## Canonical version
 
@@ -19,6 +19,28 @@ or constraint candidate.
 | Final mitigation candidate | Not frozen | Pass a predeclared development gate |
 | Held-out formal comparison | Not authorised | Preserve reserved training seeds |
 | Real hardware, terrain and disturbances | Out of scope | None for this project |
+
+## Latest reward iterations
+
+Two user-directed development versions are now recorded:
+
+- `reward-v1-foot-landing`: four-foot grounded Vy/Vz shaping;
+- `reward-v2-pitch-balance`: the same package plus event-level signed-pitch
+  time balance.
+
+The pitch version improved its declared balance score but increased landing
+frequency and action roughness, so it remains development evidence rather than
+a frozen final mitigation candidate. See
+[`docs/REWARD_ITERATION_HISTORY_20260817.md`](docs/REWARD_ITERATION_HISTORY_20260817.md).
+
+## Latest planar-transition development
+
+The selected pre-pitch foot-landing policy has also been used as the starting
+point for a command-conditioned flat-ground transition from positive-x motion
+to braking and then positive-y motion. This is development evidence for one
+fixed 90-degree translation change, not arbitrary planar navigation or yaw
+control. See
+[`docs/PLANAR_TRANSLATION_TRANSITION_20260818.md`](docs/PLANAR_TRANSLATION_TRANSITION_20260818.md).
 
 ## V1 status
 

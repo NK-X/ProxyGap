@@ -392,6 +392,95 @@ def test_tracking_replaces_only_forward_term_and_rate_penalty_is_separate() -> N
     env.close()
 
 
+def test_forward_tracking_weight_reduces_torso_x_reward_influence() -> None:
+    env = make_proxygap_ant_env(
+        ctrl_cost_weight=0.5,
+        condition_id="weighted_tracking_test",
+        seed=119,
+        replace_forward_reward_with_tracking=True,
+        forward_velocity_target=1.0,
+        forward_velocity_tracking_scale=0.5,
+        forward_velocity_tracking_weight=0.5,
+    )
+    env.reset(seed=119)
+    _, reward, _, _, info = env.step(np.zeros(8))
+    expected_tracking = 0.5 * forward_velocity_tracking_value(
+        info["proxygap_forward_velocity_step"],
+        target=1.0,
+        scale=0.5,
+    )
+    assert math.isclose(info["reward_forward_tracking"], expected_tracking)
+    assert math.isclose(
+        reward,
+        info["reward_base_proxy"]
+        - info["reward_forward"]
+        + expected_tracking,
+    )
+    assert env.episode_summary()["forward_velocity_tracking_weight"] == 0.5
+    env.close()
+
+
+def test_four_foot_landing_velocity_shaping_is_height_gated_and_reconciled() -> None:
+    env = make_proxygap_ant_env(
+        ctrl_cost_weight=0.5,
+        condition_id="foot_landing_test",
+        seed=120,
+        foot_landing_height_threshold=0.03,
+        foot_lateral_velocity_shaping_weight=0.025,
+        foot_lateral_velocity_shaping_scale=1.0,
+        foot_vertical_velocity_shaping_weight=0.025,
+        foot_vertical_velocity_shaping_scale=1.0,
+    )
+    env.reset(seed=120)
+    heights = np.asarray([0.01, 0.04, 0.02, 0.05])
+    lateral = np.asarray([1.0, 100.0, -0.5, 100.0])
+    vertical = np.asarray([-2.0, 100.0, 0.25, 100.0])
+    landing_mask = heights <= 0.03
+    env._foot_landing_kinematics = lambda: (
+        heights,
+        lateral,
+        vertical,
+        landing_mask,
+    )
+    _, reward, _, _, info = env.step(np.zeros(8))
+    expected_lateral_penalty = bounded_squared_signal_penalty(
+        1.0, scale=1.0
+    ) + bounded_squared_signal_penalty(-0.5, scale=1.0)
+    expected_vertical_penalty = bounded_squared_signal_penalty(
+        -2.0, scale=1.0
+    ) + bounded_squared_signal_penalty(0.25, scale=1.0)
+    assert info["proxygap_foot_landing_active_count_step"] == 2
+    assert np.array_equal(
+        info["proxygap_foot_landing_mask_step"],
+        np.asarray([True, False, True, False]),
+    )
+    assert np.array_equal(info["proxygap_foot_contact_point_heights_step"], heights)
+    assert math.isclose(
+        info["foot_lateral_velocity_penalty"], expected_lateral_penalty
+    )
+    assert math.isclose(
+        info["foot_vertical_velocity_penalty"], expected_vertical_penalty
+    )
+    expected_foot_reward = -0.025 * (
+        expected_lateral_penalty + expected_vertical_penalty
+    )
+    assert math.isclose(
+        info["reward_foot_lateral_velocity_shaping"]
+        + info["reward_foot_vertical_velocity_shaping"],
+        expected_foot_reward,
+    )
+    assert math.isclose(reward, info["reward_base_proxy"] + expected_foot_reward)
+    summary = env.episode_summary()
+    assert summary["foot_landing_active_count_sum"] == 2
+    assert summary["foot_landing_active_count_by_foot"] == [1, 0, 1, 0]
+    assert math.isclose(
+        summary["reward_foot_lateral_velocity_shaping_sum"]
+        + summary["reward_foot_vertical_velocity_shaping_sum"],
+        expected_foot_reward,
+    )
+    env.close()
+
+
 def test_cosine_orientation_shaping_is_added_without_changing_base_reward() -> None:
     env = make_proxygap_ant_env(
         ctrl_cost_weight=0.5,
