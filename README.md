@@ -20,6 +20,11 @@ For a project handover, begin with [`handoff/START_HERE.md`](handoff/START_HERE.
 and [`STATUS.md`](STATUS.md). The change from V1 to V2 is documented in
 [`CHANGELOG.md`](CHANGELOG.md).
 
+The two user-directed reward iterations trained on 17 August are recorded in
+[`docs/REWARD_ITERATION_HISTORY_20260817.md`](docs/REWARD_ITERATION_HISTORY_20260817.md),
+with a machine-readable, path-sanitised manifest in
+[`results/development_20260817/reward_iterations/version_manifest.json`](results/development_20260817/reward_iterations/version_manifest.json).
+
 ## Current research direction
 
 V2 no longer treats a one-directional `ctrl_cost_weight` sweep as the main
