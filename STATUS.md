@@ -20,6 +20,19 @@ or constraint candidate.
 | Held-out formal comparison | Not authorised | Preserve reserved training seeds |
 | Real hardware, terrain and disturbances | Out of scope | None for this project |
 
+## Latest reward iterations
+
+Two user-directed development versions are now recorded:
+
+- `reward-v1-foot-landing`: four-foot grounded Vy/Vz shaping;
+- `reward-v2-pitch-balance`: the same package plus event-level signed-pitch
+  time balance.
+
+The pitch version improved its declared balance score but increased landing
+frequency and action roughness, so it remains development evidence rather than
+a frozen final mitigation candidate. See
+[`docs/REWARD_ITERATION_HISTORY_20260817.md`](docs/REWARD_ITERATION_HISTORY_20260817.md).
+
 ## V1 status
 
 The earlier control-cost coefficient sweep is preserved as **legacy
