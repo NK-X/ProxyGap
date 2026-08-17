@@ -2,6 +2,17 @@
 
 This page annotates the files most team members will encounter.
 
+## Version navigation
+
+| Path | Meaning |
+|---|---|
+| `current/` | Canonical V2 direction and next scientific gate |
+| `legacy/weight_sweep_v1/` | V1 provenance and claim limits |
+| `handoff/` | Transfer order, data meanings, run registry and known issues |
+
+These directories do not duplicate or relocate executable code. Existing
+source, configuration and protocol paths remain stable for reproducibility.
+
 ## Core source
 
 | File | What it is | Use it for |

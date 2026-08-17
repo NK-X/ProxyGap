@@ -1,5 +1,8 @@
 # Experiment Status
 
+> Version notice: V2 is canonical. Use `current/README.md` for new work and
+> `legacy/weight_sweep_v1/README.md` for the V1 coefficient study.
+
 ## Status map
 
 | Workstream | Current status |
@@ -9,8 +12,8 @@
 | Orientation/lateral/action-slew candidates | Development evidence; complete intent gate not passed |
 | Target-speed and action-rate experiment | Development mechanism evidence; 1M extension complete |
 | Body-dynamics and gSDE matrix | Development mechanism evidence; matrix complete |
-| Body-dynamics ordinary-exploration replication | Protocol frozen; local execution pending |
-| Natural or specified gait evaluation | Scientifically unresolved |
+| Body-dynamics ordinary-exploration replication | Public protocol/code only; local outputs outside this release |
+| Natural or specified gait evaluation | Scientifically unresolved; next V2 gate |
 | Final mitigation candidate | Not frozen |
 | Held-out formal comparison | Not authorised |
 | Real-robot deployment | Out of scope |
@@ -32,8 +35,9 @@ default reward construct audit
         -> confirmatory comparison
 ```
 
-The present repository contains the first two components. A passed engineering
-test or a visually improved video cannot advance a candidate to formal status.
+The public repository contains design and development material for the first
+two components. A passed engineering test, a local run or a visually improved
+video cannot advance a candidate to formal status.
 
 ## Current evidence boundary
 
@@ -42,6 +46,8 @@ informed the design. They may support mechanism selection, negative results and
 methodological reflection. They must not be described as independent formal
 confirmation.
 
-See `docs/RESEARCH_DIRECTION_20260816.md` and
-`docs/TEAM_PROGRESS_UPDATE_20260816.md`. The next bounded test and its release
-boundary are recorded in `docs/FUTURE_TESTING_DIRECTION_20260817.md`.
+See `current/RESEARCH_DIRECTION_V2.md` and
+`docs/TEAM_PROGRESS_UPDATE_20260816.md`. The bounded body-replication protocol
+and its release boundary are recorded in
+`docs/FUTURE_TESTING_DIRECTION_20260817.md`; its presence does not publish or
+imply a result.
