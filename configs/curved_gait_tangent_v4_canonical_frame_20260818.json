@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "config_id": "curved_gait_tangent_v4_canonical_frame_20260818",
+  "status": "frozen_user_requested_development",
+  "formal_launch": "prohibited",
+  "environment": "Ant-v5",
+  "algorithm": "PPO transfer with target-tangent observation canonicalisation and body-frame yaw curriculum",
+  "purpose": "Train tangent-aligned turning gait while preserving the selected forward gait in a rotationally canonical local frame.",
+  "supersedes": "curved_gait_tangent_v3_bounded_curriculum_20260818",
+  "revision_reason": "V3 proved that soft bounded training preserves full episodes but raw world-frame proprioception still forces relearning at every yaw. V4 rotates world-vector observations into the instantaneous target-tangent frame.",
+  "base_policy": {
+    "configuration": "configs/planar_translation_transition_v3_20260818.json",
+    "condition_id": "T1__STOP_TO_POSITIVE_Y",
+    "training_seed": 42001,
+    "checkpoint_timesteps": 1000000,
+    "model_path": "artifacts/dev/planar_translation_transition_v3_20260818/runs/seed_42001/models/checkpoint_1000000.zip",
+    "model_sha256": "e337df745896c0c8670ac50754499fece3a1c92a84efbe29803b53bfc43f79ee",
+    "observation_dimension": 115,
+    "action_dimension": 8,
+    "pitch_balance_reward_enabled": false
+  },
+  "commands": {
+    "command_frame": "body_tangent",
+    "observation_frame": "target_tangent",
+    "observation_append_order": [
+      "v_forward_command",
+      "v_lateral_command",
+      "yaw_rate_command",
+      "sin_heading_error",
+      "cos_heading_error"
+    ],
+    "target_observation_dimension": 118,
+    "canonicalised_world_fields": [
+      "root_quaternion",
+      "root_linear_velocity_xy",
+      "root_angular_velocity_xy",
+      "external_body_torque_xy",
+      "external_body_force_xy"
+    ],
+    "world_velocity_reward_reference_is_curve_tangent": true,
+    "yaw_rate_formula": "speed_m_per_s * curvature_per_m",
+    "global_path_position_in_observation": false,
+    "global_path_position_reward_enabled": false,
+    "environment_dt_seconds": 0.05,
+    "curvature_slew_rate_per_m_per_s": 0.10,
+    "segment_steps_interval": [140, 240],
+    "warmup_steps": 40,
+    "s_curve_period_steps": 300
+  },
+  "reward": {
+    "planar_velocity_tracking_weight": 0.75,
+    "planar_velocity_tracking_scale_m_per_s": 0.5,
+    "planar_velocity_tracking_function": "pseudo_huber",
+    "cross_axis_velocity_weight": 0.2,
+    "cross_axis_velocity_scale_m_per_s": 0.4,
+    "heading_alignment_weight": 1.5,
+    "heading_alignment_scale_degrees": 10.0,
+    "heading_alignment_function": "bounded_squared",
+    "yaw_rate_tracking_weight": 1.0,
+    "yaw_rate_tracking_scale_rad_per_s": 0.15,
+    "yaw_rate_tracking_function": "bounded_squared",
+    "heading_tolerance_degrees": 5.0,
+    "heading_termination_threshold_degrees": 20.0,
+    "heading_termination_consecutive_steps": 5,
+    "training_heading_termination_enabled": false,
+    "evaluation_heading_termination_enabled": true,
+    "replace_ant_positive_x_reward": true
+  },
+  "preserved_pre_pitch_reward": {
+    "ctrl_cost_weight": 0.5,
+    "orientation_shaping_weight": 0.1,
+    "orientation_shaping_function": "cosine",
+    "orientation_shaping_scale": 1.0,
+    "action_rate_shaping_weight": 0.2,
+    "vertical_velocity_shaping_weight": 0.05,
+    "vertical_velocity_shaping_scale": 1.014092584749083,
+    "roll_pitch_angular_velocity_shaping_weight": 0.05,
+    "roll_pitch_angular_velocity_shaping_scale": 1.9893176307304792,
+    "foot_landing_height_threshold_m": 0.03,
+    "foot_lateral_velocity_shaping_weight_per_foot": 0.025,
+    "foot_lateral_velocity_shaping_scale_m_per_s": 1.0,
+    "foot_vertical_velocity_shaping_weight_per_foot": 0.025,
+    "foot_vertical_velocity_shaping_scale_m_per_s": 1.0,
+    "augment_previous_applied_action": true,
+    "pitch_balance_shaping_weight": 0.0
+  },
+  "transfer": {
+    "source_observation_dimension": 115,
+    "target_observation_dimension": 118,
+    "copy_all_equal_shaped_policy_and_value_tensors": true,
+    "expand_policy_and_value_first_layers_by_columns": 3,
+    "source_vx_column_initialises_body_forward_command": true,
+    "source_vy_column_initialises_body_lateral_command": true,
+    "new_curve_columns_initial_value": 0.0,
+    "optimizer_state": "fresh",
+    "required_initial_action_parity_tolerance": 1e-7
+  },
+  "curriculum": [
+    {
+      "name": "canonical_straight_preservation",
+      "target_timesteps": 102400,
+      "max_abs_curvature_per_m": 0.0,
+      "speed_interval_m_per_s": [0.8, 1.0]
+    },
+    {
+      "name": "canonical_very_gentle_yaw",
+      "target_timesteps": 307200,
+      "max_abs_curvature_per_m": 0.08,
+      "speed_interval_m_per_s": [0.8, 0.95]
+    },
+    {
+      "name": "canonical_gentle_yaw",
+      "target_timesteps": 614400,
+      "max_abs_curvature_per_m": 0.18,
+      "speed_interval_m_per_s": [0.75, 0.9]
+    },
+    {
+      "name": "canonical_variable_curvature",
+      "target_timesteps": 1024000,
+      "max_abs_curvature_per_m": 0.35,
+      "speed_interval_m_per_s": [0.7, 0.9]
+    }
+  ],
+  "timesteps_per_policy": 1024000,
+  "training_seeds": [43301, 43302, 43303],
+  "evaluation_seed_base": 53311,
+  "evaluation_max_episode_steps": 600,
+  "evaluation_speed_m_per_s": 0.8,
+  "evaluation_profiles": [
+    {"name": "straight", "profile": "straight", "max_abs_curvature_per_m": 0.0},
+    {"name": "gentle_left", "profile": "constant_left", "max_abs_curvature_per_m": 0.12},
+    {"name": "gentle_right", "profile": "constant_right", "max_abs_curvature_per_m": 0.12},
+    {"name": "medium_left", "profile": "constant_left", "max_abs_curvature_per_m": 0.25},
+    {"name": "medium_right", "profile": "constant_right", "max_abs_curvature_per_m": 0.25},
+    {"name": "s_curve", "profile": "s_curve", "max_abs_curvature_per_m": 0.25}
+  ],
+  "ppo": {
+    "n_steps": 512,
+    "batch_size": 1024,
+    "n_epochs": 10,
+    "learning_rate": 0.0001,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.001,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "policy": "MlpPolicy",
+    "policy_kwargs": {"net_arch": [64, 64], "activation_fn": "Tanh"},
+    "device": "cuda",
+    "torch_num_threads": 2
+  },
+  "execution": {
+    "output_root": "artifacts/dev/curved_gait_tangent_v4_canonical_frame_20260818",
+    "parallel_environments_per_seed": 8,
+    "subprocess_start_method": "spawn"
+  },
+  "selection": {
+    "primary": "lowest non-straight heading RMS among models with zero strict-evaluation heading terminations",
+    "maximum_heading_rms_degrees": 7.0,
+    "minimum_heading_within_5_degrees_fraction": 0.8,
+    "maximum_cross_axis_velocity_rms_m_per_s": 0.12
+  },
+  "claim_boundary": "The policy learns local turning gait from target-tangent canonical proprioception and local motion commands. It receives no path coordinates, waypoints, route position, or route-error reward."
+}

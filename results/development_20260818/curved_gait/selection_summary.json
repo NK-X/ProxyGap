@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "status": "development_complete_with_limitations",
+  "date": "2026-08-18",
+  "configuration": "configs/curved_gait_tangent_v4_canonical_frame_20260818.json",
+  "configuration_sha256": "d9eca09a3c9e06e44d4ca0d1490312966ed65c4ba8f20f1147bf612146a73277",
+  "source_model_sha256": "e337df745896c0c8670ac50754499fece3a1c92a84efbe29803b53bfc43f79ee",
+  "aggregate_metric_candidate": {
+    "training_seed": 43301,
+    "checkpoint_timesteps": 1024000,
+    "model_sha256": "6a0f6081e6aff4c85201242e53c44b0d057e96167336002da3a6e862fe134b6a",
+    "mean_non_straight_heading_error_rms_rad": 0.15229314173439973,
+    "mean_non_straight_cross_axis_velocity_rms_m_per_s": 0.34725925406551966,
+    "heading_constraint_terminations": 3
+  },
+  "s_curve_video_candidate": {
+    "training_seed": 43302,
+    "checkpoint_timesteps": 1024000,
+    "model_sha256": "b82e1f567e52111b2fbff2b07b75fd2e8af063f2bd3961a7d5eb39d2f73bc61f",
+    "strict_s_curve_steps": 600,
+    "strict_s_curve_heading_error_rms_rad": 0.1699659915011223,
+    "video_sha256": "9cf43b92d184bf24a8b790ef90e1fc1c3c0f595757a983bfb3365898c5d830ad",
+    "video_frames": 300,
+    "video_fps": 20,
+    "video_duration_seconds": 15.0,
+    "video_target_path_markers_visible": false
+  },
+  "figure_eight_route_demonstration": {
+    "training_seed": 43301,
+    "checkpoint_timesteps": 1024000,
+    "model_sha256": "6a0f6081e6aff4c85201242e53c44b0d057e96167336002da3a6e862fe134b6a",
+    "route": "two tangent circles; exact centre start; right loop then left loop",
+    "radius_m": 4.0,
+    "route_coordinates_enter_policy": false,
+    "route_position_reward_enabled": false,
+    "completed_both_loops": true,
+    "fall": false,
+    "route_error_rms_m": 0.17507964409079743,
+    "centre_closure_error_m": 0.4517358890886485,
+    "body_axis_tangent_error_rms_degrees": 23.219171160245377,
+    "video_sha256": "a592fce43bedfc06e564d96c91509ecaca44c29988e1a8495b65a8e70f530a4f",
+    "video_duration_seconds": 27.95,
+    "video_tracked_in_git": false
+  },
+  "completed_training_seeds": [43301, 43302],
+  "excluded_startup_attempts": [
+    {
+      "training_seed": 43303,
+      "reason": "Windows memory/page-file exhaustion during concurrent environment startup; no valid policy candidate"
+    }
+  ],
+  "global_path_position_in_policy": false,
+  "global_path_position_reward_enabled": false,
+  "pitch_balance_reward_enabled": false,
+  "claim_boundary": "The external controller completed the centre-start figure-eight route, but the 23.22-degree RMS body-axis tangent error means the torso-tangent requirement remains unresolved."
+}
