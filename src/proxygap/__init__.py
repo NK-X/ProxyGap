@@ -50,6 +50,13 @@ from .planar_transition import (
     transfer_pretrained_policy,
     wrapped_angle_difference,
 )
+from .curved_gait import (
+    CURVE_PROFILES,
+    CurvedGaitCommandWrapper,
+    make_curved_gait_env,
+    pseudo_huber_penalty,
+    transfer_planar_policy_to_curved_gait,
+)
 from .selection import (
     CandidateSummary,
     SelectionResult,
@@ -105,4 +112,9 @@ __all__ = [
     "quaternion_yaw_angle",
     "transfer_pretrained_policy",
     "wrapped_angle_difference",
+    "CURVE_PROFILES",
+    "CurvedGaitCommandWrapper",
+    "make_curved_gait_env",
+    "pseudo_huber_penalty",
+    "transfer_planar_policy_to_curved_gait",
 ]

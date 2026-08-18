@@ -30,6 +30,12 @@ The later pre-pitch planar translation transition is recorded in
 with a path-sanitised manifest in
 [`results/development_20260818/planar_translation_transition/version_manifest.json`](results/development_20260818/planar_translation_transition/version_manifest.json).
 
+The subsequent local curved-gait development (translation plus torso yaw,
+without route-position learning) is recorded in
+[`docs/CURVED_GAIT_TRAINING_20260818.md`](docs/CURVED_GAIT_TRAINING_20260818.md),
+with a lightweight result record in
+[`results/development_20260818/curved_gait/selection_summary.json`](results/development_20260818/curved_gait/selection_summary.json).
+
 ## Current research direction
 
 V2 no longer treats a one-directional `ctrl_cost_weight` sweep as the main
