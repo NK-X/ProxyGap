@@ -1,0 +1,143 @@
+{
+  "config": {
+    "fourier_amplitude_fraction": 0.25,
+    "friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "global_slope_x": 0.0,
+    "global_slope_y": 0.0,
+    "goal_safe_region": {
+      "blend_width_m": 1.1,
+      "centre_x_m": 5.0,
+      "centre_y_m": 0.0,
+      "maximum_absolute_slope": 0.04,
+      "radius_m": 0.9
+    },
+    "heightfield_base_depth_m": 0.1,
+    "hill_amplitude_fraction": 0.55,
+    "hill_count": 1,
+    "maximum_absolute_slope": 0.22,
+    "maximum_curvature": 0.3,
+    "maximum_height_m": 0.45,
+    "minimum_feature_width_m": 1.0,
+    "ncol": 513,
+    "nrow": 513,
+    "pit_amplitude_fraction": 0.45,
+    "pit_count": 0,
+    "random_fourier_terms": 0,
+    "smoothing_strength": 0.2,
+    "split": "development",
+    "start_safe_region": {
+      "blend_width_m": 1.2,
+      "centre_x_m": 0.0,
+      "centre_y_m": 0.0,
+      "maximum_absolute_slope": 0.035,
+      "radius_m": 1.0
+    },
+    "terrain_length_m": 16.0,
+    "terrain_seed": 102,
+    "terrain_width_m": 16.0
+  },
+  "config_sha256": "b71414acfde9a36c86cdc0495980eef94e5214daba8404d3229ada9cb631bf9d",
+  "generated_at_utc": "2026-08-18T11:35:53.414428+00:00",
+  "generator_version": "1.1.0",
+  "height_array": {
+    "canonical_array_sha256": "d92a48e5f7efb945d49962687ed934b9d1ef7b3198152885c57faf7c4aeb744e",
+    "dtype": "float64",
+    "file_sha256": "cb1e9f551a1c3184ca279d1578e267def543076f05c04585df8e769ba684ab0e",
+    "path": "single_hill_height_m.npy",
+    "shape": [
+      513,
+      513
+    ]
+  },
+  "metadata": {
+    "applied_constraint_scale": 1.0,
+    "base_bounds": {
+      "curvature": 0.0,
+      "height": 0.0,
+      "slope": 0.0
+    },
+    "components": [
+      {
+        "centre_x_m": -4.9374382340972085,
+        "centre_y_m": -4.5139662252168495,
+        "feature_width_m": 1.4285615417770292,
+        "index": 0,
+        "kind": "gaussian_hill",
+        "orientation_rad": 1.917598207661287,
+        "requested_amplitude_m": 0.19057122824631545,
+        "sigma_x_m": 1.4285615417770292,
+        "sigma_y_m": 1.5040123041915674
+      }
+    ],
+    "config_sha256": "b71414acfde9a36c86cdc0495980eef94e5214daba8404d3229ada9cb631bf9d",
+    "constraint_scale": 1.0,
+    "constraint_scale_scope": "stochastic residual only; the global-slope base is preserved",
+    "constructed_feature_widths_m": [
+      1.4285615417770292,
+      1.2,
+      1.1
+    ],
+    "coordinate_convention": "height_m[row_y, column_x], with x and y increasing by index",
+    "float32_quantisation_attempts": 1,
+    "friction_randomised": false,
+    "generator_version": "1.1.0",
+    "grid_spacing_m": {
+      "dx": 0.03125,
+      "dy": 0.03125
+    },
+    "height_sha256": "d92a48e5f7efb945d49962687ed934b9d1ef7b3198152885c57faf7c4aeb744e",
+    "metrics": {
+      "maximum_absolute_height_m": 0.18706741772351926,
+      "maximum_absolute_slope": 0.07865101385179775,
+      "maximum_curvature": 0.1615393715257767,
+      "maximum_triangle_slope": 0.079022824419796
+    },
+    "metrics_before_constraint_scale": {
+      "maximum_absolute_height_m": 0.18706741772335203,
+      "maximum_absolute_slope": 0.07865100784255553,
+      "maximum_curvature": 0.16154084948243363,
+      "maximum_triangle_slope": 0.0790231177794854
+    },
+    "minimum_constructed_feature_width_m": 1.1,
+    "minimum_feature_width_definition": "conservative construction scale: Gaussian sigma, Fourier quarter-wavelength, or safe-region transition width",
+    "native_constraint_scale": 1.0,
+    "normalisation": {
+      "formula": "normalised=(height_m-offset_m)/scale_m",
+      "mujoco_storage_dtype": "float32",
+      "mujoco_vertical_scale_m": 0.1870770634666744,
+      "physical_array_decoded_from_mujoco_values": true,
+      "physical_offset_m": -9.64574315514287e-06,
+      "physical_scale_m": 0.1870770634666744
+    },
+    "normalised_sha256": "1fe83c085c83abe844a31a69cfdea6c1a7a08bf9a111dd18366b43d923c9063f",
+    "residual_bounds": {
+      "curvature": 0.16154084948243363,
+      "height": 0.18706741772335203,
+      "slope": 0.0790231177794854
+    },
+    "safe_region_blend": {
+      "grid_guard_m": 0.25,
+      "method": "radial quintic smootherstep (C2 at both transition edges)"
+    },
+    "seed_namespace": "development",
+    "stochastic_residual_scale_cap": null,
+    "terrain_seed": 102
+  },
+  "normalised_array": {
+    "canonical_array_sha256": "1fe83c085c83abe844a31a69cfdea6c1a7a08bf9a111dd18366b43d923c9063f",
+    "dtype": "float64",
+    "file_sha256": "2341b3a237f9e1fcf297b5ffc4fc541341229056e1c2513903fe96f2f1502367",
+    "path": "single_hill_normalised.npy",
+    "shape": [
+      513,
+      513
+    ]
+  },
+  "schema_version": 1,
+  "split": "development",
+  "terrain_seed": 102
+}

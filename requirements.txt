@@ -1,0 +1,6 @@
+# Versions verified in D:\ProxyGap\envs\proxygap-ant on 18 August 2026.
+numpy==2.4.6
+gymnasium[mujoco]==1.3.0
+mujoco==3.11.0
+matplotlib==3.11.1
+pytest==9.1.1

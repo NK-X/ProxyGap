@@ -1,0 +1,271 @@
+{
+  "config": {
+    "fourier_amplitude_fraction": 0.25,
+    "friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "global_slope_x": 0.015,
+    "global_slope_y": 0.01,
+    "goal_safe_region": {
+      "blend_width_m": 1.1,
+      "centre_x_m": 5.0,
+      "centre_y_m": 0.0,
+      "maximum_absolute_slope": 0.04,
+      "radius_m": 0.9
+    },
+    "heightfield_base_depth_m": 0.1,
+    "hill_amplitude_fraction": 0.55,
+    "hill_count": 3,
+    "maximum_absolute_slope": 0.22,
+    "maximum_curvature": 0.3,
+    "maximum_height_m": 0.45,
+    "minimum_feature_width_m": 1.0,
+    "ncol": 513,
+    "nrow": 513,
+    "pit_amplitude_fraction": 0.45,
+    "pit_count": 2,
+    "random_fourier_terms": 8,
+    "smoothing_strength": 0.2,
+    "split": "development",
+    "start_safe_region": {
+      "blend_width_m": 1.2,
+      "centre_x_m": 0.0,
+      "centre_y_m": 0.0,
+      "maximum_absolute_slope": 0.035,
+      "radius_m": 1.0
+    },
+    "terrain_length_m": 16.0,
+    "terrain_seed": 103,
+    "terrain_width_m": 16.0
+  },
+  "config_sha256": "3530be86e33fd4c3aea009889e5b49190733e0523e2014bfaa1d8cf08f91c08b",
+  "generated_at_utc": "2026-08-18T11:35:54.627458+00:00",
+  "generator_version": "1.1.0",
+  "height_array": {
+    "canonical_array_sha256": "c9f553e213827da096f3a22ad173b42f82520a8c45be14c537d0b2f5f441e423",
+    "dtype": "float64",
+    "file_sha256": "ed3178be6a2126ad1f23378406ceee82146462fd9bb595d7d64aa3adb9012d32",
+    "path": "random_mixed_height_m.npy",
+    "shape": [
+      513,
+      513
+    ]
+  },
+  "metadata": {
+    "applied_constraint_scale": 0.29241053778819476,
+    "base_bounds": {
+      "curvature": 0.15481305521069644,
+      "height": 0.2,
+      "slope": 0.06410658079756905
+    },
+    "components": [
+      {
+        "centre_x_m": -0.14578790561245736,
+        "centre_y_m": 0.2815868546175544,
+        "feature_width_m": 1.1587731254030647,
+        "index": 0,
+        "kind": "gaussian_hill",
+        "orientation_rad": 2.5893896679741197,
+        "requested_amplitude_m": 0.07864613249357529,
+        "sigma_x_m": 1.4027937835487103,
+        "sigma_y_m": 1.1587731254030647
+      },
+      {
+        "centre_x_m": -4.337747223345495,
+        "centre_y_m": -4.979279107363275,
+        "feature_width_m": 1.1898871992392144,
+        "index": 1,
+        "kind": "gaussian_hill",
+        "orientation_rad": 2.640562636887804,
+        "requested_amplitude_m": 0.08743204520431624,
+        "sigma_x_m": 1.1898871992392144,
+        "sigma_y_m": 1.4745294050713804
+      },
+      {
+        "centre_x_m": -3.9326549247014486,
+        "centre_y_m": -1.9331925951334896,
+        "feature_width_m": 1.5871592501038123,
+        "index": 2,
+        "kind": "gaussian_hill",
+        "orientation_rad": 0.7111343364949841,
+        "requested_amplitude_m": 0.09876451945296692,
+        "sigma_x_m": 1.5871592501038123,
+        "sigma_y_m": 1.852546004828394
+      },
+      {
+        "centre_x_m": -0.7622507901154627,
+        "centre_y_m": -0.3847091693974001,
+        "feature_width_m": 1.152688738044136,
+        "index": 0,
+        "kind": "gaussian_pit",
+        "orientation_rad": 0.20090030658356456,
+        "requested_amplitude_m": -0.08058497373219004,
+        "sigma_x_m": 1.4945930244319119,
+        "sigma_y_m": 1.152688738044136
+      },
+      {
+        "centre_x_m": 3.6413809590818387,
+        "centre_y_m": 0.6810107091182154,
+        "feature_width_m": 1.0404914818215931,
+        "index": 1,
+        "kind": "gaussian_pit",
+        "orientation_rad": 0.942343027468009,
+        "requested_amplitude_m": -0.06481649990755459,
+        "sigma_x_m": 1.0404914818215931,
+        "sigma_y_m": 1.2257198978111736
+      },
+      {
+        "feature_width_m": 1.788854381999832,
+        "index": 0,
+        "kind": "fourier",
+        "mode_x": 1,
+        "mode_y": -2,
+        "phase_rad": 0.46538778794636126,
+        "requested_amplitude_m": -0.020814651443810502
+      },
+      {
+        "feature_width_m": 2.8284271247461903,
+        "index": 1,
+        "kind": "fourier",
+        "mode_x": 1,
+        "mode_y": 1,
+        "phase_rad": 4.832572501825968,
+        "requested_amplitude_m": 0.022197619638700213
+      },
+      {
+        "feature_width_m": 1.109400392450458,
+        "index": 2,
+        "kind": "fourier",
+        "mode_x": 2,
+        "mode_y": -3,
+        "phase_rad": 2.4787463024731524,
+        "requested_amplitude_m": -0.03649323089986288
+      },
+      {
+        "feature_width_m": 4.0,
+        "index": 3,
+        "kind": "fourier",
+        "mode_x": 1,
+        "mode_y": 0,
+        "phase_rad": 1.5418647336450895,
+        "requested_amplitude_m": 0.009024586534191109
+      },
+      {
+        "feature_width_m": 4.0,
+        "index": 4,
+        "kind": "fourier",
+        "mode_x": 0,
+        "mode_y": 1,
+        "phase_rad": 0.5932805158665139,
+        "requested_amplitude_m": 0.031435034495706365
+      },
+      {
+        "feature_width_m": 1.788854381999832,
+        "index": 5,
+        "kind": "fourier",
+        "mode_x": 2,
+        "mode_y": 1,
+        "phase_rad": 2.395721425933957,
+        "requested_amplitude_m": -0.025935694175232078
+      },
+      {
+        "feature_width_m": 1.2649110640673518,
+        "index": 6,
+        "kind": "fourier",
+        "mode_x": 1,
+        "mode_y": -3,
+        "phase_rad": 6.267600489053519,
+        "requested_amplitude_m": -0.033385366168042635
+      },
+      {
+        "feature_width_m": 1.3333333333333333,
+        "index": 7,
+        "kind": "fourier",
+        "mode_x": 3,
+        "mode_y": 0,
+        "phase_rad": 3.7050838639712715,
+        "requested_amplitude_m": -0.008594059839528061
+      }
+    ],
+    "config_sha256": "3530be86e33fd4c3aea009889e5b49190733e0523e2014bfaa1d8cf08f91c08b",
+    "constraint_scale": 0.29241053778819476,
+    "constraint_scale_scope": "stochastic residual only; the global-slope base is preserved",
+    "constructed_feature_widths_m": [
+      1.1587731254030647,
+      1.1898871992392144,
+      1.5871592501038123,
+      1.152688738044136,
+      1.0404914818215931,
+      1.788854381999832,
+      2.8284271247461903,
+      1.109400392450458,
+      4.0,
+      4.0,
+      1.788854381999832,
+      1.2649110640673518,
+      1.3333333333333333,
+      1.2,
+      1.1
+    ],
+    "coordinate_convention": "height_m[row_y, column_x], with x and y increasing by index",
+    "float32_quantisation_attempts": 1,
+    "friction_randomised": false,
+    "generator_version": "1.1.0",
+    "grid_spacing_m": {
+      "dx": 0.03125,
+      "dy": 0.03125
+    },
+    "height_sha256": "c9f553e213827da096f3a22ad173b42f82520a8c45be14c537d0b2f5f441e423",
+    "metrics": {
+      "maximum_absolute_height_m": 0.20762409308949029,
+      "maximum_absolute_slope": 0.10560760202378325,
+      "maximum_curvature": 0.24304307207407524,
+      "maximum_triangle_slope": 0.10608421701204292
+    },
+    "metrics_before_constraint_scale": {
+      "maximum_absolute_height_m": 0.27333463514609857,
+      "maximum_absolute_slope": 0.23492353918012673,
+      "maximum_curvature": 0.5669592434731787,
+      "maximum_triangle_slope": 0.23562535071713778
+    },
+    "minimum_constructed_feature_width_m": 1.0404914818215931,
+    "minimum_feature_width_definition": "conservative construction scale: Gaussian sigma, Fourier quarter-wavelength, or safe-region transition width",
+    "native_constraint_scale": 0.29241053778819476,
+    "normalisation": {
+      "formula": "normalised=(height_m-offset_m)/scale_m",
+      "mujoco_storage_dtype": "float32",
+      "mujoco_vertical_scale_m": 0.40527406027154855,
+      "physical_array_decoded_from_mujoco_values": true,
+      "physical_offset_m": -0.19764996718205827,
+      "physical_scale_m": 0.40527406027154855
+    },
+    "normalised_sha256": "46f0e22429e4b712e7578da11e6909bed6e49a6f656bc0f0ab9175db518d2f9e",
+    "residual_bounds": {
+      "curvature": 0.49651748492889985,
+      "height": 0.21780225652425114,
+      "slope": 0.19079014836365016
+    },
+    "safe_region_blend": {
+      "grid_guard_m": 0.25,
+      "method": "radial quintic smootherstep (C2 at both transition edges)"
+    },
+    "seed_namespace": "development",
+    "stochastic_residual_scale_cap": null,
+    "terrain_seed": 103
+  },
+  "normalised_array": {
+    "canonical_array_sha256": "46f0e22429e4b712e7578da11e6909bed6e49a6f656bc0f0ab9175db518d2f9e",
+    "dtype": "float64",
+    "file_sha256": "ff52e760cda3cad441de6950d5a71c04190c0990ef00eaf6831ede4aa064135b",
+    "path": "random_mixed_normalised.npy",
+    "shape": [
+      513,
+      513
+    ]
+  },
+  "schema_version": 1,
+  "split": "development",
+  "terrain_seed": 103
+}

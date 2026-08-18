@@ -1,0 +1,53 @@
+{
+  "checks": {
+    "all_finite": true,
+    "curvature_bound": true,
+    "friction_not_randomised": true,
+    "goal_region_low_slope": true,
+    "gradient_slope_bound": true,
+    "height_bound": true,
+    "minimum_feature_width_constructive": true,
+    "minimum_feature_width_resolved": true,
+    "no_discrete_height_jump": true,
+    "normalised_in_unit_interval": true,
+    "physical_recovery": true,
+    "sampled_goal_safe": true,
+    "shape": true,
+    "start_footprint_safe": true,
+    "start_region_low_slope": true,
+    "triangle_slope_bound": true
+  },
+  "measurements": {
+    "goal_safe_region": {
+      "grid_points": 2601,
+      "limit": 0.04,
+      "maximum_absolute_slope": 0.0,
+      "passed": true
+    },
+    "grid_spacing_m": {
+      "dx": 0.03125,
+      "dy": 0.03125
+    },
+    "maximum_absolute_height_m": 0.24,
+    "maximum_absolute_principal_curvature_m_inverse": 0.255311367074465,
+    "maximum_gradient_slope": 0.10604003906250004,
+    "maximum_hessian_spectral_norm_m_inverse": 0.2564868164062517,
+    "maximum_neighbour_height_jump_m": 0.0033147525787353693,
+    "maximum_triangle_slope": 0.10607483065428201,
+    "minimum_constructed_feature_width_m": 1.1,
+    "minimum_feature_sampling_intervals": 35.2,
+    "physical_recovery_max_abs_error_m": 0.0,
+    "sampled_goal_m": [
+      5.017977622559482,
+      0.006605134180584599
+    ],
+    "sampled_goal_slope": 0.0,
+    "start_safe_region": {
+      "grid_points": 3209,
+      "limit": 0.035,
+      "maximum_absolute_slope": 0.0,
+      "passed": true
+    }
+  },
+  "passed": true
+}

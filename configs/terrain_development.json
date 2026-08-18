@@ -1,0 +1,41 @@
+{
+  "terrain_length_m": 16.0,
+  "terrain_width_m": 16.0,
+  "nrow": 513,
+  "ncol": 513,
+  "maximum_height_m": 0.45,
+  "maximum_absolute_slope": 0.22,
+  "maximum_curvature": 0.3,
+  "hill_count": 3,
+  "pit_count": 2,
+  "minimum_feature_width_m": 1.0,
+  "global_slope_x": 0.015,
+  "global_slope_y": 0.01,
+  "smoothing_strength": 0.2,
+  "friction": [
+    1.0,
+    0.5,
+    0.5
+  ],
+  "terrain_seed": 42,
+  "split": "development",
+  "start_safe_region": {
+    "centre_x_m": 0.0,
+    "centre_y_m": 0.0,
+    "radius_m": 1.0,
+    "blend_width_m": 1.2,
+    "maximum_absolute_slope": 0.035
+  },
+  "goal_safe_region": {
+    "centre_x_m": 5.0,
+    "centre_y_m": 0.0,
+    "radius_m": 0.9,
+    "blend_width_m": 1.1,
+    "maximum_absolute_slope": 0.04
+  },
+  "random_fourier_terms": 8,
+  "hill_amplitude_fraction": 0.55,
+  "pit_amplitude_fraction": 0.45,
+  "fourier_amplitude_fraction": 0.25,
+  "heightfield_base_depth_m": 0.1
+}

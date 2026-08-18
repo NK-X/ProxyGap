@@ -1,0 +1,441 @@
+{
+  "common_stochastic_residual_scale_cap": 0.22891415617265123,
+  "constraint_scale_calibration": {
+    "cap_attempts": [
+      {
+        "applied_scales": {
+          "257": 0.22891415617265123,
+          "513": 0.22891415617265123,
+          "1025": 0.22891415617265123
+        },
+        "attempt": 1,
+        "scale_cap": 0.22891415617265123
+      }
+    ],
+    "final_common_scale_cap": 0.22891415617265123,
+    "initial_common_scale_cap": 0.22891415617265123,
+    "uncapped_applied_scales": {
+      "257": 0.23950193921080534,
+      "513": 0.23098854107867095,
+      "1025": 0.22891415617265123
+    },
+    "uncapped_native_scales": {
+      "257": 0.23950193921080534,
+      "513": 0.23098854107867095,
+      "1025": 0.22891415617265123
+    }
+  },
+  "constraint_scales_identical": true,
+  "convergence_checks": {
+    "common_constraint_scale_applied": true,
+    "gradient_rmse_nonincreasing": true,
+    "height_rmse_nonincreasing": true,
+    "note": "384 deterministic off-grid probes after applying one calibrated common stochastic-residual scale; this is a development approximation sample, not a continuous-domain proof",
+    "passed": true
+  },
+  "default_flat_plane_contact_baseline": {
+    "initial_contact_count": 0,
+    "initial_mujoco_warning_counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "maximum_contact_count_during_smoke": 2,
+    "minimum_contact_distance_during_smoke_m": 0.006104711186922088,
+    "reset_seed": 202608018,
+    "steps": 10
+  },
+  "environment": {
+    "gymnasium": "1.3.0",
+    "mujoco": "3.11.0",
+    "numpy": "2.4.6",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+    "python": "3.11.15 | packaged by conda-forge | (main, Jun 11 2026, 03:27:10) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "D:\\ProxyGap\\envs\\proxygap-ant\\python.exe"
+  },
+  "load_schedule": [
+    [
+      257,
+      1
+    ],
+    [
+      1025,
+      2
+    ],
+    [
+      513,
+      0
+    ],
+    [
+      1025,
+      1
+    ],
+    [
+      257,
+      0
+    ],
+    [
+      513,
+      2
+    ],
+    [
+      1025,
+      0
+    ],
+    [
+      513,
+      1
+    ],
+    [
+      257,
+      2
+    ]
+  ],
+  "off_grid_probe_count": 384,
+  "recipe_components_identical": true,
+  "reference_resolution": 1025,
+  "rows": [
+    {
+      "ant_smoke_passed": true,
+      "applied_constraint_scale": 0.22891415617265123,
+      "contact_anomaly_detected": true,
+      "contact_assessment": "No initial penetration, termination, non-finite state or MuJoCo warning; however, the heightfield produced more simultaneous triangle contacts than the default plane and therefore requires a dedicated contact-dynamics check.",
+      "contact_multiplicity_exceeds_flat_plane_baseline": true,
+      "dx_m": 0.0625,
+      "dy_m": 0.0625,
+      "faceting_diagnostic": {
+        "heuristic_threshold_deg": 5.0,
+        "maximum_adjacent_normal_angle_deg": 0.6513654404441357,
+        "obvious_local_faceting_heuristic": false,
+        "p99_adjacent_normal_angle_deg": 0.29071543882059486
+      },
+      "generation_time_s": 0.059143199992831796,
+      "gradient_vector_error_vs_1025": {
+        "maximum_absolute": 0.00306710785260555,
+        "p95_absolute": 0.001142897537109282,
+        "rmse": 0.0004896277423929737
+      },
+      "height_error_vs_1025": {
+        "maximum_absolute": 8.353371872665827e-05,
+        "p95_absolute": 2.0346871567275526e-05,
+        "rmse": 1.0627378261308239e-05
+      },
+      "height_sha256": "62ca807b47b3115e524d42cab1c4e446408c3e01fa6c12d4335c1c17bcd5139a",
+      "initial_contact_count": 0,
+      "initial_minimum_contact_distance_m": null,
+      "initial_penetration_or_engine_warning_detected": false,
+      "maximum_contact_count_during_smoke": 11,
+      "minimum_contact_distance_during_smoke_m": -0.01924333090844696,
+      "mujoco_load_time": {
+        "iqr_s": 0.0020509500172920525,
+        "maximum_s": 0.009184200025629252,
+        "median_s": 0.005339900031685829,
+        "minimum_s": 0.005082299991045147,
+        "n": 3,
+        "values_s": [
+          0.009184200025629252,
+          0.005082299991045147,
+          0.005339900031685829
+        ]
+      },
+      "mujoco_step_time": {
+        "iqr_s": 9.482000023126603e-06,
+        "maximum_s": 6.131400004960597e-05,
+        "median_s": 5.901800002902746e-05,
+        "minimum_s": 4.6433999668806793e-05,
+        "n": 5,
+        "values_s": [
+          5.067199934273958e-05,
+          4.6433999668806793e-05,
+          6.131400004960597e-05,
+          6.015399936586618e-05,
+          5.901800002902746e-05
+        ]
+      },
+      "native_constraint_scale": 0.23950193921080534,
+      "ncol": 257,
+      "nrow": 257,
+      "resolution": 257,
+      "stochastic_residual_scale_cap": 0.22891415617265123,
+      "timed_step_operation": "mujoco.mj_step after 10 warm-up steps per fresh block",
+      "timing_mujoco_warning_counts": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "validation_passed": true
+    },
+    {
+      "ant_smoke_passed": true,
+      "applied_constraint_scale": 0.22891415617265123,
+      "contact_anomaly_detected": true,
+      "contact_assessment": "No initial penetration, termination, non-finite state or MuJoCo warning; however, the heightfield produced more simultaneous triangle contacts than the default plane and therefore requires a dedicated contact-dynamics check.",
+      "contact_multiplicity_exceeds_flat_plane_baseline": true,
+      "dx_m": 0.03125,
+      "dy_m": 0.03125,
+      "faceting_diagnostic": {
+        "heuristic_threshold_deg": 5.0,
+        "maximum_adjacent_normal_angle_deg": 0.33196283003511096,
+        "obvious_local_faceting_heuristic": false,
+        "p99_adjacent_normal_angle_deg": 0.14778028553970746
+      },
+      "generation_time_s": 0.36547990003600717,
+      "gradient_vector_error_vs_1025": {
+        "maximum_absolute": 0.0017405004792711834,
+        "p95_absolute": 0.0005613326819264436,
+        "rmse": 0.0002482692403867273
+      },
+      "height_error_vs_1025": {
+        "maximum_absolute": 1.9521084683761514e-05,
+        "p95_absolute": 3.240882565026624e-06,
+        "rmse": 2.113141487908318e-06
+      },
+      "height_sha256": "cc6964931539e55039cde31895a448bd58e223af93a8d5f1a8927f505de36c67",
+      "initial_contact_count": 0,
+      "initial_minimum_contact_distance_m": null,
+      "initial_penetration_or_engine_warning_detected": false,
+      "maximum_contact_count_during_smoke": 33,
+      "minimum_contact_distance_during_smoke_m": -0.019068534616535182,
+      "mujoco_load_time": {
+        "iqr_s": 0.000268400035565719,
+        "maximum_s": 0.008322700043208897,
+        "median_s": 0.008091400028206408,
+        "minimum_s": 0.007785899972077459,
+        "n": 3,
+        "values_s": [
+          0.008322700043208897,
+          0.008091400028206408,
+          0.007785899972077459
+        ]
+      },
+      "mujoco_step_time": {
+        "iqr_s": 4.479999188333766e-06,
+        "maximum_s": 0.0001346319995354861,
+        "median_s": 0.0001298480003606528,
+        "minimum_s": 0.00010726799955591559,
+        "n": 5,
+        "values_s": [
+          0.0001304679992608726,
+          0.00012598800007253885,
+          0.0001298480003606528,
+          0.0001346319995354861,
+          0.00010726799955591559
+        ]
+      },
+      "native_constraint_scale": 0.23098854107867095,
+      "ncol": 513,
+      "nrow": 513,
+      "resolution": 513,
+      "stochastic_residual_scale_cap": 0.22891415617265123,
+      "timed_step_operation": "mujoco.mj_step after 10 warm-up steps per fresh block",
+      "timing_mujoco_warning_counts": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "validation_passed": true
+    },
+    {
+      "ant_smoke_passed": true,
+      "applied_constraint_scale": 0.22891415617265123,
+      "contact_anomaly_detected": true,
+      "contact_assessment": "No initial penetration, termination, non-finite state or MuJoCo warning; however, the heightfield produced more simultaneous triangle contacts than the default plane and therefore requires a dedicated contact-dynamics check.",
+      "contact_multiplicity_exceeds_flat_plane_baseline": true,
+      "dx_m": 0.015625,
+      "dy_m": 0.015625,
+      "faceting_diagnostic": {
+        "heuristic_threshold_deg": 5.0,
+        "maximum_adjacent_normal_angle_deg": 0.16701990767341768,
+        "obvious_local_faceting_heuristic": false,
+        "p99_adjacent_normal_angle_deg": 0.07413291146982617
+      },
+      "generation_time_s": 1.4714023999986239,
+      "gradient_vector_error_vs_1025": {
+        "maximum_absolute": 0.0,
+        "p95_absolute": 0.0,
+        "rmse": 0.0
+      },
+      "height_error_vs_1025": {
+        "maximum_absolute": 0.0,
+        "p95_absolute": 0.0,
+        "rmse": 0.0
+      },
+      "height_sha256": "47864b9fc4a962b3918fbe57b113d0d0ec0358b3509ff2c95dafadc0458e98cd",
+      "initial_contact_count": 0,
+      "initial_minimum_contact_distance_m": null,
+      "initial_penetration_or_engine_warning_detected": false,
+      "maximum_contact_count_during_smoke": 50,
+      "minimum_contact_distance_during_smoke_m": -0.0198346558884802,
+      "mujoco_load_time": {
+        "iqr_s": 0.0012210000131744891,
+        "maximum_s": 0.017123700003139675,
+        "median_s": 0.0159286999842152,
+        "minimum_s": 0.014681699976790696,
+        "n": 3,
+        "values_s": [
+          0.017123700003139675,
+          0.014681699976790696,
+          0.0159286999842152
+        ]
+      },
+      "mujoco_step_time": {
+        "iqr_s": 7.913999725133152e-06,
+        "maximum_s": 0.0002825959993060678,
+        "median_s": 0.0002687760000117123,
+        "minimum_s": 0.0002586419996805489,
+        "n": 5,
+        "values_s": [
+          0.0002586419996805489,
+          0.0002825959993060678,
+          0.0002687760000117123,
+          0.00026985400007106363,
+          0.0002619400003459305
+        ]
+      },
+      "native_constraint_scale": 0.22891415617265123,
+      "ncol": 1025,
+      "nrow": 1025,
+      "resolution": 1025,
+      "stochastic_residual_scale_cap": 0.22891415617265123,
+      "timed_step_operation": "mujoco.mj_step after 10 warm-up steps per fresh block",
+      "timing_mujoco_warning_counts": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "validation_passed": true
+    }
+  ],
+  "scope": "development-only resolution and MuJoCo loading smoke check; no locomotion claim"
+}
