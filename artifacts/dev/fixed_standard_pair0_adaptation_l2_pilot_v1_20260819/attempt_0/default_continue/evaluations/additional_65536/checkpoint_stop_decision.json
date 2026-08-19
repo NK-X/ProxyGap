@@ -1,0 +1,17 @@
+{
+  "condition_id": "DEFAULT_CONTINUE",
+  "checkpoint_additional_timesteps": 65536,
+  "catastrophe_checks": {
+    "nonfinite": false,
+    "fall": false,
+    "torso_ground": false,
+    "sustained_nonfoot_contact": false,
+    "corrected_sustained_slip": false,
+    "corrected_slip_event_rate": false,
+    "pair0_full_interval_zero_foot": false
+  },
+  "pair0_checkpoint_32768_rule": null,
+  "qualified_transient_warning": false,
+  "qualified_transient_is_warning_only": true,
+  "early_stop_triggered": false
+}

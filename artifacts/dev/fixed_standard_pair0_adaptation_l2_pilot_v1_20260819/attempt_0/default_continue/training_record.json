@@ -1,0 +1,1744 @@
+{
+  "condition_id": "DEFAULT_CONTINUE",
+  "same_source_checkpoint": "artifacts/dev/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819/seed_62802/models/checkpoint_2596864.zip",
+  "same_training_seed": 62805,
+  "worker_contract_audits": [
+    {
+      "condition_id": "DEFAULT_CONTINUE",
+      "scene_name": "flat",
+      "worker_seed": 62805,
+      "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_adaptation_l2_pilot_v1_20260819\\attempt_0\\condition_assets\\scenes\\standard_flat\\default_margin_001_control\\ant_standard_scene.xml",
+      "xml_sha256": "9ab941e158372fb328debf4aff3d57649981434e070f879d778301919adb1559",
+      "npair": 0,
+      "nq": 15,
+      "nv": 14,
+      "nu": 8,
+      "physics_timestep_seconds": 0.01,
+      "geom_contracts": [
+        {
+          "name": "floor",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "torso_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_1_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "left_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "left_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_2_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "right_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "right_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_3_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "back_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "third_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_4_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "rightback_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "fourth_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        }
+      ],
+      "explicit_pairs": [],
+      "passed": true
+    },
+    {
+      "condition_id": "DEFAULT_CONTINUE",
+      "scene_name": "uphill_8deg",
+      "worker_seed": 63805,
+      "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_adaptation_l2_pilot_v1_20260819\\attempt_0\\condition_assets\\scenes\\standard_uphill_8deg\\default_margin_001_control\\ant_standard_scene.xml",
+      "xml_sha256": "fd62a15e77157e3ff0393e88440010373313f9c1a6176b68c90a924e90643436",
+      "npair": 0,
+      "nq": 15,
+      "nv": 14,
+      "nu": 8,
+      "physics_timestep_seconds": 0.01,
+      "geom_contracts": [
+        {
+          "name": "floor",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "torso_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_1_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "left_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "left_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_2_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "right_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "right_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_3_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "back_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "third_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_4_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "rightback_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "fourth_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        }
+      ],
+      "explicit_pairs": [],
+      "passed": true
+    },
+    {
+      "condition_id": "DEFAULT_CONTINUE",
+      "scene_name": "downhill_8deg",
+      "worker_seed": 64805,
+      "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_adaptation_l2_pilot_v1_20260819\\attempt_0\\condition_assets\\scenes\\standard_downhill_8deg\\default_margin_001_control\\ant_standard_scene.xml",
+      "xml_sha256": "87e69b47529337a430ae6b7a78e4f7b100ab07cd5e072c1a1d0fbfb5c02ae318",
+      "npair": 0,
+      "nq": 15,
+      "nv": 14,
+      "nu": 8,
+      "physics_timestep_seconds": 0.01,
+      "geom_contracts": [
+        {
+          "name": "floor",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "torso_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_1_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "left_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "left_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_2_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "right_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "right_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_3_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "back_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "third_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_4_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "rightback_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "fourth_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        }
+      ],
+      "explicit_pairs": [],
+      "passed": true
+    },
+    {
+      "condition_id": "DEFAULT_CONTINUE",
+      "scene_name": "bowl_exit",
+      "worker_seed": 65805,
+      "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_adaptation_l2_pilot_v1_20260819\\attempt_0\\condition_assets\\scenes\\standard_bowl_exit\\default_margin_001_control\\ant_standard_scene.xml",
+      "xml_sha256": "3b80e3e9b046455acebc147588406468ec2eb369115ab090b1e2e9437bda3cd0",
+      "npair": 0,
+      "nq": 15,
+      "nv": 14,
+      "nu": 8,
+      "physics_timestep_seconds": 0.01,
+      "geom_contracts": [
+        {
+          "name": "floor",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "torso_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_1_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "left_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "left_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_2_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "right_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "right_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_3_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "back_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "third_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "aux_4_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "rightback_leg_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        },
+        {
+          "name": "fourth_ankle_geom",
+          "margin": 0.01,
+          "friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ]
+        }
+      ],
+      "explicit_pairs": [],
+      "passed": true
+    }
+  ],
+  "checkpoint_records": [
+    {
+      "additional_timesteps": 16384,
+      "absolute_timesteps": 2613248,
+      "checkpoint": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_adaptation_l2_pilot_v1_20260819\\attempt_0\\default_continue\\models\\checkpoint_2613248.zip",
+      "checkpoint_sha256": "69194258f784b363e482460ddc6a5fcab5d64ec8913732243e6d5968784ab3d4",
+      "aggregate": {
+        "episode_count": 12,
+        "nonfinite_episode_count": 0,
+        "fall_count": 0,
+        "success_count": 0,
+        "torso_ground_episode_count": 0,
+        "sustained_nonfoot_contact_episode_count": 0,
+        "mean_best_progress_m": 8.037985685588959,
+        "pooled_full_interval_zero_foot_fraction": 0.23416666666666666,
+        "mean_support_count": 0.35455555555555557,
+        "qualified_slip_per_supported_fraction": 0.0,
+        "corrected_sustained_slip_per_supported_fraction": 0.0,
+        "corrected_slip_event_count": 0,
+        "supported_physics_substep_count": 11128,
+        "total_control_steps": 7200,
+        "total_physics_substeps": 36000,
+        "corrected_slip_events_per_100_supported_substeps": 0.0,
+        "per_scene": {
+          "flat": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 6.443660119014376,
+            "pooled_full_interval_zero_foot_fraction": 0.31277777777777777,
+            "mean_support_count": 0.2581111111111111,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 2034,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          },
+          "uphill_8deg": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 7.946047237897237,
+            "pooled_full_interval_zero_foot_fraction": 0.2388888888888889,
+            "mean_support_count": 0.371,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 2913,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          },
+          "downhill_8deg": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 10.700904894119967,
+            "pooled_full_interval_zero_foot_fraction": 0.14888888888888888,
+            "mean_support_count": 0.43444444444444447,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 3344,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          },
+          "bowl_exit": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 7.061330491324249,
+            "pooled_full_interval_zero_foot_fraction": 0.2361111111111111,
+            "mean_support_count": 0.3546666666666667,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 2837,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          }
+        },
+        "condition_id": "DEFAULT_CONTINUE",
+        "checkpoint_additional_timesteps": 16384,
+        "evaluation_seeds": [
+          82801,
+          82802,
+          82803
+        ],
+        "max_episode_steps": 600
+      },
+      "stop_decision": {
+        "condition_id": "DEFAULT_CONTINUE",
+        "checkpoint_additional_timesteps": 16384,
+        "catastrophe_checks": {
+          "nonfinite": false,
+          "fall": false,
+          "torso_ground": false,
+          "sustained_nonfoot_contact": false,
+          "corrected_sustained_slip": false,
+          "corrected_slip_event_rate": false,
+          "pair0_full_interval_zero_foot": false
+        },
+        "pair0_checkpoint_32768_rule": null,
+        "qualified_transient_warning": false,
+        "qualified_transient_is_warning_only": true,
+        "early_stop_triggered": false
+      }
+    },
+    {
+      "additional_timesteps": 32768,
+      "absolute_timesteps": 2629632,
+      "checkpoint": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_adaptation_l2_pilot_v1_20260819\\attempt_0\\default_continue\\models\\checkpoint_2629632.zip",
+      "checkpoint_sha256": "1082ccc238d3c1b3c49ede3e9ba0309510406c90603dcd542285905d696f2c5a",
+      "aggregate": {
+        "episode_count": 12,
+        "nonfinite_episode_count": 0,
+        "fall_count": 0,
+        "success_count": 0,
+        "torso_ground_episode_count": 0,
+        "sustained_nonfoot_contact_episode_count": 0,
+        "mean_best_progress_m": 7.9707181206157225,
+        "pooled_full_interval_zero_foot_fraction": 0.23805555555555555,
+        "mean_support_count": 0.3586944444444444,
+        "qualified_slip_per_supported_fraction": 0.0,
+        "corrected_sustained_slip_per_supported_fraction": 0.0,
+        "corrected_slip_event_count": 0,
+        "supported_physics_substep_count": 11256,
+        "total_control_steps": 7200,
+        "total_physics_substeps": 36000,
+        "corrected_slip_events_per_100_supported_substeps": 0.0,
+        "per_scene": {
+          "flat": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 7.379735920574216,
+            "pooled_full_interval_zero_foot_fraction": 0.3088888888888889,
+            "mean_support_count": 0.25966666666666666,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 2069,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          },
+          "uphill_8deg": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 6.686256579578149,
+            "pooled_full_interval_zero_foot_fraction": 0.24666666666666667,
+            "mean_support_count": 0.37133333333333335,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 2903,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          },
+          "downhill_8deg": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 9.99311200636393,
+            "pooled_full_interval_zero_foot_fraction": 0.1511111111111111,
+            "mean_support_count": 0.43977777777777777,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 3400,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          },
+          "bowl_exit": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 7.8237679759465975,
+            "pooled_full_interval_zero_foot_fraction": 0.24555555555555555,
+            "mean_support_count": 0.364,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 2884,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          }
+        },
+        "condition_id": "DEFAULT_CONTINUE",
+        "checkpoint_additional_timesteps": 32768,
+        "evaluation_seeds": [
+          82801,
+          82802,
+          82803
+        ],
+        "max_episode_steps": 600
+      },
+      "stop_decision": {
+        "condition_id": "DEFAULT_CONTINUE",
+        "checkpoint_additional_timesteps": 32768,
+        "catastrophe_checks": {
+          "nonfinite": false,
+          "fall": false,
+          "torso_ground": false,
+          "sustained_nonfoot_contact": false,
+          "corrected_sustained_slip": false,
+          "corrected_slip_event_rate": false,
+          "pair0_full_interval_zero_foot": false
+        },
+        "pair0_checkpoint_32768_rule": null,
+        "qualified_transient_warning": false,
+        "qualified_transient_is_warning_only": true,
+        "early_stop_triggered": false
+      }
+    },
+    {
+      "additional_timesteps": 49152,
+      "absolute_timesteps": 2646016,
+      "checkpoint": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_adaptation_l2_pilot_v1_20260819\\attempt_0\\default_continue\\models\\checkpoint_2646016.zip",
+      "checkpoint_sha256": "6426b307811e78f065e6668acf376bbb266250f9fce0ad69a0bedc5bfa4bf850",
+      "aggregate": {
+        "episode_count": 12,
+        "nonfinite_episode_count": 0,
+        "fall_count": 0,
+        "success_count": 0,
+        "torso_ground_episode_count": 0,
+        "sustained_nonfoot_contact_episode_count": 0,
+        "mean_best_progress_m": 7.772201897111337,
+        "pooled_full_interval_zero_foot_fraction": 0.225,
+        "mean_support_count": 0.3656111111111111,
+        "qualified_slip_per_supported_fraction": 0.0,
+        "corrected_sustained_slip_per_supported_fraction": 0.0,
+        "corrected_slip_event_count": 0,
+        "supported_physics_substep_count": 11507,
+        "total_control_steps": 7200,
+        "total_physics_substeps": 36000,
+        "corrected_slip_events_per_100_supported_substeps": 0.0,
+        "per_scene": {
+          "flat": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 9.852862883875796,
+            "pooled_full_interval_zero_foot_fraction": 0.32222222222222224,
+            "mean_support_count": 0.26622222222222225,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 2150,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          },
+          "uphill_8deg": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 4.072221388688092,
+            "pooled_full_interval_zero_foot_fraction": 0.19444444444444445,
+            "mean_support_count": 0.40455555555555556,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 3156,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          },
+          "downhill_8deg": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 10.222139769288333,
+            "pooled_full_interval_zero_foot_fraction": 0.17166666666666666,
+            "mean_support_count": 0.43,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 3328,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          },
+          "bowl_exit": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 6.941583546593126,
+            "pooled_full_interval_zero_foot_fraction": 0.21166666666666667,
+            "mean_support_count": 0.3616666666666667,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 2873,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          }
+        },
+        "condition_id": "DEFAULT_CONTINUE",
+        "checkpoint_additional_timesteps": 49152,
+        "evaluation_seeds": [
+          82801,
+          82802,
+          82803
+        ],
+        "max_episode_steps": 600
+      },
+      "stop_decision": {
+        "condition_id": "DEFAULT_CONTINUE",
+        "checkpoint_additional_timesteps": 49152,
+        "catastrophe_checks": {
+          "nonfinite": false,
+          "fall": false,
+          "torso_ground": false,
+          "sustained_nonfoot_contact": false,
+          "corrected_sustained_slip": false,
+          "corrected_slip_event_rate": false,
+          "pair0_full_interval_zero_foot": false
+        },
+        "pair0_checkpoint_32768_rule": null,
+        "qualified_transient_warning": false,
+        "qualified_transient_is_warning_only": true,
+        "early_stop_triggered": false
+      }
+    },
+    {
+      "additional_timesteps": 65536,
+      "absolute_timesteps": 2662400,
+      "checkpoint": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_adaptation_l2_pilot_v1_20260819\\attempt_0\\default_continue\\models\\checkpoint_2662400.zip",
+      "checkpoint_sha256": "6549c279ca5795636d3b1d6f61c36782f4f843a32107276adf0630c39871cb6f",
+      "aggregate": {
+        "episode_count": 12,
+        "nonfinite_episode_count": 0,
+        "fall_count": 0,
+        "success_count": 0,
+        "torso_ground_episode_count": 0,
+        "sustained_nonfoot_contact_episode_count": 0,
+        "mean_best_progress_m": 7.992656408298675,
+        "pooled_full_interval_zero_foot_fraction": 0.2448611111111111,
+        "mean_support_count": 0.35097222222222224,
+        "qualified_slip_per_supported_fraction": 0.0,
+        "corrected_sustained_slip_per_supported_fraction": 0.0,
+        "corrected_slip_event_count": 0,
+        "supported_physics_substep_count": 10986,
+        "total_control_steps": 7200,
+        "total_physics_substeps": 36000,
+        "corrected_slip_events_per_100_supported_substeps": 0.0,
+        "per_scene": {
+          "flat": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 7.777249856517888,
+            "pooled_full_interval_zero_foot_fraction": 0.32055555555555554,
+            "mean_support_count": 0.2637777777777778,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 2123,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          },
+          "uphill_8deg": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 7.277410866154374,
+            "pooled_full_interval_zero_foot_fraction": 0.2361111111111111,
+            "mean_support_count": 0.3741111111111111,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 2906,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          },
+          "downhill_8deg": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 10.366302447449259,
+            "pooled_full_interval_zero_foot_fraction": 0.17,
+            "mean_support_count": 0.41944444444444445,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 3230,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          },
+          "bowl_exit": {
+            "episode_count": 3,
+            "nonfinite_episode_count": 0,
+            "fall_count": 0,
+            "success_count": 0,
+            "torso_ground_episode_count": 0,
+            "sustained_nonfoot_contact_episode_count": 0,
+            "mean_best_progress_m": 6.549662463073176,
+            "pooled_full_interval_zero_foot_fraction": 0.25277777777777777,
+            "mean_support_count": 0.34655555555555556,
+            "qualified_slip_per_supported_fraction": 0.0,
+            "corrected_sustained_slip_per_supported_fraction": 0.0,
+            "corrected_slip_event_count": 0,
+            "supported_physics_substep_count": 2727,
+            "total_control_steps": 1800,
+            "total_physics_substeps": 9000,
+            "corrected_slip_events_per_100_supported_substeps": 0.0
+          }
+        },
+        "condition_id": "DEFAULT_CONTINUE",
+        "checkpoint_additional_timesteps": 65536,
+        "evaluation_seeds": [
+          82801,
+          82802,
+          82803
+        ],
+        "max_episode_steps": 600
+      },
+      "stop_decision": {
+        "condition_id": "DEFAULT_CONTINUE",
+        "checkpoint_additional_timesteps": 65536,
+        "catastrophe_checks": {
+          "nonfinite": false,
+          "fall": false,
+          "torso_ground": false,
+          "sustained_nonfoot_contact": false,
+          "corrected_sustained_slip": false,
+          "corrected_slip_event_rate": false,
+          "pair0_full_interval_zero_foot": false
+        },
+        "pair0_checkpoint_32768_rule": null,
+        "qualified_transient_warning": false,
+        "qualified_transient_is_warning_only": true,
+        "early_stop_triggered": false
+      }
+    }
+  ],
+  "early_stopped": false,
+  "completed_additional_timesteps": 65536,
+  "requested_additional_timesteps": 65536
+}

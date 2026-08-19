@@ -1,0 +1,310 @@
+{
+  "pre_render_frozen_evaluator": {
+    "field_count": 28,
+    "all_fields_exact_match": true,
+    "mismatched_fields": [],
+    "fields": {
+      "condition_id": {
+        "archived": "PAIR0_ADAPT",
+        "replayed": "PAIR0_ADAPT",
+        "exact_match": true
+      },
+      "checkpoint_additional_timesteps": {
+        "archived": 65536,
+        "replayed": 65536,
+        "exact_match": true
+      },
+      "checkpoint_timesteps": {
+        "archived": 2727936,
+        "replayed": 2727936,
+        "exact_match": true
+      },
+      "scene_name": {
+        "archived": "downhill_16deg",
+        "replayed": "downhill_16deg",
+        "exact_match": true
+      },
+      "evaluation_seed": {
+        "archived": 94137,
+        "replayed": 94137,
+        "exact_match": true
+      },
+      "control_steps": {
+        "archived": 600,
+        "replayed": 600,
+        "exact_match": true
+      },
+      "physics_substeps": {
+        "archived": 3000,
+        "replayed": 3000,
+        "exact_match": true
+      },
+      "finite": {
+        "archived": true,
+        "replayed": true,
+        "exact_match": true
+      },
+      "fall": {
+        "archived": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "outer_terrain_fall": {
+        "archived": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "inner_absolute_z_fall": {
+        "archived": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "fixed_goal_success": {
+        "archived": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "fixed_goal_best_progress_m": {
+        "archived": 8.8608168860908,
+        "replayed": 8.8608168860908,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "fixed_goal_net_progress_m": {
+        "archived": 8.858085214393828,
+        "replayed": 8.858085214393828,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "full_interval_zero_foot_count": {
+        "archived": 12,
+        "replayed": 12,
+        "exact_match": true
+      },
+      "support_count_sum_physics_substeps": {
+        "archived": 4452,
+        "replayed": 4452,
+        "exact_match": true
+      },
+      "supported_physics_substep_count": {
+        "archived": 2501,
+        "replayed": 2501,
+        "exact_match": true
+      },
+      "force_qualified_supported_physics_substep_count": {
+        "archived": 2394,
+        "replayed": 2394,
+        "exact_match": true
+      },
+      "qualified_slip_physics_substep_count": {
+        "archived": 4,
+        "replayed": 4,
+        "exact_match": true
+      },
+      "corrected_sustained_slip_physics_substep_count": {
+        "archived": 0,
+        "replayed": 0,
+        "exact_match": true
+      },
+      "corrected_slip_event_count": {
+        "archived": 0,
+        "replayed": 0,
+        "exact_match": true
+      },
+      "torso_ground_any": {
+        "archived": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "nonfoot_ground_longest_run_seconds": {
+        "archived": 0.0,
+        "replayed": 0.0,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "sustained_nonfoot_contact": {
+        "archived": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "cumulative_squared_action": {
+        "archived": 154.4957057336975,
+        "replayed": 154.4957057336975,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actuator_abs_torque_time_integral_total_n_m_s": {
+        "archived": 5252.39138542267,
+        "replayed": 5252.39138542267,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actuator_positive_mechanical_work_total_j": {
+        "archived": 2579.50550616497,
+        "replayed": 2579.50550616497,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actuator_abs_mechanical_work_total_j": {
+        "archived": 3005.459222033986,
+        "replayed": 3005.459222033986,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      }
+    }
+  },
+  "rendered_replay": {
+    "field_count": 28,
+    "all_fields_exact_match": true,
+    "mismatched_fields": [],
+    "fields": {
+      "condition_id": {
+        "archived": "PAIR0_ADAPT",
+        "replayed": "PAIR0_ADAPT",
+        "exact_match": true
+      },
+      "checkpoint_additional_timesteps": {
+        "archived": 65536,
+        "replayed": 65536,
+        "exact_match": true
+      },
+      "checkpoint_timesteps": {
+        "archived": 2727936,
+        "replayed": 2727936,
+        "exact_match": true
+      },
+      "scene_name": {
+        "archived": "downhill_16deg",
+        "replayed": "downhill_16deg",
+        "exact_match": true
+      },
+      "evaluation_seed": {
+        "archived": 94137,
+        "replayed": 94137,
+        "exact_match": true
+      },
+      "control_steps": {
+        "archived": 600,
+        "replayed": 600,
+        "exact_match": true
+      },
+      "physics_substeps": {
+        "archived": 3000,
+        "replayed": 3000,
+        "exact_match": true
+      },
+      "finite": {
+        "archived": true,
+        "replayed": true,
+        "exact_match": true
+      },
+      "fall": {
+        "archived": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "outer_terrain_fall": {
+        "archived": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "inner_absolute_z_fall": {
+        "archived": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "fixed_goal_success": {
+        "archived": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "fixed_goal_best_progress_m": {
+        "archived": 8.8608168860908,
+        "replayed": 8.8608168860908,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "fixed_goal_net_progress_m": {
+        "archived": 8.858085214393828,
+        "replayed": 8.858085214393828,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "full_interval_zero_foot_count": {
+        "archived": 12,
+        "replayed": 12,
+        "exact_match": true
+      },
+      "support_count_sum_physics_substeps": {
+        "archived": 4452,
+        "replayed": 4452,
+        "exact_match": true
+      },
+      "supported_physics_substep_count": {
+        "archived": 2501,
+        "replayed": 2501,
+        "exact_match": true
+      },
+      "force_qualified_supported_physics_substep_count": {
+        "archived": 2394,
+        "replayed": 2394,
+        "exact_match": true
+      },
+      "qualified_slip_physics_substep_count": {
+        "archived": 4,
+        "replayed": 4,
+        "exact_match": true
+      },
+      "corrected_sustained_slip_physics_substep_count": {
+        "archived": 0,
+        "replayed": 0,
+        "exact_match": true
+      },
+      "corrected_slip_event_count": {
+        "archived": 0,
+        "replayed": 0,
+        "exact_match": true
+      },
+      "torso_ground_any": {
+        "archived": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "nonfoot_ground_longest_run_seconds": {
+        "archived": 0.0,
+        "replayed": 0.0,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "sustained_nonfoot_contact": {
+        "archived": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "cumulative_squared_action": {
+        "archived": 154.4957057336975,
+        "replayed": 154.4957057336975,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actuator_abs_torque_time_integral_total_n_m_s": {
+        "archived": 5252.39138542267,
+        "replayed": 5252.39138542267,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actuator_positive_mechanical_work_total_j": {
+        "archived": 2579.50550616497,
+        "replayed": 2579.50550616497,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actuator_abs_mechanical_work_total_j": {
+        "archived": 3005.459222033986,
+        "replayed": 3005.459222033986,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      }
+    }
+  }
+}

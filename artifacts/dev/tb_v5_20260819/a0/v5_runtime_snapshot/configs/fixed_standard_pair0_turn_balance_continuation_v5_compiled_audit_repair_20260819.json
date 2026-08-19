@@ -1,0 +1,110 @@
+{
+  "schema_version": "proxygap-pair0-turn-balance-compiled-audit-repair-v5",
+  "config_id": "fixed_standard_pair0_turn_balance_continuation_v5_compiled_audit_repair_20260819",
+  "status": "frozen_preformal_compiled_audit_repair_stage_a_authorised",
+  "purpose": "Execute one engineering smoke of the exact compiled PAIR0 contract, then permit the unchanged once-only C0/C1 formal continuation at a fresh short root. V5 replaces only V4's invalid lookup of a non-existent audit passed field.",
+  "frozen_scientific_protocol": {
+    "V2_configuration": "configs/fixed_standard_pair0_turn_balance_continuation_v2_20260819.json",
+    "V2_configuration_sha256": "9004de242c2724dcbf128d78fb6f5d951f5826e5e2b5db80d4940e185e8f582c",
+    "V2_runner": "scripts/run_fixed_standard_pair0_turn_balance_continuation_v2.py",
+    "V2_runner_sha256": "7154424b7d944bbed415b9c814dffa075ed1570843471c84456ce3f56ce051ce",
+    "V3_configuration": "configs/fixed_standard_pair0_turn_balance_continuation_v3_gate_repair_20260819.json",
+    "V3_configuration_sha256": "fe94e18852205fceac0df103d46294f1652fc43441f6eed7cdc739b9dc66bec5",
+    "V3_runner": "scripts/run_fixed_standard_pair0_turn_balance_continuation_v3_gate_repair.py",
+    "V3_runner_sha256": "7b2c36ba4c932c764de43cec2d2f407062605c695e0eb784f03a099d6cd83d0b",
+    "V4_configuration": "configs/fixed_standard_pair0_turn_balance_continuation_v4_short_root_20260819.json",
+    "V4_configuration_sha256": "2951243c407f82cbbd98df6ca2761e4d6bbddaa1624426c9edfa2aff73dae275",
+    "V4_runner": "scripts/run_fixed_standard_pair0_turn_balance_continuation_v4_short_root.py",
+    "V4_runner_sha256": "d6d8ca99ff410c6dfd6ff7e9a17a5dda974732507485cbf48b653dbebf1c19b9",
+    "source_checkpoint_sha256": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+    "V2_smoke_manifest_sha256": "a02b8dad18c94f75d50c8d41dbc9600884bb735726c9301c7967d1e8238d32be",
+    "scientific_protocol_changed": false,
+    "seeds_changed": false,
+    "budgets_changed": false,
+    "commands_changed": false,
+    "reward_changed": false,
+    "friction_changed": false,
+    "energy_changed": false,
+    "gates_changed": false,
+    "intermediate_selection_changed": false
+  },
+  "immutable_pretraining_failures": {
+    "V2_path_length_failure": {
+      "root": "artifacts/dev/pair0_turn_balance_v2_20260819/attempt_0",
+      "failure_record": "artifacts/dev/pair0_turn_balance_v2_20260819/attempt_0/FAILURE_RECORD.json",
+      "failure_record_sha256": "21ccdebc692af2f32ec96a2e33795cd0eac45ea4aac852eface8a02f26709d23",
+      "training_started": false,
+      "mutation_permitted": false,
+      "same_root_retry_permitted": false
+    },
+    "V4_false_audit_failure": {
+      "root": "artifacts/dev/tb_v4_20260819/a0",
+      "failure_record": "artifacts/dev/tb_v4_20260819/a0/FAILURE_RECORD.json",
+      "failure_record_sha256": "9695bd3b5d628907053a2f785ec874efa18b2fc47a317c452a88566c0d624812",
+      "training_started": false,
+      "mutation_permitted": false,
+      "same_root_retry_permitted": false
+    }
+  },
+  "compiled_audit_repair": {
+    "V4_false_predicate": "bool(audit.get('passed'))",
+    "audit_function_returns_passed_field": false,
+    "V5_success_predicate": "all_exact_compiled_contract_fields_validate_or_raise",
+    "add_synthetic_passed_field": false,
+    "required_scene_count": 4,
+    "required_scene_names": ["flat", "uphill_8deg", "downhill_8deg", "bowl_exit"],
+    "required_explicit_pair_count_per_scene": 4,
+    "only_change_from_V4": "replace_missing_passed_key_lookup_with_exact_compiled_contract_validation"
+  },
+  "execution": {
+    "stage_A_user_authorised": true,
+    "permitted_modes": ["validate_only", "engineering_smoke", "formal_after_pre_run_GO"],
+    "canonical_engineering_smoke_root": "artifacts/smoke/tb_v5_20260819/a0",
+    "canonical_formal_root": "artifacts/dev/tb_v5_20260819/a0",
+    "formal_attempt_index": 0,
+    "engineering_smoke_root_must_not_exist_before_launch": true,
+    "formal_root_must_not_exist_before_launch": true,
+    "smoke_trains_policy": false,
+    "reuse_partial_weights": false,
+    "retry_in_same_root": false,
+    "maximum_permitted_planned_absolute_path_characters": 239,
+    "formal_training_starts_only_after_canonical_smoke_GO": true,
+    "fixed_map": false,
+    "video_during_training_or_numeric_gate": false,
+    "promotion": false
+  },
+  "formal_science_summary": {
+    "conditions": ["C0_STRAIGHT_CONTINUE", "C1_BALANCED_TURN"],
+    "same_source_checkpoint_per_condition": true,
+    "training_master_seed": 63806,
+    "parallel_environments": 8,
+    "additional_timesteps_per_condition": 65536,
+    "absolute_final_checkpoint_timesteps": 2793472,
+    "heldout_evaluation_seeds": [96131, 96137, 96149, 96153, 96177],
+    "save_evaluate_or_select_intermediate_checkpoint": false,
+    "energy_measurement_only": true
+  },
+  "post_formal_boundary": {
+    "hard_stop_after_pass_fail_or_non_evaluable": true,
+    "further_optimisation_authorised": false,
+    "read_only_video_archive_required": true,
+    "video_seed": 96131,
+    "video_turn_conditions": ["curve_left_020", "curve_right_020"],
+    "video_participates_in_gate": false
+  },
+  "V5_runtime_contract": {
+    "copy_preserving_relative_paths": true,
+    "verify_live_and_snapshot_before_and_after": true,
+    "exact_relative_path_sha256": {
+      "scripts/run_fixed_standard_pair0_turn_balance_continuation_v5_compiled_audit_repair.py": "bb255f76212105ed8ad17f52fa8b955e6d9d0a31358daa9e1d8751838c407980",
+      "configs/fixed_standard_pair0_turn_balance_continuation_v4_short_root_20260819.json": "2951243c407f82cbbd98df6ca2761e4d6bbddaa1624426c9edfa2aff73dae275",
+      "scripts/run_fixed_standard_pair0_turn_balance_continuation_v4_short_root.py": "d6d8ca99ff410c6dfd6ff7e9a17a5dda974732507485cbf48b653dbebf1c19b9",
+      "configs/fixed_standard_pair0_turn_balance_continuation_v3_gate_repair_20260819.json": "fe94e18852205fceac0df103d46294f1652fc43441f6eed7cdc739b9dc66bec5",
+      "scripts/run_fixed_standard_pair0_turn_balance_continuation_v3_gate_repair.py": "7b2c36ba4c932c764de43cec2d2f407062605c695e0eb784f03a099d6cd83d0b",
+      "configs/fixed_standard_pair0_turn_balance_continuation_v2_20260819.json": "9004de242c2724dcbf128d78fb6f5d951f5826e5e2b5db80d4940e185e8f582c",
+      "scripts/run_fixed_standard_pair0_turn_balance_continuation_v2.py": "7154424b7d944bbed415b9c814dffa075ed1570843471c84456ce3f56ce051ce",
+      "scripts/evaluate_fixed_standard_distal_margin0_paired.py": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d"
+    }
+  },
+  "claim_boundary": "V5 is an engineering correction to a false pretraining audit failure. Its smoke can establish only that all four generated PAIR0 scene/contact records satisfy the exact frozen compiled contract without training. A later formal run retains the V2 scientific scope and cannot establish causal mechanism, true in-place turning, fixed-map readiness, route optimality, random-map generalisation, natural gait or battery-energy improvement."
+}

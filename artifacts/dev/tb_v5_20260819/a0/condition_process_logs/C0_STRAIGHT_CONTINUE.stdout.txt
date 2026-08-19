@@ -1,0 +1,1 @@
+{"status": "CONDITION_WORKER_COMPLETE", "condition_id": "C0_STRAIGHT_CONTINUE"}

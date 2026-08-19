@@ -1,0 +1,176 @@
+{
+  "only_four_permitted_explicit_pairs_added": true,
+  "explicit_pair_count": 4,
+  "source_floor_margin_m": 0.01,
+  "candidate_floor_geom_margin_m": 0.01,
+  "source_distal_margins_m": {
+    "left_ankle_geom": 0.01,
+    "right_ankle_geom": 0.01,
+    "third_ankle_geom": 0.01,
+    "fourth_ankle_geom": 0.01
+  },
+  "candidate_distal_geom_margins_m": {
+    "left_ankle_geom": 0.01,
+    "right_ankle_geom": 0.01,
+    "third_ankle_geom": 0.01,
+    "fourth_ankle_geom": 0.01
+  },
+  "candidate_non_distal_margins_m": {
+    "torso_geom": 0.01,
+    "aux_1_geom": 0.01,
+    "left_leg_geom": 0.01,
+    "aux_2_geom": 0.01,
+    "right_leg_geom": 0.01,
+    "aux_3_geom": 0.01,
+    "back_leg_geom": 0.01,
+    "aux_4_geom": 0.01,
+    "rightback_leg_geom": 0.01
+  },
+  "default_geom_margin_m": 0.01,
+  "root_joint_margin_m": 0.01,
+  "compiled_explicit_pairs": [
+    {
+      "geom1": "floor",
+      "geom2": "left_ankle_geom",
+      "margin": 0.0,
+      "gap": 0.0,
+      "condim": 3,
+      "friction": [
+        1.0,
+        1.0,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solreffriction": [
+        0.0,
+        0.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "adhesion": 0.0
+    },
+    {
+      "geom1": "floor",
+      "geom2": "right_ankle_geom",
+      "margin": 0.0,
+      "gap": 0.0,
+      "condim": 3,
+      "friction": [
+        1.0,
+        1.0,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solreffriction": [
+        0.0,
+        0.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "adhesion": 0.0
+    },
+    {
+      "geom1": "floor",
+      "geom2": "third_ankle_geom",
+      "margin": 0.0,
+      "gap": 0.0,
+      "condim": 3,
+      "friction": [
+        1.0,
+        1.0,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solreffriction": [
+        0.0,
+        0.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "adhesion": 0.0
+    },
+    {
+      "geom1": "floor",
+      "geom2": "fourth_ankle_geom",
+      "margin": 0.0,
+      "gap": 0.0,
+      "condim": 3,
+      "friction": [
+        1.0,
+        1.0,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solreffriction": [
+        0.0,
+        0.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "adhesion": 0.0
+    }
+  ],
+  "friction": [
+    1.0,
+    0.5,
+    0.5
+  ],
+  "condim": 3,
+  "solref": [
+    0.02,
+    1.0
+  ],
+  "solimp": [
+    0.9,
+    0.95,
+    0.001,
+    0.5,
+    2.0
+  ],
+  "physics_timestep_seconds": 0.01,
+  "source_scene": "task_scenes\\spawn_0_0.000.xml",
+  "source_scene_sha256": "bc72dd66e6b171c0444e8e55d19b145b0a2095d4b584e407df9d76c4033096a7",
+  "pair0_scene": "task_scenes\\spawn_0_0.000_pair0.xml",
+  "pair0_scene_sha256": "0b75be52ac76ef0147fb6f5e9eccce025067490d144892006c8098dfe1e5be46",
+  "approved_source_assets_unchanged": true
+}

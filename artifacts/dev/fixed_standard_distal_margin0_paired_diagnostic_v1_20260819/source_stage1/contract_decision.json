@@ -1,0 +1,11 @@
+{
+  "schema_version": "proxygap-distal-margin0-contract-decision-v1",
+  "standard_gate_passed": false,
+  "fixed_map_gate_passed": false,
+  "margin0_worth_next_training_contract": false,
+  "training_performed": false,
+  "checkpoint_modified": false,
+  "map_modified": false,
+  "source_checkpoint_remains_incumbent": true,
+  "interpretation": "At least one predeclared gate did not pass; do not promote margin0 into the next training contract from this diagnostic."
+}

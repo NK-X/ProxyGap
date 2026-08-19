@@ -1,0 +1,189 @@
+{
+  "schema_version": "proxygap-post-seal-full-map-eval-v1",
+  "config_id": "post_seal_full_map_eval_v1_20260819",
+  "status": "frozen_read_only_post_seal_single_full_map_evaluation",
+  "purpose": "One independent, deterministic, read-only full-route evaluation of the sealed final PAIR0 checkpoint on the frozen approved map. This protocol measures reachability, strict stable dwell, safety, support, duration-corrected slip, progress and energy proxies without training, checkpoint selection or map mutation.",
+  "source": {
+    "sealed_checkpoint": "artifacts/dev/pair0_l2b_v3_20260819/attempt_0/pair0_adapt/models/checkpoint_2727936.zip",
+    "sealed_checkpoint_sha256": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+    "checkpoint_timesteps": 2727936,
+    "observation_dimension": 135,
+    "action_dimension": 8,
+    "policy_configuration": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+    "policy_configuration_sha256": "0d20c29caffb7206924e6520b6e52b718c86aac5cdaad1d01a4361c0b5ce3a7f",
+    "final_pair0_configuration": "configs/fixed_standard_pair0_adaptation_l2b_extension_v3_20260819.json",
+    "final_pair0_configuration_sha256": "6ad69370cc868e0fd84c3561cd336fe7540d471dad92129eea3f94a3420ae5da"
+  },
+  "fixed_map": {
+    "configuration": "configs/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819.json",
+    "configuration_sha256": "e673e59df5c9f42fdc6e0db01d7215205ac0648d7937034e78d2622262ececa2",
+    "approved_xml": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/ant_fixed_quad_terrain.xml",
+    "approved_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+    "approved_heights": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/heights_m.npy",
+    "approved_heights_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+    "approved_hfield": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/terrain.hfield",
+    "approved_hfield_sha256": "d1632c89688f459f5e7abe9d1cc9b5af7f22230b1b19290f737ae3fed849f3db",
+    "approved_texture": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/terrain_contours.png",
+    "approved_texture_sha256": "2eea099308dda75d79b10b44c91b8544d56fe0a6a4e0d0e7e6131c3e9e1abf06",
+    "prepared_spawn_scene_expected_sha256": "bc72dd66e6b171c0444e8e55d19b145b0a2095d4b584e407df9d76c4033096a7",
+    "pair0_artifact_scene_expected_sha256": "0b75be52ac76ef0147fb6f5e9eccce025067490d144892006c8098dfe1e5be46",
+    "start_xy_m": [-34.0, -34.0],
+    "goal_xy_m": [34.0, 34.0],
+    "map_half_extent_m": 40.0,
+    "source_assets_read_only": true,
+    "pair0_is_injected_only_into_the_artifact_scene_copy": true
+  },
+  "contact_contract": {
+    "terrain_geom": "floor",
+    "distal_geoms": [
+      "left_ankle_geom",
+      "right_ankle_geom",
+      "third_ankle_geom",
+      "fourth_ankle_geom"
+    ],
+    "all_geom_margins_m": 0.01,
+    "explicit_pair_count": 4,
+    "explicit_pair_margin_m": 0.0,
+    "explicit_pair_gap_m": 0.0,
+    "condim": 3,
+    "geom_friction": [1.0, 0.5, 0.5],
+    "explicit_pair_friction": [1.0, 1.0, 0.5, 0.5, 0.5],
+    "solref": [0.02, 1.0],
+    "solreffriction": [0.0, 0.0],
+    "solimp": [0.9, 0.95, 0.001, 0.5, 2.0],
+    "adhesion": 0.0,
+    "all_ground_pairs_included": false
+  },
+  "observation_contract": {
+    "dimension": 135,
+    "base_observation_dimension": 122,
+    "local_terrain_preview_dimension": 13,
+    "augment_local_terrain_observation": true,
+    "policy_observes_global_position": false,
+    "policy_observes_goal_coordinates": false,
+    "high_level_controller_uses_global_position": true,
+    "terrain_preview_longitudinal_m": [0.5, 1.0, 1.5],
+    "terrain_preview_lateral_m": [-0.4, 0.0, 0.4]
+  },
+  "controller": {
+    "interface": "forward_speed_plus_yaw_rate_and_target_heading_error",
+    "cruise_speed_m_per_s": 0.5,
+    "yaw_gain_per_second": 0.75,
+    "yaw_deadband_degrees": 0.0,
+    "slow_radius_m": 4.0,
+    "maximum_abs_curvature_per_m": 0.35,
+    "curvature_speed_reduction_gain": 0.0,
+    "minimum_turn_speed_fraction": 1.0
+  },
+  "evaluation": {
+    "formal_seed": 1763594348,
+    "formal_seed_usage": "hash_derived_before_formal_execution_and_not_selectable_from_outcomes",
+    "formal_seed_derivation": {
+      "utf8_material": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c|59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c|fixed_map_final_pair0_single_episode_v1",
+      "sha256": "691e506c7d159656fe0a7e59b8da97bdbf977e8b9d0273742e052ba5f9433122",
+      "rule": "int(first_8_hex,16) mod (2^31-1)",
+      "derived_seed": 1763594348,
+      "outcome_based_seed_selection_permitted": false
+    },
+    "horizon_control_steps": 12000,
+    "deterministic_policy": true,
+    "physics_timestep_seconds": 0.01,
+    "physics_substeps_per_control_step": 5,
+    "all_five_physics_substeps_required": true,
+    "spawn_fraction": 0.0,
+    "terminate_on_strict_stable_dwell_success": true,
+    "terminate_on_spatial_hold_only": false,
+    "trace_stride_control_steps": 1
+  },
+  "independent_success": {
+    "arrival_radius_m": 1.5,
+    "hold_radius_m": 2.0,
+    "hold_seconds": 2.0,
+    "require_arrival_entry_before_hold": true
+  },
+  "strict_stable_dwell": {
+    "maximum_planar_speed_m_per_s": 0.2,
+    "maximum_terrain_relative_torso_tilt_degrees": 30.0,
+    "minimum_foot_support_count_at_control_endpoint": 1,
+    "require_finite_state": true,
+    "require_no_force_qualified_slip_candidate_in_control_interval": true
+  },
+  "duration_corrected_slip": {
+    "sampling": "all_five_physics_substeps",
+    "tangential_speed_threshold_m_per_s": 0.2,
+    "minimum_normal_force_n": 1.0,
+    "landing_grace_seconds": 0.1,
+    "minimum_sustained_seconds": 0.2,
+    "primary_denominator": "physics_substeps_with_at_least_one_distal_foot_in_contact_and_normal_force_at_least_1N",
+    "zero_primary_denominator": "non_evaluable",
+    "body_and_shin_sliding_included": false
+  },
+  "safety_and_qualification": {
+    "nonfoot_contact_minimum_sustained_seconds": 0.2,
+    "requires_strict_stable_dwell_success": true,
+    "requires_finite_state": true,
+    "requires_no_fall": true,
+    "requires_no_torso_ground_contact": true,
+    "requires_no_sustained_nonfoot_ground_contact": true,
+    "requires_zero_full_control_intervals_with_all_four_distal_feet_airborne": true,
+    "requires_zero_duration_corrected_slip_events": true,
+    "requires_force_qualified_slip_denominator": true
+  },
+  "energy_boundary": {
+    "status": "measurement_only_not_reward_or_gate",
+    "reward_weight": 0.0,
+    "formula_unchanged": true,
+    "raw_components": [
+      "cumulative_squared_action",
+      "actuator_abs_torque_time_integral_total_n_m_s",
+      "actuator_positive_mechanical_work_total_j",
+      "actuator_abs_mechanical_work_total_j"
+    ],
+    "electrical_battery_energy_claim_permitted": false
+  },
+  "execution": {
+    "default_mode": "validate_only",
+    "formal_output_root": "artifacts/dev/post_seal_full_map_eval_v1_20260819/attempt_0",
+    "smoke_output_root": "artifacts/smoke/post_seal_full_map_eval_v1_20260819/attempt_2",
+    "fail_if_output_root_exists_or_is_nonempty": true,
+    "training_permitted": false,
+    "model_save_permitted": false,
+    "checkpoint_selection_permitted": false,
+    "map_source_mutation_permitted": false,
+    "formal_run_requires_explicit_formal_cli_mode": true,
+    "failure_record_name": "FAILURE_RECORD.json"
+  },
+  "engineering_smoke": {
+    "seed": 96818,
+    "horizon_control_steps": 20,
+    "scientific_interpretation_permitted": false,
+    "formal_output_root_must_remain_absent": true,
+    "superseded_smoke_roots": [
+      "artifacts/smoke/post_seal_full_map_eval_v1_20260819/attempt_0",
+      "artifacts/smoke/post_seal_full_map_eval_v1_20260819/attempt_1"
+    ],
+    "supersession_reason": "Attempt 0 preceded the hash-derived formal seed requirement. Attempt 1 used equivalent CRLF scene serialisation; attempt 2 freezes canonical LF bytes and the independently precomputed PAIR0 scene SHA-256. Both earlier smoke roots remain preserved and are not scientific evidence."
+  },
+  "runtime_dependencies": {
+    "scripts/evaluate_fixed_standard_distal_margin0_paired.py": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d",
+    "scripts/evaluate_local_preview_final_paired_direct_goal.py": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf",
+    "scripts/evaluate_post_seal_full_map_v1.py": "dc7225b353efa1371e43178ad2b0029efce28e60f12b0dccf358de89132295cf",
+    "scripts/run_curved_gait_training.py": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf",
+    "scripts/run_fixed_goal_support_priority_pilot.py": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca",
+    "scripts/run_fixed_goal_terrain_training.py": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a",
+    "src/proxygap/__init__.py": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba",
+    "src/proxygap/ant_wrapper.py": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2",
+    "src/proxygap/curved_gait.py": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48",
+    "src/proxygap/divergence.py": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459",
+    "src/proxygap/experiment.py": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629",
+    "src/proxygap/fixed_goal_terrain.py": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2",
+    "src/proxygap/metrics.py": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397",
+    "src/proxygap/planar_transition.py": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805",
+    "src/proxygap/protocol.py": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d",
+    "src/proxygap/selection.py": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0",
+    "src/proxygap/two_experiment_protocol.py": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+  },
+  "claim_boundary": "This is one deterministic episode on one seen frozen map with one fresh evaluation seed. Passing would establish only single-episode reachability under this exact controller and PAIR0 copy; failing would localise observed failure modes but would not prove impossibility. It cannot establish reliability, unseen-map generalisation, path optimality, causal mechanism, natural gait or electrical-energy efficiency."
+}

@@ -1,0 +1,5865 @@
+{
+  "flat": {
+    "spec": {
+      "scene_name": "flat",
+      "direction": "flat",
+      "angle_degrees": 0
+    },
+    "generation": {
+      "schema_version": "proxygap-standard-scene-manifest-v1",
+      "base_xml": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\frozen\\fixed_quad_terrain_v2_approved_20260818\\map\\scene\\ant_fixed_quad_terrain.xml",
+      "base_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+      "robot_signature": {
+        "nq": 15,
+        "nv": 14,
+        "nu": 8,
+        "body_mass": [
+          0.0,
+          0.32724923474893675,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026
+        ],
+        "joint_names": [
+          "root",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3",
+          "hip_4",
+          "ankle_4"
+        ],
+        "actuator_joint_names": [
+          "hip_4",
+          "ankle_4",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3"
+        ],
+        "actuator_gear": [
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actuator_ctrlrange": [
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ]
+        ],
+        "robot_geom_names": [
+          "torso_geom",
+          "aux_1_geom",
+          "left_leg_geom",
+          "left_ankle_geom",
+          "aux_2_geom",
+          "right_leg_geom",
+          "right_ankle_geom",
+          "aux_3_geom",
+          "back_leg_geom",
+          "third_ankle_geom",
+          "aux_4_geom",
+          "rightback_leg_geom",
+          "fourth_ankle_geom"
+        ],
+        "robot_geom_type": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "robot_geom_size": [
+          [
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ]
+        ],
+        "robot_geom_friction": [
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ]
+        ],
+        "timestep_seconds": 0.01
+      },
+      "scenes": {
+        "flat": {
+          "scene_name": "flat",
+          "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\flat\\standard_scenes\\flat\\ant_standard_scene.xml",
+          "xml_sha256": "9ab941e158372fb328debf4aff3d57649981434e070f879d778301919adb1559",
+          "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\flat\\standard_scenes\\flat\\heights_m.npy",
+          "heights_sha256": "2797af3e149ed4cd565362585e1d0d54cf399610e8caf4055a9331f4e9d2c355",
+          "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\flat\\standard_scenes\\flat\\terrain.hfield",
+          "hfield_sha256": "65440bf1960a0bad568848a9e9cd4f957f602a6fef790307b81bb7fb03ee8f1a",
+          "texture_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\flat\\standard_scenes\\flat\\terrain_contours.png",
+          "texture_sha256": "87c205d0f45908f0015014ab17c84710c47fc3b68b3304c0d3cb33216bf48f1c",
+          "map_half_extent_m": 10.0,
+          "start_xy_m": [
+            -6.0,
+            0.0
+          ],
+          "goal_xy_m": [
+            6.0,
+            0.0
+          ],
+          "minimum_height_m": -1.5e-06,
+          "maximum_height_m": 1.5e-06,
+          "height_range_m": 3e-06,
+          "maximum_gradient_degrees": 2.0122591371321028e-05,
+          "start_surface": {
+            "terrain_height_m": -9.51010611620871e-07,
+            "gradient_x": -9.706619827091889e-08,
+            "gradient_y": 1.5706386254663863e-07,
+            "gradient_degrees": 1.0578933564251613e-05
+          },
+          "fixed_friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "robot_signature_matches_base": true,
+          "scene_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\flat\\standard_scenes\\flat\\scene_manifest.json",
+          "scene_manifest_sha256": "cca2789f9e056d235b168a589c978a8ebcbcf31f9cf4372d8f7c75b170600853"
+        }
+      }
+    },
+    "explicit_pair_audit": {
+      "only_four_permitted_explicit_pairs_added": true,
+      "explicit_pair_count": 4,
+      "source_floor_margin_m": 0.01,
+      "candidate_floor_geom_margin_m": 0.01,
+      "source_distal_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_distal_geom_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_non_distal_margins_m": {
+        "torso_geom": 0.01,
+        "aux_1_geom": 0.01,
+        "left_leg_geom": 0.01,
+        "aux_2_geom": 0.01,
+        "right_leg_geom": 0.01,
+        "aux_3_geom": 0.01,
+        "back_leg_geom": 0.01,
+        "aux_4_geom": 0.01,
+        "rightback_leg_geom": 0.01
+      },
+      "default_geom_margin_m": 0.01,
+      "root_joint_margin_m": 0.01,
+      "compiled_explicit_pairs": [
+        {
+          "geom1": "floor",
+          "geom2": "left_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "right_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "third_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "fourth_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        }
+      ],
+      "friction": [
+        1.0,
+        0.5,
+        0.5
+      ],
+      "condim": 3,
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "physics_timestep_seconds": 0.01
+    },
+    "candidate_xml_sha256": "212b85ab8d34ff378271fe70a961cbdfa558e1cba8210d25a5d20a034ae2d6f9",
+    "analytic_height_match": true
+  },
+  "uphill_4deg": {
+    "spec": {
+      "scene_name": "uphill_4deg",
+      "direction": "uphill",
+      "angle_degrees": 4
+    },
+    "generation": {
+      "schema_version": "proxygap-standard-scene-manifest-v1",
+      "base_xml": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\frozen\\fixed_quad_terrain_v2_approved_20260818\\map\\scene\\ant_fixed_quad_terrain.xml",
+      "base_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+      "robot_signature": {
+        "nq": 15,
+        "nv": 14,
+        "nu": 8,
+        "body_mass": [
+          0.0,
+          0.32724923474893675,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026
+        ],
+        "joint_names": [
+          "root",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3",
+          "hip_4",
+          "ankle_4"
+        ],
+        "actuator_joint_names": [
+          "hip_4",
+          "ankle_4",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3"
+        ],
+        "actuator_gear": [
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actuator_ctrlrange": [
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ]
+        ],
+        "robot_geom_names": [
+          "torso_geom",
+          "aux_1_geom",
+          "left_leg_geom",
+          "left_ankle_geom",
+          "aux_2_geom",
+          "right_leg_geom",
+          "right_ankle_geom",
+          "aux_3_geom",
+          "back_leg_geom",
+          "third_ankle_geom",
+          "aux_4_geom",
+          "rightback_leg_geom",
+          "fourth_ankle_geom"
+        ],
+        "robot_geom_type": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "robot_geom_size": [
+          [
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ]
+        ],
+        "robot_geom_friction": [
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ]
+        ],
+        "timestep_seconds": 0.01
+      },
+      "scenes": {
+        "uphill_8deg": {
+          "scene_name": "uphill_8deg",
+          "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_4deg\\standard_scenes\\uphill_8deg\\ant_standard_scene.xml",
+          "xml_sha256": "ec7391e54fcb05e0c728e35eb7390c5c0e93451b8cb82b866956562a40e3f777",
+          "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_4deg\\standard_scenes\\uphill_8deg\\heights_m.npy",
+          "heights_sha256": "af79fff4b1b461e3322a8993133fe6b1b0fbb375ab4bbe0b5bce9741c72e0fe4",
+          "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_4deg\\standard_scenes\\uphill_8deg\\terrain.hfield",
+          "hfield_sha256": "8b53ce628558727c09c80cb140ba23e72ca1ca193378d9c4e1a198ac556ca433",
+          "texture_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_4deg\\standard_scenes\\uphill_8deg\\terrain_contours.png",
+          "texture_sha256": "f842e208f144c022d6a00190f5aefd5f094cc61f8a6eca5f140f2a96e94d0b62",
+          "map_half_extent_m": 10.0,
+          "start_xy_m": [
+            -6.0,
+            0.0
+          ],
+          "goal_xy_m": [
+            6.0,
+            0.0
+          ],
+          "minimum_height_m": -0.6992681194351041,
+          "maximum_height_m": 0.6992681194351041,
+          "height_range_m": 1.3985362388702083,
+          "maximum_gradient_degrees": 4.000000000000037,
+          "start_surface": {
+            "terrain_height_m": -0.4195608716610625,
+            "gradient_x": 0.06992681194351036,
+            "gradient_y": 0.0,
+            "gradient_degrees": 3.999999999999997
+          },
+          "fixed_friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "robot_signature_matches_base": true,
+          "scene_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_4deg\\standard_scenes\\uphill_8deg\\scene_manifest.json",
+          "scene_manifest_sha256": "b5d888532aaa795eef07da899ae83cfaaad491a2190c8d40cba09c880e930543"
+        }
+      }
+    },
+    "explicit_pair_audit": {
+      "only_four_permitted_explicit_pairs_added": true,
+      "explicit_pair_count": 4,
+      "source_floor_margin_m": 0.01,
+      "candidate_floor_geom_margin_m": 0.01,
+      "source_distal_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_distal_geom_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_non_distal_margins_m": {
+        "torso_geom": 0.01,
+        "aux_1_geom": 0.01,
+        "left_leg_geom": 0.01,
+        "aux_2_geom": 0.01,
+        "right_leg_geom": 0.01,
+        "aux_3_geom": 0.01,
+        "back_leg_geom": 0.01,
+        "aux_4_geom": 0.01,
+        "rightback_leg_geom": 0.01
+      },
+      "default_geom_margin_m": 0.01,
+      "root_joint_margin_m": 0.01,
+      "compiled_explicit_pairs": [
+        {
+          "geom1": "floor",
+          "geom2": "left_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "right_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "third_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "fourth_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        }
+      ],
+      "friction": [
+        1.0,
+        0.5,
+        0.5
+      ],
+      "condim": 3,
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "physics_timestep_seconds": 0.01
+    },
+    "candidate_xml_sha256": "d96bf8555ad9451861182eb02320ef39cb71327baa3822f06b2f9c026b1608ad",
+    "analytic_height_match": true
+  },
+  "uphill_8deg": {
+    "spec": {
+      "scene_name": "uphill_8deg",
+      "direction": "uphill",
+      "angle_degrees": 8
+    },
+    "generation": {
+      "schema_version": "proxygap-standard-scene-manifest-v1",
+      "base_xml": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\frozen\\fixed_quad_terrain_v2_approved_20260818\\map\\scene\\ant_fixed_quad_terrain.xml",
+      "base_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+      "robot_signature": {
+        "nq": 15,
+        "nv": 14,
+        "nu": 8,
+        "body_mass": [
+          0.0,
+          0.32724923474893675,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026
+        ],
+        "joint_names": [
+          "root",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3",
+          "hip_4",
+          "ankle_4"
+        ],
+        "actuator_joint_names": [
+          "hip_4",
+          "ankle_4",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3"
+        ],
+        "actuator_gear": [
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actuator_ctrlrange": [
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ]
+        ],
+        "robot_geom_names": [
+          "torso_geom",
+          "aux_1_geom",
+          "left_leg_geom",
+          "left_ankle_geom",
+          "aux_2_geom",
+          "right_leg_geom",
+          "right_ankle_geom",
+          "aux_3_geom",
+          "back_leg_geom",
+          "third_ankle_geom",
+          "aux_4_geom",
+          "rightback_leg_geom",
+          "fourth_ankle_geom"
+        ],
+        "robot_geom_type": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "robot_geom_size": [
+          [
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ]
+        ],
+        "robot_geom_friction": [
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ]
+        ],
+        "timestep_seconds": 0.01
+      },
+      "scenes": {
+        "uphill_8deg": {
+          "scene_name": "uphill_8deg",
+          "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_8deg\\standard_scenes\\uphill_8deg\\ant_standard_scene.xml",
+          "xml_sha256": "fd62a15e77157e3ff0393e88440010373313f9c1a6176b68c90a924e90643436",
+          "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_8deg\\standard_scenes\\uphill_8deg\\heights_m.npy",
+          "heights_sha256": "5602c376a6af0b6834196fcfc2a339699efc159100bfed7036f30c473c927492",
+          "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_8deg\\standard_scenes\\uphill_8deg\\terrain.hfield",
+          "hfield_sha256": "ca22e078aba52791555515f2b901e8d0f736586a222347581e48dcf6564d1f4e",
+          "texture_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_8deg\\standard_scenes\\uphill_8deg\\terrain_contours.png",
+          "texture_sha256": "8e719960695ba913c76a9a4508c907902f5ef7694ccab7300f2f485e91ff25c3",
+          "map_half_extent_m": 10.0,
+          "start_xy_m": [
+            -6.0,
+            0.0
+          ],
+          "goal_xy_m": [
+            6.0,
+            0.0
+          ],
+          "minimum_height_m": -1.4054083470239145,
+          "maximum_height_m": 1.4054083470239145,
+          "height_range_m": 2.810816694047829,
+          "maximum_gradient_degrees": 8.000000000000043,
+          "start_surface": {
+            "terrain_height_m": -0.8432450082143487,
+            "gradient_x": 0.14054083470239148,
+            "gradient_y": 0.0,
+            "gradient_degrees": 8.000000000000002
+          },
+          "fixed_friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "robot_signature_matches_base": true,
+          "scene_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_8deg\\standard_scenes\\uphill_8deg\\scene_manifest.json",
+          "scene_manifest_sha256": "6bddfb412c04205055ce311d2eccbe26d558fd8fa7a32e44c2eec3caf3a2b0ea"
+        }
+      }
+    },
+    "explicit_pair_audit": {
+      "only_four_permitted_explicit_pairs_added": true,
+      "explicit_pair_count": 4,
+      "source_floor_margin_m": 0.01,
+      "candidate_floor_geom_margin_m": 0.01,
+      "source_distal_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_distal_geom_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_non_distal_margins_m": {
+        "torso_geom": 0.01,
+        "aux_1_geom": 0.01,
+        "left_leg_geom": 0.01,
+        "aux_2_geom": 0.01,
+        "right_leg_geom": 0.01,
+        "aux_3_geom": 0.01,
+        "back_leg_geom": 0.01,
+        "aux_4_geom": 0.01,
+        "rightback_leg_geom": 0.01
+      },
+      "default_geom_margin_m": 0.01,
+      "root_joint_margin_m": 0.01,
+      "compiled_explicit_pairs": [
+        {
+          "geom1": "floor",
+          "geom2": "left_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "right_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "third_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "fourth_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        }
+      ],
+      "friction": [
+        1.0,
+        0.5,
+        0.5
+      ],
+      "condim": 3,
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "physics_timestep_seconds": 0.01
+    },
+    "candidate_xml_sha256": "d6bdd7c25b51975a5783e68ac0e6739243344b457931e39d7bd359f548c21efa",
+    "analytic_height_match": true
+  },
+  "uphill_12deg": {
+    "spec": {
+      "scene_name": "uphill_12deg",
+      "direction": "uphill",
+      "angle_degrees": 12
+    },
+    "generation": {
+      "schema_version": "proxygap-standard-scene-manifest-v1",
+      "base_xml": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\frozen\\fixed_quad_terrain_v2_approved_20260818\\map\\scene\\ant_fixed_quad_terrain.xml",
+      "base_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+      "robot_signature": {
+        "nq": 15,
+        "nv": 14,
+        "nu": 8,
+        "body_mass": [
+          0.0,
+          0.32724923474893675,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026
+        ],
+        "joint_names": [
+          "root",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3",
+          "hip_4",
+          "ankle_4"
+        ],
+        "actuator_joint_names": [
+          "hip_4",
+          "ankle_4",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3"
+        ],
+        "actuator_gear": [
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actuator_ctrlrange": [
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ]
+        ],
+        "robot_geom_names": [
+          "torso_geom",
+          "aux_1_geom",
+          "left_leg_geom",
+          "left_ankle_geom",
+          "aux_2_geom",
+          "right_leg_geom",
+          "right_ankle_geom",
+          "aux_3_geom",
+          "back_leg_geom",
+          "third_ankle_geom",
+          "aux_4_geom",
+          "rightback_leg_geom",
+          "fourth_ankle_geom"
+        ],
+        "robot_geom_type": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "robot_geom_size": [
+          [
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ]
+        ],
+        "robot_geom_friction": [
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ]
+        ],
+        "timestep_seconds": 0.01
+      },
+      "scenes": {
+        "uphill_8deg": {
+          "scene_name": "uphill_8deg",
+          "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_12deg\\standard_scenes\\uphill_8deg\\ant_standard_scene.xml",
+          "xml_sha256": "70de7dcd98f8696695b06989f2a709f700fceab12a3e708704c701a2490c7ca7",
+          "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_12deg\\standard_scenes\\uphill_8deg\\heights_m.npy",
+          "heights_sha256": "0db369c6fbaa9f93f9c4eef6223b1b113b74cdaa972b714bdd5410ee6f46c004",
+          "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_12deg\\standard_scenes\\uphill_8deg\\terrain.hfield",
+          "hfield_sha256": "c9a52e84a12700ed122dc108584dded9891f895d2eac9bd360e15894eac60c2d",
+          "texture_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_12deg\\standard_scenes\\uphill_8deg\\terrain_contours.png",
+          "texture_sha256": "f842e208f144c022d6a00190f5aefd5f094cc61f8a6eca5f140f2a96e94d0b62",
+          "map_half_extent_m": 10.0,
+          "start_xy_m": [
+            -6.0,
+            0.0
+          ],
+          "goal_xy_m": [
+            6.0,
+            0.0
+          ],
+          "minimum_height_m": -2.1255656167002215,
+          "maximum_height_m": 2.1255656167002215,
+          "height_range_m": 4.251131233400443,
+          "maximum_gradient_degrees": 12.000000000000275,
+          "start_surface": {
+            "terrain_height_m": -1.2753393700201328,
+            "gradient_x": 0.21255656167002285,
+            "gradient_y": 0.0,
+            "gradient_degrees": 12.00000000000004
+          },
+          "fixed_friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "robot_signature_matches_base": true,
+          "scene_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_12deg\\standard_scenes\\uphill_8deg\\scene_manifest.json",
+          "scene_manifest_sha256": "3fffd91a42da64eddddcb4153e5647aa6089bbfb32a1c21a8d775006b97d99c8"
+        }
+      }
+    },
+    "explicit_pair_audit": {
+      "only_four_permitted_explicit_pairs_added": true,
+      "explicit_pair_count": 4,
+      "source_floor_margin_m": 0.01,
+      "candidate_floor_geom_margin_m": 0.01,
+      "source_distal_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_distal_geom_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_non_distal_margins_m": {
+        "torso_geom": 0.01,
+        "aux_1_geom": 0.01,
+        "left_leg_geom": 0.01,
+        "aux_2_geom": 0.01,
+        "right_leg_geom": 0.01,
+        "aux_3_geom": 0.01,
+        "back_leg_geom": 0.01,
+        "aux_4_geom": 0.01,
+        "rightback_leg_geom": 0.01
+      },
+      "default_geom_margin_m": 0.01,
+      "root_joint_margin_m": 0.01,
+      "compiled_explicit_pairs": [
+        {
+          "geom1": "floor",
+          "geom2": "left_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "right_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "third_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "fourth_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        }
+      ],
+      "friction": [
+        1.0,
+        0.5,
+        0.5
+      ],
+      "condim": 3,
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "physics_timestep_seconds": 0.01
+    },
+    "candidate_xml_sha256": "33a226ec3f5207c0915e6d0726587e09b75c497b9bd7d2e82407ce133fb7a734",
+    "analytic_height_match": true
+  },
+  "uphill_16deg": {
+    "spec": {
+      "scene_name": "uphill_16deg",
+      "direction": "uphill",
+      "angle_degrees": 16
+    },
+    "generation": {
+      "schema_version": "proxygap-standard-scene-manifest-v1",
+      "base_xml": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\frozen\\fixed_quad_terrain_v2_approved_20260818\\map\\scene\\ant_fixed_quad_terrain.xml",
+      "base_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+      "robot_signature": {
+        "nq": 15,
+        "nv": 14,
+        "nu": 8,
+        "body_mass": [
+          0.0,
+          0.32724923474893675,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026
+        ],
+        "joint_names": [
+          "root",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3",
+          "hip_4",
+          "ankle_4"
+        ],
+        "actuator_joint_names": [
+          "hip_4",
+          "ankle_4",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3"
+        ],
+        "actuator_gear": [
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actuator_ctrlrange": [
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ]
+        ],
+        "robot_geom_names": [
+          "torso_geom",
+          "aux_1_geom",
+          "left_leg_geom",
+          "left_ankle_geom",
+          "aux_2_geom",
+          "right_leg_geom",
+          "right_ankle_geom",
+          "aux_3_geom",
+          "back_leg_geom",
+          "third_ankle_geom",
+          "aux_4_geom",
+          "rightback_leg_geom",
+          "fourth_ankle_geom"
+        ],
+        "robot_geom_type": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "robot_geom_size": [
+          [
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ]
+        ],
+        "robot_geom_friction": [
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ]
+        ],
+        "timestep_seconds": 0.01
+      },
+      "scenes": {
+        "uphill_8deg": {
+          "scene_name": "uphill_8deg",
+          "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_16deg\\standard_scenes\\uphill_8deg\\ant_standard_scene.xml",
+          "xml_sha256": "eb775b9ee095adb43926173e1c4c33801f53f8ac4feaa9bb2d82a97229ccdcbe",
+          "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_16deg\\standard_scenes\\uphill_8deg\\heights_m.npy",
+          "heights_sha256": "31b6fba611751785c7cfdcb5b9b525c9ec6b91da623036e0b32eee67b9c2f8ea",
+          "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_16deg\\standard_scenes\\uphill_8deg\\terrain.hfield",
+          "hfield_sha256": "24822b1c8e3fca3627e721d57d9fe21f353d7f9dd49905190846e44f66e3e29f",
+          "texture_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_16deg\\standard_scenes\\uphill_8deg\\terrain_contours.png",
+          "texture_sha256": "3f4aa45dc19d2c3ef47333c98950b8175481bccb4aee71df38a698ac5d1faf5e",
+          "map_half_extent_m": 10.0,
+          "start_xy_m": [
+            -6.0,
+            0.0
+          ],
+          "goal_xy_m": [
+            6.0,
+            0.0
+          ],
+          "minimum_height_m": -2.867453857588079,
+          "maximum_height_m": 2.867453857588079,
+          "height_range_m": 5.734907715176158,
+          "maximum_gradient_degrees": 16.00000000000005,
+          "start_surface": {
+            "terrain_height_m": -1.7204723145528475,
+            "gradient_x": 0.2867453857588086,
+            "gradient_y": 0.0,
+            "gradient_degrees": 16.000000000000036
+          },
+          "fixed_friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "robot_signature_matches_base": true,
+          "scene_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_16deg\\standard_scenes\\uphill_8deg\\scene_manifest.json",
+          "scene_manifest_sha256": "99f69b3cbeca02193f6a341c27aac55e69a8a0894d61d2b0f5f7417635803a6b"
+        }
+      }
+    },
+    "explicit_pair_audit": {
+      "only_four_permitted_explicit_pairs_added": true,
+      "explicit_pair_count": 4,
+      "source_floor_margin_m": 0.01,
+      "candidate_floor_geom_margin_m": 0.01,
+      "source_distal_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_distal_geom_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_non_distal_margins_m": {
+        "torso_geom": 0.01,
+        "aux_1_geom": 0.01,
+        "left_leg_geom": 0.01,
+        "aux_2_geom": 0.01,
+        "right_leg_geom": 0.01,
+        "aux_3_geom": 0.01,
+        "back_leg_geom": 0.01,
+        "aux_4_geom": 0.01,
+        "rightback_leg_geom": 0.01
+      },
+      "default_geom_margin_m": 0.01,
+      "root_joint_margin_m": 0.01,
+      "compiled_explicit_pairs": [
+        {
+          "geom1": "floor",
+          "geom2": "left_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "right_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "third_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "fourth_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        }
+      ],
+      "friction": [
+        1.0,
+        0.5,
+        0.5
+      ],
+      "condim": 3,
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "physics_timestep_seconds": 0.01
+    },
+    "candidate_xml_sha256": "c7b30631da16507f74322cfba974c9c1a840e9cf2ee27887373d0e15fa42fad0",
+    "analytic_height_match": true
+  },
+  "uphill_20deg": {
+    "spec": {
+      "scene_name": "uphill_20deg",
+      "direction": "uphill",
+      "angle_degrees": 20
+    },
+    "generation": {
+      "schema_version": "proxygap-standard-scene-manifest-v1",
+      "base_xml": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\frozen\\fixed_quad_terrain_v2_approved_20260818\\map\\scene\\ant_fixed_quad_terrain.xml",
+      "base_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+      "robot_signature": {
+        "nq": 15,
+        "nv": 14,
+        "nu": 8,
+        "body_mass": [
+          0.0,
+          0.32724923474893675,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026
+        ],
+        "joint_names": [
+          "root",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3",
+          "hip_4",
+          "ankle_4"
+        ],
+        "actuator_joint_names": [
+          "hip_4",
+          "ankle_4",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3"
+        ],
+        "actuator_gear": [
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actuator_ctrlrange": [
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ]
+        ],
+        "robot_geom_names": [
+          "torso_geom",
+          "aux_1_geom",
+          "left_leg_geom",
+          "left_ankle_geom",
+          "aux_2_geom",
+          "right_leg_geom",
+          "right_ankle_geom",
+          "aux_3_geom",
+          "back_leg_geom",
+          "third_ankle_geom",
+          "aux_4_geom",
+          "rightback_leg_geom",
+          "fourth_ankle_geom"
+        ],
+        "robot_geom_type": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "robot_geom_size": [
+          [
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ]
+        ],
+        "robot_geom_friction": [
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ]
+        ],
+        "timestep_seconds": 0.01
+      },
+      "scenes": {
+        "uphill_8deg": {
+          "scene_name": "uphill_8deg",
+          "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_20deg\\standard_scenes\\uphill_8deg\\ant_standard_scene.xml",
+          "xml_sha256": "934d908a8b055c538aac3cb3514298058ccbf2bfb6f02c7632cdd7f8b72f3aec",
+          "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_20deg\\standard_scenes\\uphill_8deg\\heights_m.npy",
+          "heights_sha256": "2a5da922e242f96050581d7bc786bf539f950cb8cf966f80190b9d531b054395",
+          "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_20deg\\standard_scenes\\uphill_8deg\\terrain.hfield",
+          "hfield_sha256": "179888db3b111d3179b2a98fbf2414de289ae6bd76c2585fd802b9e9ea53487f",
+          "texture_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_20deg\\standard_scenes\\uphill_8deg\\terrain_contours.png",
+          "texture_sha256": "9dcbd263393bef97a3056c725642276bc87c659ca7bb48b1f2a4de17a5d0b508",
+          "map_half_extent_m": 10.0,
+          "start_xy_m": [
+            -6.0,
+            0.0
+          ],
+          "goal_xy_m": [
+            6.0,
+            0.0
+          ],
+          "minimum_height_m": -3.6397023426620234,
+          "maximum_height_m": 3.6397023426620234,
+          "height_range_m": 7.279404685324047,
+          "maximum_gradient_degrees": 20.000000000000124,
+          "start_surface": {
+            "terrain_height_m": -2.1838214055972136,
+            "gradient_x": 0.36397023426620195,
+            "gradient_y": 0.0,
+            "gradient_degrees": 19.999999999999982
+          },
+          "fixed_friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "robot_signature_matches_base": true,
+          "scene_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\uphill_20deg\\standard_scenes\\uphill_8deg\\scene_manifest.json",
+          "scene_manifest_sha256": "2f4a5e8fac37e9903e0464ae4c1c807f4240df517ba18b5024caef365c09b08d"
+        }
+      }
+    },
+    "explicit_pair_audit": {
+      "only_four_permitted_explicit_pairs_added": true,
+      "explicit_pair_count": 4,
+      "source_floor_margin_m": 0.01,
+      "candidate_floor_geom_margin_m": 0.01,
+      "source_distal_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_distal_geom_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_non_distal_margins_m": {
+        "torso_geom": 0.01,
+        "aux_1_geom": 0.01,
+        "left_leg_geom": 0.01,
+        "aux_2_geom": 0.01,
+        "right_leg_geom": 0.01,
+        "aux_3_geom": 0.01,
+        "back_leg_geom": 0.01,
+        "aux_4_geom": 0.01,
+        "rightback_leg_geom": 0.01
+      },
+      "default_geom_margin_m": 0.01,
+      "root_joint_margin_m": 0.01,
+      "compiled_explicit_pairs": [
+        {
+          "geom1": "floor",
+          "geom2": "left_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "right_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "third_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "fourth_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        }
+      ],
+      "friction": [
+        1.0,
+        0.5,
+        0.5
+      ],
+      "condim": 3,
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "physics_timestep_seconds": 0.01
+    },
+    "candidate_xml_sha256": "1b3789b1df0d2cd3d7b67d3f7b47f38ee8494f24ba3ac7f7aa3e503c2dafe200",
+    "analytic_height_match": true
+  },
+  "downhill_4deg": {
+    "spec": {
+      "scene_name": "downhill_4deg",
+      "direction": "downhill",
+      "angle_degrees": 4
+    },
+    "generation": {
+      "schema_version": "proxygap-standard-scene-manifest-v1",
+      "base_xml": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\frozen\\fixed_quad_terrain_v2_approved_20260818\\map\\scene\\ant_fixed_quad_terrain.xml",
+      "base_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+      "robot_signature": {
+        "nq": 15,
+        "nv": 14,
+        "nu": 8,
+        "body_mass": [
+          0.0,
+          0.32724923474893675,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026
+        ],
+        "joint_names": [
+          "root",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3",
+          "hip_4",
+          "ankle_4"
+        ],
+        "actuator_joint_names": [
+          "hip_4",
+          "ankle_4",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3"
+        ],
+        "actuator_gear": [
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actuator_ctrlrange": [
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ]
+        ],
+        "robot_geom_names": [
+          "torso_geom",
+          "aux_1_geom",
+          "left_leg_geom",
+          "left_ankle_geom",
+          "aux_2_geom",
+          "right_leg_geom",
+          "right_ankle_geom",
+          "aux_3_geom",
+          "back_leg_geom",
+          "third_ankle_geom",
+          "aux_4_geom",
+          "rightback_leg_geom",
+          "fourth_ankle_geom"
+        ],
+        "robot_geom_type": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "robot_geom_size": [
+          [
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ]
+        ],
+        "robot_geom_friction": [
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ]
+        ],
+        "timestep_seconds": 0.01
+      },
+      "scenes": {
+        "downhill_8deg": {
+          "scene_name": "downhill_8deg",
+          "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_4deg\\standard_scenes\\downhill_8deg\\ant_standard_scene.xml",
+          "xml_sha256": "99a4979817726c390bc8cb3942f04ef2eb7cea29f8b110e6732c343b211b7699",
+          "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_4deg\\standard_scenes\\downhill_8deg\\heights_m.npy",
+          "heights_sha256": "cfd5bdced043e687e5ebcd916148194bf80e34845624be473f4ee3a87e40c1a2",
+          "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_4deg\\standard_scenes\\downhill_8deg\\terrain.hfield",
+          "hfield_sha256": "0468327554891b671b3eb5a3780d6cb77a758be3647332bf19955f035df9c6f7",
+          "texture_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_4deg\\standard_scenes\\downhill_8deg\\terrain_contours.png",
+          "texture_sha256": "3e6f2f8c59d2de197782f30b2e2ed02370578878a2cbbdc01a514e5eadc70e7b",
+          "map_half_extent_m": 10.0,
+          "start_xy_m": [
+            -6.0,
+            0.0
+          ],
+          "goal_xy_m": [
+            6.0,
+            0.0
+          ],
+          "minimum_height_m": -0.6992681194351041,
+          "maximum_height_m": 0.6992681194351041,
+          "height_range_m": 1.3985362388702083,
+          "maximum_gradient_degrees": 4.000000000000037,
+          "start_surface": {
+            "terrain_height_m": 0.4195608716610625,
+            "gradient_x": -0.06992681194351036,
+            "gradient_y": 0.0,
+            "gradient_degrees": 3.999999999999997
+          },
+          "fixed_friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "robot_signature_matches_base": true,
+          "scene_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_4deg\\standard_scenes\\downhill_8deg\\scene_manifest.json",
+          "scene_manifest_sha256": "73162d1e3a3c3d72513cfb1e0f78382ebc9cda67808c660a9e26f0816b20e9f8"
+        }
+      }
+    },
+    "explicit_pair_audit": {
+      "only_four_permitted_explicit_pairs_added": true,
+      "explicit_pair_count": 4,
+      "source_floor_margin_m": 0.01,
+      "candidate_floor_geom_margin_m": 0.01,
+      "source_distal_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_distal_geom_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_non_distal_margins_m": {
+        "torso_geom": 0.01,
+        "aux_1_geom": 0.01,
+        "left_leg_geom": 0.01,
+        "aux_2_geom": 0.01,
+        "right_leg_geom": 0.01,
+        "aux_3_geom": 0.01,
+        "back_leg_geom": 0.01,
+        "aux_4_geom": 0.01,
+        "rightback_leg_geom": 0.01
+      },
+      "default_geom_margin_m": 0.01,
+      "root_joint_margin_m": 0.01,
+      "compiled_explicit_pairs": [
+        {
+          "geom1": "floor",
+          "geom2": "left_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "right_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "third_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "fourth_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        }
+      ],
+      "friction": [
+        1.0,
+        0.5,
+        0.5
+      ],
+      "condim": 3,
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "physics_timestep_seconds": 0.01
+    },
+    "candidate_xml_sha256": "bb8f0e68facab60a8bf8d483665b8ba00b6e7066b4862073fb0934d4673513bc",
+    "analytic_height_match": true
+  },
+  "downhill_8deg": {
+    "spec": {
+      "scene_name": "downhill_8deg",
+      "direction": "downhill",
+      "angle_degrees": 8
+    },
+    "generation": {
+      "schema_version": "proxygap-standard-scene-manifest-v1",
+      "base_xml": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\frozen\\fixed_quad_terrain_v2_approved_20260818\\map\\scene\\ant_fixed_quad_terrain.xml",
+      "base_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+      "robot_signature": {
+        "nq": 15,
+        "nv": 14,
+        "nu": 8,
+        "body_mass": [
+          0.0,
+          0.32724923474893675,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026
+        ],
+        "joint_names": [
+          "root",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3",
+          "hip_4",
+          "ankle_4"
+        ],
+        "actuator_joint_names": [
+          "hip_4",
+          "ankle_4",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3"
+        ],
+        "actuator_gear": [
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actuator_ctrlrange": [
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ]
+        ],
+        "robot_geom_names": [
+          "torso_geom",
+          "aux_1_geom",
+          "left_leg_geom",
+          "left_ankle_geom",
+          "aux_2_geom",
+          "right_leg_geom",
+          "right_ankle_geom",
+          "aux_3_geom",
+          "back_leg_geom",
+          "third_ankle_geom",
+          "aux_4_geom",
+          "rightback_leg_geom",
+          "fourth_ankle_geom"
+        ],
+        "robot_geom_type": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "robot_geom_size": [
+          [
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ]
+        ],
+        "robot_geom_friction": [
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ]
+        ],
+        "timestep_seconds": 0.01
+      },
+      "scenes": {
+        "downhill_8deg": {
+          "scene_name": "downhill_8deg",
+          "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_8deg\\standard_scenes\\downhill_8deg\\ant_standard_scene.xml",
+          "xml_sha256": "87e69b47529337a430ae6b7a78e4f7b100ab07cd5e072c1a1d0fbfb5c02ae318",
+          "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_8deg\\standard_scenes\\downhill_8deg\\heights_m.npy",
+          "heights_sha256": "86592a74cafe95da499cd5025a6a0dfeb1e2ffd6617a55e18feec34dae173940",
+          "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_8deg\\standard_scenes\\downhill_8deg\\terrain.hfield",
+          "hfield_sha256": "31ab14ea72a0fdf02f0ece4e5eda9a355fd56fa7f2b00feb59c1598844440242",
+          "texture_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_8deg\\standard_scenes\\downhill_8deg\\terrain_contours.png",
+          "texture_sha256": "fdc35c833c5ad14a610a3bb78a81f35301be93df7f35ccafc36c1c1fd9516cf0",
+          "map_half_extent_m": 10.0,
+          "start_xy_m": [
+            -6.0,
+            0.0
+          ],
+          "goal_xy_m": [
+            6.0,
+            0.0
+          ],
+          "minimum_height_m": -1.4054083470239145,
+          "maximum_height_m": 1.4054083470239145,
+          "height_range_m": 2.810816694047829,
+          "maximum_gradient_degrees": 8.000000000000043,
+          "start_surface": {
+            "terrain_height_m": 0.8432450082143487,
+            "gradient_x": -0.14054083470239148,
+            "gradient_y": 0.0,
+            "gradient_degrees": 8.000000000000002
+          },
+          "fixed_friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "robot_signature_matches_base": true,
+          "scene_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_8deg\\standard_scenes\\downhill_8deg\\scene_manifest.json",
+          "scene_manifest_sha256": "7de23917e2b7d8afc267f08d04f639e6a0dad5894de8463aef2ffce2a1ae2d07"
+        }
+      }
+    },
+    "explicit_pair_audit": {
+      "only_four_permitted_explicit_pairs_added": true,
+      "explicit_pair_count": 4,
+      "source_floor_margin_m": 0.01,
+      "candidate_floor_geom_margin_m": 0.01,
+      "source_distal_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_distal_geom_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_non_distal_margins_m": {
+        "torso_geom": 0.01,
+        "aux_1_geom": 0.01,
+        "left_leg_geom": 0.01,
+        "aux_2_geom": 0.01,
+        "right_leg_geom": 0.01,
+        "aux_3_geom": 0.01,
+        "back_leg_geom": 0.01,
+        "aux_4_geom": 0.01,
+        "rightback_leg_geom": 0.01
+      },
+      "default_geom_margin_m": 0.01,
+      "root_joint_margin_m": 0.01,
+      "compiled_explicit_pairs": [
+        {
+          "geom1": "floor",
+          "geom2": "left_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "right_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "third_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "fourth_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        }
+      ],
+      "friction": [
+        1.0,
+        0.5,
+        0.5
+      ],
+      "condim": 3,
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "physics_timestep_seconds": 0.01
+    },
+    "candidate_xml_sha256": "dfc03dd20abffe7eca8331fb80b04e5f17c7bf1faa7b72e6bd96deffb835d2f3",
+    "analytic_height_match": true
+  },
+  "downhill_12deg": {
+    "spec": {
+      "scene_name": "downhill_12deg",
+      "direction": "downhill",
+      "angle_degrees": 12
+    },
+    "generation": {
+      "schema_version": "proxygap-standard-scene-manifest-v1",
+      "base_xml": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\frozen\\fixed_quad_terrain_v2_approved_20260818\\map\\scene\\ant_fixed_quad_terrain.xml",
+      "base_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+      "robot_signature": {
+        "nq": 15,
+        "nv": 14,
+        "nu": 8,
+        "body_mass": [
+          0.0,
+          0.32724923474893675,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026
+        ],
+        "joint_names": [
+          "root",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3",
+          "hip_4",
+          "ankle_4"
+        ],
+        "actuator_joint_names": [
+          "hip_4",
+          "ankle_4",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3"
+        ],
+        "actuator_gear": [
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actuator_ctrlrange": [
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ]
+        ],
+        "robot_geom_names": [
+          "torso_geom",
+          "aux_1_geom",
+          "left_leg_geom",
+          "left_ankle_geom",
+          "aux_2_geom",
+          "right_leg_geom",
+          "right_ankle_geom",
+          "aux_3_geom",
+          "back_leg_geom",
+          "third_ankle_geom",
+          "aux_4_geom",
+          "rightback_leg_geom",
+          "fourth_ankle_geom"
+        ],
+        "robot_geom_type": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "robot_geom_size": [
+          [
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ]
+        ],
+        "robot_geom_friction": [
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ]
+        ],
+        "timestep_seconds": 0.01
+      },
+      "scenes": {
+        "downhill_8deg": {
+          "scene_name": "downhill_8deg",
+          "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_12deg\\standard_scenes\\downhill_8deg\\ant_standard_scene.xml",
+          "xml_sha256": "dc4de7cf61ca323a2ad2c4cad9dbf5e36daec180bbb5ff3b4a702f451cbc7634",
+          "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_12deg\\standard_scenes\\downhill_8deg\\heights_m.npy",
+          "heights_sha256": "35ade9602169f70e38594476cfbed4681d7e8e311e699218025c16bdb7cd07d6",
+          "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_12deg\\standard_scenes\\downhill_8deg\\terrain.hfield",
+          "hfield_sha256": "2353a1aae025e50b7e89fe3eab5e9b90ad295d2b68059a8f0509569de2617a84",
+          "texture_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_12deg\\standard_scenes\\downhill_8deg\\terrain_contours.png",
+          "texture_sha256": "3e6f2f8c59d2de197782f30b2e2ed02370578878a2cbbdc01a514e5eadc70e7b",
+          "map_half_extent_m": 10.0,
+          "start_xy_m": [
+            -6.0,
+            0.0
+          ],
+          "goal_xy_m": [
+            6.0,
+            0.0
+          ],
+          "minimum_height_m": -2.1255656167002215,
+          "maximum_height_m": 2.1255656167002215,
+          "height_range_m": 4.251131233400443,
+          "maximum_gradient_degrees": 12.000000000000275,
+          "start_surface": {
+            "terrain_height_m": 1.2753393700201328,
+            "gradient_x": -0.21255656167002285,
+            "gradient_y": 0.0,
+            "gradient_degrees": 12.00000000000004
+          },
+          "fixed_friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "robot_signature_matches_base": true,
+          "scene_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_12deg\\standard_scenes\\downhill_8deg\\scene_manifest.json",
+          "scene_manifest_sha256": "a004430da13f0e7c09791afaf39a24d66c22a5850df0db4404a23241efd9b4cf"
+        }
+      }
+    },
+    "explicit_pair_audit": {
+      "only_four_permitted_explicit_pairs_added": true,
+      "explicit_pair_count": 4,
+      "source_floor_margin_m": 0.01,
+      "candidate_floor_geom_margin_m": 0.01,
+      "source_distal_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_distal_geom_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_non_distal_margins_m": {
+        "torso_geom": 0.01,
+        "aux_1_geom": 0.01,
+        "left_leg_geom": 0.01,
+        "aux_2_geom": 0.01,
+        "right_leg_geom": 0.01,
+        "aux_3_geom": 0.01,
+        "back_leg_geom": 0.01,
+        "aux_4_geom": 0.01,
+        "rightback_leg_geom": 0.01
+      },
+      "default_geom_margin_m": 0.01,
+      "root_joint_margin_m": 0.01,
+      "compiled_explicit_pairs": [
+        {
+          "geom1": "floor",
+          "geom2": "left_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "right_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "third_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "fourth_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        }
+      ],
+      "friction": [
+        1.0,
+        0.5,
+        0.5
+      ],
+      "condim": 3,
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "physics_timestep_seconds": 0.01
+    },
+    "candidate_xml_sha256": "3b096ce6e382dc34fdb8434b0b605ae6f1cab860ea0d8f5cd4617b026b5d1ffb",
+    "analytic_height_match": true
+  },
+  "downhill_16deg": {
+    "spec": {
+      "scene_name": "downhill_16deg",
+      "direction": "downhill",
+      "angle_degrees": 16
+    },
+    "generation": {
+      "schema_version": "proxygap-standard-scene-manifest-v1",
+      "base_xml": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\frozen\\fixed_quad_terrain_v2_approved_20260818\\map\\scene\\ant_fixed_quad_terrain.xml",
+      "base_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+      "robot_signature": {
+        "nq": 15,
+        "nv": 14,
+        "nu": 8,
+        "body_mass": [
+          0.0,
+          0.32724923474893675,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026
+        ],
+        "joint_names": [
+          "root",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3",
+          "hip_4",
+          "ankle_4"
+        ],
+        "actuator_joint_names": [
+          "hip_4",
+          "ankle_4",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3"
+        ],
+        "actuator_gear": [
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actuator_ctrlrange": [
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ]
+        ],
+        "robot_geom_names": [
+          "torso_geom",
+          "aux_1_geom",
+          "left_leg_geom",
+          "left_ankle_geom",
+          "aux_2_geom",
+          "right_leg_geom",
+          "right_ankle_geom",
+          "aux_3_geom",
+          "back_leg_geom",
+          "third_ankle_geom",
+          "aux_4_geom",
+          "rightback_leg_geom",
+          "fourth_ankle_geom"
+        ],
+        "robot_geom_type": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "robot_geom_size": [
+          [
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ]
+        ],
+        "robot_geom_friction": [
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ]
+        ],
+        "timestep_seconds": 0.01
+      },
+      "scenes": {
+        "downhill_8deg": {
+          "scene_name": "downhill_8deg",
+          "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_16deg\\standard_scenes\\downhill_8deg\\ant_standard_scene.xml",
+          "xml_sha256": "bd877c7e18f9b5e71b1f20e82962a4e4fb414e942b61632d56677e54444336df",
+          "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_16deg\\standard_scenes\\downhill_8deg\\heights_m.npy",
+          "heights_sha256": "f7773f651442d03006cf97c5f1ca9bd535c40e5a527cd655b73e9e36b219bd30",
+          "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_16deg\\standard_scenes\\downhill_8deg\\terrain.hfield",
+          "hfield_sha256": "d76e06b6e5b9860a10f3a4596eb2b5f0cfebb512e1fc6adfc31cd4277936e139",
+          "texture_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_16deg\\standard_scenes\\downhill_8deg\\terrain_contours.png",
+          "texture_sha256": "c7cdc70a57101494160e39b16ddc5d3743c9843c4c5821e5d9a0dd7dc93222db",
+          "map_half_extent_m": 10.0,
+          "start_xy_m": [
+            -6.0,
+            0.0
+          ],
+          "goal_xy_m": [
+            6.0,
+            0.0
+          ],
+          "minimum_height_m": -2.867453857588079,
+          "maximum_height_m": 2.867453857588079,
+          "height_range_m": 5.734907715176158,
+          "maximum_gradient_degrees": 16.00000000000005,
+          "start_surface": {
+            "terrain_height_m": 1.7204723145528475,
+            "gradient_x": -0.2867453857588086,
+            "gradient_y": 0.0,
+            "gradient_degrees": 16.000000000000036
+          },
+          "fixed_friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "robot_signature_matches_base": true,
+          "scene_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_16deg\\standard_scenes\\downhill_8deg\\scene_manifest.json",
+          "scene_manifest_sha256": "e64a9cea886ed5b29951811a535dc0383e1d2904a6b6330a6038385ef9e7b139"
+        }
+      }
+    },
+    "explicit_pair_audit": {
+      "only_four_permitted_explicit_pairs_added": true,
+      "explicit_pair_count": 4,
+      "source_floor_margin_m": 0.01,
+      "candidate_floor_geom_margin_m": 0.01,
+      "source_distal_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_distal_geom_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_non_distal_margins_m": {
+        "torso_geom": 0.01,
+        "aux_1_geom": 0.01,
+        "left_leg_geom": 0.01,
+        "aux_2_geom": 0.01,
+        "right_leg_geom": 0.01,
+        "aux_3_geom": 0.01,
+        "back_leg_geom": 0.01,
+        "aux_4_geom": 0.01,
+        "rightback_leg_geom": 0.01
+      },
+      "default_geom_margin_m": 0.01,
+      "root_joint_margin_m": 0.01,
+      "compiled_explicit_pairs": [
+        {
+          "geom1": "floor",
+          "geom2": "left_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "right_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "third_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "fourth_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        }
+      ],
+      "friction": [
+        1.0,
+        0.5,
+        0.5
+      ],
+      "condim": 3,
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "physics_timestep_seconds": 0.01
+    },
+    "candidate_xml_sha256": "6e15e5a0e166d96425bfa67337eb28eba1e2baccbd865eab7793e71639f9db05",
+    "analytic_height_match": true
+  },
+  "downhill_20deg": {
+    "spec": {
+      "scene_name": "downhill_20deg",
+      "direction": "downhill",
+      "angle_degrees": 20
+    },
+    "generation": {
+      "schema_version": "proxygap-standard-scene-manifest-v1",
+      "base_xml": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\frozen\\fixed_quad_terrain_v2_approved_20260818\\map\\scene\\ant_fixed_quad_terrain.xml",
+      "base_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+      "robot_signature": {
+        "nq": 15,
+        "nv": 14,
+        "nu": 8,
+        "body_mass": [
+          0.0,
+          0.32724923474893675,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026,
+          0.03915775372846671,
+          0.03915775372846671,
+          0.06759220453268026
+        ],
+        "joint_names": [
+          "root",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3",
+          "hip_4",
+          "ankle_4"
+        ],
+        "actuator_joint_names": [
+          "hip_4",
+          "ankle_4",
+          "hip_1",
+          "ankle_1",
+          "hip_2",
+          "ankle_2",
+          "hip_3",
+          "ankle_3"
+        ],
+        "actuator_gear": [
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            150.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "actuator_ctrlrange": [
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            -1.0,
+            1.0
+          ]
+        ],
+        "robot_geom_names": [
+          "torso_geom",
+          "aux_1_geom",
+          "left_leg_geom",
+          "left_ankle_geom",
+          "aux_2_geom",
+          "right_leg_geom",
+          "right_ankle_geom",
+          "aux_3_geom",
+          "back_leg_geom",
+          "third_ankle_geom",
+          "aux_4_geom",
+          "rightback_leg_geom",
+          "fourth_ankle_geom"
+        ],
+        "robot_geom_type": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "robot_geom_size": [
+          [
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.14142135623730953,
+            0.0
+          ],
+          [
+            0.08,
+            0.28284271247461906,
+            0.0
+          ]
+        ],
+        "robot_geom_friction": [
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            1.0,
+            0.5,
+            0.5
+          ]
+        ],
+        "timestep_seconds": 0.01
+      },
+      "scenes": {
+        "downhill_8deg": {
+          "scene_name": "downhill_8deg",
+          "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_20deg\\standard_scenes\\downhill_8deg\\ant_standard_scene.xml",
+          "xml_sha256": "ac320de99d66b5df081e36d68c353ac02ae61fcabf20f26accd2f436b23fb4c9",
+          "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_20deg\\standard_scenes\\downhill_8deg\\heights_m.npy",
+          "heights_sha256": "0e02b567cd32fda7135cead00c5b08b69e2f83d9cce323570d49218cebf087e1",
+          "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_20deg\\standard_scenes\\downhill_8deg\\terrain.hfield",
+          "hfield_sha256": "282186846e18b9395cd20bb3630ada143761a6ef31747f58ac25c9af98fcf614",
+          "texture_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_20deg\\standard_scenes\\downhill_8deg\\terrain_contours.png",
+          "texture_sha256": "5839d858c07683aafbc9155a2734dc2ad4132e27a5f8e89e0c2d10c9c45a6922",
+          "map_half_extent_m": 10.0,
+          "start_xy_m": [
+            -6.0,
+            0.0
+          ],
+          "goal_xy_m": [
+            6.0,
+            0.0
+          ],
+          "minimum_height_m": -3.6397023426620234,
+          "maximum_height_m": 3.6397023426620234,
+          "height_range_m": 7.279404685324047,
+          "maximum_gradient_degrees": 20.000000000000124,
+          "start_surface": {
+            "terrain_height_m": 2.1838214055972136,
+            "gradient_x": -0.36397023426620195,
+            "gradient_y": 0.0,
+            "gradient_degrees": 19.999999999999982
+          },
+          "fixed_friction": [
+            1.0,
+            0.5,
+            0.5
+          ],
+          "condim": 3,
+          "robot_signature_matches_base": true,
+          "scene_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_capability_boundary_v1_20260819\\attempt_0\\scene_sources\\downhill_20deg\\standard_scenes\\downhill_8deg\\scene_manifest.json",
+          "scene_manifest_sha256": "d2560d92d594ac91b3f7439226e27f44d32f8af0d71b5d1f0e66f5f738a66f35"
+        }
+      }
+    },
+    "explicit_pair_audit": {
+      "only_four_permitted_explicit_pairs_added": true,
+      "explicit_pair_count": 4,
+      "source_floor_margin_m": 0.01,
+      "candidate_floor_geom_margin_m": 0.01,
+      "source_distal_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_distal_geom_margins_m": {
+        "left_ankle_geom": 0.01,
+        "right_ankle_geom": 0.01,
+        "third_ankle_geom": 0.01,
+        "fourth_ankle_geom": 0.01
+      },
+      "candidate_non_distal_margins_m": {
+        "torso_geom": 0.01,
+        "aux_1_geom": 0.01,
+        "left_leg_geom": 0.01,
+        "aux_2_geom": 0.01,
+        "right_leg_geom": 0.01,
+        "aux_3_geom": 0.01,
+        "back_leg_geom": 0.01,
+        "aux_4_geom": 0.01,
+        "rightback_leg_geom": 0.01
+      },
+      "default_geom_margin_m": 0.01,
+      "root_joint_margin_m": 0.01,
+      "compiled_explicit_pairs": [
+        {
+          "geom1": "floor",
+          "geom2": "left_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "right_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "third_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        },
+        {
+          "geom1": "floor",
+          "geom2": "fourth_ankle_geom",
+          "margin": 0.0,
+          "gap": 0.0,
+          "condim": 3,
+          "friction": [
+            1.0,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "solref": [
+            0.02,
+            1.0
+          ],
+          "solreffriction": [
+            0.0,
+            0.0
+          ],
+          "solimp": [
+            0.9,
+            0.95,
+            0.001,
+            0.5,
+            2.0
+          ],
+          "adhesion": 0.0
+        }
+      ],
+      "friction": [
+        1.0,
+        0.5,
+        0.5
+      ],
+      "condim": 3,
+      "solref": [
+        0.02,
+        1.0
+      ],
+      "solimp": [
+        0.9,
+        0.95,
+        0.001,
+        0.5,
+        2.0
+      ],
+      "physics_timestep_seconds": 0.01
+    },
+    "candidate_xml_sha256": "5147f037b3e1680e50c5f531282acadf9e3f9605a2671a085af9f32d49ffde66",
+    "analytic_height_match": true
+  }
+}

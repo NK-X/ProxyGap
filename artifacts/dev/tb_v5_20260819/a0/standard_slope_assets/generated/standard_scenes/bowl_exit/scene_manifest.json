@@ -1,0 +1,37 @@
+{
+  "scene_name": "bowl_exit",
+  "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_20260819\\a0\\standard_slope_assets\\generated\\standard_scenes\\bowl_exit\\ant_standard_scene.xml",
+  "xml_sha256": "3b80e3e9b046455acebc147588406468ec2eb369115ab090b1e2e9437bda3cd0",
+  "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_20260819\\a0\\standard_slope_assets\\generated\\standard_scenes\\bowl_exit\\heights_m.npy",
+  "heights_sha256": "cb4eb39667cf268367c962bee328b0690881dfde6c49a112aedab60119f520e3",
+  "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_20260819\\a0\\standard_slope_assets\\generated\\standard_scenes\\bowl_exit\\terrain.hfield",
+  "hfield_sha256": "3f50d0f5d8ced6059a3a9ad895485ae66805422d88899b4fe3f0019dc47f42b3",
+  "texture_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_20260819\\a0\\standard_slope_assets\\generated\\standard_scenes\\bowl_exit\\terrain_contours.png",
+  "texture_sha256": "9911e6fd14a7b5dfd06ac147ec23e6970f4229b58fd2b1079fec4dfee1cd548d",
+  "map_half_extent_m": 10.0,
+  "start_xy_m": [
+    -6.0,
+    0.0
+  ],
+  "goal_xy_m": [
+    6.0,
+    0.0
+  ],
+  "minimum_height_m": -0.9999804689407337,
+  "maximum_height_m": -5.6037500361273e-11,
+  "height_range_m": 0.9999804688846962,
+  "maximum_gradient_degrees": 13.632411609199144,
+  "start_surface": {
+    "terrain_height_m": -0.9999218849171948,
+    "gradient_x": -5.853636715971722e-07,
+    "gradient_y": 0.0,
+    "gradient_degrees": 3.3538867862796076e-05
+  },
+  "fixed_friction": [
+    1.0,
+    0.5,
+    0.5
+  ],
+  "condim": 3,
+  "robot_signature_matches_base": true
+}

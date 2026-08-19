@@ -1,0 +1,346 @@
+{
+  "schema_version": "proxygap-fixed-standard-speed-ablation-manifest-v1",
+  "decision": "No nonbaseline speed met the endpoint/non-stall gate; substep evidence cannot promote it.",
+  "speed_reduction_recommended": false,
+  "selected_high_frequency_audit_speed_m_per_s": 0.4,
+  "configuration": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\fixed_standard_speed_ablation_v1_20260819.json",
+    "sha256": "2b4c784efef8910ee445489d7ba49c7f90e1400fbd5ffbdcb070710ecc27c048"
+  },
+  "frozen_configuration": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\frozen_speed_ablation_config.json",
+    "sha256": "2b4c784efef8910ee445489d7ba49c7f90e1400fbd5ffbdcb070710ecc27c048"
+  },
+  "frozen_support_protocol": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\frozen_support_protocol.json",
+    "sha256": "06979405fa0122d9386a8d2ed12619db97d71c73b3cd1a08ef404ee6c627f927"
+  },
+  "models": [
+    {
+      "model_id": "SOURCE_STAGE1",
+      "checkpoint": "artifacts/dev/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819/seed_62802/models/checkpoint_2596864.zip",
+      "checkpoint_sha256": "5bfd212b810af0189009f067ee7be8e8d4702fe1bee8cf025ba82401f931ff1e",
+      "training_source": false,
+      "observed_sha256": "5bfd212b810af0189009f067ee7be8e8d4702fe1bee8cf025ba82401f931ff1e"
+    },
+    {
+      "model_id": "MATCHED_CONTACT_GAP_W0",
+      "checkpoint": "artifacts/dev/fixed_standard_support_curriculum_v1_20260819/paired_bound6_seed_62804/models/matched_contact_gap_w0_control/checkpoint_2662400.zip",
+      "checkpoint_sha256": "3be0a9177ac0f8c3a5f14bf38136bb5cca89c2cfbc45e4515729e8dbcf7ba5d5",
+      "training_source": false,
+      "observed_sha256": "3be0a9177ac0f8c3a5f14bf38136bb5cca89c2cfbc45e4515729e8dbcf7ba5d5"
+    }
+  ],
+  "code": [
+    {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\fixed_standard_speed_ablation_v1_20260819.json",
+      "sha256": "2b4c784efef8910ee445489d7ba49c7f90e1400fbd5ffbdcb070710ecc27c048"
+    },
+    {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\scripts\\run_fixed_standard_speed_ablation.py",
+      "sha256": "5b2a219fe38e0ea434ee1227b684cff55af93f1ac4eb59bafa4cb05970a81e16"
+    },
+    {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\scripts\\run_fixed_standard_support_curriculum.py",
+      "sha256": "e3fee67e834e3354c75931f96d582a61322cb6f1484eac787fb77215f82e986f"
+    },
+    {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\src\\proxygap\\fixed_goal_terrain.py",
+      "sha256": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2"
+    },
+    {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\src\\proxygap\\ant_wrapper.py",
+      "sha256": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2"
+    }
+  ],
+  "git": {
+    "head": "6a41daa5ff69105ea1b2f4408111ec57684f616c",
+    "dirty": true,
+    "status_short": [
+      "M docs/FIXED_TERRAIN_PROGRESS_REPORT_20260819_0730_CN.md",
+      " M environment.yml",
+      " M scripts/render_fixed_goal_dual_view_video.py",
+      " M src/proxygap/fixed_goal_terrain.py",
+      " M tests/test_render_fixed_goal_dual_view_video.py",
+      "?? .mplconfig/",
+      "?? RELATIVE_MISSION_ENERGY_PROXY_V1.md",
+      "?? configs/fixed_goal_dual_view_relief_v2_20260819.json",
+      "?? configs/fixed_map_hierarchical_replanner_smoke_v1_20260819.json",
+      "?? configs/fixed_map_seed74803_relief_replay_v2_20260819.json",
+      "?? configs/fixed_standard_speed_ablation_v1_20260819.json",
+      "?? configs/fixed_standard_support_curriculum_v1_20260819.json",
+      "?? configs/flat_low_speed_turn_diagnostic_v1_20260819.json",
+      "?? docs/FIXED_STANDARD_SUPPORT_CURRICULUM_PILOT_20260819_CN.md",
+      "?? docs/FLAT_LOW_SPEED_TURN_DIAGNOSTIC_20260819_CN.md",
+      "?? docs/HIERARCHICAL_MAP_REPLANNING_INTERFACE_V1_CN.md",
+      "?? docs/SLOPE_SUPPORT_AND_GLOBAL_NAVIGATION_PROTOCOL_V1_CN.md",
+      "?? scripts/evaluate_flat_low_speed_turn.py",
+      "?? scripts/render_fixed_standard_support_video.py",
+      "?? scripts/run_fixed_standard_speed_ablation.py",
+      "?? scripts/run_fixed_standard_support_curriculum.py",
+      "?? scripts/smoke_fixed_map_hierarchical_replanner.py",
+      "?? tests/test_fixed_map_hierarchical_replanner.py",
+      "?? tests/test_fixed_standard_speed_ablation.py",
+      "?? tests/test_fixed_standard_support_curriculum.py",
+      "?? tests/test_flat_low_speed_turn_diagnostic.py",
+      "?? tests/test_render_fixed_standard_support_video.py"
+    ],
+    "status_short_sha256": "c25174e2207a5dca5be5c8d166dc76c8ba3f96b4e8b6a41e21d4735f462a26dd"
+  },
+  "software": {
+    "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "gymnasium": "1.3.0",
+      "mujoco": "3.11.0",
+      "numpy": "2.5.1",
+      "stable-baselines3": "2.9.0",
+      "torch": "2.13.0+cpu"
+    },
+    "torch_num_threads": 2,
+    "torch_num_interop_threads": 14
+  },
+  "standard_scene_manifest": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\standard_scene_manifest.json",
+    "sha256": "7ac4daef4149291c6cfd1e6a84ffb9a871cd8d43a2dd683446bba93fde14e84b"
+  },
+  "episode_log": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\logs\\speed_matrix_episodes.csv",
+    "sha256": "4c25530edcde98ad171c164ec28a4c1935393cafdf75a77cbe3f03ae09011b88"
+  },
+  "summary": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\speed_ablation_summary.json",
+    "sha256": "77db48477bba5a62696bb1187ad8baaa2cadb2ae1c477ec75650a7bf405f61d2"
+  },
+  "high_frequency_contact": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\high_frequency_contact\\paired_summary.json",
+    "sha256": "ef73735046876e3a12a294dc6b828973cacb248bcb7c7f712c44c36da629aeb6"
+  },
+  "flat_plane_comparator": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\flat_plane_comparator\\comparison_summary.json",
+    "sha256": "23e6a4bb15d047be0e0c956ce409bad425574a1c5ae289ecf672e071c98ed373",
+    "large_backend_difference": true,
+    "training_use": false
+  },
+  "representative_video_inputs": {
+    "selection": "all model-speed-scene traces for the predeclared middle seed; no visual cherry-picking",
+    "trace_seed": 77802,
+    "traces": [
+      {
+        "condition_id": "SOURCE_STAGE1_SPEED_020",
+        "scene_name": "flat",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\source_stage1_speed_020_flat_seed_77802_trace.csv",
+        "sha256": "7e7d76c509ee4850561dbfae195fce1d4c82fc3a102539ec4609b3203224e4b7",
+        "rows": 600
+      },
+      {
+        "condition_id": "SOURCE_STAGE1_SPEED_020",
+        "scene_name": "uphill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\source_stage1_speed_020_uphill_8deg_seed_77802_trace.csv",
+        "sha256": "e1f78d6179637b708bcf65ac71d8c08c096123d721cb586ef92a0a9c981832c2",
+        "rows": 483
+      },
+      {
+        "condition_id": "SOURCE_STAGE1_SPEED_020",
+        "scene_name": "downhill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\source_stage1_speed_020_downhill_8deg_seed_77802_trace.csv",
+        "sha256": "34a336ee91a63f95c74453a95a001df7b0868151a4baf190b70fa114e8c718cb",
+        "rows": 600
+      },
+      {
+        "condition_id": "SOURCE_STAGE1_SPEED_030",
+        "scene_name": "flat",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\source_stage1_speed_030_flat_seed_77802_trace.csv",
+        "sha256": "1c02223dd7c4854b9588ac7b1da6c79d9b111ad9c629a79e6ab0c20731c8fa41",
+        "rows": 600
+      },
+      {
+        "condition_id": "SOURCE_STAGE1_SPEED_030",
+        "scene_name": "uphill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\source_stage1_speed_030_uphill_8deg_seed_77802_trace.csv",
+        "sha256": "75f42f84ced002c71f1f685f166c6d2f5bae3d8e57059e71fb8242f8aac769a2",
+        "rows": 427
+      },
+      {
+        "condition_id": "SOURCE_STAGE1_SPEED_030",
+        "scene_name": "downhill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\source_stage1_speed_030_downhill_8deg_seed_77802_trace.csv",
+        "sha256": "9019dd9180911e6ef6652009abe95290381528634fee628fabb73bdc701b5ef8",
+        "rows": 600
+      },
+      {
+        "condition_id": "SOURCE_STAGE1_SPEED_040",
+        "scene_name": "flat",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\source_stage1_speed_040_flat_seed_77802_trace.csv",
+        "sha256": "7c5f2db0c2413f6f720ebd9bf35f1b8e2006d89eeede6849a6bce809f576bbd4",
+        "rows": 600
+      },
+      {
+        "condition_id": "SOURCE_STAGE1_SPEED_040",
+        "scene_name": "uphill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\source_stage1_speed_040_uphill_8deg_seed_77802_trace.csv",
+        "sha256": "54ca1507851fa1e022a2c218369af22a89ae463852c63cad3d6f8768770abda9",
+        "rows": 516
+      },
+      {
+        "condition_id": "SOURCE_STAGE1_SPEED_040",
+        "scene_name": "downhill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\source_stage1_speed_040_downhill_8deg_seed_77802_trace.csv",
+        "sha256": "9117fddd0fefd330336a5a725d9e0b243663b5538544719797dec6c3076deec2",
+        "rows": 600
+      },
+      {
+        "condition_id": "SOURCE_STAGE1_SPEED_055",
+        "scene_name": "flat",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\source_stage1_speed_055_flat_seed_77802_trace.csv",
+        "sha256": "16782c19925215c5d90d194eb5bb4bbf375714ee6b36de0c159659617a9e8ff9",
+        "rows": 600
+      },
+      {
+        "condition_id": "SOURCE_STAGE1_SPEED_055",
+        "scene_name": "uphill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\source_stage1_speed_055_uphill_8deg_seed_77802_trace.csv",
+        "sha256": "f304bf6b799acd4a14256f95002fa9f98083f5b4322e2f6ae7f1178a228810a9",
+        "rows": 600
+      },
+      {
+        "condition_id": "SOURCE_STAGE1_SPEED_055",
+        "scene_name": "downhill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\source_stage1_speed_055_downhill_8deg_seed_77802_trace.csv",
+        "sha256": "f657d171961b0e560ddf5c3b9f5305be9f3994bfb3809de172ec1b77aeb7f8f4",
+        "rows": 600
+      },
+      {
+        "condition_id": "MATCHED_CONTACT_GAP_W0_SPEED_020",
+        "scene_name": "flat",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\matched_contact_gap_w0_speed_020_flat_seed_77802_trace.csv",
+        "sha256": "af8329067ed3e337480eca2dda5767436039b4d0e5a5152d5e5f5774ae35b1e0",
+        "rows": 600
+      },
+      {
+        "condition_id": "MATCHED_CONTACT_GAP_W0_SPEED_020",
+        "scene_name": "uphill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\matched_contact_gap_w0_speed_020_uphill_8deg_seed_77802_trace.csv",
+        "sha256": "437906a701c2eb40c41031b87aa57f531e96269dadfa2c77c67d18d0d58cfa46",
+        "rows": 350
+      },
+      {
+        "condition_id": "MATCHED_CONTACT_GAP_W0_SPEED_020",
+        "scene_name": "downhill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\matched_contact_gap_w0_speed_020_downhill_8deg_seed_77802_trace.csv",
+        "sha256": "ca46b10e8afd63eca61a0acef2d2c3e175fa37110e56fa08b4309fd9b8087ecd",
+        "rows": 600
+      },
+      {
+        "condition_id": "MATCHED_CONTACT_GAP_W0_SPEED_030",
+        "scene_name": "flat",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\matched_contact_gap_w0_speed_030_flat_seed_77802_trace.csv",
+        "sha256": "a9c65542d36ff262e4bb21ec1f852260f1d77de4e486e97e83c49fcae45ae9b1",
+        "rows": 600
+      },
+      {
+        "condition_id": "MATCHED_CONTACT_GAP_W0_SPEED_030",
+        "scene_name": "uphill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\matched_contact_gap_w0_speed_030_uphill_8deg_seed_77802_trace.csv",
+        "sha256": "ea14ea6a8dcf4ee651bd0daec2b1938c6a50d66b91faee99df71577da8d0f532",
+        "rows": 600
+      },
+      {
+        "condition_id": "MATCHED_CONTACT_GAP_W0_SPEED_030",
+        "scene_name": "downhill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\matched_contact_gap_w0_speed_030_downhill_8deg_seed_77802_trace.csv",
+        "sha256": "377f70b48d7e111eeb91d00dfcc3c185f26a8881ae4936674648fec5bcd8fbfb",
+        "rows": 600
+      },
+      {
+        "condition_id": "MATCHED_CONTACT_GAP_W0_SPEED_040",
+        "scene_name": "flat",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\matched_contact_gap_w0_speed_040_flat_seed_77802_trace.csv",
+        "sha256": "86b79c3f5a3251ff16eefa0b521554dbd27ed4e6b09cf6c93042193073e4b830",
+        "rows": 600
+      },
+      {
+        "condition_id": "MATCHED_CONTACT_GAP_W0_SPEED_040",
+        "scene_name": "uphill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\matched_contact_gap_w0_speed_040_uphill_8deg_seed_77802_trace.csv",
+        "sha256": "ec002bffd6b88a37a62bdce72bacff0e10ee8049e9cabea1befa6cfea998d6f2",
+        "rows": 600
+      },
+      {
+        "condition_id": "MATCHED_CONTACT_GAP_W0_SPEED_040",
+        "scene_name": "downhill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\matched_contact_gap_w0_speed_040_downhill_8deg_seed_77802_trace.csv",
+        "sha256": "75e77a662d08930797d2b1b5690f41774d3072d71948d15d4dfa904a30d83b5a",
+        "rows": 600
+      },
+      {
+        "condition_id": "MATCHED_CONTACT_GAP_W0_SPEED_055",
+        "scene_name": "flat",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\matched_contact_gap_w0_speed_055_flat_seed_77802_trace.csv",
+        "sha256": "b9ca6df568d97fcc264b1e0899cccf8185151de8c6ac93100fa4098ef3d38223",
+        "rows": 600
+      },
+      {
+        "condition_id": "MATCHED_CONTACT_GAP_W0_SPEED_055",
+        "scene_name": "uphill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\matched_contact_gap_w0_speed_055_uphill_8deg_seed_77802_trace.csv",
+        "sha256": "483ea983045a0506800085f51521d25f53069a73a092929b4c765298ca3244f4",
+        "rows": 600
+      },
+      {
+        "condition_id": "MATCHED_CONTACT_GAP_W0_SPEED_055",
+        "scene_name": "downhill_8deg",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\matched_contact_gap_w0_speed_055_downhill_8deg_seed_77802_trace.csv",
+        "sha256": "eb9d058805ba5ec0cf1fe0a83305edfe0641a701744a51ebfb264f3965f1faf6",
+        "rows": 600
+      },
+      {
+        "condition_id": "SOURCE_STAGE1_NATIVE_PLANE_SPEED_055",
+        "scene_name": "native_plane",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\source_stage1_native_plane_speed_055_seed_77802_trace.csv",
+        "sha256": "fbe5377bd8600047a7fa52ed7a69dfb112fc378e96a0540d0095128071afc57b",
+        "rows": 600
+      },
+      {
+        "condition_id": "MATCHED_CONTACT_GAP_W0_NATIVE_PLANE_SPEED_055",
+        "scene_name": "native_plane",
+        "evaluation_seed": 77802,
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\traces\\matched_contact_gap_w0_native_plane_speed_055_seed_77802_trace.csv",
+        "sha256": "e75fb14e7830ea0a7fc25e0782a9a0084a96a704d31fdda0ece23256d8047109",
+        "rows": 600
+      }
+    ],
+    "video_rendered": false
+  },
+  "training_timesteps": 0,
+  "existing_results_overwritten": false,
+  "energy_formula_changed": false,
+  "reward_changed": false,
+  "friction_changed": false,
+  "claim_boundary": "Read-only single-checkpoint speed diagnosis with one fixed map recipe, three scenes and three seeds; not a trained speed curriculum or a population-level generalisation claim."
+}

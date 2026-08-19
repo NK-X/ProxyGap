@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "profile_id": "relief-v2",
+  "scope": "visualisation-only",
+  "purpose": "Make the frozen 80 m by 80 m terrain relief legible in the goal-to-start overview without changing or vertically exaggerating the physical heightfield.",
+  "camera": {
+    "distance_half_extent_multiplier": 3.1,
+    "elevation_degrees": -32.0,
+    "azimuth_offset_degrees": 0.0,
+    "lookat_height_offset_m": 0.0
+  },
+  "lighting": {
+    "mode": "model-default",
+    "rationale": "Retain the frozen scene's calibrated directional shadows and colour balance; relief readability comes from the lower physical camera angle rather than artificial relighting."
+  },
+  "annotation": {
+    "show_physical_relief": true,
+    "vertical_scale": 1.0,
+    "state_height_range_metres": true
+  },
+  "invariants": {
+    "heightfield_bytes_unchanged": true,
+    "collision_geometry_unchanged": true,
+    "trajectory_states_unchanged": true,
+    "friction_unchanged": true,
+    "no_vertical_exaggeration": true
+  }
+}

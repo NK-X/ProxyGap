@@ -1,0 +1,350 @@
+[
+  {
+    "surface_id": "native_plane_default_001_001",
+    "full": {
+      "sample_count": 300,
+      "zero_foot_contact_fraction": 0.21,
+      "mean_support_count": 3.16,
+      "mean_foot_contact_point_count": 3.16,
+      "mean_contacts_per_supported_foot": 1.0,
+      "mean_world_robot_contact_count": 3.16,
+      "mean_normal_force_sum_n": 8.547589868217674,
+      "maximum_normal_force_sum_n": 182.20844950235755
+    },
+    "settled_window": {
+      "sample_count": 100,
+      "zero_foot_contact_fraction": 0.0,
+      "mean_support_count": 4.0,
+      "mean_foot_contact_point_count": 4.0,
+      "mean_contacts_per_supported_foot": 1.0,
+      "mean_world_robot_contact_count": 4.0,
+      "mean_normal_force_sum_n": 8.934185497148158,
+      "maximum_normal_force_sum_n": 8.934380661351131
+    },
+    "final_root_z_m": 0.5071372696501947,
+    "final_abs_vertical_speed_m_per_s": 0.012524462254487669,
+    "resolution": 257,
+    "margin_condition": "default_001_001",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.01
+  },
+  {
+    "surface_id": "native_plane_floor0_foot001",
+    "full": {
+      "sample_count": 300,
+      "zero_foot_contact_fraction": 0.21666666666666667,
+      "mean_support_count": 3.1333333333333333,
+      "mean_foot_contact_point_count": 3.1333333333333333,
+      "mean_contacts_per_supported_foot": 1.0,
+      "mean_world_robot_contact_count": 3.1333333333333333,
+      "mean_normal_force_sum_n": 8.339111651775363,
+      "maximum_normal_force_sum_n": 172.28950123284602
+    },
+    "settled_window": {
+      "sample_count": 100,
+      "zero_foot_contact_fraction": 0.0,
+      "mean_support_count": 4.0,
+      "mean_foot_contact_point_count": 4.0,
+      "mean_contacts_per_supported_foot": 1.0,
+      "mean_world_robot_contact_count": 4.0,
+      "mean_normal_force_sum_n": 8.934116807672943,
+      "maximum_normal_force_sum_n": 8.934325031217124
+    },
+    "final_root_z_m": 0.4975680664506814,
+    "final_abs_vertical_speed_m_per_s": 0.012820935044132991,
+    "resolution": 257,
+    "margin_condition": "floor0_foot001",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.01
+  },
+  {
+    "surface_id": "native_plane_floor001_foot0",
+    "full": {
+      "sample_count": 300,
+      "zero_foot_contact_fraction": 0.21666666666666667,
+      "mean_support_count": 3.1333333333333333,
+      "mean_foot_contact_point_count": 3.1333333333333333,
+      "mean_contacts_per_supported_foot": 1.0,
+      "mean_world_robot_contact_count": 3.1333333333333333,
+      "mean_normal_force_sum_n": 8.339111651775363,
+      "maximum_normal_force_sum_n": 172.28950123284602
+    },
+    "settled_window": {
+      "sample_count": 100,
+      "zero_foot_contact_fraction": 0.0,
+      "mean_support_count": 4.0,
+      "mean_foot_contact_point_count": 4.0,
+      "mean_contacts_per_supported_foot": 1.0,
+      "mean_world_robot_contact_count": 4.0,
+      "mean_normal_force_sum_n": 8.934116807672943,
+      "maximum_normal_force_sum_n": 8.934325031217124
+    },
+    "final_root_z_m": 0.4975680664506814,
+    "final_abs_vertical_speed_m_per_s": 0.012820935044132991,
+    "resolution": 257,
+    "margin_condition": "floor001_foot0",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.0
+  },
+  {
+    "surface_id": "native_plane_both0",
+    "full": {
+      "sample_count": 300,
+      "zero_foot_contact_fraction": 0.21333333333333335,
+      "mean_support_count": 3.1466666666666665,
+      "mean_foot_contact_point_count": 3.1466666666666665,
+      "mean_contacts_per_supported_foot": 1.0,
+      "mean_world_robot_contact_count": 3.1466666666666665,
+      "mean_normal_force_sum_n": 9.522051624338564,
+      "maximum_normal_force_sum_n": 365.79750873344403
+    },
+    "settled_window": {
+      "sample_count": 100,
+      "zero_foot_contact_fraction": 0.0,
+      "mean_support_count": 4.0,
+      "mean_foot_contact_point_count": 4.0,
+      "mean_contacts_per_supported_foot": 1.0,
+      "mean_world_robot_contact_count": 4.0,
+      "mean_normal_force_sum_n": 8.933562280052563,
+      "maximum_normal_force_sum_n": 8.9338869641846
+    },
+    "final_root_z_m": 0.4752681212009257,
+    "final_abs_vertical_speed_m_per_s": 0.01562976972693874,
+    "resolution": 257,
+    "margin_condition": "both0",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.0
+  },
+  {
+    "surface_id": "hfield_plateau_129_default_001_001",
+    "full": {
+      "sample_count": 300,
+      "zero_foot_contact_fraction": 0.71,
+      "mean_support_count": 0.33666666666666667,
+      "mean_foot_contact_point_count": 1.02,
+      "mean_contacts_per_supported_foot": 3.0297029702970297,
+      "mean_world_robot_contact_count": 1.02,
+      "mean_normal_force_sum_n": 12.237874358890162,
+      "maximum_normal_force_sum_n": 374.87880913858675
+    },
+    "settled_window": {
+      "sample_count": 100,
+      "zero_foot_contact_fraction": 0.77,
+      "mean_support_count": 0.23,
+      "mean_foot_contact_point_count": 0.64,
+      "mean_contacts_per_supported_foot": 2.782608695652174,
+      "mean_world_robot_contact_count": 0.64,
+      "mean_normal_force_sum_n": 8.844923648259163,
+      "maximum_normal_force_sum_n": 52.3453813178308
+    },
+    "final_root_z_m": 0.6332272579931048,
+    "final_abs_vertical_speed_m_per_s": 0.15512376805819367,
+    "resolution": 129,
+    "margin_condition": "default_001_001",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.01
+  },
+  {
+    "surface_id": "hfield_plateau_129_floor0_foot001",
+    "full": {
+      "sample_count": 300,
+      "zero_foot_contact_fraction": 0.42333333333333334,
+      "mean_support_count": 0.7033333333333334,
+      "mean_foot_contact_point_count": 1.54,
+      "mean_contacts_per_supported_foot": 2.18957345971564,
+      "mean_world_robot_contact_count": 1.54,
+      "mean_normal_force_sum_n": 9.343160688893487,
+      "maximum_normal_force_sum_n": 168.89405744105267
+    },
+    "settled_window": {
+      "sample_count": 100,
+      "zero_foot_contact_fraction": 0.2,
+      "mean_support_count": 0.91,
+      "mean_foot_contact_point_count": 1.65,
+      "mean_contacts_per_supported_foot": 1.8131868131868132,
+      "mean_world_robot_contact_count": 1.65,
+      "mean_normal_force_sum_n": 11.298222720044194,
+      "maximum_normal_force_sum_n": 54.14203600144286
+    },
+    "final_root_z_m": 0.5859583268820263,
+    "final_abs_vertical_speed_m_per_s": 0.038368602784243484,
+    "resolution": 129,
+    "margin_condition": "floor0_foot001",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.01
+  },
+  {
+    "surface_id": "hfield_plateau_129_floor001_foot0",
+    "full": {
+      "sample_count": 300,
+      "zero_foot_contact_fraction": 0.42333333333333334,
+      "mean_support_count": 0.7033333333333334,
+      "mean_foot_contact_point_count": 1.54,
+      "mean_contacts_per_supported_foot": 2.18957345971564,
+      "mean_world_robot_contact_count": 1.54,
+      "mean_normal_force_sum_n": 9.343160688893487,
+      "maximum_normal_force_sum_n": 168.89405744105267
+    },
+    "settled_window": {
+      "sample_count": 100,
+      "zero_foot_contact_fraction": 0.2,
+      "mean_support_count": 0.91,
+      "mean_foot_contact_point_count": 1.65,
+      "mean_contacts_per_supported_foot": 1.8131868131868132,
+      "mean_world_robot_contact_count": 1.65,
+      "mean_normal_force_sum_n": 11.298222720044194,
+      "maximum_normal_force_sum_n": 54.14203600144286
+    },
+    "final_root_z_m": 0.5859583268820263,
+    "final_abs_vertical_speed_m_per_s": 0.038368602784243484,
+    "resolution": 129,
+    "margin_condition": "floor001_foot0",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.0
+  },
+  {
+    "surface_id": "hfield_plateau_129_both0",
+    "full": {
+      "sample_count": 300,
+      "zero_foot_contact_fraction": 0.13666666666666666,
+      "mean_support_count": 2.1733333333333333,
+      "mean_foot_contact_point_count": 3.7866666666666666,
+      "mean_contacts_per_supported_foot": 1.7423312883435582,
+      "mean_world_robot_contact_count": 3.7866666666666666,
+      "mean_normal_force_sum_n": 10.326956477487107,
+      "maximum_normal_force_sum_n": 446.6424590026859
+    },
+    "settled_window": {
+      "sample_count": 100,
+      "zero_foot_contact_fraction": 0.0,
+      "mean_support_count": 3.0,
+      "mean_foot_contact_point_count": 5.0,
+      "mean_contacts_per_supported_foot": 1.6666666666666667,
+      "mean_world_robot_contact_count": 5.0,
+      "mean_normal_force_sum_n": 8.949440290181222,
+      "maximum_normal_force_sum_n": 8.986938494891868
+    },
+    "final_root_z_m": 0.5183533787438841,
+    "final_abs_vertical_speed_m_per_s": 0.016869674297451558,
+    "resolution": 129,
+    "margin_condition": "both0",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.0
+  },
+  {
+    "surface_id": "hfield_plateau_257_default_001_001",
+    "full": {
+      "sample_count": 300,
+      "zero_foot_contact_fraction": 0.75,
+      "mean_support_count": 0.29333333333333333,
+      "mean_foot_contact_point_count": 1.94,
+      "mean_contacts_per_supported_foot": 6.613636363636363,
+      "mean_world_robot_contact_count": 1.94,
+      "mean_normal_force_sum_n": 11.302213425311589,
+      "maximum_normal_force_sum_n": 318.64211205741384
+    },
+    "settled_window": {
+      "sample_count": 100,
+      "zero_foot_contact_fraction": 0.73,
+      "mean_support_count": 0.3,
+      "mean_foot_contact_point_count": 1.85,
+      "mean_contacts_per_supported_foot": 6.166666666666667,
+      "mean_world_robot_contact_count": 1.85,
+      "mean_normal_force_sum_n": 12.530090001994171,
+      "maximum_normal_force_sum_n": 114.10834745641475
+    },
+    "final_root_z_m": 0.6331074175187288,
+    "final_abs_vertical_speed_m_per_s": 0.10909504399655026,
+    "resolution": 257,
+    "margin_condition": "default_001_001",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.01
+  },
+  {
+    "surface_id": "hfield_plateau_257_floor0_foot001",
+    "full": {
+      "sample_count": 300,
+      "zero_foot_contact_fraction": 0.43666666666666665,
+      "mean_support_count": 0.73,
+      "mean_foot_contact_point_count": 2.566666666666667,
+      "mean_contacts_per_supported_foot": 3.5159817351598175,
+      "mean_world_robot_contact_count": 2.566666666666667,
+      "mean_normal_force_sum_n": 10.078686630541654,
+      "maximum_normal_force_sum_n": 334.0187180751313
+    },
+    "settled_window": {
+      "sample_count": 100,
+      "zero_foot_contact_fraction": 0.23,
+      "mean_support_count": 0.91,
+      "mean_foot_contact_point_count": 3.34,
+      "mean_contacts_per_supported_foot": 3.67032967032967,
+      "mean_world_robot_contact_count": 3.34,
+      "mean_normal_force_sum_n": 9.529311570286835,
+      "maximum_normal_force_sum_n": 54.93458711508253
+    },
+    "final_root_z_m": 0.5932672065551948,
+    "final_abs_vertical_speed_m_per_s": 0.07541957914744268,
+    "resolution": 257,
+    "margin_condition": "floor0_foot001",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.01
+  },
+  {
+    "surface_id": "hfield_plateau_257_floor001_foot0",
+    "full": {
+      "sample_count": 300,
+      "zero_foot_contact_fraction": 0.43666666666666665,
+      "mean_support_count": 0.73,
+      "mean_foot_contact_point_count": 2.566666666666667,
+      "mean_contacts_per_supported_foot": 3.5159817351598175,
+      "mean_world_robot_contact_count": 2.566666666666667,
+      "mean_normal_force_sum_n": 10.078686630541654,
+      "maximum_normal_force_sum_n": 334.0187180751313
+    },
+    "settled_window": {
+      "sample_count": 100,
+      "zero_foot_contact_fraction": 0.23,
+      "mean_support_count": 0.91,
+      "mean_foot_contact_point_count": 3.34,
+      "mean_contacts_per_supported_foot": 3.67032967032967,
+      "mean_world_robot_contact_count": 3.34,
+      "mean_normal_force_sum_n": 9.529311570286835,
+      "maximum_normal_force_sum_n": 54.93458711508253
+    },
+    "final_root_z_m": 0.5932672065551948,
+    "final_abs_vertical_speed_m_per_s": 0.07541957914744268,
+    "resolution": 257,
+    "margin_condition": "floor001_foot0",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.0
+  },
+  {
+    "surface_id": "hfield_plateau_257_both0",
+    "full": {
+      "sample_count": 300,
+      "zero_foot_contact_fraction": 0.15,
+      "mean_support_count": 2.6,
+      "mean_foot_contact_point_count": 4.573333333333333,
+      "mean_contacts_per_supported_foot": 1.758974358974359,
+      "mean_world_robot_contact_count": 4.573333333333333,
+      "mean_normal_force_sum_n": 13.17776823542463,
+      "maximum_normal_force_sum_n": 808.1369689874117
+    },
+    "settled_window": {
+      "sample_count": 100,
+      "zero_foot_contact_fraction": 0.0,
+      "mean_support_count": 3.87,
+      "mean_foot_contact_point_count": 5.76,
+      "mean_contacts_per_supported_foot": 1.4883720930232558,
+      "mean_world_robot_contact_count": 5.76,
+      "mean_normal_force_sum_n": 8.954721951124354,
+      "maximum_normal_force_sum_n": 9.6627483229534
+    },
+    "final_root_z_m": 0.5514420247097599,
+    "final_abs_vertical_speed_m_per_s": 0.003204897190382276,
+    "resolution": 257,
+    "margin_condition": "both0",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.0
+  }
+]

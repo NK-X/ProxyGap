@@ -1,0 +1,24 @@
+{
+  "condition_id": "PAIR0_ADAPT",
+  "checkpoint_additional_timesteps": 32768,
+  "catastrophe_checks": {
+    "nonfinite": false,
+    "fall": false,
+    "torso_ground": false,
+    "sustained_nonfoot_contact": false,
+    "corrected_sustained_slip": false,
+    "corrected_slip_event_rate": false,
+    "pair0_full_interval_zero_foot": false
+  },
+  "pair0_checkpoint_32768_rule": {
+    "mean_best_progress_m": 6.42420485186537,
+    "checkpoint_16384_mean_best_progress_m": 6.140115393147024,
+    "improvement_m": 0.2840894587183458,
+    "below_absolute_floor": false,
+    "insufficient_improvement": false,
+    "triggered": false
+  },
+  "qualified_transient_warning": false,
+  "qualified_transient_is_warning_only": true,
+  "early_stop_triggered": false
+}

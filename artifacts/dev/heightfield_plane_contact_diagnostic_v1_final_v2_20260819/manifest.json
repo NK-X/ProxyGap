@@ -1,0 +1,51 @@
+{
+  "schema_version": "proxygap-heightfield-plane-contact-diagnostic-v1",
+  "status": "bounded_development_diagnostic",
+  "config": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\heightfield_plane_contact_diagnostic_v1_20260819.json",
+    "sha256": "d8f46d381098f6cc7e621af7039b0c77cfda715e04696925d9818424b59bca44"
+  },
+  "frozen_config": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\frozen_config.json",
+    "sha256": "a05ca26456b558b901471b4e627ec1bc1a6aadde8e7f13b2851ce0a90dd11b26"
+  },
+  "source_checkpoint": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_local_preview_pilot_v1_20260819\\seed_62802\\models\\checkpoint_2596864.zip",
+    "sha256": "5bfd212b810af0189009f067ee7be8e8d4702fe1bee8cf025ba82401f931ff1e"
+  },
+  "scene_manifest": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scene_manifest.json",
+    "sha256": "fdb9219fe4d80a8c46ecac3f1b7480299416c3679fad4a7e545b309cbcd686a8"
+  },
+  "initial_equivalence": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\initial_equivalence.json",
+    "sha256": "ea7e11830a9fc1aafde45a444e71ffa54ae79e38a01b6959e8c4a09f214103f0"
+  },
+  "matched_open_loop_summary": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\matched_open_loop_summary.json",
+    "sha256": "b107fe491bdb6d2164ca1537b3360f9084f698283442c54f6c4167f4041d68fd"
+  },
+  "static_drop_summary": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\static_drop_summary.json",
+    "sha256": "43ee91239a0423daec81322572f20563be98e18e03579798052f63d072d2c531"
+  },
+  "identical_pose_contact_probe": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\identical_pose_contact_probe.json",
+    "sha256": "f42919466d9fad76c839c16241ac28821bba76e53ffb944cc01c9cee9820e555"
+  },
+  "effects_vs_native_plane": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\effects_vs_native_plane.json",
+    "sha256": "409e1e5f2cf4da60fe2859dcf96e63339b2195396e65a8a16fb4e432517db03c"
+  },
+  "diagnostic_script": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\scripts\\diagnose_heightfield_plane_contact.py",
+    "sha256": "9ae3d21a9ef2655462ccdead03cb556c42bac5c1d287e350e6f761cd6cd0f6c6"
+  },
+  "reference_open_loop_actions": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\reference_open_loop_actions.npy",
+    "sha256": "89af482f6c4f748a1e47eb578738f1cc965957b63ce787a3904652f8549a26a0"
+  },
+  "existing_results_overwritten": false,
+  "training_performed": false,
+  "map_friction_reward_energy_changed": false
+}

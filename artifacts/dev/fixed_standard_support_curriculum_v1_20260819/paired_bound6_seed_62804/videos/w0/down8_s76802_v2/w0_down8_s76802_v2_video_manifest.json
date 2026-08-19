@@ -1,0 +1,77 @@
+{
+  "schema_version": "proxygap-standard-support-video-v2",
+  "selection_rule": "predeclared paired seed across every standard scene; no best-looking selection",
+  "condition_id": "MATCHED_CONTACT_GAP_W0_CONTROL",
+  "condition_decision": "matched_continuation_control_not_promoted",
+  "retention_gate_passed": false,
+  "local_w1_vs_w0_gate_reference": "MATCHED_CONTACT_GAP_W0_CONTROL",
+  "local_gate_reference_is_not_promotion": true,
+  "incumbent_condition": "SOURCE_STAGE1_STANDARD_DIAGNOSIS",
+  "promoted_condition": null,
+  "source_stage1_mean_best_progress_m": 9.482237073554927,
+  "condition_mean_best_progress_m": 7.387682563457379,
+  "condition_progress_ratio_to_source": 0.7791075572304489,
+  "condition_task_success_count": 0,
+  "condition_task_episode_count": 12,
+  "scene_name": "downhill_8deg",
+  "signed_slope_degrees": -8.0,
+  "evaluation_seed": 76802,
+  "checkpoint": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\models\\matched_contact_gap_w0_control\\checkpoint_2662400.zip",
+    "sha256": "3be0a9177ac0f8c3a5f14bf38136bb5cca89c2cfbc45e4515729e8dbcf7ba5d5"
+  },
+  "archived_trace": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\traces\\matched_contact_gap_w0_control_downhill_8deg_seed_76802_trace.csv",
+    "sha256": "b7744ccadb4f28be86085d6bf27f3207af2da5fd6184141a7445cc137dc8a742"
+  },
+  "replay_trace": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w0\\down8_s76802_v2\\w0_down8_s76802_v2_trace.csv",
+    "sha256": "b7744ccadb4f28be86085d6bf27f3207af2da5fd6184141a7445cc137dc8a742"
+  },
+  "trace_byte_identical": true,
+  "scene": {
+    "xml": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\standard_scenes\\downhill_8deg\\ant_standard_scene.xml",
+    "xml_sha256": "87e69b47529337a430ae6b7a78e4f7b100ab07cd5e072c1a1d0fbfb5c02ae318",
+    "heights": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\standard_scenes\\downhill_8deg\\heights_m.npy",
+    "heights_sha256": "86592a74cafe95da499cd5025a6a0dfeb1e2ffd6617a55e18feec34dae173940",
+    "minimum_height_m": -1.4054083470239145,
+    "maximum_height_m": 1.4054083470239145,
+    "fixed_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "condim": 3
+  },
+  "video": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w0\\down8_s76802_v2\\w0_down8_s76802_v2.mp4",
+    "sha256": "f8978db9f91c0dffbe85f9b01bdc1db290d358aa4d3972e0b782acae7c8dd59a",
+    "width": 1280,
+    "height": 720,
+    "fps": 20,
+    "frames": 361,
+    "duration_seconds": 18.05,
+    "physical_rollout_seconds": 30.0,
+    "render_stride": 2
+  },
+  "final_frame": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w0\\down8_s76802_v2\\w0_down8_s76802_v2_final_frame.png",
+    "sha256": "a157e04950502f7683eda2e56ad95d3b7136039bfb6a12cd7764ad8868944c56"
+  },
+  "camera_boundary": "follow and fixed side cameras, trail and annotations are MjvScene/PIL only; physical terrain and z scale remain 1:1",
+  "qa": {
+    "decoded_frames": 361,
+    "first_frame_shape": [
+      720,
+      1280,
+      3
+    ],
+    "last_frame_shape": [
+      720,
+      1280,
+      3
+    ],
+    "average_frame_rate": 20.0,
+    "decoded_duration_seconds": 18.05
+  }
+}

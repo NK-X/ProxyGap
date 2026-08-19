@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import builtins
+import json
 import sys
 
 import numpy as np
@@ -21,6 +22,7 @@ from render_fixed_goal_dual_view_video import (  # noqa: E402
     audited_contract_controller,
     compose_dual_view,
     load_video_encoder as load_dual_view_encoder,
+    load_overview_profile,
     overview_camera,
     resample_surface_trail,
 )
@@ -71,6 +73,39 @@ def test_overview_camera_is_on_goal_side_for_diagonal_task() -> None:
     assert np.isclose(camera.elevation, -55.0)
     assert np.isclose(camera.distance, 132.0)
     assert np.allclose(camera.lookat, np.zeros(3))
+
+
+def test_relief_profile_lowers_camera_without_vertical_exaggeration() -> None:
+    profile, resolved = load_overview_profile(
+        ROOT / "configs" / "fixed_goal_dual_view_relief_v2_20260819.json"
+    )
+    camera = overview_camera(
+        start=np.asarray((-34.0, -34.0)),
+        goal=np.asarray((34.0, 34.0)),
+        half_extent=40.0,
+        terrain_midpoint_height=0.0,
+        profile=profile,
+    )
+    assert resolved is not None
+    assert profile["scope"] == "visualisation-only"
+    assert profile["annotation"]["vertical_scale"] == 1.0
+    assert np.isclose(camera.azimuth, 225.0)
+    assert np.isclose(camera.elevation, -32.0)
+    assert np.isclose(camera.distance, 124.0)
+    assert np.allclose(camera.lookat, np.zeros(3))
+
+
+def test_overview_profile_rejects_vertical_exaggeration(tmp_path: Path) -> None:
+    invalid = {
+        "schema_version": 1,
+        "profile_id": "misleading",
+        "scope": "visualisation-only",
+        "annotation": {"vertical_scale": 2.0},
+    }
+    path = tmp_path / "invalid.json"
+    path.write_text(json.dumps(invalid), encoding="utf-8")
+    with pytest.raises(ValueError, match="truthful 1:1"):
+        load_overview_profile(path)
 
 
 def test_surface_trail_resampling_caps_geometry_and_preserves_endpoints() -> None:

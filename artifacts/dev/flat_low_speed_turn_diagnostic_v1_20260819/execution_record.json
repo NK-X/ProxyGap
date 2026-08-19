@@ -1,0 +1,12 @@
+{
+  "schema_version": "proxygap-flat-low-speed-turn-diagnostic-v1",
+  "status": "complete",
+  "config_sha256": "bd2e8531c51b0a3edee8eb9fb9c5e74b17d77653f6ed43ba1070eb546076ba89",
+  "checkpoint_sha256": "a111311edba7bc13671d3cb742c0d3b3edda7849332011f8cd6d220b8dadb1b7",
+  "episode_count": 12,
+  "training_performed": false,
+  "core_source_modified": false,
+  "true_zero_speed_tested": false,
+  "diagnostic_is_out_of_training_distribution": true,
+  "claim_boundary": "Read-only out-of-distribution diagnostic of one V22 training run on flat Ant-v5. It can reject or support only bounded low-speed turning feasibility; it cannot prove true zero-speed rotation, unseen-seed robustness, terrain recovery or navigation success."
+}

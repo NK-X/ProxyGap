@@ -1,0 +1,220 @@
+{
+  "schema_version": "proxygap-standard-support-video-set-v2",
+  "semantic_correction": "W0 is a matched continuation control, not a retained/promoted model; W1 is rejected; Source Stage1 remains incumbent",
+  "incumbent_condition": "SOURCE_STAGE1_STANDARD_DIAGNOSIS",
+  "promoted_condition": null,
+  "source_stage1_mean_best_progress_m": 9.482237073554927,
+  "condition_decisions": {
+    "MATCHED_CONTACT_GAP_W0_CONTROL": {
+      "decision": "matched_continuation_control_not_promoted",
+      "mean_best_progress_m": 7.387682563457379,
+      "task_success_count": 0,
+      "task_episode_count": 12
+    },
+    "CONTACT_GAP_W1_INTERVENTION": {
+      "decision": "rejected_intervention_not_promoted",
+      "mean_best_progress_m": 7.122662179012949,
+      "task_success_count": 0,
+      "task_episode_count": 12
+    }
+  },
+  "selection_rule": "predeclared paired seed 76802; W0 matched continuation control and rejected W1 intervention; uphill/downhill both retained as evidence",
+  "pilot_manifest": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\manifest.json",
+    "sha256": "ceb2593a6e538bf82ec67794c90b916816352a6922d600d778789ce008fb9a4f"
+  },
+  "comparison_summary": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\comparison_summary.json",
+    "sha256": "256ee215f12d4e41c3564052342e03fa13066044152158080d65a6a852698e1b"
+  },
+  "video_count": 4,
+  "all_duration_at_least_10_seconds": true,
+  "all_full_decode": true,
+  "all_trace_byte_identical": true,
+  "videos": [
+    {
+      "condition_id": "MATCHED_CONTACT_GAP_W0_CONTROL",
+      "condition_decision": "matched_continuation_control_not_promoted",
+      "scene_name": "downhill_8deg",
+      "evaluation_seed": 76802,
+      "video": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w0\\down8_s76802_v2\\w0_down8_s76802_v2.mp4",
+        "sha256": "f8978db9f91c0dffbe85f9b01bdc1db290d358aa4d3972e0b782acae7c8dd59a",
+        "width": 1280,
+        "height": 720,
+        "fps": 20,
+        "frames": 361,
+        "duration_seconds": 18.05,
+        "physical_rollout_seconds": 30.0,
+        "render_stride": 2
+      },
+      "video_manifest": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w0\\down8_s76802_v2\\w0_down8_s76802_v2_video_manifest.json",
+        "sha256": "d5d3b52d37a67155e9117b77bb39de225353d21683f679df41e0f7a411c221c0"
+      },
+      "final_frame": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w0\\down8_s76802_v2\\w0_down8_s76802_v2_final_frame.png",
+        "sha256": "a157e04950502f7683eda2e56ad95d3b7136039bfb6a12cd7764ad8868944c56"
+      },
+      "trace_byte_identical": true,
+      "replay_trace": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w0\\down8_s76802_v2\\w0_down8_s76802_v2_trace.csv",
+        "sha256": "b7744ccadb4f28be86085d6bf27f3207af2da5fd6184141a7445cc137dc8a742"
+      },
+      "qa": {
+        "decoded_frames": 361,
+        "first_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "last_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "average_frame_rate": 20.0,
+        "decoded_duration_seconds": 18.05
+      }
+    },
+    {
+      "condition_id": "MATCHED_CONTACT_GAP_W0_CONTROL",
+      "condition_decision": "matched_continuation_control_not_promoted",
+      "scene_name": "uphill_8deg",
+      "evaluation_seed": 76802,
+      "video": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w0\\up8_s76802_v2\\w0_up8_s76802_v2.mp4",
+        "sha256": "df1f7466997e67dcd39fd7df740acb6146fb6991b9b5d60e9a64564525f8ac2a",
+        "width": 1280,
+        "height": 720,
+        "fps": 20,
+        "frames": 361,
+        "duration_seconds": 18.05,
+        "physical_rollout_seconds": 30.0,
+        "render_stride": 2
+      },
+      "video_manifest": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w0\\up8_s76802_v2\\w0_up8_s76802_v2_video_manifest.json",
+        "sha256": "af0536453f9f32173b9df8b94a200bc974ef5802a42ba748dbae285a5c87544c"
+      },
+      "final_frame": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w0\\up8_s76802_v2\\w0_up8_s76802_v2_final_frame.png",
+        "sha256": "fec901f4490ea72510482f5920e4505bc2b7635489b22c9241bb117bc2c8d1ec"
+      },
+      "trace_byte_identical": true,
+      "replay_trace": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w0\\up8_s76802_v2\\w0_up8_s76802_v2_trace.csv",
+        "sha256": "53177aca19e5fe879153374b020638cab418d93a7847cc0549c9ffbe1c37355b"
+      },
+      "qa": {
+        "decoded_frames": 361,
+        "first_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "last_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "average_frame_rate": 20.0,
+        "decoded_duration_seconds": 18.05
+      }
+    },
+    {
+      "condition_id": "CONTACT_GAP_W1_INTERVENTION",
+      "condition_decision": "rejected_intervention_not_promoted",
+      "scene_name": "downhill_8deg",
+      "evaluation_seed": 76802,
+      "video": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w1\\down8_s76802_v2\\w1_down8_s76802_v2.mp4",
+        "sha256": "b5154947f34919f1a3fe43938cf82cfd678cdc70685d82f70be21a3ebd772990",
+        "width": 1280,
+        "height": 720,
+        "fps": 20,
+        "frames": 361,
+        "duration_seconds": 18.05,
+        "physical_rollout_seconds": 30.0,
+        "render_stride": 2
+      },
+      "video_manifest": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w1\\down8_s76802_v2\\w1_down8_s76802_v2_video_manifest.json",
+        "sha256": "c9c74611dcbfd2ccc71777c15a07d48c3d9664351633a2598e07aea2e56d7f1f"
+      },
+      "final_frame": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w1\\down8_s76802_v2\\w1_down8_s76802_v2_final_frame.png",
+        "sha256": "25de2b832e9779ad995e24918ea2736b8d16147b698da19b423da17bc53348a2"
+      },
+      "trace_byte_identical": true,
+      "replay_trace": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w1\\down8_s76802_v2\\w1_down8_s76802_v2_trace.csv",
+        "sha256": "681519e4c9388f29e74108c80668c1ccb5f315ac2c0b23781a9037e19d94c24c"
+      },
+      "qa": {
+        "decoded_frames": 361,
+        "first_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "last_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "average_frame_rate": 20.0,
+        "decoded_duration_seconds": 18.05
+      }
+    },
+    {
+      "condition_id": "CONTACT_GAP_W1_INTERVENTION",
+      "condition_decision": "rejected_intervention_not_promoted",
+      "scene_name": "uphill_8deg",
+      "evaluation_seed": 76802,
+      "video": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w1\\up8_s76802_v2\\w1_up8_s76802_v2.mp4",
+        "sha256": "75ea5ea54dec54a722f4942a3744704510bce456113bb570404073b763d92f1d",
+        "width": 1280,
+        "height": 720,
+        "fps": 20,
+        "frames": 361,
+        "duration_seconds": 18.05,
+        "physical_rollout_seconds": 30.0,
+        "render_stride": 2
+      },
+      "video_manifest": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w1\\up8_s76802_v2\\w1_up8_s76802_v2_video_manifest.json",
+        "sha256": "61a64b831080d0548a2d33824aea61ade7e04846cfe89cfe29ab61962d9cda1e"
+      },
+      "final_frame": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w1\\up8_s76802_v2\\w1_up8_s76802_v2_final_frame.png",
+        "sha256": "60a5ffa1e8ad6048fba02c075c96bf74199f0ad138362d25245a132ca556769c"
+      },
+      "trace_byte_identical": true,
+      "replay_trace": {
+        "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w1\\up8_s76802_v2\\w1_up8_s76802_v2_trace.csv",
+        "sha256": "6c2623bdd0d40c5007dc5d68b4ed48193eafb8474c9f051e58eb4f7c17bc5ba6"
+      },
+      "qa": {
+        "decoded_frames": 361,
+        "first_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "last_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "average_frame_rate": 20.0,
+        "decoded_duration_seconds": 18.05
+      }
+    }
+  ],
+  "four_way_final_frame_qa": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\standard_support_4way_final_frame_qa_v2.png",
+    "sha256": "cd6c88e58c0be3068a8632e3f55a123ade8d3bc46013a532c677b9f51299cc8b"
+  }
+}

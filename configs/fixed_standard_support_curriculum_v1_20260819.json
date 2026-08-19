@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "config_id": "fixed_standard_support_curriculum_v1_20260819",
+  "status": "frozen_bounded_standard_scene_pilot",
+  "formal_generalisation_claim": "prohibited",
+  "purpose": "Diagnose endpoint-contact aliasing and support failure on four attributable standard terrains, then screen one per-foot contact-gap timing intervention against an equal-budget continuation control.",
+  "frozen_sources": {
+    "base_scene_xml": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/ant_fixed_quad_terrain.xml",
+    "base_scene_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+    "local_preview_configuration": "configs/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819.json",
+    "local_preview_configuration_sha256": "e673e59df5c9f42fdc6e0db01d7215205ac0648d7937034e78d2622262ececa2",
+    "reward_configuration": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+    "reward_configuration_sha256": "0d20c29caffb7206924e6520b6e52b718c86aac5cdaad1d01a4361c0b5ce3a7f",
+    "source_checkpoint": "artifacts/dev/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819/seed_62802/models/checkpoint_2596864.zip",
+    "source_checkpoint_sha256": "5bfd212b810af0189009f067ee7be8e8d4702fe1bee8cf025ba82401f931ff1e",
+    "source_timesteps": 2596864,
+    "observation_dimension": 135,
+    "action_dimension": 8,
+    "diagnostic_support_comparator_configuration": "configs/curved_gait_tangent_v20_curve_recovery_pilot_20260818.json",
+    "diagnostic_support_comparator_configuration_sha256": "34dc62fd123736b921370f6801ddc9764f844898b2d6e6cf73f708a436ada229",
+    "diagnostic_support_comparator_checkpoint": "artifacts/dev/curved_gait_tangent_v20_curve_recovery_pilot_20260818/runs/seed_43810/models/checkpoint_1810432.zip",
+    "diagnostic_support_comparator_checkpoint_sha256": "07b63c882b3290767ce08d95f4723cc69fb6f7099e0417e3d1d978643659dc3f",
+    "diagnostic_support_comparator_timesteps": 1810432,
+    "diagnostic_support_comparator_observation_dimension": 118
+  },
+  "standard_scenes": {
+    "grid_rows": 257,
+    "grid_cols": 257,
+    "map_half_extent_m": 10.0,
+    "start_xy_m": [-6.0, 0.0],
+    "goal_xy_m": [6.0, 0.0],
+    "fixed_friction": [1.0, 0.5, 0.5],
+    "condim": 3,
+    "flat_numerical_relief_m": 0.000001,
+    "uphill_slope_degrees": 8.0,
+    "downhill_slope_degrees": -8.0,
+    "bowl_depth_m": 1.0,
+    "bowl_centre_xy_m": [-6.0, 0.0],
+    "bowl_sigma_x_m": 2.5,
+    "bowl_sigma_y_m": 4.0,
+    "scene_order": ["flat", "uphill_8deg", "downhill_8deg", "bowl_exit"]
+  },
+  "task_adapter": {
+    "augment_local_terrain_observation": true,
+    "terrain_frame_shaping_enabled": false,
+    "terrain_preview_longitudinal_m": [0.5, 1.0, 1.5],
+    "terrain_preview_lateral_m": [-0.4, 0.0, 0.4],
+    "local_terrain_height_bound_m": 6.0,
+    "maximum_abs_curvature_per_m": 0.35,
+    "yaw_gain_per_second": 0.0,
+    "slow_radius_m": 0.75,
+    "arrival_radius_m": 0.75,
+    "hold_radius_m": 1.0,
+    "hold_seconds": 2.0,
+    "hold_speed_m_per_s": 0.05,
+    "terrain_relative_healthy_clearance_m": [0.18, 1.4],
+    "maximum_healthy_tilt_degrees": 80.0,
+    "unhealthy_grace_steps": 5,
+    "slip_speed_threshold_m_per_s": 0.2
+  },
+  "diagnosis": {
+    "evaluation_seeds": [75801, 75802, 75803],
+    "representative_trace_seed": 75802,
+    "max_episode_steps": 600,
+    "cruise_speed_m_per_s": 0.55,
+    "deterministic_policy": true,
+    "slip_transient_minimum_seconds": 0.2,
+    "high_frequency_contact_scenes": ["flat", "uphill_8deg"],
+    "high_frequency_contact_seed": 75802,
+    "high_frequency_contact_steps": 400,
+    "substeps_per_control_step": 5,
+    "physics_timestep_seconds": 0.01,
+    "control_timestep_seconds": 0.05
+  },
+  "intervention_selection_gate": {
+    "candidate": "per_foot_contact_gap_weight_only",
+    "permitted_reward_path": "preserved_pre_pitch_reward.foot_contact_gap_shaping_weight",
+    "control_weight": 0.0,
+    "intervention_weight": 1.0,
+    "fixed_grace_seconds": 0.5,
+    "fixed_scale_seconds": 0.5,
+    "minimum_mean_endpoint_airborne_fraction": 0.25,
+    "minimum_scenes_with_longest_per_foot_gap_above_seconds": 2,
+    "longest_per_foot_gap_threshold_seconds": 0.75,
+    "minimum_full_interval_airborne_fraction_in_any_audited_scene": 0.1
+  },
+  "training": {
+    "training_seed": 62804,
+    "parallel_environments": 4,
+    "max_episode_steps": 600,
+    "additional_target_timesteps_per_variant": 65536,
+    "cruise_speed_m_per_s": 0.55,
+    "variants": [
+      {
+        "condition_id": "MATCHED_CONTACT_GAP_W0_CONTROL",
+        "foot_contact_gap_shaping_weight": 0.0
+      },
+      {
+        "condition_id": "CONTACT_GAP_W1_INTERVENTION",
+        "foot_contact_gap_shaping_weight": 1.0
+      }
+    ]
+  },
+  "paired_evaluation": {
+    "seeds": [76801, 76802, 76803],
+    "representative_trace_seed": 76802,
+    "max_episode_steps": 600,
+    "cruise_speed_m_per_s": 0.55,
+    "deterministic_policy": true,
+    "retention_gate": {
+      "minimum_absolute_endpoint_airborne_fraction_reduction": 0.05,
+      "minimum_mean_support_count_increase": 0.1,
+      "minimum_progress_ratio_to_matched_control": 0.8,
+      "maximum_additional_falls": 0,
+      "maximum_sustained_slip_fraction_increase": 0.02
+    },
+    "claim_boundary": "Three paired evaluation seeds over four deterministic standard scenes and one training seed form a bounded development screen only. They do not establish random-map generalisation."
+  },
+  "ppo": {
+    "policy": "MlpPolicy",
+    "n_steps": 512,
+    "batch_size": 1024,
+    "n_epochs": 10,
+    "learning_rate": 0.00003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.001,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "policy_kwargs": {
+      "net_arch": [64, 64],
+      "activation_fn": "Tanh"
+    },
+    "device": "cpu",
+    "torch_num_threads": 2
+  },
+  "energy_boundary": {
+    "ctrl_cost_weight_unchanged": 0.5,
+    "relative_mission_energy_v2_status": "measurement_only_not_implemented_as_reward",
+    "energy_formula_changes": "prohibited"
+  },
+  "execution": {
+    "output_root": "artifacts/dev/fixed_standard_support_curriculum_v1_20260819",
+    "smoke_output_root": "artifacts/smoke/fixed_standard_support_curriculum_v1_20260819",
+    "subprocess_start_method": "spawn"
+  }
+}

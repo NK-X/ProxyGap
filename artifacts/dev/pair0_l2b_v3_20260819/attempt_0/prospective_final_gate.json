@@ -1,0 +1,69 @@
+{
+  "evaluable": true,
+  "heldout": {
+    "evaluable": true,
+    "observed": {
+      "pooled_full_interval_zero_foot_reduction": 0.20833333333333334,
+      "mean_support_count_increase": 0.9902666666666666,
+      "mean_best_progress_ratio": 1.05123798147907,
+      "uphill_best_progress_ratio": 1.1466113695513689,
+      "downhill_best_progress_ratio": 0.8837659663791764,
+      "success_count_difference": 2,
+      "pair0_fall_count": 0,
+      "pair0_torso_ground_episode_count": 0,
+      "pair0_sustained_nonfoot_contact_episode_count": 0,
+      "corrected_sustained_slip_fraction_delta": 0.0,
+      "corrected_slip_events_per_100_delta": 0.0,
+      "pair0_full_interval_worsening_vs_frozen_unadapted_pair0": 0.004027777777777776
+    },
+    "checks": {
+      "full_interval_reduction": true,
+      "support_increase": true,
+      "progress_retention": true,
+      "uphill_progress_retention": true,
+      "downhill_progress_retention": true,
+      "success_nondecrease": true,
+      "no_pair0_falls": true,
+      "no_pair0_torso_ground": true,
+      "no_pair0_sustained_nonfoot": true,
+      "corrected_slip_fraction_not_worse": true,
+      "corrected_slip_event_rate_not_worse": true,
+      "frozen_pair0_contact_retained": true
+    },
+    "passed": true
+  },
+  "continuity": {
+    "evaluable": true,
+    "observed": {
+      "pair0_mean_best_progress_m": 9.304002081152635,
+      "pair0_uphill_mean_best_progress_m": 8.394977237931798,
+      "pair0_downhill_mean_best_progress_m": 10.204794483239137,
+      "pair0_fall_count": 0,
+      "pair0_torso_ground_episode_count": 0,
+      "pair0_sustained_nonfoot_contact_episode_count": 0,
+      "pair0_pooled_full_interval_zero_foot_fraction": 0.03361111111111111,
+      "pair0_corrected_sustained_slip_per_force_qualified_supported_fraction": 0.0,
+      "pair0_corrected_slip_events_per_100_force_qualified_supported_substeps": 0.0
+    },
+    "checks": {
+      "overall_absolute_floor": true,
+      "uphill_absolute_floor": true,
+      "downhill_absolute_floor": true,
+      "no_pair0_falls": true,
+      "no_pair0_torso_ground": true,
+      "no_pair0_sustained_nonfoot": true,
+      "contact_retained": true,
+      "corrected_slip_safe": true,
+      "corrected_slip_event_rate_safe": true
+    },
+    "passed": true
+  },
+  "passed": true,
+  "absolute_final_checkpoint": 2727936,
+  "intermediate_checkpoint_selected": false,
+  "fixed_map_entry_authorised": false,
+  "video_rendering_authorised": false,
+  "candidate_promoted": false,
+  "hard_stop_further_contact_budget_extension": true,
+  "decision": "l2b_final_gate_passed_diagnostic_only"
+}

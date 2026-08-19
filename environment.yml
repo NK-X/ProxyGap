@@ -14,4 +14,5 @@ dependencies:
       - pandas==3.0.5
       - matplotlib==3.11.1
       - pillow
+      - av==16.0.1
       - pytest==9.1.1

@@ -1,0 +1,1033 @@
+[
+  {
+    "surface_id": "native_plane_default_001_001",
+    "identical_qpos": [
+      -6.0,
+      9.300179579174313e-16,
+      0.5071372696501947,
+      1.0,
+      -9.560605111345184e-17,
+      -2.7357649104123402e-17,
+      -5.179138709788025e-19,
+      -2.897887733864076e-16,
+      0.8040745982819857,
+      3.0968303511257167e-16,
+      -0.8040745982819856,
+      1.4625378487276213e-16,
+      -0.804074598281986,
+      -1.1607514840661665e-16,
+      0.8040745982819861
+    ],
+    "zero_qvel": true,
+    "support_count": 4,
+    "foot_contact_point_count": 4,
+    "foot_contact_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "world_robot_contact_count": 4,
+    "normal_force_sum_n": 8.573008275418024,
+    "minimum_contact_distance_m": 0.019736889805875887,
+    "mean_contact_normal_tilt_from_vertical_degrees": 0.0,
+    "maximum_contact_normal_tilt_from_vertical_degrees": 0.0,
+    "foot_contacts": [
+      {
+        "foot": "left_ankle_geom",
+        "position_m": [
+          -5.322488801574869,
+          0.6775111984251317,
+          0.00986844490293795
+        ],
+        "distance_m": 0.019736889805875887,
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "foot": "right_ankle_geom",
+        "position_m": [
+          -6.677511198425131,
+          0.6775111984251319,
+          0.00986844490293795
+        ],
+        "distance_m": 0.019736889805875887,
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "foot": "third_ankle_geom",
+        "position_m": [
+          -6.677511198425131,
+          -0.6775111984251302,
+          0.00986844490293795
+        ],
+        "distance_m": 0.019736889805875887,
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "foot": "fourth_ankle_geom",
+        "position_m": [
+          -5.322488801574869,
+          -0.6775111984251302,
+          0.009868444902937978
+        ],
+        "distance_m": 0.019736889805875943,
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    ],
+    "resolution": 257,
+    "margin_condition": "default_001_001",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.01,
+    "minimum_distance_m": 0.019736889805875887,
+    "maximum_distance_m": 0.019736889805875943,
+    "unique_include_margins_m": [
+      0.02
+    ]
+  },
+  {
+    "surface_id": "native_plane_floor0_foot001",
+    "identical_qpos": [
+      -6.0,
+      9.300179579174313e-16,
+      0.5071372696501947,
+      1.0,
+      -9.560605111345184e-17,
+      -2.7357649104123402e-17,
+      -5.179138709788025e-19,
+      -2.897887733864076e-16,
+      0.8040745982819857,
+      3.0968303511257167e-16,
+      -0.8040745982819856,
+      1.4625378487276213e-16,
+      -0.804074598281986,
+      -1.1607514840661665e-16,
+      0.8040745982819861
+    ],
+    "zero_qvel": true,
+    "support_count": 0,
+    "foot_contact_point_count": 0,
+    "foot_contact_counts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "world_robot_contact_count": 0,
+    "normal_force_sum_n": 0.0,
+    "minimum_contact_distance_m": null,
+    "mean_contact_normal_tilt_from_vertical_degrees": null,
+    "maximum_contact_normal_tilt_from_vertical_degrees": null,
+    "foot_contacts": [],
+    "resolution": 257,
+    "margin_condition": "floor0_foot001",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.01,
+    "minimum_distance_m": null,
+    "maximum_distance_m": null,
+    "unique_include_margins_m": []
+  },
+  {
+    "surface_id": "native_plane_floor001_foot0",
+    "identical_qpos": [
+      -6.0,
+      9.300179579174313e-16,
+      0.5071372696501947,
+      1.0,
+      -9.560605111345184e-17,
+      -2.7357649104123402e-17,
+      -5.179138709788025e-19,
+      -2.897887733864076e-16,
+      0.8040745982819857,
+      3.0968303511257167e-16,
+      -0.8040745982819856,
+      1.4625378487276213e-16,
+      -0.804074598281986,
+      -1.1607514840661665e-16,
+      0.8040745982819861
+    ],
+    "zero_qvel": true,
+    "support_count": 0,
+    "foot_contact_point_count": 0,
+    "foot_contact_counts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "world_robot_contact_count": 0,
+    "normal_force_sum_n": 0.0,
+    "minimum_contact_distance_m": null,
+    "mean_contact_normal_tilt_from_vertical_degrees": null,
+    "maximum_contact_normal_tilt_from_vertical_degrees": null,
+    "foot_contacts": [],
+    "resolution": 257,
+    "margin_condition": "floor001_foot0",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.0,
+    "minimum_distance_m": null,
+    "maximum_distance_m": null,
+    "unique_include_margins_m": []
+  },
+  {
+    "surface_id": "native_plane_both0",
+    "identical_qpos": [
+      -6.0,
+      9.300179579174313e-16,
+      0.5071372696501947,
+      1.0,
+      -9.560605111345184e-17,
+      -2.7357649104123402e-17,
+      -5.179138709788025e-19,
+      -2.897887733864076e-16,
+      0.8040745982819857,
+      3.0968303511257167e-16,
+      -0.8040745982819856,
+      1.4625378487276213e-16,
+      -0.804074598281986,
+      -1.1607514840661665e-16,
+      0.8040745982819861
+    ],
+    "zero_qvel": true,
+    "support_count": 0,
+    "foot_contact_point_count": 0,
+    "foot_contact_counts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "world_robot_contact_count": 0,
+    "normal_force_sum_n": 0.0,
+    "minimum_contact_distance_m": null,
+    "mean_contact_normal_tilt_from_vertical_degrees": null,
+    "maximum_contact_normal_tilt_from_vertical_degrees": null,
+    "foot_contacts": [],
+    "resolution": 257,
+    "margin_condition": "both0",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.0,
+    "minimum_distance_m": null,
+    "maximum_distance_m": null,
+    "unique_include_margins_m": []
+  },
+  {
+    "surface_id": "hfield_plateau_129_default_001_001",
+    "identical_qpos": [
+      -6.0,
+      9.300179579174313e-16,
+      0.5071372696501947,
+      1.0,
+      -9.560605111345184e-17,
+      -2.7357649104123402e-17,
+      -5.179138709788025e-19,
+      -2.897887733864076e-16,
+      0.8040745982819857,
+      3.0968303511257167e-16,
+      -0.8040745982819856,
+      1.4625378487276213e-16,
+      -0.804074598281986,
+      -1.1607514840661665e-16,
+      0.8040745982819861
+    ],
+    "zero_qvel": true,
+    "support_count": 4,
+    "foot_contact_point_count": 10,
+    "foot_contact_counts": [
+      2,
+      3,
+      2,
+      3
+    ],
+    "world_robot_contact_count": 10,
+    "normal_force_sum_n": 106.37347375900389,
+    "minimum_contact_distance_m": -0.010263110194124125,
+    "mean_contact_normal_tilt_from_vertical_degrees": 9.534488574542756,
+    "maximum_contact_normal_tilt_from_vertical_degrees": 27.347371586644957,
+    "foot_contacts": [
+      {
+        "foot": "left_ankle_geom",
+        "position_m": [
+          -5.322488801574868,
+          0.6775111984251316,
+          0.014868444902937938
+        ],
+        "distance_m": -0.010263110194124125,
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "foot": "left_ankle_geom",
+        "position_m": [
+          -5.311900878648324,
+          0.6775111984251317,
+          0.015217436962698927
+        ],
+        "distance_m": -0.009639887053237095,
+        "normal": [
+          -0.12430049198023052,
+          0.0,
+          0.9922446208941991
+        ]
+      },
+      {
+        "foot": "right_ankle_geom",
+        "position_m": [
+          -6.718802883605466,
+          0.6775111984251319,
+          0.01989774741116227
+        ],
+        "distance_m": -0.00023023698791570235,
+        "normal": [
+          0.45938409762063986,
+          0.0,
+          0.8882377220391343
+        ]
+      },
+      {
+        "foot": "right_ankle_geom",
+        "position_m": [
+          -6.677511198425131,
+          0.6775111984251319,
+          0.014868444902937938
+        ],
+        "distance_m": -0.010263110194124112,
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "foot": "right_ankle_geom",
+        "position_m": [
+          -6.671528050682915,
+          0.6715280506829154,
+          0.015091610092849884
+        ],
+        "distance_m": -0.009865706084789719,
+        "normal": [
+          -0.07033441177004066,
+          0.07033441177001816,
+          0.9950407735575101
+        ]
+      },
+      {
+        "foot": "third_ankle_geom",
+        "position_m": [
+          -6.718802883605466,
+          -0.6775111984251302,
+          0.01989774741116245
+        ],
+        "distance_m": -0.00023023698791570235,
+        "normal": [
+          0.4593840976212794,
+          0.0,
+          0.8882377220388037
+        ]
+      },
+      {
+        "foot": "third_ankle_geom",
+        "position_m": [
+          -6.677511198425131,
+          -0.6775111984251302,
+          0.01486844490293794
+        ],
+        "distance_m": -0.010263110194124112,
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "foot": "fourth_ankle_geom",
+        "position_m": [
+          -5.344346580529061,
+          -0.6556534194709385,
+          0.017762615495379358
+        ],
+        "distance_m": -0.004782345063596288,
+        "normal": [
+          0.24949288314718565,
+          -0.2494928831472553,
+          0.9356850979457645
+        ]
+      },
+      {
+        "foot": "fourth_ankle_geom",
+        "position_m": [
+          -5.322488801574869,
+          -0.6775111984251302,
+          0.014868444902937974
+        ],
+        "distance_m": -0.01026311019412407,
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "foot": "fourth_ankle_geom",
+        "position_m": [
+          -5.311900878648324,
+          -0.6775111984251302,
+          0.015217436962698954
+        ],
+        "distance_m": -0.009639887053237053,
+        "normal": [
+          -0.12430049198023121,
+          0.0,
+          0.9922446208941988
+        ]
+      }
+    ],
+    "resolution": 129,
+    "margin_condition": "default_001_001",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.01,
+    "minimum_distance_m": -0.010263110194124125,
+    "maximum_distance_m": -0.00023023698791570235,
+    "unique_include_margins_m": [
+      0.02
+    ]
+  },
+  {
+    "surface_id": "hfield_plateau_129_floor0_foot001",
+    "identical_qpos": [
+      -6.0,
+      9.300179579174313e-16,
+      0.5071372696501947,
+      1.0,
+      -9.560605111345184e-17,
+      -2.7357649104123402e-17,
+      -5.179138709788025e-19,
+      -2.897887733864076e-16,
+      0.8040745982819857,
+      3.0968303511257167e-16,
+      -0.8040745982819856,
+      1.4625378487276213e-16,
+      -0.804074598281986,
+      -1.1607514840661665e-16,
+      0.8040745982819861
+    ],
+    "zero_qvel": true,
+    "support_count": 0,
+    "foot_contact_point_count": 0,
+    "foot_contact_counts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "world_robot_contact_count": 0,
+    "normal_force_sum_n": 0.0,
+    "minimum_contact_distance_m": null,
+    "mean_contact_normal_tilt_from_vertical_degrees": null,
+    "maximum_contact_normal_tilt_from_vertical_degrees": null,
+    "foot_contacts": [],
+    "resolution": 129,
+    "margin_condition": "floor0_foot001",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.01,
+    "minimum_distance_m": null,
+    "maximum_distance_m": null,
+    "unique_include_margins_m": []
+  },
+  {
+    "surface_id": "hfield_plateau_129_floor001_foot0",
+    "identical_qpos": [
+      -6.0,
+      9.300179579174313e-16,
+      0.5071372696501947,
+      1.0,
+      -9.560605111345184e-17,
+      -2.7357649104123402e-17,
+      -5.179138709788025e-19,
+      -2.897887733864076e-16,
+      0.8040745982819857,
+      3.0968303511257167e-16,
+      -0.8040745982819856,
+      1.4625378487276213e-16,
+      -0.804074598281986,
+      -1.1607514840661665e-16,
+      0.8040745982819861
+    ],
+    "zero_qvel": true,
+    "support_count": 0,
+    "foot_contact_point_count": 0,
+    "foot_contact_counts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "world_robot_contact_count": 0,
+    "normal_force_sum_n": 0.0,
+    "minimum_contact_distance_m": null,
+    "mean_contact_normal_tilt_from_vertical_degrees": null,
+    "maximum_contact_normal_tilt_from_vertical_degrees": null,
+    "foot_contacts": [],
+    "resolution": 129,
+    "margin_condition": "floor001_foot0",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.0,
+    "minimum_distance_m": null,
+    "maximum_distance_m": null,
+    "unique_include_margins_m": []
+  },
+  {
+    "surface_id": "hfield_plateau_129_both0",
+    "identical_qpos": [
+      -6.0,
+      9.300179579174313e-16,
+      0.5071372696501947,
+      1.0,
+      -9.560605111345184e-17,
+      -2.7357649104123402e-17,
+      -5.179138709788025e-19,
+      -2.897887733864076e-16,
+      0.8040745982819857,
+      3.0968303511257167e-16,
+      -0.8040745982819856,
+      1.4625378487276213e-16,
+      -0.804074598281986,
+      -1.1607514840661665e-16,
+      0.8040745982819861
+    ],
+    "zero_qvel": true,
+    "support_count": 0,
+    "foot_contact_point_count": 0,
+    "foot_contact_counts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "world_robot_contact_count": 0,
+    "normal_force_sum_n": 0.0,
+    "minimum_contact_distance_m": null,
+    "mean_contact_normal_tilt_from_vertical_degrees": null,
+    "maximum_contact_normal_tilt_from_vertical_degrees": null,
+    "foot_contacts": [],
+    "resolution": 129,
+    "margin_condition": "both0",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.0,
+    "minimum_distance_m": null,
+    "maximum_distance_m": null,
+    "unique_include_margins_m": []
+  },
+  {
+    "surface_id": "hfield_plateau_257_default_001_001",
+    "identical_qpos": [
+      -6.0,
+      9.300179579174313e-16,
+      0.5071372696501947,
+      1.0,
+      -9.560605111345184e-17,
+      -2.7357649104123402e-17,
+      -5.179138709788025e-19,
+      -2.897887733864076e-16,
+      0.8040745982819857,
+      3.0968303511257167e-16,
+      -0.8040745982819856,
+      1.4625378487276213e-16,
+      -0.804074598281986,
+      -1.1607514840661665e-16,
+      0.8040745982819861
+    ],
+    "zero_qvel": true,
+    "support_count": 4,
+    "foot_contact_point_count": 23,
+    "foot_contact_counts": [
+      6,
+      5,
+      5,
+      7
+    ],
+    "world_robot_contact_count": 23,
+    "normal_force_sum_n": 155.36057454288644,
+    "minimum_contact_distance_m": -0.010263110194124125,
+    "mean_contact_normal_tilt_from_vertical_degrees": 14.157574416052412,
+    "maximum_contact_normal_tilt_from_vertical_degrees": 27.34737158660372,
+    "foot_contacts": [
+      {
+        "foot": "left_ankle_geom",
+        "position_m": [
+          -5.330762357721001,
+          0.6857847545712645,
+          0.01529431256082831
+        ],
+        "distance_m": -0.009501292504696779,
+        "normal": [
+          0.09705124769186949,
+          -0.09705124769184612,
+          0.990536274269099
+        ]
+      },
+      {
+        "foot": "left_ankle_geom",
+        "position_m": [
+          -5.322488801574869,
+          0.6775111984251316,
+          0.014868444902937945
+        ],
+        "distance_m": -0.010263110194124125,
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "foot": "left_ankle_geom",
+        "position_m": [
+          -5.311900878648324,
+          0.6775111984251316,
+          0.015217436962698925
+        ],
+        "distance_m": -0.009639887053237095,
+        "normal": [
+          -0.12430049198023058,
+          0.0,
+          0.9922446208941991
+        ]
+      },
+      {
+        "foot": "left_ankle_geom",
+        "position_m": [
+          -5.322488801574869,
+          0.7040807624821773,
+          0.01702466939555198
+        ],
+        "distance_m": -0.006250143719340517,
+        "normal": [
+          0.0,
+          -0.3058369615469189,
+          0.952083900164134
+        ]
+      },
+      {
+        "foot": "left_ankle_geom",
+        "position_m": [
+          -5.312165046050033,
+          0.7039839062408393,
+          0.01732618713082465
+        ],
+        "distance_m": -0.005656567630115891,
+        "normal": [
+          -0.1184301052756154,
+          -0.303684600628294,
+          0.9453835060469589
+        ]
+      },
+      {
+        "foot": "left_ankle_geom",
+        "position_m": [
+          -5.312165046050033,
+          0.7039839062408393,
+          0.01732618713082465
+        ],
+        "distance_m": -0.005656567630115891,
+        "normal": [
+          -0.1184301052756154,
+          -0.303684600628294,
+          0.9453835060469589
+        ]
+      },
+      {
+        "foot": "right_ankle_geom",
+        "position_m": [
+          -6.718802883605466,
+          0.6775111984251319,
+          0.01989774741116227
+        ],
+        "distance_m": -0.00023023698791570235,
+        "normal": [
+          0.45938409762063986,
+          0.0,
+          0.8882377220391343
+        ]
+      },
+      {
+        "foot": "right_ankle_geom",
+        "position_m": [
+          -6.6775111984251305,
+          0.6775111984251319,
+          0.014868444902937945
+        ],
+        "distance_m": -0.010263110194124112,
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "foot": "right_ankle_geom",
+        "position_m": [
+          -6.671528050682915,
+          0.6715280506829154,
+          0.015091610092849877
+        ],
+        "distance_m": -0.009865706084789719,
+        "normal": [
+          -0.07033441177004056,
+          0.07033441177001806,
+          0.9950407735575101
+        ]
+      },
+      {
+        "foot": "right_ankle_geom",
+        "position_m": [
+          -6.640174783630088,
+          0.6775111984251319,
+          0.019026767338213624
+        ],
+        "distance_m": -0.002144645978901419,
+        "normal": [
+          -0.4198514573884632,
+          0.0,
+          0.9075928347716192
+        ]
+      },
+      {
+        "foot": "right_ankle_geom",
+        "position_m": [
+          -6.677511198425131,
+          0.7040807624821773,
+          0.017024669395551945
+        ],
+        "distance_m": -0.006250143719340559,
+        "normal": [
+          0.0,
+          -0.30583696154691564,
+          0.9520839001641349
+        ]
+      },
+      {
+        "foot": "third_ankle_geom",
+        "position_m": [
+          -6.677511198425131,
+          -0.7040807624821773,
+          0.017024669395552215
+        ],
+        "distance_m": -0.0062501437193400455,
+        "normal": [
+          0.0,
+          0.30583696154694084,
+          0.9520839001641268
+        ]
+      },
+      {
+        "foot": "third_ankle_geom",
+        "position_m": [
+          -6.718802883605466,
+          -0.6775111984251302,
+          0.01989774741116227
+        ],
+        "distance_m": -0.00023023698791570235,
+        "normal": [
+          0.45938409762063986,
+          0.0,
+          0.8882377220391343
+        ]
+      },
+      {
+        "foot": "third_ankle_geom",
+        "position_m": [
+          -6.685784754571264,
+          -0.6692376422789978,
+          0.015294312560828294
+        ],
+        "distance_m": -0.009501292504696862,
+        "normal": [
+          0.09705124769186935,
+          -0.09705124769183429,
+          0.9905362742691001
+        ]
+      },
+      {
+        "foot": "third_ankle_geom",
+        "position_m": [
+          -6.677511198425131,
+          -0.6775111984251302,
+          0.014868444902937953
+        ],
+        "distance_m": -0.010263110194124112,
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "foot": "third_ankle_geom",
+        "position_m": [
+          -6.640174783630088,
+          -0.6775111984251302,
+          0.019026767338213624
+        ],
+        "distance_m": -0.002144645978901419,
+        "normal": [
+          -0.4198514573884632,
+          0.0,
+          0.9075928347716192
+        ]
+      },
+      {
+        "foot": "fourth_ankle_geom",
+        "position_m": [
+          -5.322488801574869,
+          -0.7040807624821773,
+          0.01702466939555223
+        ],
+        "distance_m": -0.006250143719340004,
+        "normal": [
+          0.0,
+          0.3058369615469422,
+          0.9520839001641265
+        ]
+      },
+      {
+        "foot": "fourth_ankle_geom",
+        "position_m": [
+          -5.312165046050033,
+          -0.7039839062408393,
+          0.017326187130824906
+        ],
+        "distance_m": -0.005656567630115364,
+        "normal": [
+          -0.11843010527562557,
+          0.3036846006283201,
+          0.9453835060469493
+        ]
+      },
+      {
+        "foot": "fourth_ankle_geom",
+        "position_m": [
+          -5.312165046050033,
+          -0.7039839062408393,
+          0.017326187130824906
+        ],
+        "distance_m": -0.005656567630115364,
+        "normal": [
+          -0.11843010527562557,
+          0.3036846006283201,
+          0.9453835060469493
+        ]
+      },
+      {
+        "foot": "fourth_ankle_geom",
+        "position_m": [
+          -5.344346580529061,
+          -0.6556534194709385,
+          0.017762615495379365
+        ],
+        "distance_m": -0.004782345063596274,
+        "normal": [
+          0.24949288314718637,
+          -0.249492883147256,
+          0.9356850979457643
+        ]
+      },
+      {
+        "foot": "fourth_ankle_geom",
+        "position_m": [
+          -5.322488801574869,
+          -0.6775111984251303,
+          0.014868444902937974
+        ],
+        "distance_m": -0.010263110194124042,
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "foot": "fourth_ankle_geom",
+        "position_m": [
+          -5.311900878648324,
+          -0.6775111984251302,
+          0.015217436962698954
+        ],
+        "distance_m": -0.00963988705323704,
+        "normal": [
+          -0.12430049198023121,
+          0.0,
+          0.9922446208941988
+        ]
+      },
+      {
+        "foot": "fourth_ankle_geom",
+        "position_m": [
+          -5.3040080185491005,
+          -0.695991981450898,
+          0.016956417071663198
+        ],
+        "distance_m": -0.006383349317057169,
+        "normal": [
+          -0.21289182751847904,
+          0.21289182751851385,
+          0.9536006184727807
+        ]
+      }
+    ],
+    "resolution": 257,
+    "margin_condition": "default_001_001",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.01,
+    "minimum_distance_m": -0.010263110194124125,
+    "maximum_distance_m": -0.00023023698791570235,
+    "unique_include_margins_m": [
+      0.02
+    ]
+  },
+  {
+    "surface_id": "hfield_plateau_257_floor0_foot001",
+    "identical_qpos": [
+      -6.0,
+      9.300179579174313e-16,
+      0.5071372696501947,
+      1.0,
+      -9.560605111345184e-17,
+      -2.7357649104123402e-17,
+      -5.179138709788025e-19,
+      -2.897887733864076e-16,
+      0.8040745982819857,
+      3.0968303511257167e-16,
+      -0.8040745982819856,
+      1.4625378487276213e-16,
+      -0.804074598281986,
+      -1.1607514840661665e-16,
+      0.8040745982819861
+    ],
+    "zero_qvel": true,
+    "support_count": 0,
+    "foot_contact_point_count": 0,
+    "foot_contact_counts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "world_robot_contact_count": 0,
+    "normal_force_sum_n": 0.0,
+    "minimum_contact_distance_m": null,
+    "mean_contact_normal_tilt_from_vertical_degrees": null,
+    "maximum_contact_normal_tilt_from_vertical_degrees": null,
+    "foot_contacts": [],
+    "resolution": 257,
+    "margin_condition": "floor0_foot001",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.01,
+    "minimum_distance_m": null,
+    "maximum_distance_m": null,
+    "unique_include_margins_m": []
+  },
+  {
+    "surface_id": "hfield_plateau_257_floor001_foot0",
+    "identical_qpos": [
+      -6.0,
+      9.300179579174313e-16,
+      0.5071372696501947,
+      1.0,
+      -9.560605111345184e-17,
+      -2.7357649104123402e-17,
+      -5.179138709788025e-19,
+      -2.897887733864076e-16,
+      0.8040745982819857,
+      3.0968303511257167e-16,
+      -0.8040745982819856,
+      1.4625378487276213e-16,
+      -0.804074598281986,
+      -1.1607514840661665e-16,
+      0.8040745982819861
+    ],
+    "zero_qvel": true,
+    "support_count": 0,
+    "foot_contact_point_count": 0,
+    "foot_contact_counts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "world_robot_contact_count": 0,
+    "normal_force_sum_n": 0.0,
+    "minimum_contact_distance_m": null,
+    "mean_contact_normal_tilt_from_vertical_degrees": null,
+    "maximum_contact_normal_tilt_from_vertical_degrees": null,
+    "foot_contacts": [],
+    "resolution": 257,
+    "margin_condition": "floor001_foot0",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.0,
+    "minimum_distance_m": null,
+    "maximum_distance_m": null,
+    "unique_include_margins_m": []
+  },
+  {
+    "surface_id": "hfield_plateau_257_both0",
+    "identical_qpos": [
+      -6.0,
+      9.300179579174313e-16,
+      0.5071372696501947,
+      1.0,
+      -9.560605111345184e-17,
+      -2.7357649104123402e-17,
+      -5.179138709788025e-19,
+      -2.897887733864076e-16,
+      0.8040745982819857,
+      3.0968303511257167e-16,
+      -0.8040745982819856,
+      1.4625378487276213e-16,
+      -0.804074598281986,
+      -1.1607514840661665e-16,
+      0.8040745982819861
+    ],
+    "zero_qvel": true,
+    "support_count": 0,
+    "foot_contact_point_count": 0,
+    "foot_contact_counts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "world_robot_contact_count": 0,
+    "normal_force_sum_n": 0.0,
+    "minimum_contact_distance_m": null,
+    "mean_contact_normal_tilt_from_vertical_degrees": null,
+    "maximum_contact_normal_tilt_from_vertical_degrees": null,
+    "foot_contacts": [],
+    "resolution": 257,
+    "margin_condition": "both0",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.0,
+    "minimum_distance_m": null,
+    "maximum_distance_m": null,
+    "unique_include_margins_m": []
+  }
+]

@@ -1,0 +1,1254 @@
+[
+  {
+    "condition_id": "DEFAULT_CONTINUE",
+    "scene_name": "flat",
+    "construction_seed": 62806,
+    "effective_first_reset_seed": 62806,
+    "seed_status": "construction_and_effective_first_reset_recorded",
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\pair0_l2b_v3_20260819\\attempt_0\\condition_assets\\scenes\\standard_flat\\default_margin_001_control\\ant_standard_scene.xml",
+    "xml_sha256": "9ab941e158372fb328debf4aff3d57649981434e070f879d778301919adb1559",
+    "npair": 0,
+    "nq": 15,
+    "nv": 14,
+    "nu": 8,
+    "physics_timestep_seconds": 0.01,
+    "geom_contracts": [
+      {
+        "name": "floor",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "torso_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_1_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "left_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "left_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_2_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "right_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "right_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_3_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "back_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "third_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_4_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "rightback_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "fourth_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      }
+    ],
+    "explicit_pairs": [],
+    "passed": true,
+    "worker_rank": 0
+  },
+  {
+    "condition_id": "DEFAULT_CONTINUE",
+    "scene_name": "uphill_8deg",
+    "construction_seed": 62807,
+    "effective_first_reset_seed": 62807,
+    "seed_status": "construction_and_effective_first_reset_recorded",
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\pair0_l2b_v3_20260819\\attempt_0\\condition_assets\\scenes\\standard_uphill_8deg\\default_margin_001_control\\ant_standard_scene.xml",
+    "xml_sha256": "fd62a15e77157e3ff0393e88440010373313f9c1a6176b68c90a924e90643436",
+    "npair": 0,
+    "nq": 15,
+    "nv": 14,
+    "nu": 8,
+    "physics_timestep_seconds": 0.01,
+    "geom_contracts": [
+      {
+        "name": "floor",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "torso_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_1_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "left_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "left_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_2_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "right_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "right_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_3_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "back_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "third_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_4_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "rightback_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "fourth_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      }
+    ],
+    "explicit_pairs": [],
+    "passed": true,
+    "worker_rank": 1
+  },
+  {
+    "condition_id": "DEFAULT_CONTINUE",
+    "scene_name": "downhill_8deg",
+    "construction_seed": 62808,
+    "effective_first_reset_seed": 62808,
+    "seed_status": "construction_and_effective_first_reset_recorded",
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\pair0_l2b_v3_20260819\\attempt_0\\condition_assets\\scenes\\standard_downhill_8deg\\default_margin_001_control\\ant_standard_scene.xml",
+    "xml_sha256": "87e69b47529337a430ae6b7a78e4f7b100ab07cd5e072c1a1d0fbfb5c02ae318",
+    "npair": 0,
+    "nq": 15,
+    "nv": 14,
+    "nu": 8,
+    "physics_timestep_seconds": 0.01,
+    "geom_contracts": [
+      {
+        "name": "floor",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "torso_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_1_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "left_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "left_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_2_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "right_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "right_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_3_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "back_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "third_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_4_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "rightback_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "fourth_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      }
+    ],
+    "explicit_pairs": [],
+    "passed": true,
+    "worker_rank": 2
+  },
+  {
+    "condition_id": "DEFAULT_CONTINUE",
+    "scene_name": "bowl_exit",
+    "construction_seed": 62809,
+    "effective_first_reset_seed": 62809,
+    "seed_status": "construction_and_effective_first_reset_recorded",
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\pair0_l2b_v3_20260819\\attempt_0\\condition_assets\\scenes\\standard_bowl_exit\\default_margin_001_control\\ant_standard_scene.xml",
+    "xml_sha256": "3b80e3e9b046455acebc147588406468ec2eb369115ab090b1e2e9437bda3cd0",
+    "npair": 0,
+    "nq": 15,
+    "nv": 14,
+    "nu": 8,
+    "physics_timestep_seconds": 0.01,
+    "geom_contracts": [
+      {
+        "name": "floor",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "torso_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_1_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "left_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "left_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_2_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "right_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "right_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_3_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "back_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "third_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "aux_4_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "rightback_leg_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "fourth_ankle_geom",
+        "margin": 0.01,
+        "friction": [
+          1.0,
+          0.5,
+          0.5
+        ],
+        "condim": 3,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      }
+    ],
+    "explicit_pairs": [],
+    "passed": true,
+    "worker_rank": 3
+  }
+]

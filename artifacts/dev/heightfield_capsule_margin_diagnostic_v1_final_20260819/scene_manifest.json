@@ -1,0 +1,542 @@
+[
+  {
+    "scene_name": "native_plane_default_001_001",
+    "source_surface_id": "native_plane",
+    "resolution": 257,
+    "margin_condition": "default_001_001",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.01,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\scenes\\native_plane_default_001_001\\ant_scene.xml",
+    "xml_sha256": "c7cc0d226f4054cc08211b86c43f3b62457fa878b581d686f8fd9eddc6415d5d",
+    "hfield_sha256": "4b0ea8860330fdaffce6535f9bc4ef240461c9ed98196d87d31df878c68c79eb",
+    "floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "floor_condim": 3,
+    "floor_solref": [
+      0.02,
+      1.0
+    ],
+    "floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scene_name": "native_plane_floor0_foot001",
+    "source_surface_id": "native_plane",
+    "resolution": 257,
+    "margin_condition": "floor0_foot001",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.01,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\scenes\\native_plane_floor0_foot001\\ant_scene.xml",
+    "xml_sha256": "70f2e26443a8041e9c3c048bbda778f9ebcbe9582ac60f2454c368b99c5a60d7",
+    "hfield_sha256": "4b0ea8860330fdaffce6535f9bc4ef240461c9ed98196d87d31df878c68c79eb",
+    "floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "floor_condim": 3,
+    "floor_solref": [
+      0.02,
+      1.0
+    ],
+    "floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scene_name": "native_plane_floor001_foot0",
+    "source_surface_id": "native_plane",
+    "resolution": 257,
+    "margin_condition": "floor001_foot0",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.0,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\scenes\\native_plane_floor001_foot0\\ant_scene.xml",
+    "xml_sha256": "ea9d1fcb92884bba0f00b90eb67b3715943843ea83f57e41f7d9f76f3a384943",
+    "hfield_sha256": "4b0ea8860330fdaffce6535f9bc4ef240461c9ed98196d87d31df878c68c79eb",
+    "floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "floor_condim": 3,
+    "floor_solref": [
+      0.02,
+      1.0
+    ],
+    "floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scene_name": "native_plane_both0",
+    "source_surface_id": "native_plane",
+    "resolution": 257,
+    "margin_condition": "both0",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.0,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\scenes\\native_plane_both0\\ant_scene.xml",
+    "xml_sha256": "5a1b1cd944ae7e29e1e51fcdc52943c84b66d2372e0f8f4938cf2974a8f49823",
+    "hfield_sha256": "4b0ea8860330fdaffce6535f9bc4ef240461c9ed98196d87d31df878c68c79eb",
+    "floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "floor_condim": 3,
+    "floor_solref": [
+      0.02,
+      1.0
+    ],
+    "floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scene_name": "hfield_plateau_129_default_001_001",
+    "source_surface_id": "hfield_plateau_129",
+    "resolution": 129,
+    "margin_condition": "default_001_001",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.01,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\scenes\\hfield_plateau_129_default_001_001\\ant_scene.xml",
+    "xml_sha256": "d61f9a5426d417dd8db3e77ca474d2aaa6f32434d417a8b1284554f7c0b96d1f",
+    "hfield_sha256": "598f18cf7103e3180d47f363f7ed78ecb51bff09be6b6c5756b74a51a546c676",
+    "floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "floor_condim": 3,
+    "floor_solref": [
+      0.02,
+      1.0
+    ],
+    "floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scene_name": "hfield_plateau_129_floor0_foot001",
+    "source_surface_id": "hfield_plateau_129",
+    "resolution": 129,
+    "margin_condition": "floor0_foot001",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.01,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\scenes\\hfield_plateau_129_floor0_foot001\\ant_scene.xml",
+    "xml_sha256": "4d667141333f7f478d36dbf2c952de5e77e13dd17e95199a286bc8ba473e66fe",
+    "hfield_sha256": "598f18cf7103e3180d47f363f7ed78ecb51bff09be6b6c5756b74a51a546c676",
+    "floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "floor_condim": 3,
+    "floor_solref": [
+      0.02,
+      1.0
+    ],
+    "floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scene_name": "hfield_plateau_129_floor001_foot0",
+    "source_surface_id": "hfield_plateau_129",
+    "resolution": 129,
+    "margin_condition": "floor001_foot0",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.0,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\scenes\\hfield_plateau_129_floor001_foot0\\ant_scene.xml",
+    "xml_sha256": "090ce7862ddb1f4e76e966fb8bb7c4a855fa1c8f4d51e8c3c9b376ef3412e15c",
+    "hfield_sha256": "598f18cf7103e3180d47f363f7ed78ecb51bff09be6b6c5756b74a51a546c676",
+    "floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "floor_condim": 3,
+    "floor_solref": [
+      0.02,
+      1.0
+    ],
+    "floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scene_name": "hfield_plateau_129_both0",
+    "source_surface_id": "hfield_plateau_129",
+    "resolution": 129,
+    "margin_condition": "both0",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.0,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\scenes\\hfield_plateau_129_both0\\ant_scene.xml",
+    "xml_sha256": "dff3157e249e7a426bdb66ace3af781d33629fa49a39c8cfe994034a8edfbd2a",
+    "hfield_sha256": "598f18cf7103e3180d47f363f7ed78ecb51bff09be6b6c5756b74a51a546c676",
+    "floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "floor_condim": 3,
+    "floor_solref": [
+      0.02,
+      1.0
+    ],
+    "floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scene_name": "hfield_plateau_257_default_001_001",
+    "source_surface_id": "hfield_plateau_257",
+    "resolution": 257,
+    "margin_condition": "default_001_001",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.01,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\scenes\\hfield_plateau_257_default_001_001\\ant_scene.xml",
+    "xml_sha256": "d61f9a5426d417dd8db3e77ca474d2aaa6f32434d417a8b1284554f7c0b96d1f",
+    "hfield_sha256": "4b0ea8860330fdaffce6535f9bc4ef240461c9ed98196d87d31df878c68c79eb",
+    "floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "floor_condim": 3,
+    "floor_solref": [
+      0.02,
+      1.0
+    ],
+    "floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scene_name": "hfield_plateau_257_floor0_foot001",
+    "source_surface_id": "hfield_plateau_257",
+    "resolution": 257,
+    "margin_condition": "floor0_foot001",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.01,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\scenes\\hfield_plateau_257_floor0_foot001\\ant_scene.xml",
+    "xml_sha256": "4d667141333f7f478d36dbf2c952de5e77e13dd17e95199a286bc8ba473e66fe",
+    "hfield_sha256": "4b0ea8860330fdaffce6535f9bc4ef240461c9ed98196d87d31df878c68c79eb",
+    "floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "floor_condim": 3,
+    "floor_solref": [
+      0.02,
+      1.0
+    ],
+    "floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scene_name": "hfield_plateau_257_floor001_foot0",
+    "source_surface_id": "hfield_plateau_257",
+    "resolution": 257,
+    "margin_condition": "floor001_foot0",
+    "floor_margin_m": 0.01,
+    "foot_margin_m": 0.0,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\scenes\\hfield_plateau_257_floor001_foot0\\ant_scene.xml",
+    "xml_sha256": "090ce7862ddb1f4e76e966fb8bb7c4a855fa1c8f4d51e8c3c9b376ef3412e15c",
+    "hfield_sha256": "4b0ea8860330fdaffce6535f9bc4ef240461c9ed98196d87d31df878c68c79eb",
+    "floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "floor_condim": 3,
+    "floor_solref": [
+      0.02,
+      1.0
+    ],
+    "floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scene_name": "hfield_plateau_257_both0",
+    "source_surface_id": "hfield_plateau_257",
+    "resolution": 257,
+    "margin_condition": "both0",
+    "floor_margin_m": 0.0,
+    "foot_margin_m": 0.0,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\scenes\\hfield_plateau_257_both0\\ant_scene.xml",
+    "xml_sha256": "dff3157e249e7a426bdb66ace3af781d33629fa49a39c8cfe994034a8edfbd2a",
+    "hfield_sha256": "4b0ea8860330fdaffce6535f9bc4ef240461c9ed98196d87d31df878c68c79eb",
+    "floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "floor_condim": 3,
+    "floor_solref": [
+      0.02,
+      1.0
+    ],
+    "floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+]

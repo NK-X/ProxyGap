@@ -1,0 +1,32 @@
+{
+  "native_plane": {
+    "qpos_max_abs_difference": 0.0,
+    "qvel_max_abs_difference": 0.0,
+    "observation_max_abs_difference": 0.0,
+    "initial_action_max_abs_difference": 0.0
+  },
+  "hfield_plateau_129": {
+    "qpos_max_abs_difference": 0.0,
+    "qvel_max_abs_difference": 0.0,
+    "observation_max_abs_difference": 0.0,
+    "initial_action_max_abs_difference": 0.0
+  },
+  "hfield_plateau_257": {
+    "qpos_max_abs_difference": 0.0,
+    "qvel_max_abs_difference": 0.0,
+    "observation_max_abs_difference": 0.0,
+    "initial_action_max_abs_difference": 0.0
+  },
+  "hfield_plateau_513": {
+    "qpos_max_abs_difference": 0.0,
+    "qvel_max_abs_difference": 0.0,
+    "observation_max_abs_difference": 0.0,
+    "initial_action_max_abs_difference": 0.0
+  },
+  "hfield_microrelief_257": {
+    "qpos_max_abs_difference": 0.0,
+    "qvel_max_abs_difference": 0.0,
+    "observation_max_abs_difference": 1.5626696700989228e-07,
+    "initial_action_max_abs_difference": 7.450580596923828e-09
+  }
+}

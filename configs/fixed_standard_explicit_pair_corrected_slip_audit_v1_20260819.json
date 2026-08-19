@@ -1,0 +1,66 @@
+{
+  "schema_version": "proxygap-fixed-standard-explicit-pair-corrected-slip-audit-v1",
+  "config_id": "fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819",
+  "status": "frozen_read_only_supplementary_audit",
+  "formal_training": "prohibited",
+  "purpose": "Re-run the same 24 standard-scene episodes with the established force-gated, landing-grace and duration-corrected foot-slip tracker, without changing the original paired gate conclusion.",
+  "frozen_parent": {
+    "configuration": "configs/fixed_standard_distal_margin0_paired_diagnostic_v1_20260819.json",
+    "configuration_sha256": "656a85519cf55d35a3dc0b0eed5670377c228f1545bdbc714390690e7cb69043",
+    "artifact_root": "artifacts/dev/fixed_standard_distal_margin0_paired_diagnostic_v1_20260819/source_stage1",
+    "manifest_sha256": "6d673aaa6188a0c30772d660a4ee1cd0b4f7a9ca692ae5715d4d2b64de0f8df1",
+    "standard_gate_sha256": "5c1b4550d7cce1f717df35d4bd4c51b33234a2e1c32593322fbf2b872645b252",
+    "standard_episode_metrics_sha256": "b0eb8aa748bb403d2cc84dcae57690bca7b8f21ad7998140c95e78bc1470bc35",
+    "original_standard_gate_passed": false,
+    "original_gate_conclusion_must_remain_unchanged": true
+  },
+  "tracker_source": {
+    "script": "scripts/evaluate_local_preview_final_paired_direct_goal.py",
+    "script_sha256": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf",
+    "class": "DurationCorrectedSlipTracker"
+  },
+  "evaluation": {
+    "conditions": [
+      "DEFAULT_MARGIN_001_CONTROL",
+      "EXPLICIT_FLOOR_DISTAL_PAIR_MARGIN0_CANDIDATE"
+    ],
+    "scene_order": ["flat", "uphill_8deg", "downhill_8deg", "bowl_exit"],
+    "seeds": [79801, 79802, 79803],
+    "max_episode_steps": 600,
+    "cruise_speed_m_per_s": 0.55,
+    "deterministic_policy": true,
+    "expected_episode_count": 24
+  },
+  "duration_corrected_slip": {
+    "tangential_speed_threshold_m_per_s": 0.20,
+    "minimum_normal_force_n": 1.0,
+    "landing_grace_seconds": 0.10,
+    "minimum_sustained_seconds": 0.20,
+    "sampling_boundary": "control-step endpoint; not a physics-substep friction-cone integral"
+  },
+  "reported_denominators": {
+    "all_control_steps": true,
+    "steps_with_at_least_one_distal_foot_contact": true,
+    "per_foot_contact_samples": true
+  },
+  "exploratory_training_interpretation": {
+    "status": "post_parent_gate_supporting_audit_not_a_replacement_gate",
+    "support_only_if": [
+      "candidate_corrected_sustained_slip_per_supported_step_is_not_materially_worse_than_control",
+      "candidate_event_burden_is_not_materially_worse_than_control",
+      "no_new_falls_and_the_large_support_gain_is_reproduced",
+      "any_future_run_is_small_bounded_and_must_recover_progress_before_promotion"
+    ],
+    "material_fraction_tolerance": 0.02,
+    "material_event_rate_per_100_supported_steps_tolerance": 0.20,
+    "minimum_reproduced_support_count_increase": 0.20,
+    "formal_promotion_authorised": false
+  },
+  "execution": {
+    "output_root": "artifacts/dev/fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819/source_stage1",
+    "fail_if_output_root_nonempty": true,
+    "device": "cpu",
+    "torch_num_threads": 2
+  },
+  "claim_boundary": "This post-parent-gate audit diagnoses denominator and transient-contact confounding only. It cannot reverse the original gate, establish causal slip physics, authorise formal training, or support a fixed-map/generalisation claim."
+}

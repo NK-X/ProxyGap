@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "config_id": "flat_low_speed_turn_diagnostic_v1_20260819",
+  "status": "read_only_checkpoint_diagnostic_not_training_not_formal",
+  "purpose": "Test whether the existing contact-aware curved-gait policy can approximate an in-place turn when the diagnostic command adapter permits high curvature at small positive speed.",
+  "source_policy": {
+    "config": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+    "checkpoint": "artifacts/dev/curved_gait_tangent_v22_contact_observation_pilot_20260818/runs/seed_43812/models/checkpoint_2203648.zip",
+    "checkpoint_sha256": "a111311edba7bc13671d3cb742c0d3b3edda7849332011f8cd6d220b8dadb1b7",
+    "observation_dimension": 122,
+    "action_dimension": 8,
+    "training_speed_m_per_s": 0.8,
+    "training_maximum_abs_curvature_per_m": 0.25
+  },
+  "diagnostic_commands": {
+    "positive_crawl_speeds_m_per_s": [0.05, 0.1],
+    "target_positive_yaw_changes_degrees": [90.0, 180.0],
+    "maximum_abs_yaw_rate_rad_per_s": 0.3,
+    "yaw_rate_gain_per_second": 1.0,
+    "diagnostic_maximum_abs_curvature_per_m": 6.0,
+    "lateral_speed_m_per_s": 0.0,
+    "note": "The existing adapter still requires positive speed. The 6.0 per metre diagnostic limit only prevents the old curvature guard from rejecting 0.3 rad/s at 0.05 m/s; it is far outside the training distribution and is not a retained controller setting."
+  },
+  "evaluation": {
+    "seeds": [54801, 54802, 54803],
+    "horizon_steps": 400,
+    "environment_dt_seconds": 0.05,
+    "turn_tolerance_degrees": 10.0,
+    "target_dwell_seconds": 0.5,
+    "maximum_centre_drift_m": 1.0,
+    "deterministic_policy": true,
+    "terminate_when_unhealthy": true
+  },
+  "success_semantics": {
+    "kinematic_target": "positive unwrapped yaw change enters target tolerance for the complete dwell",
+    "drift_limited_turn": "kinematic target plus maximum torso-centre drift no more than 1.0 m and no fall",
+    "safety_qualified_turn": "drift-limited turn plus no control step with all four specified feet out of contact"
+  },
+  "training_performed": false,
+  "core_source_modified": false,
+  "output_root": "artifacts/dev/flat_low_speed_turn_diagnostic_v1_20260819",
+  "claim_boundary": "Read-only out-of-distribution diagnostic of one V22 training run on flat Ant-v5. It can reject or support only bounded low-speed turning feasibility; it cannot prove true zero-speed rotation, unseen-seed robustness, terrain recovery or navigation success."
+}

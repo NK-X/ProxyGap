@@ -1,0 +1,37 @@
+[
+  {
+    "surface_id": "native_plane",
+    "zero_foot_contact_fraction_difference_vs_plane": 0.0,
+    "mean_support_count_difference_vs_plane": 0.0,
+    "mean_contacts_per_supported_foot_ratio_vs_plane": 1.0,
+    "net_displacement_ratio_vs_plane": 1.0
+  },
+  {
+    "surface_id": "hfield_plateau_129",
+    "zero_foot_contact_fraction_difference_vs_plane": 0.5375,
+    "mean_support_count_difference_vs_plane": -0.9824999999999999,
+    "mean_contacts_per_supported_foot_ratio_vs_plane": 3.230769230769231,
+    "net_displacement_ratio_vs_plane": 1.0200201221059713
+  },
+  {
+    "surface_id": "hfield_plateau_257",
+    "zero_foot_contact_fraction_difference_vs_plane": 0.57625,
+    "mean_support_count_difference_vs_plane": -1.0325,
+    "mean_contacts_per_supported_foot_ratio_vs_plane": 6.84020618556701,
+    "net_displacement_ratio_vs_plane": 0.8963365286138748
+  },
+  {
+    "surface_id": "hfield_plateau_513",
+    "zero_foot_contact_fraction_difference_vs_plane": 0.605,
+    "mean_support_count_difference_vs_plane": -1.0612499999999998,
+    "mean_contacts_per_supported_foot_ratio_vs_plane": 16.707602339181285,
+    "net_displacement_ratio_vs_plane": 0.9242048649045929
+  },
+  {
+    "surface_id": "hfield_microrelief_257",
+    "zero_foot_contact_fraction_difference_vs_plane": 0.5800000000000001,
+    "mean_support_count_difference_vs_plane": -1.0374999999999999,
+    "mean_contacts_per_supported_foot_ratio_vs_plane": 6.794736842105263,
+    "net_displacement_ratio_vs_plane": 1.015676922274458
+  }
+]

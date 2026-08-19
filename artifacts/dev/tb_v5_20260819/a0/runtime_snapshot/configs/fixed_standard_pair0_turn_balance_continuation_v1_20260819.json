@@ -1,0 +1,333 @@
+{
+  "schema_version": "proxygap-pair0-turn-balance-continuation-design-v1",
+  "config_id": "fixed_standard_pair0_turn_balance_continuation_v1_20260819",
+  "status": "predeclared_validate_and_preflight_only_not_authorised_to_train",
+  "purpose": "Paired continuation design to test whether exactly counterbalanced left/right local commands repair the frozen final PAIR0 checkpoint's flat-ground yaw asymmetry without degrading standard-terrain safety or progress.",
+  "source": {
+    "v3_configuration": "configs/fixed_standard_pair0_adaptation_l2b_extension_v3_20260819.json",
+    "v3_configuration_sha256": "6ad69370cc868e0fd84c3561cd336fe7540d471dad92129eea3f94a3420ae5da",
+    "v3_manifest": "artifacts/dev/pair0_l2b_v3_20260819/attempt_0/manifest.json",
+    "v3_manifest_sha256": "d9d6088ad80e152d6c8c10a7cedadd1695ba8fcbfbc0d40734a0029cec4e77ac",
+    "v3_final_gate": "artifacts/dev/pair0_l2b_v3_20260819/attempt_0/prospective_final_gate.json",
+    "v3_final_gate_sha256": "2293ada60313ffc61cda562c42757c5fccf5a60efb0bc0c180f8a47d205524e1",
+    "checkpoint": "artifacts/dev/pair0_l2b_v3_20260819/attempt_0/pair0_adapt/models/checkpoint_2727936.zip",
+    "checkpoint_sha256": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+    "checkpoint_timesteps": 2727936,
+    "checkpoint_saved_n_envs": 4,
+    "checkpoint_saved_n_steps": 512,
+    "checkpoint_optimizer_state_required": true,
+    "observation_dimension": 135,
+    "observation_contract": "122D locomotion/contact/command prefix plus the already-existing 13D local terrain preview",
+    "action_dimension": 8,
+    "reward_configuration": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+    "reward_configuration_sha256": "0d20c29caffb7206924e6520b6e52b718c86aac5cdaad1d01a4361c0b5ce3a7f",
+    "standard_protocol": "configs/fixed_standard_support_curriculum_v1_20260819.json",
+    "standard_protocol_sha256": "06979405fa0122d9386a8d2ed12619db97d71c73b3cd1a08ef404ee6c627f927",
+    "flat_turn_diagnostic_manifest": "artifacts/dev/fixed_standard_pair0_flat_turn_diagnostic_v1_20260819/attempt_0/manifest.json",
+    "flat_turn_diagnostic_manifest_sha256": "d0beda1fb2bf3f7bb948b918ff81de81023fd3ea8f229e0e302e66c92ce5f8d6",
+    "flat_turn_diagnostic_summary": "artifacts/dev/fixed_standard_pair0_flat_turn_diagnostic_v1_20260819/attempt_0/summary.json",
+    "flat_turn_diagnostic_summary_sha256": "e9caffc707c4c7ce369a3e676e778419b5d40b964d1f9107b41652808e7a5e5b"
+  },
+  "hypothesis": {
+    "observed_problem": "The frozen PAIR0 policy plus Ant, explicit contact pairs and sampled initial states exhibited a common negative-yaw closed-loop bias; left 0.10 per metre reversed sign in all five episodes and stronger left commands remained markedly weaker than matched right commands.",
+    "causal_claim_before_experiment": "none_policy_forgetting_contact_asymmetry_action_order_and_initial_state_remain_competing_mechanisms",
+    "intervention": "exactly_counterbalanced_per_episode_local_yaw_commands_on_flat_pair0_terrain",
+    "control": "generic_straight_continuation_with_the_same_new_wrapper_budget_seeds_episode_horizon_and_ppo_rollout_geometry",
+    "global_map_input_to_low_level_policy": false
+  },
+  "conditions": [
+    {
+      "condition_id": "C0_STRAIGHT_CONTINUE",
+      "description": "Matched generic continuation control; every worker receives zero curvature."
+    },
+    {
+      "condition_id": "C1_BALANCED_TURN",
+      "description": "Workers 0/1 receive straight commands; paired workers 2/3, 4/5 and 6/7 receive opposite-phase alternating commands at magnitudes 0.10, 0.20 and 0.35 per metre."
+    }
+  ],
+  "training": {
+    "master_seed": 63806,
+    "training_seed_count": 1,
+    "multi_seed_training_robustness_claim_permitted": false,
+    "same_master_seed_and_worker_order_for_both_conditions": true,
+    "parallel_environments": 8,
+    "worker_effective_first_reset_seeds": [63806, 63807, 63808, 63809, 63810, 63811, 63812, 63813],
+    "flat_scene_grid_rows": 513,
+    "flat_scene_grid_cols": 513,
+    "flat_scene_map_half_extent_m": 20.0,
+    "flat_scene_grid_spacing_m": 0.078125,
+    "flat_scene_start_xy_m": [0.0, 0.0],
+    "flat_scene_goal_marker_xy_m": [6.0, 0.0],
+    "flat_scene_role": "numerical_training_surface_not_fixed_delivery_map",
+    "cruise_speed_m_per_s": 0.55,
+    "episode_steps": 512,
+    "episodes_per_worker": 16,
+    "steps_per_worker": 8192,
+    "additional_timesteps_per_condition": 65536,
+    "absolute_final_checkpoint_timesteps": 2793472,
+    "save_intermediate_checkpoints": false,
+    "only_absolute_final_checkpoint_is_evaluated": true,
+    "independent_clean_process_per_condition": true,
+    "source_checkpoint_and_optimizer_reloaded_independently_per_condition": true,
+    "reset_num_timesteps": false,
+    "any_early_termination_nonfinite_transition_or_exposure_mismatch_fails_attempt": true,
+    "zero_transition_auto_reset_episode_is_not_counted_as_exposure": true
+  },
+  "command_schedule": {
+    "curvature_units": "per_metre",
+    "speed_m_per_s": 0.55,
+    "yaw_rate_definition": "speed_times_signed_curvature",
+    "target_heading_update": "initial_target_heading_plus_yaw_rate_times_completed_control_steps_times_0.05_seconds",
+    "worker_magnitude_assignment": [0.0, 0.0, 0.1, 0.1, 0.2, 0.2, 0.35, 0.35],
+    "phase_rule": "for_nonzero_workers_positive_when_episode_index_plus_worker_rank_is_even_otherwise_negative",
+    "paired_workers": [[0, 1], [2, 3], [4, 5], [6, 7]],
+    "expected_control_exposure_steps": {
+      "C0_STRAIGHT_CONTINUE": {
+        "straight_000": 65536
+      },
+      "C1_BALANCED_TURN": {
+        "straight_000": 16384,
+        "left_010": 8192,
+        "right_010": 8192,
+        "left_020": 8192,
+        "right_020": 8192,
+        "left_035": 8192,
+        "right_035": 8192
+      }
+    },
+    "expected_worker_episode_and_exposure_table_canonical_sha256": "b393134d5255567df048cf974a90a49957ac7a9240fa4074790b13feb36bfffe",
+    "balance_claim": "four_curvature_magnitude_families_equal_at_16384_steps_each_and_all_nonzero_left_right_signed_commands_equal_at_8192_steps_each",
+    "seven_signed_commands_uniformly_sampled": false,
+    "random_sampling_used": false
+  },
+  "ppo": {
+    "policy": "MlpPolicy",
+    "n_steps": 256,
+    "parallel_environments": 8,
+    "rollout_transitions": 2048,
+    "batch_size": 1024,
+    "minibatches_per_epoch": 2,
+    "n_epochs": 10,
+    "gradient_minibatches_per_condition": 640,
+    "learning_rate": 0.00003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.001,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "policy_kwargs": {
+      "net_arch": [64, 64],
+      "activation_fn": "Tanh"
+    },
+    "device": "cpu",
+    "torch_num_threads": 2,
+    "load_call_contract": "PPO.load(source_env8_device_cpu_force_reset_true_n_steps256_seed63806)",
+    "only_permitted_checkpoint_ppo_overrides": [
+      "n_steps_from_512_to_256_before_setup_model",
+      "seed_from_62802_to_63806"
+    ],
+    "policy_and_optimizer_state_must_match_source_before_first_update": true,
+    "rollout_buffer_must_be_rebuilt_as_256_by_8": true
+  },
+  "contact_contract": {
+    "terrain_geom": "floor",
+    "distal_geoms": ["left_ankle_geom", "right_ankle_geom", "third_ankle_geom", "fourth_ankle_geom"],
+    "all_geom_margins_m": 0.01,
+    "explicit_pair_margin_m": 0.0,
+    "explicit_pair_gap_m": 0.0,
+    "condim": 3,
+    "geom_friction": [1.0, 0.5, 0.5],
+    "explicit_pair_friction": [1.0, 1.0, 0.5, 0.5, 0.5],
+    "solref": [0.02, 1.0],
+    "solreffriction": [0.0, 0.0],
+    "solimp": [0.9, 0.95, 0.001, 0.5, 2.0],
+    "adhesion": 0.0,
+    "all_ground_pairs_included": false,
+    "explicit_pair_count": 4,
+    "friction_randomisation": false
+  },
+  "final_evaluation": {
+    "heldout_seeds": [96131, 96137, 96149, 96153, 96177],
+    "seed_status": "predeclared_new_not_used_by_v3_slope_or_951xx_flat_turn_diagnostics_and_never_used_at_intermediate_training",
+    "same_new_heldout_seeds_for_both_conditions_turn_and_slope_gates": true,
+    "turn_condition_order": [
+      "straight_055",
+      "curve_left_010",
+      "curve_right_010",
+      "curve_left_020",
+      "curve_right_020",
+      "curve_left_035",
+      "curve_right_035",
+      "low_speed_yaw_left",
+      "low_speed_yaw_right"
+    ],
+    "slope_scene_order": ["flat", "uphill_8deg", "downhill_8deg", "bowl_exit"],
+    "max_episode_steps": 600,
+    "deterministic_policy": true,
+    "control_timestep_seconds": 0.05,
+    "physics_timestep_seconds": 0.01,
+    "physics_substeps_per_control_step": 5,
+    "all_five_physics_substeps_required": true,
+    "final_checkpoints_only": true,
+    "paired_by_condition_scene_command_and_seed": true,
+    "no_post_hoc_checkpoint_or_seed_selection": true,
+    "corrected_slip": {
+      "tangential_speed_threshold_m_per_s": 0.2,
+      "minimum_normal_force_n": 1.0,
+      "landing_grace_seconds": 0.1,
+      "minimum_sustained_seconds": 0.2,
+      "primary_denominator": "physics_substeps_with_at_least_one_distal_foot_in_contact_and_normal_force_at_least_1N",
+      "zero_primary_denominator": "non_evaluable_failure"
+    }
+  },
+  "prospective_final_gate": {
+    "both_turn_and_standard_slope_continuity_required": true,
+    "turn_safety_each_of_nine_conditions": {
+      "maximum_fall_count": 0,
+      "maximum_torso_ground_episode_count": 0,
+      "maximum_sustained_nonfoot_contact_episode_count": 0,
+      "force_qualified_denominator_required_for_every_seed": true,
+      "maximum_corrected_sustained_slip_substep_count": 0,
+      "maximum_corrected_slip_event_count": 0,
+      "maximum_pooled_full_interval_zero_foot_fraction": 0.0580555556
+    },
+    "turn_effectiveness": {
+      "maximum_absolute_straight_mean_yaw_change_rad": 0.5,
+      "required_same_sign_episode_count_each_nonzero_turn_condition": 5,
+      "required_episode_count_each_condition": 5,
+      "minimum_mean_yaw_change_target_ratio_abs_curvature_010_and_020": 0.7,
+      "maximum_mean_yaw_change_target_ratio_abs_curvature_010_and_020": 1.3,
+      "maximum_left_right_mean_ratio_difference_abs_curvature_010_and_020": 0.3,
+      "minimum_absolute_mean_yaw_change_target_ratio_abs_curvature_035": 0.5,
+      "maximum_left_right_absolute_mean_ratio_difference_abs_curvature_035": 0.5,
+      "low_speed_positive_speed_yaw_probes_have_tracking_gate": false,
+      "low_speed_positive_speed_yaw_probes_must_pass_safety": true
+    },
+    "standard_slope_continuity": {
+      "minimum_pair0_mean_best_progress_m": 7.19339076746881,
+      "minimum_pair0_uphill_mean_best_progress_m": 6.18579923623122,
+      "minimum_pair0_downhill_mean_best_progress_m": 8.81135708033187,
+      "maximum_pair0_fall_count": 0,
+      "maximum_pair0_torso_ground_episode_count": 0,
+      "maximum_pair0_sustained_nonfoot_contact_episode_count": 0,
+      "maximum_pair0_pooled_full_interval_zero_foot_fraction": 0.058055555555555555,
+      "force_qualified_denominator_required_for_every_seed": true,
+      "maximum_pair0_corrected_sustained_slip_per_force_qualified_supported_fraction": 0.02,
+      "maximum_pair0_corrected_slip_events_per_100_force_qualified_supported_substeps": 0.2
+    },
+    "required_all_checks": true,
+    "decision_logic": {
+      "C1_pass_C0_fail": "supports_balanced_command_intervention_but_does_not_yet_authorise_fixed_map_or_promotion",
+      "C1_pass_C0_pass": "generic_continuation_is_sufficient_or_effect_not_isolated_prefer_simpler_explanation",
+      "C1_fail": "reject_balanced_command_continuation_and_hold_fixed_map_entry",
+      "both_fail": "continuation_budget_not_sufficient_or_common_training_change_is_harmful"
+    }
+  },
+  "energy_boundary": {
+    "status": "measurement_only_not_reward_or_gate",
+    "formula_unchanged": true,
+    "reward_weight": 0.0,
+    "raw_components_required": [
+      "cumulative_squared_action",
+      "actuator_abs_torque_time_integral_total_n_m_s",
+      "actuator_positive_mechanical_work_total_j",
+      "actuator_abs_mechanical_work_total_j"
+    ],
+    "nonfinite_energy_component_is_attempt_failure": true,
+    "electrical_battery_energy_claim_permitted": false
+  },
+  "invariants": {
+    "source_checkpoint_same_for_both_conditions": true,
+    "robot_xml_same": true,
+    "explicit_pair_contact_same": true,
+    "friction_same": true,
+    "reward_same": true,
+    "observation_dimension_and_semantics_same": true,
+    "action_space_same": true,
+    "episode_horizon_same_between_conditions": true,
+    "ppo_and_budget_same_between_conditions": true,
+    "only_condition_difference": "per_episode_external_curvature_schedule",
+    "global_map_input_added": false,
+    "energy_formula_changed": false,
+    "energy_reward_added": false,
+    "fixed_map_evaluated": false,
+    "video_rendered": false,
+    "candidate_promoted": false,
+    "intermediate_checkpoint_selected": false
+  },
+  "execution": {
+    "formal_training_authorised": false,
+    "permitted_modes": ["validate_only", "engineering_preflight_without_training_or_artifact_root"],
+    "future_smoke_output_root": "artifacts/smoke/pair0_turn_balance_v1_20260819",
+    "future_formal_output_root": "artifacts/dev/pair0_turn_balance_v1_20260819/attempt_0",
+    "maximum_formal_attempt_index": 0,
+    "fail_if_any_future_output_root_exists": true,
+    "subprocess_start_method": "spawn",
+    "fixed_map": false,
+    "video": false,
+    "promotion": false
+  },
+  "terminal_project_decision": {
+    "this_is_the_last_locomotion_optimisation_round": true,
+    "hard_stop_after_final_C0_C1_training_and_predeclared_turn_slope_safety_retest": true,
+    "no_further_structure_reward_contact_DOF_or_training_intervention_after_pass_or_fail": true,
+    "retain_both_final_C0_and_C1_checkpoints_and_complete_evidence_regardless_of_result": true,
+    "if_C1_fails": "retain_source_checkpoint_2727936_as_known_best_slope_candidate_and_mark_turning_HOLD",
+    "if_C1_passes": "archive_result_without_starting_another_optimisation_round",
+    "fixed_map_entry_after_this_protocol": false
+  },
+  "post_result_video_archive_contract": {
+    "training_stage_video_rendering": false,
+    "render_only_after_all_numeric_results_and_gates_are_frozen": true,
+    "video_not_used_by_any_gate_or_seed_selection": true,
+    "C0_C1_same_seed_left_right_comparison_required": true,
+    "permitted_layout": "four_panel_or_equally_clear_dual_view_composite",
+    "seed_predeclared_before_training": true,
+    "predeclared_seed": 96131,
+    "predeclared_turn_conditions": ["curve_left_020", "curve_right_020"],
+    "trace_manifest_sha256_and_full_decode_validation_required": true,
+    "if_C1_turn_gate_passes_representative_uphill_and_downhill_replay_required": true,
+    "if_C1_turn_gate_fails_uphill_downhill_video_requirement": "may_reuse_or_rerender_the_frozen_source_PAIR0_slope_delivery_with_explicit_labelling",
+    "video_changes_scientific_result": false
+  },
+  "runtime_dependency_contract": {
+    "copy_preserving_relative_paths": true,
+    "verify_before_and_after_future_training": true,
+    "exact_relative_path_sha256": {
+      "scripts/run_fixed_standard_pair0_turn_balance_continuation.py": "befff9c45d2f92d2c62f5530b303725a56a46331c378d207a277b4c85e4e33bd",
+      "src/proxygap/paired_turn_balance.py": "18e00339aad3ae10d541ba5d4dc5ab87478ad90b7fb1f6ae6ed7392742f517a3",
+      "scripts/evaluate_fixed_standard_pair0_flat_turn_diagnostic.py": "fd422d61b1ed3e932067c0da9cd29062b18493e742a0ddf02f6f0cb1595f6729",
+      "scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e",
+      "scripts/run_fixed_standard_pair0_adaptation_l2b_extension.py": "6dfd283aaa7661e3806e9ca26f874a6088ebf0a39985d3ef3bd0c7edb6e493aa",
+      "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+      "scripts/evaluate_fixed_standard_distal_margin0_paired.py": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d",
+      "scripts/evaluate_local_preview_final_paired_direct_goal.py": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf",
+      "scripts/run_fixed_goal_support_priority_pilot.py": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca",
+      "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a",
+      "scripts/run_fixed_goal_terrain_training.py": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d",
+      "scripts/run_curved_gait_training.py": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf",
+      "src/proxygap/__init__.py": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba",
+      "src/proxygap/ant_wrapper.py": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2",
+      "src/proxygap/curved_gait.py": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48",
+      "src/proxygap/fixed_goal_terrain.py": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2",
+      "src/proxygap/metrics.py": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397",
+      "src/proxygap/planar_transition.py": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805",
+      "src/proxygap/experiment.py": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629",
+      "src/proxygap/divergence.py": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459",
+      "src/proxygap/protocol.py": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d",
+      "src/proxygap/selection.py": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0",
+      "src/proxygap/two_experiment_protocol.py": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+    }
+  },
+  "risk_register": [
+    "Changing n_steps from 512 to 256 changes per-environment GAE segmentation even though the total 2048-transition rollout is preserved; C0 controls this common change but does not make it identical to the source optimisation process.",
+    "Changing the training episode horizon from 600 to 512 is common to C0 and C1 but remains a continuation-distribution change.",
+    "Flat training makes the 13D terrain preview nearly constant and can cause terrain-skill forgetting; the final standard-slope continuity gate is therefore mandatory.",
+    "Worker magnitude is confounded with worker rank in this minimal pilot; opposite phases and within-worker sign alternation remove direction exposure imbalance but do not fully randomise magnitude across seed streams.",
+    "A successful C1 result supports the whole balanced-command intervention; it cannot by itself isolate policy weights from contact asymmetry, actuator ordering or initial-state effects.",
+    "The low-speed conditions remain positive-speed out-of-training-envelope probes and are not in-place rotation tests."
+  ],
+  "claim_boundary": "This paired protocol can test whether one short, exactly counterbalanced flat-command continuation repairs the observed closed-loop yaw asymmetry while retaining predeclared safety and standard-slope floors. It cannot establish causal mechanism, true in-place turning, fixed-map readiness, route optimality, random-map generalisation, natural gait, electrical-energy improvement or promotion."
+}

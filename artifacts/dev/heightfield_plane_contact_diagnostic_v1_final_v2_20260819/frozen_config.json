@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "config_id": "heightfield_plane_contact_diagnostic_v1_20260819",
+  "status": "frozen_bounded_heightfield_contact_diagnostic",
+  "formal_generalisation_claim": "prohibited",
+  "purpose": "Isolate native-plane versus numerically flat heightfield contact dynamics under identical robot state and an identical open-loop action sequence.",
+  "frozen_sources": {
+    "base_scene_xml": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/ant_fixed_quad_terrain.xml",
+    "base_scene_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+    "reward_configuration": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+    "reward_configuration_sha256": "0d20c29caffb7206924e6520b6e52b718c86aac5cdaad1d01a4361c0b5ce3a7f",
+    "source_checkpoint": "artifacts/dev/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819/seed_62802/models/checkpoint_2596864.zip",
+    "source_checkpoint_sha256": "5bfd212b810af0189009f067ee7be8e8d4702fe1bee8cf025ba82401f931ff1e",
+    "observation_dimension": 135,
+    "action_dimension": 8
+  },
+  "controlled_scene": {
+    "map_half_extent_m": 10.0,
+    "start_xy_m": [
+      -6.0,
+      0.0
+    ],
+    "goal_xy_m": [
+      6.0,
+      0.0
+    ],
+    "torso_clearance_m": 0.75,
+    "fixed_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "condim": 3,
+    "physics_timestep_seconds": 0.01,
+    "control_substeps": 5,
+    "surface_variants": [
+      {
+        "id": "native_plane",
+        "kind": "plane",
+        "resolution": 257
+      },
+      {
+        "id": "hfield_plateau_129",
+        "kind": "plateau",
+        "resolution": 129
+      },
+      {
+        "id": "hfield_plateau_257",
+        "kind": "plateau",
+        "resolution": 257
+      },
+      {
+        "id": "hfield_plateau_513",
+        "kind": "plateau",
+        "resolution": 513
+      },
+      {
+        "id": "hfield_microrelief_257",
+        "kind": "microrelief",
+        "resolution": 257
+      }
+    ],
+    "remote_sentinel_height_m": 1e-09,
+    "microrelief_scale_m": 1e-06
+  },
+  "policy_replay": {
+    "seed": 75802,
+    "control_steps": 160,
+    "cruise_speed_m_per_s": 0.55,
+    "deterministic_policy": true,
+    "reference_surface": "native_plane",
+    "initial_state_absolute_tolerance": 1e-12,
+    "initial_observation_absolute_tolerance": 2e-07,
+    "initial_action_absolute_tolerance": 1e-07
+  },
+  "static_drop": {
+    "root_height_m": 1.2,
+    "physics_steps": 300,
+    "settled_window_steps": 100,
+    "control": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "task_adapter": {
+    "augment_local_terrain_observation": true,
+    "terrain_frame_shaping_enabled": false,
+    "terrain_preview_longitudinal_m": [
+      0.5,
+      1.0,
+      1.5
+    ],
+    "terrain_preview_lateral_m": [
+      -0.4,
+      0.0,
+      0.4
+    ],
+    "local_terrain_height_bound_m": 6.0,
+    "maximum_abs_curvature_per_m": 0.35,
+    "yaw_gain_per_second": 0.0,
+    "slow_radius_m": 0.75,
+    "arrival_radius_m": 0.75,
+    "hold_radius_m": 1.0,
+    "hold_seconds": 2.0,
+    "hold_speed_m_per_s": 0.05,
+    "terrain_relative_healthy_clearance_m": [
+      0.18,
+      1.4
+    ],
+    "maximum_healthy_tilt_degrees": 80.0,
+    "unhealthy_grace_steps": 10000,
+    "slip_speed_threshold_m_per_s": 0.2
+  },
+  "energy_boundary": {
+    "energy_formula_changes": "prohibited",
+    "energy_reward_changes": "prohibited"
+  },
+  "execution": {
+    "output_root": "artifacts/dev/heightfield_plane_contact_diagnostic_v1_final_v2_20260819",
+    "existing_results_overwritten": false
+  }
+}

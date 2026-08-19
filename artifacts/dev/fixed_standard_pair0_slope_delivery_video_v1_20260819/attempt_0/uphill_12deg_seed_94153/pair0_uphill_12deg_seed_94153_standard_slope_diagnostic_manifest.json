@@ -1,0 +1,110 @@
+{
+  "schema_version": "proxygap-pair0-standard-slope-delivery-episode-v1",
+  "status": "complete_fieldwise_exact_visual_replay",
+  "claim_label": "STANDARD-SLOPE DIAGNOSTIC / NOT FIXED-MAP / NOT GENERALISATION",
+  "condition_id": "PAIR0_ADAPT",
+  "scene_name": "uphill_12deg",
+  "signed_slope_degrees": 12.0,
+  "evaluation_seed": 94153,
+  "selection_rule": "exact_scene_median_fixed_goal_best_progress_across_all_five_predeclared_heldout_seeds",
+  "selection_note": "Seed 94153 is the exact median-progress uphill-12 episode and its 33/600 = 0.055 full-interval zero-foot fraction passes the frozen 0.0580555556 limit. The earlier rounded 0.06 interpretation is explicitly rejected.",
+  "checkpoint": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\pair0_l2b_v3_20260819\\attempt_0\\pair0_adapt\\models\\checkpoint_2727936.zip",
+    "sha256": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c"
+  },
+  "formal_episode_row": {
+    "condition_id": "PAIR0_ADAPT",
+    "checkpoint_additional_timesteps": 65536,
+    "checkpoint_timesteps": 2727936,
+    "scene_name": "uphill_12deg",
+    "evaluation_seed": 94153,
+    "control_steps": 600,
+    "physics_substeps": 3000,
+    "finite": true,
+    "fall": false,
+    "outer_terrain_fall": false,
+    "inner_absolute_z_fall": false,
+    "fixed_goal_success": false,
+    "fixed_goal_best_progress_m": 7.372009207381211,
+    "fixed_goal_net_progress_m": 7.372009207381211,
+    "full_interval_zero_foot_count": 33,
+    "support_count_sum_physics_substeps": 3356,
+    "supported_physics_substep_count": 2191,
+    "force_qualified_supported_physics_substep_count": 2105,
+    "qualified_slip_physics_substep_count": 7,
+    "corrected_sustained_slip_physics_substep_count": 0,
+    "corrected_slip_event_count": 0,
+    "torso_ground_any": false,
+    "nonfoot_ground_longest_run_seconds": 0.0,
+    "sustained_nonfoot_contact": false,
+    "cumulative_squared_action": 168.46992987787416,
+    "actuator_abs_torque_time_integral_total_n_m_s": 5546.881618975312,
+    "actuator_positive_mechanical_work_total_j": 4704.585909412365,
+    "actuator_abs_mechanical_work_total_j": 5422.515930902809
+  },
+  "fieldwise_metric_match": true,
+  "field_count_matched": 28,
+  "trace": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\uphill_12deg_seed_94153\\pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_trace_600_steps.csv",
+    "sha256": "8fcef3bdc30d77a3e9b8a419f56a3be6a031277ee81d5c9c863ef21358b455aa",
+    "control_rows": 600
+  },
+  "video": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\uphill_12deg_seed_94153\\pair0_uphill_12deg_seed_94153_standard_slope_diagnostic.mp4",
+    "sha256": "bfca611de0bf947b0f6a27962aee35af0a28ee0983d00f3d3a5adfa3b1946e19",
+    "width_px": 1280,
+    "height_px": 720,
+    "fps": 20,
+    "frames": 640,
+    "duration_seconds": 32.0,
+    "physical_rollout_seconds": 30.0,
+    "playback_speed_relative_to_physical_time": 1.0
+  },
+  "replay_episode_metrics": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\uphill_12deg_seed_94153\\pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_replay_episode_metrics.json",
+    "sha256": "779dd651890d470801088ef432acceb4727f0b656dba72e8ccf220bd18dfd6d0"
+  },
+  "fieldwise_metric_comparison": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\uphill_12deg_seed_94153\\pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_fieldwise_metric_comparison.json",
+    "sha256": "1b16e3e07df331e61a8a042b421dedb89f1ff709ea7ac4a1e556c2018cfe2d1c"
+  },
+  "final_frame": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\uphill_12deg_seed_94153\\pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_final_frame.png",
+    "sha256": "1578f5509328707d3f81ca1fba5b4950dfbc4913be41e8966a725daf698e33ab"
+  },
+  "contact_sheet": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\uphill_12deg_seed_94153\\pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_contact_sheet.png",
+    "sha256": "c18576cd39d2e568bc1325e9aca334ad176cf01e695a5c130c670f0c4fe1af08"
+  },
+  "scene": {
+    "xml_sha256": "33a226ec3f5207c0915e6d0726587e09b75c497b9bd7d2e82407ce133fb7a734",
+    "heights_sha256": "0db369c6fbaa9f93f9c4eef6223b1b113b74cdaa972b714bdd5410ee6f46c004",
+    "minimum_height_m": -2.1255656167002215,
+    "maximum_height_m": 2.1255656167002215,
+    "height_range_m": 4.251131233400443,
+    "friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "condim": 3,
+    "vertical_exaggeration": 1.0
+  },
+  "energy_status": "measurement_only_not_reward_or_gate",
+  "qa": {
+    "decoded_frames": 640,
+    "every_frame_decoded": true,
+    "all_decoded_frame_shapes_equal_expected": true,
+    "expected_frame_shape": [
+      720,
+      1280,
+      3
+    ],
+    "average_frame_rate": 20.0,
+    "decoded_duration_seconds": 32.0
+  },
+  "training_performed": false,
+  "checkpoint_modified": false,
+  "fixed_map_evaluated": false,
+  "generalisation_claimed": false
+}

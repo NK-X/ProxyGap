@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="ant">
+  <compiler angle="degree" coordinate="local" inertiafromgeom="true" />
+  <option integrator="RK4" timestep="0.01" />
+  <custom>
+    <numeric data="0.0 0.0 0.55 1.0 0.0 0.0 0.0 0.0 1.0 0.0 -1.0 0.0 -1.0 0.0 1.0" name="init_qpos" />
+  </custom>
+  <default>
+    <joint armature="1" damping="1" limited="true" />
+    <geom conaffinity="0" condim="3" density="5.0" friction="1 0.5 0.5" margin="0.01" rgba="0.8 0.6 0.4 1" />
+  </default>
+  <asset>
+    <texture builtin="gradient" height="100" rgb1="1 1 1" rgb2="0 0 0" type="skybox" width="100" />
+    <texture builtin="flat" height="1278" mark="cross" markrgb="1 1 1" name="texgeom" random="0.01" rgb1="0.8 0.6 0.4" rgb2="0.8 0.6 0.4" type="cube" width="127" />
+    <texture name="texplane" type="2d" file="terrain_contours.png" />
+    <material name="MatPlane" reflectance="0.06" shininess="0.10" specular="0.08" texrepeat="1 1" texture="texplane" />
+    <material name="geom" texture="texgeom" texuniform="true" />
+    <hfield name="terrain" file="terrain.hfield" size="10 10 0.999980468885 1" />
+  </asset>
+  <worldbody>
+    <geom conaffinity="1" condim="3" material="MatPlane" name="floor" pos="0 0 -0.999980468941" rgba="0.40 0.60 0.57 1" type="hfield" hfield="terrain" friction="1 0.5 0.5" contype="1" />
+    <body name="torso" pos="-6 0 -0.249921884917" quat="1 0 2.92681835799e-07 0">
+      <camera name="track" mode="trackcom" pos="0 -3 0.3" xyaxes="1 0 0 0 0 1" />
+      <geom name="torso_geom" pos="0 0 0" size="0.25" type="sphere" rgba="0.08 0.13 0.18 1" />
+      <joint armature="0" damping="0" limited="false" margin="0.01" name="root" pos="0 0 0" type="free" />
+      <body name="front_left_leg" pos="0 0 0">
+        <geom fromto="0.0 0.0 0.0 0.2 0.2 0.0" name="aux_1_geom" size="0.08" type="capsule" rgba="0.75 0.42 0.22 1" />
+        <body name="aux_1" pos="0.2 0.2 0">
+          <joint axis="0 0 1" name="hip_1" pos="0.0 0.0 0.0" range="-30 30" type="hinge" />
+          <geom fromto="0.0 0.0 0.0 0.2 0.2 0.0" name="left_leg_geom" size="0.08" type="capsule" rgba="0.75 0.42 0.22 1" />
+          <body pos="0.2 0.2 0">
+            <joint axis="-1 1 0" name="ankle_1" pos="0.0 0.0 0.0" range="30 70" type="hinge" />
+            <geom fromto="0.0 0.0 0.0 0.4 0.4 0.0" name="left_ankle_geom" size="0.08" type="capsule" rgba="0.91 0.57 0.28 1" />
+          </body>
+        </body>
+      </body>
+      <body name="front_right_leg" pos="0 0 0">
+        <geom fromto="0.0 0.0 0.0 -0.2 0.2 0.0" name="aux_2_geom" size="0.08" type="capsule" rgba="0.75 0.42 0.22 1" />
+        <body name="aux_2" pos="-0.2 0.2 0">
+          <joint axis="0 0 1" name="hip_2" pos="0.0 0.0 0.0" range="-30 30" type="hinge" />
+          <geom fromto="0.0 0.0 0.0 -0.2 0.2 0.0" name="right_leg_geom" size="0.08" type="capsule" rgba="0.75 0.42 0.22 1" />
+          <body pos="-0.2 0.2 0">
+            <joint axis="1 1 0" name="ankle_2" pos="0.0 0.0 0.0" range="-70 -30" type="hinge" />
+            <geom fromto="0.0 0.0 0.0 -0.4 0.4 0.0" name="right_ankle_geom" size="0.08" type="capsule" rgba="0.91 0.57 0.28 1" />
+          </body>
+        </body>
+      </body>
+      <body name="back_leg" pos="0 0 0">
+        <geom fromto="0.0 0.0 0.0 -0.2 -0.2 0.0" name="aux_3_geom" size="0.08" type="capsule" rgba="0.75 0.42 0.22 1" />
+        <body name="aux_3" pos="-0.2 -0.2 0">
+          <joint axis="0 0 1" name="hip_3" pos="0.0 0.0 0.0" range="-30 30" type="hinge" />
+          <geom fromto="0.0 0.0 0.0 -0.2 -0.2 0.0" name="back_leg_geom" size="0.08" type="capsule" rgba="0.75 0.42 0.22 1" />
+          <body pos="-0.2 -0.2 0">
+            <joint axis="-1 1 0" name="ankle_3" pos="0.0 0.0 0.0" range="-70 -30" type="hinge" />
+            <geom fromto="0.0 0.0 0.0 -0.4 -0.4 0.0" name="third_ankle_geom" size="0.08" type="capsule" rgba="0.91 0.57 0.28 1" />
+          </body>
+        </body>
+      </body>
+      <body name="right_back_leg" pos="0 0 0">
+        <geom fromto="0.0 0.0 0.0 0.2 -0.2 0.0" name="aux_4_geom" size="0.08" type="capsule" rgba="0.75 0.42 0.22 1" />
+        <body name="aux_4" pos="0.2 -0.2 0">
+          <joint axis="0 0 1" name="hip_4" pos="0.0 0.0 0.0" range="-30 30" type="hinge" />
+          <geom fromto="0.0 0.0 0.0 0.2 -0.2 0.0" name="rightback_leg_geom" size="0.08" type="capsule" rgba="0.75 0.42 0.22 1" />
+          <body pos="0.2 -0.2 0">
+            <joint axis="1 1 0" name="ankle_4" pos="0.0 0.0 0.0" range="30 70" type="hinge" />
+            <geom fromto="0.0 0.0 0.0 0.4 -0.4 0.0" name="fourth_ankle_geom" size="0.08" type="capsule" rgba="0.91 0.57 0.28 1" />
+          </body>
+        </body>
+      </body>
+    </body>
+    <light directional="true" castshadow="true" pos="-18 -22 28" dir="0.55 0.43 -0.71" diffuse="0.86 0.84 0.78" specular="0.10 0.10 0.09" />
+    <light directional="true" castshadow="false" pos="22 10 20" dir="-0.60 -0.20 -0.78" diffuse="0.22 0.29 0.34" specular="0.02 0.02 0.02" />
+    <site name="fixed_start_marker" type="cylinder" pos="-6 0 -0.959921884917" size="1.15 0.035" rgba="0.20 0.78 0.42 0.85" group="2" />
+    <site name="fixed_goal_marker" type="cylinder" pos="6 0 0.0399900529187" size="1.15 0.035" rgba="0.88 0.25 0.22 0.85" group="2" />
+  </worldbody>
+  <actuator>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="hip_4" gear="150" />
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_4" gear="150" />
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="hip_1" gear="150" />
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_1" gear="150" />
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="hip_2" gear="150" />
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_2" gear="150" />
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="hip_3" gear="150" />
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_3" gear="150" />
+  </actuator>
+  <visual>
+    <global offwidth="1280" offheight="720" />
+    <quality shadowsize="4096" />
+    <headlight ambient="0.26 0.28 0.29" diffuse="0.34 0.36 0.37" specular="0.05 0.05 0.05" />
+    <rgba haze="0.87 0.92 0.94 1" />
+  </visual>
+</mujoco>

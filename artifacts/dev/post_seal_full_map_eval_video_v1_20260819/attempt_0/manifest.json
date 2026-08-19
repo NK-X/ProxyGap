@@ -1,0 +1,42 @@
+{
+  "schema_version": "proxygap-post-seal-full-map-video-artifact-v1",
+  "status": "final_verified",
+  "inventory_count": 7,
+  "inventory": [
+    {
+      "relative_path": "frozen_video_config.json",
+      "bytes": 5275,
+      "sha256": "51f8a20597ee4615073553ab1f90a430c9774bbe0dec2abd82859209ad0a8889"
+    },
+    {
+      "relative_path": "post_seal_full_map_seed_1763594348_dual_view_relief_v1.mp4",
+      "bytes": 5160606,
+      "sha256": "926d6ed4b3ccb343c208828c88a812f86a8a26ff8c6287dae149ab15f60a8e80"
+    },
+    {
+      "relative_path": "post_seal_full_map_seed_1763594348_dual_view_relief_v1_contact_sheet.png",
+      "bytes": 501651,
+      "sha256": "e36db1d4ee7f4f06009bf63f5baf67d944adf883d4b671698490988b6fc491ac"
+    },
+    {
+      "relative_path": "post_seal_full_map_seed_1763594348_dual_view_relief_v1_final_frame.png",
+      "bytes": 446151,
+      "sha256": "6e6f0d6a0383158c977dce11e28803bfb56edb936f126ae97ef1fcea2339b330"
+    },
+    {
+      "relative_path": "post_seal_full_map_seed_1763594348_dual_view_relief_v1_replay_control_trace.csv",
+      "bytes": 6037228,
+      "sha256": "0dd0c954e1788a0ecc01a9116870d6aea425fd377b316c657c5b2e56ac91ef33"
+    },
+    {
+      "relative_path": "post_seal_full_map_seed_1763594348_dual_view_relief_v1_replay_exactness.json",
+      "bytes": 1985,
+      "sha256": "9d34c6a4d3aca5c0854479526268730d5c0a74c9cf4eaa264e6fa9d7b188f84b"
+    },
+    {
+      "relative_path": "post_seal_full_map_seed_1763594348_dual_view_relief_v1_video_manifest.json",
+      "bytes": 9065,
+      "sha256": "ecc748b842812c5ae1fac918572e88e0368046131e10fd7e039ab47c5d043bdb"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schema_version": "proxygap-pair0-turn-balance-v5-video-archive-v1",
+  "config_id": "fixed_standard_pair0_turn_balance_v5_video_archive_v1_20260819",
+  "status": "frozen_read_only_post_gate_visual_archive",
+  "purpose": "Render the four predeclared seed-96131 C0/C1 left/right curvature-0.20 episodes after all V5 numeric gates are frozen. Videos are qualitative archives and cannot change checkpoint selection, gates, or fixed-map authorisation.",
+  "source": {
+    "formal_root": "artifacts/dev/tb_v5_20260819/a0",
+    "formal_manifest": "artifacts/dev/tb_v5_20260819/a0/manifest.json",
+    "formal_manifest_sha256": "f107543dae1a19dc972df46fe5472cdaaa469506c6178ede2a9a4f289af2be7b",
+    "formal_final_gate": "artifacts/dev/tb_v5_20260819/a0/final_gate.json",
+    "formal_final_gate_sha256": "87feb712345ad2cf43b83ed29a3f6c78bd483e8004f383c9f3ee3196c7d14cce",
+    "formal_hard_stop": "artifacts/dev/tb_v5_20260819/a0/FINAL_OPTIMISATION_HARD_STOP.json",
+    "formal_hard_stop_sha256": "aed2aeb06f27ff387977595a51517912fe13dbe3da31810993ee5c301dc8ccef",
+    "formal_frozen_v2_config": "artifacts/dev/tb_v5_20260819/a0/frozen_config.json",
+    "formal_frozen_v2_config_sha256": "9004de242c2724dcbf128d78fb6f5d951f5826e5e2b5db80d4940e185e8f582c",
+    "formal_v1_config": "configs/fixed_standard_pair0_turn_balance_continuation_v1_20260819.json",
+    "formal_v1_config_sha256": "089cbfebae460cced4e7aa9c1881079b226844820b5cf340b937a6a76be0c9e1",
+    "training_scene": "artifacts/dev/tb_v5_20260819/a0/training_scene.json",
+    "training_scene_sha256": "9e892f933628a0d5360bccaa32fa31e139a0321324dd2e75f8190cb425f719cb",
+    "C0_STRAIGHT_CONTINUE": {
+      "checkpoint": "artifacts/dev/tb_v5_20260819/a0/c0_straight_continue/models/checkpoint_2793472.zip",
+      "checkpoint_sha256": "b46240e3264af57a4ac2cf500962684348ce819029bcda97df4f9672a225b494",
+      "turn_episode_metrics": "artifacts/dev/tb_v5_20260819/a0/c0_straight_continue/final_evaluation/turn_episode_metrics.csv",
+      "turn_episode_metrics_sha256": "3dc72644e0e0026b8f5724974bc4073e476e7fc6a998d5ed20382b59c220fc62",
+      "branch_gate": "artifacts/dev/tb_v5_20260819/a0/c0_straight_continue/final_evaluation/branch_gate.json",
+      "branch_gate_sha256": "4f7d003851f6c286b542242f03aab5834fda11cc6ec9c55405d0ceb3819f322a"
+    },
+    "C1_BALANCED_TURN": {
+      "checkpoint": "artifacts/dev/tb_v5_20260819/a0/c1_balanced_turn/models/checkpoint_2793472.zip",
+      "checkpoint_sha256": "ce258e289fe3a782b1d5e582240508a94e1c468f72357cce65dfc2f057a41d14",
+      "turn_episode_metrics": "artifacts/dev/tb_v5_20260819/a0/c1_balanced_turn/final_evaluation/turn_episode_metrics.csv",
+      "turn_episode_metrics_sha256": "cd4044e8b4400bcca061dd3aa5a8d23d26cb81b3b2ece22da0c8cee14cb3d58c",
+      "branch_gate": "artifacts/dev/tb_v5_20260819/a0/c1_balanced_turn/final_evaluation/branch_gate.json",
+      "branch_gate_sha256": "904b25ae4ef589c6192b9f5b3f35fa4039336e86ed82d268452f4afde3fe9025"
+    }
+  },
+  "episodes": [
+    {"branch_id": "C0_STRAIGHT_CONTINUE", "condition_name": "curve_left_020", "evaluation_seed": 96131},
+    {"branch_id": "C0_STRAIGHT_CONTINUE", "condition_name": "curve_right_020", "evaluation_seed": 96131},
+    {"branch_id": "C1_BALANCED_TURN", "condition_name": "curve_left_020", "evaluation_seed": 96131},
+    {"branch_id": "C1_BALANCED_TURN", "condition_name": "curve_right_020", "evaluation_seed": 96131}
+  ],
+  "frozen_gate_labels": {
+    "turn_gate": "FAIL",
+    "slope_continuity_gate": "PASS",
+    "fixed_map": "NOT AUTHORISED",
+    "final_decision": "both_fail_turning_HOLD_retain_source_PAIR0",
+    "stage_B": "HOLD"
+  },
+  "replay": {
+    "max_episode_steps": 600,
+    "physics_substeps_per_control_step": 5,
+    "physics_timestep_seconds": 0.01,
+    "control_timestep_seconds": 0.05,
+    "deterministic_policy": true,
+    "require_formal_csv_field_order_and_value_exact_match": true,
+    "require_all_600_trace_rows": true,
+    "require_all_3000_physics_substeps": true,
+    "training": false,
+    "checkpoint_write": false,
+    "reward_change": false,
+    "friction_change": false,
+    "energy_formula_change": false,
+    "checkpoint_or_seed_selection": false
+  },
+  "render": {
+    "width_px": 1280,
+    "height_px": 720,
+    "view_height_px": 540,
+    "fps": 20,
+    "render_every_control_step": true,
+    "intro_seconds": 1.0,
+    "outro_seconds": 1.0,
+    "minimum_decoded_duration_seconds": 30.0,
+    "video_codec": "libx264",
+    "pixel_format": "yuv420p",
+    "crf": 20,
+    "left_camera": "adaptive_unobstructed_robot_follow",
+    "right_camera": "fixed_oblique_turn_trajectory_overview",
+    "surface_trajectory_in_both_views": true,
+    "mandatory_label": "TURN GATE: FAIL | SLOPE CONTINUITY: PASS | FIXED-MAP: NOT AUTHORISED"
+  },
+  "output": {
+    "root": "artifacts/dev/tb_v5_video_archive_20260819/a0",
+    "fail_if_exists": true,
+    "retry_same_root": false,
+    "failure_record_required_on_post_creation_error": true,
+    "root_manifest_required": true,
+    "root_contact_sheet_required": true,
+    "per_episode_contact_sheet_and_final_frame_required": true,
+    "full_frame_decode_required": true
+  },
+  "runtime_dependencies": {
+    "scripts/render_fixed_standard_pair0_slope_delivery_video.py": "689bb4ddbef3229414c4ba0e7df9245c556429c85e67c9e2497d15356b87533b",
+    "scripts/render_fixed_goal_dual_view_video.py": "a6d2c4f84c58ec03582bd73273aa4332f373003a5c9ffde1f8d51661b9c2a80d",
+    "scripts/render_fixed_goal_training_video.py": "04a7f8bac2f29adee011e2bbef2876aeedebc887ab84b1405d271ef126f85a33",
+    "scripts/evaluate_fixed_standard_pair0_flat_turn_diagnostic.py": "fd422d61b1ed3e932067c0da9cd29062b18493e742a0ddf02f6f0cb1595f6729",
+    "scripts/run_fixed_standard_pair0_turn_balance_continuation_v2.py": "7154424b7d944bbed415b9c814dffa075ed1570843471c84456ce3f56ce051ce",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a"
+  },
+  "claim_boundary": "This archive shows four deterministic visual replays selected before training from one flat-scene, one-seed V5 evaluation. Both final branches passed the frozen slope-continuity gate but failed the turn gate. The videos do not change that result and do not establish fixed-map readiness, route optimality, random-map generalisation, natural gait, or battery-energy improvement."
+}

@@ -1,0 +1,163 @@
+{
+  "schema_version": "proxygap-post-seal-full-map-artifact-manifest-v1",
+  "status": "formal_episode_complete",
+  "artifact_root": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\post_seal_full_map_eval_v1_20260819\\attempt_0",
+  "inventory_count": 31,
+  "inventory": [
+    {
+      "relative_path": "compiled_pair0_contact_audit.json",
+      "bytes": 3373,
+      "sha256": "adff24abe10079e12035f48b30b7235eb8402969142b39b105f91f4de9cd12a9"
+    },
+    {
+      "relative_path": "control_step_trace.csv",
+      "bytes": 6037228,
+      "sha256": "0dd0c954e1788a0ecc01a9116870d6aea425fd377b316c657c5b2e56ac91ef33"
+    },
+    {
+      "relative_path": "duration_corrected_slip_events.csv",
+      "bytes": 213,
+      "sha256": "397a7c0f3bbf16459ce2114f3a678c3f8bff96a6bd9db7826bc2d3fb4db89d7d"
+    },
+    {
+      "relative_path": "episode_result.json",
+      "bytes": 17432,
+      "sha256": "496bfaf2b4f7ae70bd540b518e4e28f6780389d622f47d3d1f667c8efdc0f174"
+    },
+    {
+      "relative_path": "execution_record.json",
+      "bytes": 14747,
+      "sha256": "fb569e5c87676382c1ff6b4d9ae97bee642f0dcf64d14d7aaba940f1796540c8"
+    },
+    {
+      "relative_path": "frozen_config.json",
+      "bytes": 10731,
+      "sha256": "2378d1b80d418d348e6aaa636e090e2c15c3652a7d60ee6ef431ba28a71482d0"
+    },
+    {
+      "relative_path": "physics_substep_trace.csv",
+      "bytes": 9692139,
+      "sha256": "2ec1e38ce879c2c550cc568b14db7814bd955d5375b758f3d0c64183e58d2cca"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/evaluate_fixed_standard_distal_margin0_paired.py",
+      "bytes": 52564,
+      "sha256": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/evaluate_local_preview_final_paired_direct_goal.py",
+      "bytes": 48390,
+      "sha256": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/evaluate_post_seal_full_map_v1.py",
+      "bytes": 48719,
+      "sha256": "dc7225b353efa1371e43178ad2b0029efce28e60f12b0dccf358de89132295cf"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_curved_gait_training.py",
+      "bytes": 26577,
+      "sha256": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_fixed_goal_support_priority_pilot.py",
+      "bytes": 37911,
+      "sha256": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_fixed_goal_terrain_training.py",
+      "bytes": 27220,
+      "sha256": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py",
+      "bytes": 64791,
+      "sha256": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_fixed_standard_support_curriculum.py",
+      "bytes": 73213,
+      "sha256": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/__init__.py",
+      "bytes": 3658,
+      "sha256": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/ant_wrapper.py",
+      "bytes": 114162,
+      "sha256": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/curved_gait.py",
+      "bytes": 43440,
+      "sha256": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/divergence.py",
+      "bytes": 15159,
+      "sha256": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/experiment.py",
+      "bytes": 36570,
+      "sha256": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/fixed_goal_terrain.py",
+      "bytes": 31462,
+      "sha256": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/metrics.py",
+      "bytes": 32658,
+      "sha256": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/planar_transition.py",
+      "bytes": 37380,
+      "sha256": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/protocol.py",
+      "bytes": 5746,
+      "sha256": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/selection.py",
+      "bytes": 6583,
+      "sha256": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/two_experiment_protocol.py",
+      "bytes": 3519,
+      "sha256": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+    },
+    {
+      "relative_path": "task_scenes/heights_m.npy",
+      "bytes": 8405128,
+      "sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c"
+    },
+    {
+      "relative_path": "task_scenes/spawn_0_0.000.xml",
+      "bytes": 6232,
+      "sha256": "bc72dd66e6b171c0444e8e55d19b145b0a2095d4b584e407df9d76c4033096a7"
+    },
+    {
+      "relative_path": "task_scenes/spawn_0_0.000_pair0.xml",
+      "bytes": 7074,
+      "sha256": "0b75be52ac76ef0147fb6f5e9eccce025067490d144892006c8098dfe1e5be46"
+    },
+    {
+      "relative_path": "task_scenes/terrain.hfield",
+      "bytes": 4202508,
+      "sha256": "d1632c89688f459f5e7abe9d1cc9b5af7f22230b1b19290f737ae3fed849f3db"
+    },
+    {
+      "relative_path": "task_scenes/terrain_contours.png",
+      "bytes": 384371,
+      "sha256": "2eea099308dda75d79b10b44c91b8544d56fe0a6a4e0d0e7e6131c3e9e1abf06"
+    }
+  ]
+}

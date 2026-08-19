@@ -1,0 +1,45 @@
+{
+  "schema_version": "proxygap-standard-support-promotion-audit-addendum-v1",
+  "status": "post-run_semantic_correction_no_metrics_or_checkpoints_changed",
+  "incumbent": {
+    "condition_id": "SOURCE_STAGE1_STANDARD_DIAGNOSIS",
+    "checkpoint": "artifacts/dev/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819/seed_62802/models/checkpoint_2596864.zip",
+    "checkpoint_sha256": "5bfd212b810af0189009f067ee7be8e8d4702fe1bee8cf025ba82401f931ff1e"
+  },
+  "promotion_decision": {
+    "MATCHED_CONTACT_GAP_W0_CONTROL": "not_promoted",
+    "CONTACT_GAP_W1_INTERVENTION": "not_promoted",
+    "reason": "W1 failed the predeclared W1-vs-W0 gate. W0 was only a matched continuation control and had no predeclared source-promotion gate; descriptively it reduced mean best progress from 9.482237 m to 7.387683 m while changing endpoint airborne by only -0.002639 and mean support by only +0.004028."
+  },
+  "task_outcomes": {
+    "SOURCE_STAGE1_STANDARD_DIAGNOSIS": {
+      "episodes": 12,
+      "successes": 2,
+      "mean_final_distance_m": 2.585920720930666
+    },
+    "MATCHED_CONTACT_GAP_W0_CONTROL": {
+      "episodes": 12,
+      "successes": 0,
+      "mean_final_distance_m": 4.670983002197629
+    },
+    "CONTACT_GAP_W1_INTERVENTION": {
+      "episodes": 12,
+      "successes": 0,
+      "mean_final_distance_m": 5.267082569141396
+    },
+    "termination_category_all_conditions": "none/time-limit horizon"
+  },
+  "post_training_substep_screen": {
+    "MATCHED_CONTACT_GAP_W0_CONTROL_mean_full_interval_zero_foot_fraction_flat_and_uphill": 0.25625,
+    "CONTACT_GAP_W1_INTERVENTION_mean_full_interval_zero_foot_fraction_flat_and_uphill": 0.23,
+    "observed_absolute_reduction": 0.02625,
+    "interpretation": "Descriptive only because a full-substep threshold was not predeclared in this frozen run. It does not rescue W1 promotion."
+  },
+  "measurement_boundaries": {
+    "airborne": "The legacy endpoint airborne metric is phase-sensitive; full-interval five-substep zero-foot contact is reported separately.",
+    "slip": "The field corrected_sustained_slip_step_fraction is sampled at control-step endpoints and is therefore interpreted as endpoint-sampled sustained slip; tangential speed was not recorded at every physics substep.",
+    "terrain_relative_termination": "The current wrapper termination still uses world-frame quaternion tilt, while evaluation reports terrain-normal-relative tilt. At 8 degrees with an 80-degree threshold this is unlikely to reverse this run, but it must be corrected before steeper formal tests."
+  },
+  "retained_failure_evidence": "artifacts/dev/fixed_standard_support_curriculum_v1_20260819/paired_seed_62804/FAILURE_RECORD.md",
+  "next_diagnostic": "Read-only speed ablation plus native-plane versus numerical-flat-heightfield comparator; no further reward scan before that result."
+}

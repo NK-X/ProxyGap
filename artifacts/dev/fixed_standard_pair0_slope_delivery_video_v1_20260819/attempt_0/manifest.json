@@ -1,0 +1,238 @@
+{
+  "schema_version": "proxygap-pair0-standard-slope-delivery-video-artifact-v1",
+  "status": "complete_two_episode_fieldwise_exact_visual_delivery",
+  "claim_boundary": "These videos are deterministic visual replays of two selected standard-slope episodes for one frozen PAIR0 policy. They do not establish fixed-map arrival, random-map generalisation, optimality, or electrical battery energy.",
+  "configuration": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\fixed_standard_pair0_slope_delivery_video_v1_20260819.json",
+    "sha256": "118a6348eba27a61d193dc4faca6fc012d191c9ba92c640c32bb3a28c0ab8ac9",
+    "frozen_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\frozen_config.json",
+    "frozen_sha256": "118a6348eba27a61d193dc4faca6fc012d191c9ba92c640c32bb3a28c0ab8ac9"
+  },
+  "renderer": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\scripts\\render_fixed_standard_pair0_slope_delivery_video.py",
+    "sha256": "689bb4ddbef3229414c4ba0e7df9245c556429c85e67c9e2497d15356b87533b",
+    "snapshot_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\runtime_snapshot\\scripts\\render_fixed_standard_pair0_slope_delivery_video.py",
+    "snapshot_sha256": "689bb4ddbef3229414c4ba0e7df9245c556429c85e67c9e2497d15356b87533b"
+  },
+  "source_formal_manifest_sha256": "fd1995b28b1cbb24c1e371d3a1f6b24833eb52efb0cc1191440eccb3f73360e3",
+  "source_episode_metrics_sha256": "e5c5cf0925cb28fdfa296a4876443dfaadbacc7fc4554163d02ac42c7ea69bee",
+  "checkpoint": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\pair0_l2b_v3_20260819\\attempt_0\\pair0_adapt\\models\\checkpoint_2727936.zip",
+    "sha256_before": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+    "sha256_after": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+    "timesteps": 2727936
+  },
+  "runtime_dependency_sha256_before": {
+    "scripts/render_fixed_goal_dual_view_video.py": "a6d2c4f84c58ec03582bd73273aa4332f373003a5c9ffde1f8d51661b9c2a80d",
+    "scripts/render_fixed_goal_training_video.py": "04a7f8bac2f29adee011e2bbef2876aeedebc887ab84b1405d271ef126f85a33",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a"
+  },
+  "runtime_dependency_sha256_after": {
+    "scripts/render_fixed_goal_dual_view_video.py": "a6d2c4f84c58ec03582bd73273aa4332f373003a5c9ffde1f8d51661b9c2a80d",
+    "scripts/render_fixed_goal_training_video.py": "04a7f8bac2f29adee011e2bbef2876aeedebc887ab84b1405d271ef126f85a33",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a"
+  },
+  "formal_runtime_dependency_sha256_before": {
+    "scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e",
+    "scripts/run_fixed_standard_pair0_adaptation_l2b_extension.py": "6dfd283aaa7661e3806e9ca26f874a6088ebf0a39985d3ef3bd0c7edb6e493aa",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/evaluate_fixed_standard_distal_margin0_paired.py": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d",
+    "scripts/evaluate_local_preview_final_paired_direct_goal.py": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf",
+    "scripts/run_fixed_goal_support_priority_pilot.py": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a",
+    "scripts/run_fixed_goal_terrain_training.py": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d",
+    "scripts/run_curved_gait_training.py": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf",
+    "src/proxygap/__init__.py": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba",
+    "src/proxygap/ant_wrapper.py": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2",
+    "src/proxygap/curved_gait.py": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48",
+    "src/proxygap/fixed_goal_terrain.py": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2",
+    "src/proxygap/metrics.py": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397",
+    "src/proxygap/planar_transition.py": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805",
+    "src/proxygap/experiment.py": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629",
+    "src/proxygap/divergence.py": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459",
+    "src/proxygap/protocol.py": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d",
+    "src/proxygap/selection.py": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0",
+    "src/proxygap/two_experiment_protocol.py": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+  },
+  "formal_runtime_dependency_sha256_after": {
+    "scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e",
+    "scripts/run_fixed_standard_pair0_adaptation_l2b_extension.py": "6dfd283aaa7661e3806e9ca26f874a6088ebf0a39985d3ef3bd0c7edb6e493aa",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/evaluate_fixed_standard_distal_margin0_paired.py": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d",
+    "scripts/evaluate_local_preview_final_paired_direct_goal.py": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf",
+    "scripts/run_fixed_goal_support_priority_pilot.py": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a",
+    "scripts/run_fixed_goal_terrain_training.py": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d",
+    "scripts/run_curved_gait_training.py": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf",
+    "src/proxygap/__init__.py": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba",
+    "src/proxygap/ant_wrapper.py": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2",
+    "src/proxygap/curved_gait.py": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48",
+    "src/proxygap/fixed_goal_terrain.py": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2",
+    "src/proxygap/metrics.py": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397",
+    "src/proxygap/planar_transition.py": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805",
+    "src/proxygap/experiment.py": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629",
+    "src/proxygap/divergence.py": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459",
+    "src/proxygap/protocol.py": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d",
+    "src/proxygap/selection.py": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0",
+    "src/proxygap/two_experiment_protocol.py": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+  },
+  "episodes": [
+    {
+      "scene_name": "uphill_12deg",
+      "seed": 94153,
+      "manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\uphill_12deg_seed_94153\\pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_manifest.json",
+      "manifest_sha256": "0505fbacb83a66fd669878134111c05e78fc944a0a5f1783b32844765acf05b4",
+      "video_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\uphill_12deg_seed_94153\\pair0_uphill_12deg_seed_94153_standard_slope_diagnostic.mp4",
+      "video_sha256": "bfca611de0bf947b0f6a27962aee35af0a28ee0983d00f3d3a5adfa3b1946e19",
+      "trace_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\uphill_12deg_seed_94153\\pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_trace_600_steps.csv",
+      "trace_sha256": "8fcef3bdc30d77a3e9b8a419f56a3be6a031277ee81d5c9c863ef21358b455aa",
+      "final_frame_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\uphill_12deg_seed_94153\\pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_final_frame.png",
+      "contact_sheet_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\uphill_12deg_seed_94153\\pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_contact_sheet.png",
+      "qa": {
+        "decoded_frames": 640,
+        "every_frame_decoded": true,
+        "all_decoded_frame_shapes_equal_expected": true,
+        "expected_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "average_frame_rate": 20.0,
+        "decoded_duration_seconds": 32.0
+      }
+    },
+    {
+      "scene_name": "downhill_16deg",
+      "seed": 94137,
+      "manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\downhill_16deg_seed_94137\\pair0_downhill_16deg_seed_94137_standard_slope_diagnostic_manifest.json",
+      "manifest_sha256": "a515a67153b8c032791d913e0ca6d6044b2ac375a30c9dc2fd5d8b00ed49eb18",
+      "video_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\downhill_16deg_seed_94137\\pair0_downhill_16deg_seed_94137_standard_slope_diagnostic.mp4",
+      "video_sha256": "47565385ebbe06c45bcb4182198b986efa4307be0f6c7afb0ec8426b10cbd51c",
+      "trace_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\downhill_16deg_seed_94137\\pair0_downhill_16deg_seed_94137_standard_slope_diagnostic_trace_600_steps.csv",
+      "trace_sha256": "cf7b74d66be5fe615395b0c9da860fb8fc298d2024bbabbed85cf206bd810961",
+      "final_frame_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\downhill_16deg_seed_94137\\pair0_downhill_16deg_seed_94137_standard_slope_diagnostic_final_frame.png",
+      "contact_sheet_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_slope_delivery_video_v1_20260819\\attempt_0\\downhill_16deg_seed_94137\\pair0_downhill_16deg_seed_94137_standard_slope_diagnostic_contact_sheet.png",
+      "qa": {
+        "decoded_frames": 640,
+        "every_frame_decoded": true,
+        "all_decoded_frame_shapes_equal_expected": true,
+        "expected_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "average_frame_rate": 20.0,
+        "decoded_duration_seconds": 32.0
+      }
+    }
+  ],
+  "all_episode_rows_fieldwise_exact": true,
+  "all_videos_fully_decoded": true,
+  "training_performed": false,
+  "checkpoint_modified": false,
+  "reward_changed": false,
+  "friction_changed": false,
+  "energy_formula_changed": false,
+  "energy_status": "measurement_only_not_reward_or_gate",
+  "fixed_map_evaluated": false,
+  "generalisation_claimed": false,
+  "candidate_promoted": false,
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "mujoco": "3.11.0",
+    "numpy": "2.4.6"
+  },
+  "elapsed_seconds": 104.8665245000011,
+  "artifact_inventory_excludes_root_manifest": [
+    {
+      "relative_path": "downhill_16deg_seed_94137/pair0_downhill_16deg_seed_94137_standard_slope_diagnostic.mp4",
+      "size_bytes": 2855599,
+      "sha256": "47565385ebbe06c45bcb4182198b986efa4307be0f6c7afb0ec8426b10cbd51c"
+    },
+    {
+      "relative_path": "downhill_16deg_seed_94137/pair0_downhill_16deg_seed_94137_standard_slope_diagnostic_contact_sheet.png",
+      "size_bytes": 248590,
+      "sha256": "03990aeb5240c0d66cae58eca03e75027b302a767ca1ff4f3be79438726a2c82"
+    },
+    {
+      "relative_path": "downhill_16deg_seed_94137/pair0_downhill_16deg_seed_94137_standard_slope_diagnostic_fieldwise_metric_comparison.json",
+      "size_bytes": 8543,
+      "sha256": "eab1a552b0de692767a5ac6934800daeba5a2ecaac0baa5b81a4f99825bf9b69"
+    },
+    {
+      "relative_path": "downhill_16deg_seed_94137/pair0_downhill_16deg_seed_94137_standard_slope_diagnostic_final_frame.png",
+      "size_bytes": 123941,
+      "sha256": "f9a7a202dba3904765393be178135329984c2db5caa1ac6e87bf43bd75e0c890"
+    },
+    {
+      "relative_path": "downhill_16deg_seed_94137/pair0_downhill_16deg_seed_94137_standard_slope_diagnostic_manifest.json",
+      "size_bytes": 5602,
+      "sha256": "a515a67153b8c032791d913e0ca6d6044b2ac375a30c9dc2fd5d8b00ed49eb18"
+    },
+    {
+      "relative_path": "downhill_16deg_seed_94137/pair0_downhill_16deg_seed_94137_standard_slope_diagnostic_replay_episode_metrics.json",
+      "size_bytes": 1168,
+      "sha256": "259a827d77db9986f894e234acd8463a7ab949e242352125fc8565ee95628dcd"
+    },
+    {
+      "relative_path": "downhill_16deg_seed_94137/pair0_downhill_16deg_seed_94137_standard_slope_diagnostic_trace_600_steps.csv",
+      "size_bytes": 331068,
+      "sha256": "cf7b74d66be5fe615395b0c9da860fb8fc298d2024bbabbed85cf206bd810961"
+    },
+    {
+      "relative_path": "frozen_config.json",
+      "size_bytes": 5637,
+      "sha256": "118a6348eba27a61d193dc4faca6fc012d191c9ba92c640c32bb3a28c0ab8ac9"
+    },
+    {
+      "relative_path": "REPORT.md",
+      "size_bytes": 720,
+      "sha256": "d527b0b078ba0e224bcc922a147eb5fd921f5d9cb61ee830ba0b33a1cd1c53c7"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/render_fixed_standard_pair0_slope_delivery_video.py",
+      "size_bytes": 51501,
+      "sha256": "689bb4ddbef3229414c4ba0e7df9245c556429c85e67c9e2497d15356b87533b"
+    },
+    {
+      "relative_path": "uphill_12deg_seed_94153/pair0_uphill_12deg_seed_94153_standard_slope_diagnostic.mp4",
+      "size_bytes": 3092389,
+      "sha256": "bfca611de0bf947b0f6a27962aee35af0a28ee0983d00f3d3a5adfa3b1946e19"
+    },
+    {
+      "relative_path": "uphill_12deg_seed_94153/pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_contact_sheet.png",
+      "size_bytes": 223656,
+      "sha256": "c18576cd39d2e568bc1325e9aca334ad176cf01e695a5c130c670f0c4fe1af08"
+    },
+    {
+      "relative_path": "uphill_12deg_seed_94153/pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_fieldwise_metric_comparison.json",
+      "size_bytes": 8555,
+      "sha256": "1b16e3e07df331e61a8a042b421dedb89f1ff709ea7ac4a1e556c2018cfe2d1c"
+    },
+    {
+      "relative_path": "uphill_12deg_seed_94153/pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_final_frame.png",
+      "size_bytes": 112130,
+      "sha256": "1578f5509328707d3f81ca1fba5b4950dfbc4913be41e8966a725daf698e33ab"
+    },
+    {
+      "relative_path": "uphill_12deg_seed_94153/pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_manifest.json",
+      "size_bytes": 5735,
+      "sha256": "0505fbacb83a66fd669878134111c05e78fc944a0a5f1783b32844765acf05b4"
+    },
+    {
+      "relative_path": "uphill_12deg_seed_94153/pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_replay_episode_metrics.json",
+      "size_bytes": 1171,
+      "sha256": "779dd651890d470801088ef432acceb4727f0b656dba72e8ccf220bd18dfd6d0"
+    },
+    {
+      "relative_path": "uphill_12deg_seed_94153/pair0_uphill_12deg_seed_94153_standard_slope_diagnostic_trace_600_steps.csv",
+      "size_bytes": 324012,
+      "sha256": "8fcef3bdc30d77a3e9b8a419f56a3be6a031277ee81d5c9c863ef21358b455aa"
+    }
+  ]
+}

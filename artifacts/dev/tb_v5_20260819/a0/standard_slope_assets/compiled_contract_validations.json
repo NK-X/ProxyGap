@@ -1,0 +1,50 @@
+{
+  "flat": {
+    "compiled_contract_exact": true,
+    "success_derived_from_all_exact_fields": true,
+    "synthetic_passed_field_used": false,
+    "explicit_pair_count": 4,
+    "target_set": [
+      "floor+fourth_ankle_geom",
+      "floor+left_ankle_geom",
+      "floor+right_ankle_geom",
+      "floor+third_ankle_geom"
+    ]
+  },
+  "uphill_8deg": {
+    "compiled_contract_exact": true,
+    "success_derived_from_all_exact_fields": true,
+    "synthetic_passed_field_used": false,
+    "explicit_pair_count": 4,
+    "target_set": [
+      "floor+fourth_ankle_geom",
+      "floor+left_ankle_geom",
+      "floor+right_ankle_geom",
+      "floor+third_ankle_geom"
+    ]
+  },
+  "downhill_8deg": {
+    "compiled_contract_exact": true,
+    "success_derived_from_all_exact_fields": true,
+    "synthetic_passed_field_used": false,
+    "explicit_pair_count": 4,
+    "target_set": [
+      "floor+fourth_ankle_geom",
+      "floor+left_ankle_geom",
+      "floor+right_ankle_geom",
+      "floor+third_ankle_geom"
+    ]
+  },
+  "bowl_exit": {
+    "compiled_contract_exact": true,
+    "success_derived_from_all_exact_fields": true,
+    "synthetic_passed_field_used": false,
+    "explicit_pair_count": 4,
+    "target_set": [
+      "floor+fourth_ankle_geom",
+      "floor+left_ankle_geom",
+      "floor+right_ankle_geom",
+      "floor+third_ankle_geom"
+    ]
+  }
+}

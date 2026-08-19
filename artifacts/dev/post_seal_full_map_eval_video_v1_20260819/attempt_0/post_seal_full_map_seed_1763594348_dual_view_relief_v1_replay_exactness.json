@@ -1,0 +1,53 @@
+{
+  "schema_version": "proxygap-post-seal-formal-replay-exactness-v1",
+  "status": "exact",
+  "formal_trace": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\post_seal_full_map_eval_v1_20260819\\attempt_0\\control_step_trace.csv",
+  "formal_trace_sha256": "0dd0c954e1788a0ecc01a9116870d6aea425fd377b316c657c5b2e56ac91ef33",
+  "rows_compared": 12000,
+  "fields_compared_per_row": 32,
+  "float_fields": [
+    "time_seconds",
+    "x_m",
+    "y_m",
+    "torso_z_m",
+    "terrain_z_m",
+    "torso_clearance_m",
+    "goal_distance_m",
+    "minimum_goal_distance_so_far_m",
+    "net_progress_so_far_m",
+    "path_length_so_far_m",
+    "world_vx_m_per_s",
+    "world_vy_m_per_s",
+    "planar_speed_m_per_s",
+    "terrain_relative_torso_tilt_rad",
+    "mean_support_count_this_control_interval",
+    "reward_step"
+  ],
+  "integer_fields": [
+    "evaluation_seed",
+    "control_step",
+    "endpoint_support_count",
+    "full_control_interval_zero_foot",
+    "force_qualified_slip_candidate_in_interval",
+    "goal_entered",
+    "spatial_hold_run_steps",
+    "strict_stable_step",
+    "strict_stable_hold_run_steps",
+    "spatial_hold_success",
+    "strict_stable_dwell_success",
+    "finite_step",
+    "environment_terminated",
+    "environment_truncated"
+  ],
+  "other_fields": [
+    "mode",
+    "action"
+  ],
+  "mismatch_count": 0,
+  "mismatch_examples": [],
+  "replay_trace": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\post_seal_full_map_eval_video_v1_20260819\\attempt_0\\post_seal_full_map_seed_1763594348_dual_view_relief_v1_replay_control_trace.csv",
+  "replay_trace_sha256": "0dd0c954e1788a0ecc01a9116870d6aea425fd377b316c657c5b2e56ac91ef33",
+  "seed": 1763594348,
+  "checkpoint_sha256": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+  "pair0_scene_sha256": "0b75be52ac76ef0147fb6f5e9eccce025067490d144892006c8098dfe1e5be46"
+}

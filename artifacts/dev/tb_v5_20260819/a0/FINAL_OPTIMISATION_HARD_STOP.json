@@ -1,0 +1,29 @@
+{
+  "schema_version": "proxygap-final-optimisation-hard-stop-v1",
+  "hard_stop": true,
+  "further_optimisation_authorised": false,
+  "applies_after_pass_or_fail": true,
+  "decision": "both_fail_turning_HOLD_retain_source_PAIR0",
+  "source_checkpoint": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\pair0_l2b_v3_20260819\\attempt_0\\pair0_adapt\\models\\checkpoint_2727936.zip",
+  "source_checkpoint_sha256": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+  "final_condition_checkpoints": {
+    "C0_STRAIGHT_CONTINUE": {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_20260819\\a0\\c0_straight_continue\\models\\checkpoint_2793472.zip",
+      "sha256": "b46240e3264af57a4ac2cf500962684348ce819029bcda97df4f9672a225b494"
+    },
+    "C1_BALANCED_TURN": {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_20260819\\a0\\c1_balanced_turn\\models\\checkpoint_2793472.zip",
+      "sha256": "ce258e289fe3a782b1d5e582240508a94e1c468f72357cce65dfc2f057a41d14"
+    }
+  },
+  "post_result_read_only_video_archive_required": true,
+  "post_result_video_seed": 96131,
+  "post_result_video_turn_conditions": [
+    "curve_left_020",
+    "curve_right_020"
+  ],
+  "post_result_video_selection_locked_before_training": true,
+  "video_not_yet_rendered": true,
+  "fixed_map_authorised": false,
+  "candidate_promoted": false
+}

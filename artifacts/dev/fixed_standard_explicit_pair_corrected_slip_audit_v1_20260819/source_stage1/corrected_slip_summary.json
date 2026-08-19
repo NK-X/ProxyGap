@@ -1,0 +1,74 @@
+{
+  "schema_version": "proxygap-fixed-standard-corrected-slip-summary-v1",
+  "condition_aggregates": {
+    "DEFAULT_MARGIN_001_CONTROL": {
+      "episode_count": 12,
+      "fall_count": 0,
+      "success_count": 1,
+      "total_control_steps": 7200,
+      "supported_step_count": 2257,
+      "distal_foot_contact_sample_count": 2562,
+      "mean_support_count": 0.3558333333333334,
+      "mean_best_progress_m": 8.55971758907552,
+      "pooled_raw_all_step_fraction": 0.23625,
+      "pooled_qualified_all_step_fraction": 0.003611111111111111,
+      "pooled_duration_corrected_sustained_all_step_fraction": 0.0,
+      "pooled_raw_per_supported_step_fraction": 0.7536552946389012,
+      "pooled_qualified_per_supported_step_fraction": 0.011519716437749225,
+      "pooled_duration_corrected_sustained_per_supported_step_fraction": 0.0,
+      "pooled_raw_per_distal_foot_contact_sample_fraction": 0.7459016393442623,
+      "pooled_qualified_per_distal_foot_contact_sample_fraction": 0.01014832162373146,
+      "pooled_duration_corrected_sustained_per_distal_foot_contact_sample_fraction": 0.0,
+      "duration_corrected_slip_event_count": 0,
+      "events_per_100_supported_steps": 0.0
+    },
+    "EXPLICIT_FLOOR_DISTAL_PAIR_MARGIN0_CANDIDATE": {
+      "episode_count": 12,
+      "fall_count": 0,
+      "success_count": 0,
+      "total_control_steps": 7200,
+      "supported_step_count": 5925,
+      "distal_foot_contact_sample_count": 10502,
+      "mean_support_count": 1.458611111111111,
+      "mean_best_progress_m": 6.082593159719103,
+      "pooled_raw_all_step_fraction": 0.3552777777777778,
+      "pooled_qualified_all_step_fraction": 0.07194444444444445,
+      "pooled_duration_corrected_sustained_all_step_fraction": 0.0,
+      "pooled_raw_per_supported_step_fraction": 0.43172995780590717,
+      "pooled_qualified_per_supported_step_fraction": 0.08742616033755274,
+      "pooled_duration_corrected_sustained_per_supported_step_fraction": 0.0,
+      "pooled_raw_per_distal_foot_contact_sample_fraction": 0.30470386593029897,
+      "pooled_qualified_per_distal_foot_contact_sample_fraction": 0.05237097695677014,
+      "pooled_duration_corrected_sustained_per_distal_foot_contact_sample_fraction": 0.0,
+      "duration_corrected_slip_event_count": 0,
+      "events_per_100_supported_steps": 0.0
+    }
+  },
+  "parent_rerun_equivalence": {
+    "maximum_absolute_best_progress_difference_m": 0.0,
+    "maximum_absolute_mean_support_count_difference": 0.0,
+    "fall_outcomes_identical": true
+  },
+  "exploratory_training_interpretation": {
+    "status": "post_parent_gate_supporting_audit_not_a_replacement_gate",
+    "observed": {
+      "duration_corrected_sustained_per_supported_step_fraction_delta": 0.0,
+      "events_per_100_supported_steps_delta": 0.0,
+      "mean_support_count_increase": 1.1027777777777776,
+      "additional_falls": 0,
+      "best_progress_ratio": 0.7106067573399982
+    },
+    "checks": {
+      "corrected_sustained_fraction_not_materially_worse": true,
+      "event_rate_not_materially_worse": true,
+      "support_gain_reproduced": true,
+      "no_additional_falls": true
+    },
+    "supports_new_small_bounded_exploratory_training": true,
+    "formal_training_or_promotion_authorised": false,
+    "parent_standard_gate_remains_failed": true,
+    "fixed_map_remains_skipped": true
+  },
+  "measurement_boundary": "control-step endpoint; not a physics-substep friction-cone integral",
+  "claim_boundary": "This post-parent-gate audit diagnoses denominator and transient-contact confounding only. It cannot reverse the original gate, establish causal slip physics, authorise formal training, or support a fixed-map/generalisation claim."
+}

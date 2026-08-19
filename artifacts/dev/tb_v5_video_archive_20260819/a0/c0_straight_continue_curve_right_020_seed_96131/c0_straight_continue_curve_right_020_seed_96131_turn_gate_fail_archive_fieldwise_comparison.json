@@ -1,0 +1,622 @@
+{
+  "pre_render_frozen_evaluator": {
+    "field_count": 55,
+    "field_order_exact": true,
+    "all_fields_exact_match": true,
+    "mismatched_fields": [],
+    "fields": {
+      "condition_id": {
+        "formal": "PAIR0_ADAPT",
+        "replayed": "PAIR0_ADAPT",
+        "exact_match": true
+      },
+      "condition_name": {
+        "formal": "curve_right_020",
+        "replayed": "curve_right_020",
+        "exact_match": true
+      },
+      "condition_kind": {
+        "formal": "constant_curvature",
+        "replayed": "constant_curvature",
+        "exact_match": true
+      },
+      "evaluation_seed": {
+        "formal": 96131,
+        "replayed": 96131,
+        "exact_match": true
+      },
+      "checkpoint_additional_timesteps": {
+        "formal": 65536,
+        "replayed": 65536,
+        "exact_match": true
+      },
+      "checkpoint_timesteps": {
+        "formal": 2793472,
+        "replayed": 2793472,
+        "exact_match": true
+      },
+      "control_steps": {
+        "formal": 600,
+        "replayed": 600,
+        "exact_match": true
+      },
+      "physics_substeps": {
+        "formal": 3000,
+        "replayed": 3000,
+        "exact_match": true
+      },
+      "finite": {
+        "formal": true,
+        "replayed": true,
+        "exact_match": true
+      },
+      "fall": {
+        "formal": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "terrain_relative_fall": {
+        "formal": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "terrain_relative_first_fall_control_step": {
+        "formal": null,
+        "replayed": null,
+        "exact_match": true
+      },
+      "terrain_relative_fall_reason": {
+        "formal": null,
+        "replayed": null,
+        "exact_match": true
+      },
+      "terrain_relative_maximum_unhealthy_run_steps": {
+        "formal": 0,
+        "replayed": 0,
+        "exact_match": true
+      },
+      "terrain_relative_minimum_torso_clearance_m": {
+        "formal": 0.5467374971508553,
+        "replayed": 0.5467374971508553,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "terrain_relative_maximum_torso_clearance_m": {
+        "formal": 0.8218634745449536,
+        "replayed": 0.8218634745449536,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "terrain_relative_maximum_torso_tilt_rad": {
+        "formal": 0.21705076893114533,
+        "replayed": 0.21705076893114533,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "torso_ground_any": {
+        "formal": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "nonfoot_ground_longest_run_seconds": {
+        "formal": 0.0,
+        "replayed": 0.0,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "sustained_nonfoot_contact": {
+        "formal": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "full_interval_zero_foot_count": {
+        "formal": 31,
+        "replayed": 31,
+        "exact_match": true
+      },
+      "support_count_sum_physics_substeps": {
+        "formal": 3447,
+        "replayed": 3447,
+        "exact_match": true
+      },
+      "supported_physics_substep_count": {
+        "formal": 2268,
+        "replayed": 2268,
+        "exact_match": true
+      },
+      "force_qualified_supported_physics_substep_count": {
+        "formal": 2171,
+        "replayed": 2171,
+        "exact_match": true
+      },
+      "qualified_slip_physics_substep_count": {
+        "formal": 19,
+        "replayed": 19,
+        "exact_match": true
+      },
+      "corrected_sustained_slip_physics_substep_count": {
+        "formal": 0,
+        "replayed": 0,
+        "exact_match": true
+      },
+      "corrected_slip_event_count": {
+        "formal": 0,
+        "replayed": 0,
+        "exact_match": true
+      },
+      "target_speed_m_per_s": {
+        "formal": 0.55,
+        "replayed": 0.55,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "target_yaw_rate_rad_per_s": {
+        "formal": -0.11,
+        "replayed": -0.11,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "target_curvature_per_m": {
+        "formal": -0.2,
+        "replayed": -0.2,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "target_cumulative_yaw_change_rad": {
+        "formal": -3.3000000000000003,
+        "replayed": -3.3000000000000003,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actual_cumulative_yaw_change_rad": {
+        "formal": -2.8542365688100553,
+        "replayed": -2.8542365688100553,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "yaw_change_target_ratio": {
+        "formal": 0.8649201723666834,
+        "replayed": 0.8649201723666834,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "yaw_change_same_sign_as_target": {
+        "formal": true,
+        "replayed": true,
+        "exact_match": true
+      },
+      "cumulative_yaw_error_rad": {
+        "formal": 0.445763431189945,
+        "replayed": 0.445763431189945,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "yaw_rate_rmse_rad_per_s": {
+        "formal": 0.4386306391388529,
+        "replayed": 0.4386306391388529,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actual_path_integrated_curvature_per_m": {
+        "formal": -0.21348734103255562,
+        "replayed": -0.21348734103255562,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "curvature_error_per_m": {
+        "formal": -0.013487341032555611,
+        "replayed": -0.013487341032555611,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "planar_path_length_m": {
+        "formal": 13.36958226658882,
+        "replayed": 13.36958226658882,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "signed_initial_heading_progress_m": {
+        "formal": 4.8272625283666315,
+        "replayed": 4.8272625283666315,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "maximum_signed_initial_heading_progress_m": {
+        "formal": 5.265493520808447,
+        "replayed": 5.265493520808447,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "final_com_displacement_m": {
+        "formal": 7.558276723249704,
+        "replayed": 7.558276723249704,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "maximum_com_displacement_m": {
+        "formal": 7.67560827121607,
+        "replayed": 7.67560827121607,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "final_com_reference_error_m": {
+        "formal": 6.9660484349908804,
+        "replayed": 6.9660484349908804,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "maximum_com_reference_error_m": {
+        "formal": 6.9660484349908804,
+        "replayed": 6.9660484349908804,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "out_of_training_command_envelope": {
+        "formal": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "turn_effectiveness_decision": {
+        "formal": "descriptive_only_no_pass_fail",
+        "replayed": "descriptive_only_no_pass_fail",
+        "exact_match": true
+      },
+      "fixed_goal_success": {
+        "formal": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "fixed_goal_best_progress_m": {
+        "formal": 5.265493520808447,
+        "replayed": 5.265493520808447,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "fixed_goal_net_progress_m": {
+        "formal": 4.8272625283666315,
+        "replayed": 4.8272625283666315,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "cumulative_squared_action": {
+        "formal": 166.5989605634732,
+        "replayed": 166.5989605634732,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actuator_abs_torque_time_integral_total_n_m_s": {
+        "formal": 5405.906436291989,
+        "replayed": 5405.906436291989,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actuator_positive_mechanical_work_total_j": {
+        "formal": 4728.859809900168,
+        "replayed": 4728.859809900168,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actuator_abs_mechanical_work_total_j": {
+        "formal": 5491.501578582513,
+        "replayed": 5491.501578582513,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "branch_id": {
+        "formal": "C0_STRAIGHT_CONTINUE",
+        "replayed": "C0_STRAIGHT_CONTINUE",
+        "exact_match": true
+      }
+    }
+  },
+  "rendered_replay": {
+    "field_count": 55,
+    "field_order_exact": true,
+    "all_fields_exact_match": true,
+    "mismatched_fields": [],
+    "fields": {
+      "condition_id": {
+        "formal": "PAIR0_ADAPT",
+        "replayed": "PAIR0_ADAPT",
+        "exact_match": true
+      },
+      "condition_name": {
+        "formal": "curve_right_020",
+        "replayed": "curve_right_020",
+        "exact_match": true
+      },
+      "condition_kind": {
+        "formal": "constant_curvature",
+        "replayed": "constant_curvature",
+        "exact_match": true
+      },
+      "evaluation_seed": {
+        "formal": 96131,
+        "replayed": 96131,
+        "exact_match": true
+      },
+      "checkpoint_additional_timesteps": {
+        "formal": 65536,
+        "replayed": 65536,
+        "exact_match": true
+      },
+      "checkpoint_timesteps": {
+        "formal": 2793472,
+        "replayed": 2793472,
+        "exact_match": true
+      },
+      "control_steps": {
+        "formal": 600,
+        "replayed": 600,
+        "exact_match": true
+      },
+      "physics_substeps": {
+        "formal": 3000,
+        "replayed": 3000,
+        "exact_match": true
+      },
+      "finite": {
+        "formal": true,
+        "replayed": true,
+        "exact_match": true
+      },
+      "fall": {
+        "formal": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "terrain_relative_fall": {
+        "formal": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "terrain_relative_first_fall_control_step": {
+        "formal": null,
+        "replayed": null,
+        "exact_match": true
+      },
+      "terrain_relative_fall_reason": {
+        "formal": null,
+        "replayed": null,
+        "exact_match": true
+      },
+      "terrain_relative_maximum_unhealthy_run_steps": {
+        "formal": 0,
+        "replayed": 0,
+        "exact_match": true
+      },
+      "terrain_relative_minimum_torso_clearance_m": {
+        "formal": 0.5467374971508553,
+        "replayed": 0.5467374971508553,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "terrain_relative_maximum_torso_clearance_m": {
+        "formal": 0.8218634745449536,
+        "replayed": 0.8218634745449536,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "terrain_relative_maximum_torso_tilt_rad": {
+        "formal": 0.21705076893114533,
+        "replayed": 0.21705076893114533,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "torso_ground_any": {
+        "formal": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "nonfoot_ground_longest_run_seconds": {
+        "formal": 0.0,
+        "replayed": 0.0,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "sustained_nonfoot_contact": {
+        "formal": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "full_interval_zero_foot_count": {
+        "formal": 31,
+        "replayed": 31,
+        "exact_match": true
+      },
+      "support_count_sum_physics_substeps": {
+        "formal": 3447,
+        "replayed": 3447,
+        "exact_match": true
+      },
+      "supported_physics_substep_count": {
+        "formal": 2268,
+        "replayed": 2268,
+        "exact_match": true
+      },
+      "force_qualified_supported_physics_substep_count": {
+        "formal": 2171,
+        "replayed": 2171,
+        "exact_match": true
+      },
+      "qualified_slip_physics_substep_count": {
+        "formal": 19,
+        "replayed": 19,
+        "exact_match": true
+      },
+      "corrected_sustained_slip_physics_substep_count": {
+        "formal": 0,
+        "replayed": 0,
+        "exact_match": true
+      },
+      "corrected_slip_event_count": {
+        "formal": 0,
+        "replayed": 0,
+        "exact_match": true
+      },
+      "target_speed_m_per_s": {
+        "formal": 0.55,
+        "replayed": 0.55,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "target_yaw_rate_rad_per_s": {
+        "formal": -0.11,
+        "replayed": -0.11,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "target_curvature_per_m": {
+        "formal": -0.2,
+        "replayed": -0.2,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "target_cumulative_yaw_change_rad": {
+        "formal": -3.3000000000000003,
+        "replayed": -3.3000000000000003,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actual_cumulative_yaw_change_rad": {
+        "formal": -2.8542365688100553,
+        "replayed": -2.8542365688100553,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "yaw_change_target_ratio": {
+        "formal": 0.8649201723666834,
+        "replayed": 0.8649201723666834,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "yaw_change_same_sign_as_target": {
+        "formal": true,
+        "replayed": true,
+        "exact_match": true
+      },
+      "cumulative_yaw_error_rad": {
+        "formal": 0.445763431189945,
+        "replayed": 0.445763431189945,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "yaw_rate_rmse_rad_per_s": {
+        "formal": 0.4386306391388529,
+        "replayed": 0.4386306391388529,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actual_path_integrated_curvature_per_m": {
+        "formal": -0.21348734103255562,
+        "replayed": -0.21348734103255562,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "curvature_error_per_m": {
+        "formal": -0.013487341032555611,
+        "replayed": -0.013487341032555611,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "planar_path_length_m": {
+        "formal": 13.36958226658882,
+        "replayed": 13.36958226658882,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "signed_initial_heading_progress_m": {
+        "formal": 4.8272625283666315,
+        "replayed": 4.8272625283666315,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "maximum_signed_initial_heading_progress_m": {
+        "formal": 5.265493520808447,
+        "replayed": 5.265493520808447,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "final_com_displacement_m": {
+        "formal": 7.558276723249704,
+        "replayed": 7.558276723249704,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "maximum_com_displacement_m": {
+        "formal": 7.67560827121607,
+        "replayed": 7.67560827121607,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "final_com_reference_error_m": {
+        "formal": 6.9660484349908804,
+        "replayed": 6.9660484349908804,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "maximum_com_reference_error_m": {
+        "formal": 6.9660484349908804,
+        "replayed": 6.9660484349908804,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "out_of_training_command_envelope": {
+        "formal": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "turn_effectiveness_decision": {
+        "formal": "descriptive_only_no_pass_fail",
+        "replayed": "descriptive_only_no_pass_fail",
+        "exact_match": true
+      },
+      "fixed_goal_success": {
+        "formal": false,
+        "replayed": false,
+        "exact_match": true
+      },
+      "fixed_goal_best_progress_m": {
+        "formal": 5.265493520808447,
+        "replayed": 5.265493520808447,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "fixed_goal_net_progress_m": {
+        "formal": 4.8272625283666315,
+        "replayed": 4.8272625283666315,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "cumulative_squared_action": {
+        "formal": 166.5989605634732,
+        "replayed": 166.5989605634732,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actuator_abs_torque_time_integral_total_n_m_s": {
+        "formal": 5405.906436291989,
+        "replayed": 5405.906436291989,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actuator_positive_mechanical_work_total_j": {
+        "formal": 4728.859809900168,
+        "replayed": 4728.859809900168,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "actuator_abs_mechanical_work_total_j": {
+        "formal": 5491.501578582513,
+        "replayed": 5491.501578582513,
+        "exact_match": true,
+        "absolute_difference": 0.0
+      },
+      "branch_id": {
+        "formal": "C0_STRAIGHT_CONTINUE",
+        "replayed": "C0_STRAIGHT_CONTINUE",
+        "exact_match": true
+      }
+    }
+  }
+}

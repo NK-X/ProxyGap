@@ -1,0 +1,167 @@
+{
+  "schema_version": "proxygap-final-optimisation-seal-v2",
+  "sealed_at": "2026-08-19T22:10:25+01:00",
+  "status": "final_optimisation_hard_stopped_after_evaluable_v5_negative_result",
+  "further_optimisation_authorised": false,
+  "retry_authorised": false,
+  "fixed_map_stage_B_authorised": false,
+  "candidate_promoted": false,
+  "energy_status": "measurement_only_not_reward_or_gate_not_battery_joules",
+  "final_decision": "both_fail_turning_HOLD_retain_source_PAIR0",
+  "final_retained_checkpoint": {
+    "path": "artifacts/dev/pair0_l2b_v3_20260819/attempt_0/pair0_adapt/models/checkpoint_2727936.zip",
+    "timesteps": 2727936,
+    "size_bytes": 365244,
+    "sha256": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+    "claim": "known_best_standard_slope_candidate_turn_gate_not_passed"
+  },
+  "V5_formal": {
+    "training_master_seed_count": 1,
+    "branches": 2,
+    "additional_timesteps_per_branch": 65536,
+    "evaluation_episode_count": 130,
+    "C0_turn_gate": false,
+    "C0_slope_gate": true,
+    "C1_turn_gate": false,
+    "C1_slope_gate": true,
+    "C1_passed_both_turn_and_slope": false,
+    "stage_B": "HOLD",
+    "hard_stop": true
+  },
+  "archived_non_promoted_checkpoints": [
+    {
+      "condition": "C0_STRAIGHT_CONTINUE",
+      "path": "artifacts/dev/tb_v5_20260819/a0/c0_straight_continue/models/checkpoint_2793472.zip",
+      "timesteps": 2793472,
+      "size_bytes": 371012,
+      "sha256": "b46240e3264af57a4ac2cf500962684348ce819029bcda97df4f9672a225b494"
+    },
+    {
+      "condition": "C1_BALANCED_TURN",
+      "path": "artifacts/dev/tb_v5_20260819/a0/c1_balanced_turn/models/checkpoint_2793472.zip",
+      "timesteps": 2793472,
+      "size_bytes": 371012,
+      "sha256": "ce258e289fe3a782b1d5e582240508a94e1c468f72357cce65dfc2f057a41d14"
+    }
+  ],
+  "sealed_evidence": [
+    {
+      "role": "standard_slope_capability_55_episode_manifest",
+      "path": "artifacts/dev/fixed_standard_pair0_slope_capability_boundary_v1_20260819/attempt_0/manifest.json",
+      "size_bytes": 52285,
+      "sha256": "fd1995b28b1cbb24c1e371d3a1f6b24833eb52efb0cc1191440eccb3f73360e3"
+    },
+    {
+      "role": "flat_turn_diagnostic_45_episode_manifest",
+      "path": "artifacts/dev/fixed_standard_pair0_flat_turn_diagnostic_v1_20260819/attempt_0/manifest.json",
+      "size_bytes": 20020,
+      "sha256": "d0beda1fb2bf3f7bb948b918ff81de81023fd3ea8f229e0e302e66c92ce5f8d6"
+    },
+    {
+      "role": "slope_video_delivery_manifest",
+      "path": "artifacts/dev/fixed_standard_pair0_slope_delivery_video_v1_20260819/attempt_0/manifest.json",
+      "size_bytes": 17216,
+      "sha256": "14a8f1145e4e9e50a3c57f3985cde8070adc01884237c6e9f73239f6470b8bdb"
+    },
+    {
+      "role": "V2_formal_pretraining_failure",
+      "path": "artifacts/dev/pair0_turn_balance_v2_20260819/attempt_0/FAILURE_RECORD.json",
+      "size_bytes": 11918,
+      "sha256": "21ccdebc692af2f32ec96a2e33795cd0eac45ea4aac852eface8a02f26709d23"
+    },
+    {
+      "role": "V4_formal_pretraining_failure",
+      "path": "artifacts/dev/tb_v4_20260819/a0/FAILURE_RECORD.json",
+      "size_bytes": 12575,
+      "sha256": "9695bd3b5d628907053a2f785ec874efa18b2fc47a317c452a88566c0d624812"
+    },
+    {
+      "role": "V5_formal_130_episode_manifest",
+      "path": "artifacts/dev/tb_v5_20260819/a0/manifest.json",
+      "size_bytes": 356548,
+      "sha256": "f107543dae1a19dc972df46fe5472cdaaa469506c6178ede2a9a4f289af2be7b"
+    },
+    {
+      "role": "V5_four_episode_video_archive_manifest",
+      "path": "artifacts/dev/tb_v5_video_archive_20260819/a0/manifest.json",
+      "size_bytes": 27645,
+      "sha256": "e25d4ce1f2426c24093211befaf6bff65955a55f595d1d4060cf33ec221d596a"
+    },
+    {
+      "role": "post_seal_direct_goal_full_map_negative_manifest",
+      "path": "artifacts/dev/post_seal_full_map_eval_v1_20260819/attempt_0/manifest.json",
+      "size_bytes": 6308,
+      "sha256": "b3d37af196c16316cc0ea83581ea65945e207b5896da381548b57fa0336c6038"
+    },
+    {
+      "role": "post_seal_full_map_video_manifest",
+      "path": "artifacts/dev/post_seal_full_map_eval_video_v1_20260819/attempt_0/manifest.json",
+      "size_bytes": 1660,
+      "sha256": "17d74ea86b1db67e5113d168c430bdeb27362fa7d1d7b0709fdcf566b62c370f"
+    }
+  ],
+  "turn_video_archive": [
+    {
+      "condition": "C0_STRAIGHT_CONTINUE_curve_left_020_seed_96131",
+      "path": "artifacts/dev/tb_v5_video_archive_20260819/a0/c0_straight_continue_curve_left_020_seed_96131/c0_straight_continue_curve_left_020_seed_96131_turn_gate_fail_archive.mp4",
+      "size_bytes": 2709825,
+      "sha256": "e696d7800eb8056bd8c65664dbca7d8bc9aa60e4918388cb207258f29ace67e0"
+    },
+    {
+      "condition": "C0_STRAIGHT_CONTINUE_curve_right_020_seed_96131",
+      "path": "artifacts/dev/tb_v5_video_archive_20260819/a0/c0_straight_continue_curve_right_020_seed_96131/c0_straight_continue_curve_right_020_seed_96131_turn_gate_fail_archive.mp4",
+      "size_bytes": 3014381,
+      "sha256": "3585c2e584d7957988c44a9f2b061ad7ccea1c5da396c5d5d37c9452d2fd6cff"
+    },
+    {
+      "condition": "C1_BALANCED_TURN_curve_left_020_seed_96131",
+      "path": "artifacts/dev/tb_v5_video_archive_20260819/a0/c1_balanced_turn_curve_left_020_seed_96131/c1_balanced_turn_curve_left_020_seed_96131_turn_gate_fail_archive.mp4",
+      "size_bytes": 2763383,
+      "sha256": "0bdbec4a0252146d540d24b13492b9431bcd2d09e4cd874b04a0edbd53e7cb59"
+    },
+    {
+      "condition": "C1_BALANCED_TURN_curve_right_020_seed_96131",
+      "path": "artifacts/dev/tb_v5_video_archive_20260819/a0/c1_balanced_turn_curve_right_020_seed_96131/c1_balanced_turn_curve_right_020_seed_96131_turn_gate_fail_archive.mp4",
+      "size_bytes": 3073651,
+      "sha256": "e96d421bb6d17d4960289fbd9204b70fee5b7061667e1239f8aeb6c3600f3c0b"
+    }
+  ],
+  "delivery_documents": [
+    {
+      "role": "V5_result_report",
+      "path": "docs/FIXED_STANDARD_PAIR0_TURN_BALANCE_V5_RESULT_20260819_CN.md",
+      "size_bytes": 5606,
+      "sha256": "bd5724381e1b44c6864690bb64ab15086f3d017a9dd65ea3cdb00b01d96e98c0"
+    },
+    {
+      "role": "presentation_content_design",
+      "path": "docs/FINAL_PRESENTATION_CONTENT_DESIGN_20260819_CN.md",
+      "size_bytes": 32888,
+      "sha256": "a8d685161f64c3437fe1bb044aaac367c36b569082fec54524be0977a2b2a547"
+    },
+    {
+      "role": "report_and_presentation_blueprint",
+      "path": "docs/FINAL_REPORT_AND_PRESENTATION_BLUEPRINT_20260819_CN.md",
+      "size_bytes": 36650,
+      "sha256": "7986faa485374e23e2d57a20ce7274b71851519b049fd6461da2238a1c64aab9"
+    },
+    {
+      "role": "final_seal_report_v2",
+      "path": "docs/PAIR0_FINAL_OPTIMISATION_SEAL_V2_20260819_CN.md",
+      "size_bytes": 5795,
+      "sha256": "443507f94a911c3322bb8abcb499b82dd0336cf65e99382eaa7a63162ef0222c"
+    }
+  ],
+  "claim_boundaries": {
+    "standard_slope_tested_grid_only": true,
+    "physical_maximum_slope_claimed": false,
+    "multi_training_seed_robustness_claimed": false,
+    "turn_capable_claimed": false,
+    "A_star_waypoint_stage_executed": false,
+    "fixed_map_ready_claimed": false,
+    "random_map_generalisation_claimed": false,
+    "route_optimality_claimed": false,
+    "battery_energy_improvement_claimed": false,
+    "natural_gait_validated": false
+  }
+}

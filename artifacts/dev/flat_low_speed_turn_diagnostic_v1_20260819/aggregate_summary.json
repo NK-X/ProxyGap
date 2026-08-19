@@ -1,0 +1,54 @@
+[
+  {
+    "crawl_speed_m_per_s": 0.05,
+    "target_yaw_change_degrees": 90.0,
+    "episodes": 3,
+    "kinematic_target_reached_count": 1,
+    "drift_limited_turn_count": 0,
+    "safety_qualified_turn_count": 0,
+    "fall_count": 0,
+    "mean_final_yaw_change_degrees": 53.3891954080218,
+    "mean_maximum_centre_drift_m": 1.4197730070921726,
+    "mean_airborne_step_fraction": 0.09301775147928994,
+    "mean_support_count": 2.062613412228797
+  },
+  {
+    "crawl_speed_m_per_s": 0.05,
+    "target_yaw_change_degrees": 180.0,
+    "episodes": 3,
+    "kinematic_target_reached_count": 0,
+    "drift_limited_turn_count": 0,
+    "safety_qualified_turn_count": 0,
+    "fall_count": 0,
+    "mean_final_yaw_change_degrees": -3.545918108703129,
+    "mean_maximum_centre_drift_m": 1.2012910542721935,
+    "mean_airborne_step_fraction": 0.10999999999999999,
+    "mean_support_count": 2.27
+  },
+  {
+    "crawl_speed_m_per_s": 0.1,
+    "target_yaw_change_degrees": 90.0,
+    "episodes": 3,
+    "kinematic_target_reached_count": 0,
+    "drift_limited_turn_count": 0,
+    "safety_qualified_turn_count": 0,
+    "fall_count": 0,
+    "mean_final_yaw_change_degrees": 33.89110126414571,
+    "mean_maximum_centre_drift_m": 0.611367476023748,
+    "mean_airborne_step_fraction": 0.056666666666666664,
+    "mean_support_count": 2.831666666666667
+  },
+  {
+    "crawl_speed_m_per_s": 0.1,
+    "target_yaw_change_degrees": 180.0,
+    "episodes": 3,
+    "kinematic_target_reached_count": 0,
+    "drift_limited_turn_count": 0,
+    "safety_qualified_turn_count": 0,
+    "fall_count": 0,
+    "mean_final_yaw_change_degrees": 4.0517372666713385,
+    "mean_maximum_centre_drift_m": 1.2677953383119906,
+    "mean_airborne_step_fraction": 0.10666666666666667,
+    "mean_support_count": 2.3983333333333334
+  }
+]

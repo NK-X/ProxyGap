@@ -1,0 +1,21 @@
+{
+  "schema_version": "proxygap-standard-support-execution-v1",
+  "config": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\fixed_standard_support_curriculum_v1_20260819.json",
+  "config_sha256": "06979405fa0122d9386a8d2ed12619db97d71c73b3cd1a08ef404ee6c627f927",
+  "frozen_config": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\frozen_run_config.json",
+  "frozen_config_sha256": "06979405fa0122d9386a8d2ed12619db97d71c73b3cd1a08ef404ee6c627f927",
+  "output_root": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804",
+  "smoke": false,
+  "diagnose_only": false,
+  "source_checkpoint": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_local_preview_pilot_v1_20260819\\seed_62802\\models\\checkpoint_2596864.zip",
+  "source_checkpoint_sha256": "5bfd212b810af0189009f067ee7be8e8d4702fe1bee8cf025ba82401f931ff1e",
+  "standard_scene_manifest": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\standard_scene_manifest.json",
+  "standard_scene_manifest_sha256": "e9b6b8213100159286802d2e34cf70a28df8c5acfa9dfc6a2916ef7e41da6c6f",
+  "friction": [
+    1.0,
+    0.5,
+    0.5
+  ],
+  "condim": 3,
+  "energy_formula_changed": false
+}

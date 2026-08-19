@@ -1,0 +1,330 @@
+{
+  "schema_version": "proxygap-pair0-flat-turn-diagnostic-artifact-v1",
+  "status": "read_only_flat_turn_diagnostic_formally_evaluated",
+  "training_performed": false,
+  "checkpoint_modified": false,
+  "reward_changed": false,
+  "friction_changed": false,
+  "energy_formula_changed": false,
+  "energy_status": "measurement_only_not_reward_or_gate",
+  "fixed_map_evaluated": false,
+  "video_rendered": false,
+  "candidate_promoted": false,
+  "turn_effectiveness_formally_gated": false,
+  "runtime_dependency_sha256_before": {
+    "scripts/evaluate_fixed_standard_pair0_flat_turn_diagnostic.py": "fd422d61b1ed3e932067c0da9cd29062b18493e742a0ddf02f6f0cb1595f6729",
+    "scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e",
+    "scripts/run_fixed_standard_pair0_adaptation_l2b_extension.py": "6dfd283aaa7661e3806e9ca26f874a6088ebf0a39985d3ef3bd0c7edb6e493aa",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/evaluate_fixed_standard_distal_margin0_paired.py": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d",
+    "scripts/evaluate_local_preview_final_paired_direct_goal.py": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf",
+    "scripts/run_fixed_goal_support_priority_pilot.py": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a",
+    "scripts/run_fixed_goal_terrain_training.py": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d",
+    "scripts/run_curved_gait_training.py": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf",
+    "src/proxygap/__init__.py": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba",
+    "src/proxygap/ant_wrapper.py": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2",
+    "src/proxygap/curved_gait.py": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48",
+    "src/proxygap/fixed_goal_terrain.py": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2",
+    "src/proxygap/metrics.py": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397",
+    "src/proxygap/planar_transition.py": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805",
+    "src/proxygap/experiment.py": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629",
+    "src/proxygap/divergence.py": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459",
+    "src/proxygap/protocol.py": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d",
+    "src/proxygap/selection.py": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0",
+    "src/proxygap/two_experiment_protocol.py": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+  },
+  "runtime_snapshot_sha256_before": {
+    "scripts/evaluate_fixed_standard_pair0_flat_turn_diagnostic.py": "fd422d61b1ed3e932067c0da9cd29062b18493e742a0ddf02f6f0cb1595f6729",
+    "scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e",
+    "scripts/run_fixed_standard_pair0_adaptation_l2b_extension.py": "6dfd283aaa7661e3806e9ca26f874a6088ebf0a39985d3ef3bd0c7edb6e493aa",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/evaluate_fixed_standard_distal_margin0_paired.py": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d",
+    "scripts/evaluate_local_preview_final_paired_direct_goal.py": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf",
+    "scripts/run_fixed_goal_support_priority_pilot.py": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a",
+    "scripts/run_fixed_goal_terrain_training.py": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d",
+    "scripts/run_curved_gait_training.py": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf",
+    "src/proxygap/__init__.py": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba",
+    "src/proxygap/ant_wrapper.py": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2",
+    "src/proxygap/curved_gait.py": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48",
+    "src/proxygap/fixed_goal_terrain.py": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2",
+    "src/proxygap/metrics.py": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397",
+    "src/proxygap/planar_transition.py": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805",
+    "src/proxygap/experiment.py": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629",
+    "src/proxygap/divergence.py": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459",
+    "src/proxygap/protocol.py": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d",
+    "src/proxygap/selection.py": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0",
+    "src/proxygap/two_experiment_protocol.py": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+  },
+  "runtime_dependency_sha256_after": {
+    "scripts/evaluate_fixed_standard_pair0_flat_turn_diagnostic.py": "fd422d61b1ed3e932067c0da9cd29062b18493e742a0ddf02f6f0cb1595f6729",
+    "scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e",
+    "scripts/run_fixed_standard_pair0_adaptation_l2b_extension.py": "6dfd283aaa7661e3806e9ca26f874a6088ebf0a39985d3ef3bd0c7edb6e493aa",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/evaluate_fixed_standard_distal_margin0_paired.py": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d",
+    "scripts/evaluate_local_preview_final_paired_direct_goal.py": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf",
+    "scripts/run_fixed_goal_support_priority_pilot.py": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a",
+    "scripts/run_fixed_goal_terrain_training.py": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d",
+    "scripts/run_curved_gait_training.py": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf",
+    "src/proxygap/__init__.py": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba",
+    "src/proxygap/ant_wrapper.py": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2",
+    "src/proxygap/curved_gait.py": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48",
+    "src/proxygap/fixed_goal_terrain.py": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2",
+    "src/proxygap/metrics.py": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397",
+    "src/proxygap/planar_transition.py": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805",
+    "src/proxygap/experiment.py": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629",
+    "src/proxygap/divergence.py": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459",
+    "src/proxygap/protocol.py": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d",
+    "src/proxygap/selection.py": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0",
+    "src/proxygap/two_experiment_protocol.py": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+  },
+  "runtime_snapshot_sha256_after": {
+    "scripts/evaluate_fixed_standard_pair0_flat_turn_diagnostic.py": "fd422d61b1ed3e932067c0da9cd29062b18493e742a0ddf02f6f0cb1595f6729",
+    "scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e",
+    "scripts/run_fixed_standard_pair0_adaptation_l2b_extension.py": "6dfd283aaa7661e3806e9ca26f874a6088ebf0a39985d3ef3bd0c7edb6e493aa",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/evaluate_fixed_standard_distal_margin0_paired.py": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d",
+    "scripts/evaluate_local_preview_final_paired_direct_goal.py": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf",
+    "scripts/run_fixed_goal_support_priority_pilot.py": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a",
+    "scripts/run_fixed_goal_terrain_training.py": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d",
+    "scripts/run_curved_gait_training.py": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf",
+    "src/proxygap/__init__.py": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba",
+    "src/proxygap/ant_wrapper.py": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2",
+    "src/proxygap/curved_gait.py": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48",
+    "src/proxygap/fixed_goal_terrain.py": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2",
+    "src/proxygap/metrics.py": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397",
+    "src/proxygap/planar_transition.py": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805",
+    "src/proxygap/experiment.py": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629",
+    "src/proxygap/divergence.py": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459",
+    "src/proxygap/protocol.py": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d",
+    "src/proxygap/selection.py": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0",
+    "src/proxygap/two_experiment_protocol.py": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+  },
+  "checkpoint": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\pair0_l2b_v3_20260819\\attempt_0\\pair0_adapt\\models\\checkpoint_2727936.zip",
+  "checkpoint_sha256": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+  "report": "REPORT.md",
+  "elapsed_seconds": 50.78424449999875,
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "mujoco": "3.11.0",
+    "stable_baselines3": "2.9.0",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.5.1"
+  },
+  "artifact_inventory_excludes_manifest_itself": [
+    {
+      "relative_path": "condition_assets/scenes/flat_turn_diagnostic/default_margin_001_control/ant_standard_scene.xml",
+      "size_bytes": 6211,
+      "sha256": "49f8a8b2036d2e7fd5ecaa0e278873f2465d9f89d5a96c5ac20fe3500cebf787"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat_turn_diagnostic/default_margin_001_control/heights_m.npy",
+      "size_bytes": 2105480,
+      "sha256": "95b50d50db56309619d449568f588aa225816d5d7b1405b18154cb9fc9a200c4"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat_turn_diagnostic/default_margin_001_control/terrain.hfield",
+      "size_bytes": 1052684,
+      "sha256": "0d2e01f11e448d99c308689e077918c8e033f61b652dba24cb6196da46386c09"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat_turn_diagnostic/default_margin_001_control/terrain_contours.png",
+      "size_bytes": 78986,
+      "sha256": "02df4b39114681a16d93d69ed83c93e5485d80d0606a601bf4edad355b9bd9f5"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat_turn_diagnostic/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "size_bytes": 7053,
+      "sha256": "382612434f6d439e295d24f7e7b19625dfe582003feea0446180bc2dde8ee188"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat_turn_diagnostic/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "size_bytes": 2105480,
+      "sha256": "95b50d50db56309619d449568f588aa225816d5d7b1405b18154cb9fc9a200c4"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat_turn_diagnostic/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "size_bytes": 1052684,
+      "sha256": "0d2e01f11e448d99c308689e077918c8e033f61b652dba24cb6196da46386c09"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat_turn_diagnostic/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "size_bytes": 78986,
+      "sha256": "02df4b39114681a16d93d69ed83c93e5485d80d0606a601bf4edad355b9bd9f5"
+    },
+    {
+      "relative_path": "corrected_slip_events.csv",
+      "size_bytes": 264,
+      "sha256": "8ebfb6bb920b38816b8387cf9575c405431f3e28436c54899b5d76894fbbc230"
+    },
+    {
+      "relative_path": "episode_metrics.csv",
+      "size_bytes": 29904,
+      "sha256": "97131599d5b317535b4831119b7db6ce5fca6b39afa893534e3364c7b989ec77"
+    },
+    {
+      "relative_path": "frozen_config.json",
+      "size_bytes": 13374,
+      "sha256": "5433c7ac3e0c460e048c4a4a24495413ef0de39da59960dc7510d0d16323483a"
+    },
+    {
+      "relative_path": "prepared_scene.json",
+      "size_bytes": 2569,
+      "sha256": "331a806ae01b49fe1f8c5823e547cd82f630f9e763eb6860b9728c04127b4e26"
+    },
+    {
+      "relative_path": "REPORT.md",
+      "size_bytes": 2011,
+      "sha256": "63864081686a0a68c4dc13c98b4b68494ca944c05b505256ca10568f0761b6c1"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/evaluate_fixed_standard_distal_margin0_paired.py",
+      "size_bytes": 52564,
+      "sha256": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/evaluate_fixed_standard_pair0_flat_turn_diagnostic.py",
+      "size_bytes": 55400,
+      "sha256": "fd422d61b1ed3e932067c0da9cd29062b18493e742a0ddf02f6f0cb1595f6729"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py",
+      "size_bytes": 33298,
+      "sha256": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/evaluate_local_preview_final_paired_direct_goal.py",
+      "size_bytes": 48390,
+      "sha256": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_curved_gait_training.py",
+      "size_bytes": 26577,
+      "sha256": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_fixed_goal_support_priority_pilot.py",
+      "size_bytes": 37911,
+      "sha256": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_fixed_goal_terrain_training.py",
+      "size_bytes": 27220,
+      "sha256": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py",
+      "size_bytes": 64791,
+      "sha256": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_fixed_standard_pair0_adaptation_l2b_extension.py",
+      "size_bytes": 66757,
+      "sha256": "6dfd283aaa7661e3806e9ca26f874a6088ebf0a39985d3ef3bd0c7edb6e493aa"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_fixed_standard_support_curriculum.py",
+      "size_bytes": 73213,
+      "sha256": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/__init__.py",
+      "size_bytes": 3658,
+      "sha256": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/ant_wrapper.py",
+      "size_bytes": 114162,
+      "sha256": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/curved_gait.py",
+      "size_bytes": 43440,
+      "sha256": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/divergence.py",
+      "size_bytes": 15159,
+      "sha256": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/experiment.py",
+      "size_bytes": 36570,
+      "sha256": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/fixed_goal_terrain.py",
+      "size_bytes": 31462,
+      "sha256": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/metrics.py",
+      "size_bytes": 32658,
+      "sha256": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/planar_transition.py",
+      "size_bytes": 37380,
+      "sha256": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/protocol.py",
+      "size_bytes": 5746,
+      "sha256": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/selection.py",
+      "size_bytes": 6583,
+      "sha256": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/two_experiment_protocol.py",
+      "size_bytes": 3519,
+      "sha256": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+    },
+    {
+      "relative_path": "scene_contract_audit.json",
+      "size_bytes": 14646,
+      "sha256": "ae6e873c748bc8bec2da7bb9f1ac883a42c5789879221c8a91aab155e22b8cb5"
+    },
+    {
+      "relative_path": "scene_source/standard_scene_manifest.json",
+      "size_bytes": 7214,
+      "sha256": "82dcfb4282b1e6349e5b350612991b773fb6c96e38669ede029d2a79fe9afefe"
+    },
+    {
+      "relative_path": "scene_source/standard_scenes/flat/ant_standard_scene.xml",
+      "size_bytes": 6211,
+      "sha256": "49f8a8b2036d2e7fd5ecaa0e278873f2465d9f89d5a96c5ac20fe3500cebf787"
+    },
+    {
+      "relative_path": "scene_source/standard_scenes/flat/heights_m.npy",
+      "size_bytes": 2105480,
+      "sha256": "95b50d50db56309619d449568f588aa225816d5d7b1405b18154cb9fc9a200c4"
+    },
+    {
+      "relative_path": "scene_source/standard_scenes/flat/scene_manifest.json",
+      "size_bytes": 1868,
+      "sha256": "ae7817e8876fda75ba42747812c55f3d48322938bb94a91421978a1f8f7f51f2"
+    },
+    {
+      "relative_path": "scene_source/standard_scenes/flat/terrain.hfield",
+      "size_bytes": 1052684,
+      "sha256": "0d2e01f11e448d99c308689e077918c8e033f61b652dba24cb6196da46386c09"
+    },
+    {
+      "relative_path": "scene_source/standard_scenes/flat/terrain_contours.png",
+      "size_bytes": 78986,
+      "sha256": "02df4b39114681a16d93d69ed83c93e5485d80d0606a601bf4edad355b9bd9f5"
+    },
+    {
+      "relative_path": "summary.json",
+      "size_bytes": 29355,
+      "sha256": "e9caffc707c4c7ce369a3e676e778419b5d40b964d1f9107b41652808e7a5e5b"
+    }
+  ]
+}

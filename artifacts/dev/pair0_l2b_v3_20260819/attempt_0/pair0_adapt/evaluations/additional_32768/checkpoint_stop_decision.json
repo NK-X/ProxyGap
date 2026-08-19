@@ -1,0 +1,18 @@
+{
+  "condition_id": "PAIR0_ADAPT",
+  "checkpoint_additional_timesteps": 32768,
+  "catastrophe_checks": {
+    "nonfinite": false,
+    "nonfinite_energy": false,
+    "force_qualified_slip_non_evaluable": false,
+    "fall": false,
+    "torso_ground": false,
+    "sustained_nonfoot_contact": false,
+    "corrected_sustained_slip": false,
+    "corrected_slip_event_rate": false,
+    "pair0_full_interval_zero_foot": false
+  },
+  "performance_futility_checked": false,
+  "intermediate_promotion_permitted": false,
+  "early_stop_triggered": false
+}

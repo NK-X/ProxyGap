@@ -1,0 +1,68 @@
+{
+  "schema_version": "proxygap-pair0-adaptation-l2-provenance-correction-v1",
+  "status": "post_run_provenance_and_measurement_correction_no_raw_result_change",
+  "original_manifest": {
+    "path": "manifest.json",
+    "sha256_before_correction": "d0ba008e55aefe74393eb4d041bbbc62d4f57286557c8fef2a5d8df745657cbc"
+  },
+  "runtime_runner_freeze": {
+    "source_path_at_execution": "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py",
+    "frozen_path": "frozen_runner.py",
+    "sha256": "34c5fe1c660fc0c2d72bf617646857c9c90cebf1c2cec131ca832e648bb23346",
+    "byte_identical_to_runtime_script_before_live_runner_corrections": true
+  },
+  "training_seed_correction": {
+    "declared_training_seed": 62805,
+    "worker_construction_seeds_recorded_in_worker_contract_audits": [
+      62805,
+      63805,
+      64805,
+      65805
+    ],
+    "effective_first_reset_seeds_after_stable_baselines3_set_random_seed": [
+      62805,
+      62806,
+      62807,
+      62808
+    ],
+    "cause": "PPO continuation calls BaseAlgorithm.set_random_seed(62805), whose vector-environment seeding supersedes the factory construction seeds on the next reset and assigns base_seed + worker_index.",
+    "interpretation_correction": "The worker_seed field in the original worker_contract_audits proves the construction input only. It must not be interpreted as the effective first episode reset seed.",
+    "paired_fairness_impact": "Both DEFAULT_CONTINUE and PAIR0_ADAPT used the same effective reset seed vector and the same condition ordering contract. This provenance correction does not change paired fairness or any stored trajectory, metric or gate result.",
+    "raw_training_or_evaluation_data_changed": false
+  },
+  "slip_denominator_measurement_addendum": {
+    "runtime_primary_denominator": "physics substeps with at least one distal-foot contact of any normal force",
+    "runtime_numerator": "physics substeps with at least one duration-corrected slip foot after contact, tangential-speed, landing-grace and normal-force >= 1 N gates",
+    "identified_risk": "The explicit pair0 intervention changes the number of low-force contacts. An any-contact denominator can therefore change independently of the force-qualified slip numerator and bias relative qualified or sustained fractions downward.",
+    "observed_attempt_0_boundary": {
+      "default_continue_final_duration_corrected_sustained_substeps": 0,
+      "pair0_adapt_final_duration_corrected_sustained_substeps": 0,
+      "default_continue_final_duration_corrected_events": 0,
+      "pair0_adapt_final_duration_corrected_events": 0,
+      "both_conditions_have_nonzero_supported_substeps": true,
+      "bounded_conclusion": "No duration-corrected sustained-slip event was observed under the runtime definition. The qualified fraction and cross-condition relative rate remain sensitive to denominator choice."
+    },
+    "future_runner_correction": {
+      "primary_denominator": "physics substeps with at least one distal foot simultaneously in contact and carrying normal force >= 1 N",
+      "secondary_denominator": "original any-contact supported physics substeps",
+      "zero_force_qualified_denominator": "non_evaluable",
+      "raw_attempt_0_gate_recalculated": false,
+      "raw_attempt_0_metrics_overwritten": false
+    }
+  },
+  "smoke_gate_correction": {
+    "runtime_behaviour": "The engineering smoke recorded finite-state diagnostics but did not apply the checkpoint non-finite catastrophe decision.",
+    "observed_smoke_nonfinite_episode_count_both_conditions": 0,
+    "impact": "The observed smoke remained finite, but the old runner was not fail-closed for this case. The live runner is corrected for future attempts; the completed attempt_0 smoke is not rewritten."
+  },
+  "result_integrity": {
+    "raw_episode_metrics_changed": false,
+    "raw_substep_traces_changed": false,
+    "checkpoints_changed": false,
+    "prospective_gate_changed": false,
+    "original_gate_decision": "pair0_adaptation_rejected_by_predeclared_standard_scene_gate",
+    "original_gate_decision_still_applies": true,
+    "fixed_map_evaluated": false,
+    "candidate_promoted": false
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "schema_version": "proxygap-fixed-standard-corrected-slip-manifest-v1",
+  "status": "complete_read_only_supplementary_audit",
+  "configuration": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819.json",
+    "sha256": "534876e84db84fec3ce0b79996428e093b6b157534bb0140375a597e71faf0c2"
+  },
+  "script": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\scripts\\audit_fixed_standard_corrected_slip.py",
+    "sha256": "485110af7f708e0f56e20d9a3da7ef5b6a1d528c445ef9b7d69acd2ba9723b3e"
+  },
+  "episode_count": 24,
+  "training_performed": false,
+  "parent_gate_modified": false,
+  "fixed_map_evaluated": false,
+  "supports_new_small_bounded_exploratory_training": true,
+  "artifacts": [
+    {
+      "relative_path": "corrected_slip_episode_metrics.csv",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\corrected_slip_episode_metrics.csv",
+      "sha256": "534bc203e2789c55b3950767f542232917e62417e2b25f3f479c25bfb2fc24a7",
+      "bytes": 6990
+    },
+    {
+      "relative_path": "corrected_slip_events.csv",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\corrected_slip_events.csv",
+      "sha256": "9185ddc12177c25d5636e1ab4cfcf334d56b1e6b273e68a41f656f3b323c0f28",
+      "bytes": 232
+    },
+    {
+      "relative_path": "corrected_slip_step_trace.csv",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\corrected_slip_step_trace.csv",
+      "sha256": "bedf30f2f503b52fdbd86f0bb9c9da6297227cacbfceb9fb242fb978c85b1e6a",
+      "bytes": 2295330
+    },
+    {
+      "relative_path": "corrected_slip_summary.json",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\corrected_slip_summary.json",
+      "sha256": "d4ff08aacd665bc0bef4541effc8fbe4e1ee0e964d943e51c4b9752823c8f9c1",
+      "bytes": 3741
+    },
+    {
+      "relative_path": "frozen_config.json",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\frozen_config.json",
+      "sha256": "534876e84db84fec3ce0b79996428e093b6b157534bb0140375a597e71faf0c2",
+      "bytes": 3399
+    },
+    {
+      "relative_path": "scene_pair_audits.json",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scene_pair_audits.json",
+      "sha256": "59cbf1d972930821fb891e2e35ddbeb63c50793ec815d23de772be836b555e9d",
+      "bytes": 13550
+    },
+    {
+      "relative_path": "scenes/standard_bowl_exit/default_margin_001_control/ant_standard_scene.xml",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_bowl_exit\\default_margin_001_control\\ant_standard_scene.xml",
+      "sha256": "3b80e3e9b046455acebc147588406468ec2eb369115ab090b1e2e9437bda3cd0",
+      "bytes": 6218
+    },
+    {
+      "relative_path": "scenes/standard_bowl_exit/default_margin_001_control/heights_m.npy",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_bowl_exit\\default_margin_001_control\\heights_m.npy",
+      "sha256": "cb4eb39667cf268367c962bee328b0690881dfde6c49a112aedab60119f520e3",
+      "bytes": 528520
+    },
+    {
+      "relative_path": "scenes/standard_bowl_exit/default_margin_001_control/terrain.hfield",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_bowl_exit\\default_margin_001_control\\terrain.hfield",
+      "sha256": "3f50d0f5d8ced6059a3a9ad895485ae66805422d88899b4fe3f0019dc47f42b3",
+      "bytes": 264204
+    },
+    {
+      "relative_path": "scenes/standard_bowl_exit/default_margin_001_control/terrain_contours.png",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_bowl_exit\\default_margin_001_control\\terrain_contours.png",
+      "sha256": "9911e6fd14a7b5dfd06ac147ec23e6970f4229b58fd2b1079fec4dfee1cd548d",
+      "bytes": 18637
+    },
+    {
+      "relative_path": "scenes/standard_bowl_exit/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_bowl_exit\\explicit_floor_distal_pair_margin0_candidate\\ant_standard_scene.xml",
+      "sha256": "7c0074404b9b469ee89e101b502200fd89eeb8237e06f53de486790f1f0bf472",
+      "bytes": 7060
+    },
+    {
+      "relative_path": "scenes/standard_bowl_exit/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_bowl_exit\\explicit_floor_distal_pair_margin0_candidate\\heights_m.npy",
+      "sha256": "cb4eb39667cf268367c962bee328b0690881dfde6c49a112aedab60119f520e3",
+      "bytes": 528520
+    },
+    {
+      "relative_path": "scenes/standard_bowl_exit/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_bowl_exit\\explicit_floor_distal_pair_margin0_candidate\\terrain.hfield",
+      "sha256": "3f50d0f5d8ced6059a3a9ad895485ae66805422d88899b4fe3f0019dc47f42b3",
+      "bytes": 264204
+    },
+    {
+      "relative_path": "scenes/standard_bowl_exit/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_bowl_exit\\explicit_floor_distal_pair_margin0_candidate\\terrain_contours.png",
+      "sha256": "9911e6fd14a7b5dfd06ac147ec23e6970f4229b58fd2b1079fec4dfee1cd548d",
+      "bytes": 18637
+    },
+    {
+      "relative_path": "scenes/standard_downhill_8deg/default_margin_001_control/ant_standard_scene.xml",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_downhill_8deg\\default_margin_001_control\\ant_standard_scene.xml",
+      "sha256": "87e69b47529337a430ae6b7a78e4f7b100ab07cd5e072c1a1d0fbfb5c02ae318",
+      "bytes": 6223
+    },
+    {
+      "relative_path": "scenes/standard_downhill_8deg/default_margin_001_control/heights_m.npy",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_downhill_8deg\\default_margin_001_control\\heights_m.npy",
+      "sha256": "86592a74cafe95da499cd5025a6a0dfeb1e2ffd6617a55e18feec34dae173940",
+      "bytes": 528520
+    },
+    {
+      "relative_path": "scenes/standard_downhill_8deg/default_margin_001_control/terrain.hfield",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_downhill_8deg\\default_margin_001_control\\terrain.hfield",
+      "sha256": "31ab14ea72a0fdf02f0ece4e5eda9a355fd56fa7f2b00feb59c1598844440242",
+      "bytes": 264204
+    },
+    {
+      "relative_path": "scenes/standard_downhill_8deg/default_margin_001_control/terrain_contours.png",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_downhill_8deg\\default_margin_001_control\\terrain_contours.png",
+      "sha256": "fdc35c833c5ad14a610a3bb78a81f35301be93df7f35ccafc36c1c1fd9516cf0",
+      "bytes": 924
+    },
+    {
+      "relative_path": "scenes/standard_downhill_8deg/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_downhill_8deg\\explicit_floor_distal_pair_margin0_candidate\\ant_standard_scene.xml",
+      "sha256": "dfc03dd20abffe7eca8331fb80b04e5f17c7bf1faa7b72e6bd96deffb835d2f3",
+      "bytes": 7065
+    },
+    {
+      "relative_path": "scenes/standard_downhill_8deg/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_downhill_8deg\\explicit_floor_distal_pair_margin0_candidate\\heights_m.npy",
+      "sha256": "86592a74cafe95da499cd5025a6a0dfeb1e2ffd6617a55e18feec34dae173940",
+      "bytes": 528520
+    },
+    {
+      "relative_path": "scenes/standard_downhill_8deg/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_downhill_8deg\\explicit_floor_distal_pair_margin0_candidate\\terrain.hfield",
+      "sha256": "31ab14ea72a0fdf02f0ece4e5eda9a355fd56fa7f2b00feb59c1598844440242",
+      "bytes": 264204
+    },
+    {
+      "relative_path": "scenes/standard_downhill_8deg/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_downhill_8deg\\explicit_floor_distal_pair_margin0_candidate\\terrain_contours.png",
+      "sha256": "fdc35c833c5ad14a610a3bb78a81f35301be93df7f35ccafc36c1c1fd9516cf0",
+      "bytes": 924
+    },
+    {
+      "relative_path": "scenes/standard_flat/default_margin_001_control/ant_standard_scene.xml",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_flat\\default_margin_001_control\\ant_standard_scene.xml",
+      "sha256": "9ab941e158372fb328debf4aff3d57649981434e070f879d778301919adb1559",
+      "bytes": 6234
+    },
+    {
+      "relative_path": "scenes/standard_flat/default_margin_001_control/heights_m.npy",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_flat\\default_margin_001_control\\heights_m.npy",
+      "sha256": "2797af3e149ed4cd565362585e1d0d54cf399610e8caf4055a9331f4e9d2c355",
+      "bytes": 528520
+    },
+    {
+      "relative_path": "scenes/standard_flat/default_margin_001_control/terrain.hfield",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_flat\\default_margin_001_control\\terrain.hfield",
+      "sha256": "65440bf1960a0bad568848a9e9cd4f957f602a6fef790307b81bb7fb03ee8f1a",
+      "bytes": 264204
+    },
+    {
+      "relative_path": "scenes/standard_flat/default_margin_001_control/terrain_contours.png",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_flat\\default_margin_001_control\\terrain_contours.png",
+      "sha256": "87c205d0f45908f0015014ab17c84710c47fc3b68b3304c0d3cb33216bf48f1c",
+      "bytes": 28750
+    },
+    {
+      "relative_path": "scenes/standard_flat/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_flat\\explicit_floor_distal_pair_margin0_candidate\\ant_standard_scene.xml",
+      "sha256": "212b85ab8d34ff378271fe70a961cbdfa558e1cba8210d25a5d20a034ae2d6f9",
+      "bytes": 7076
+    },
+    {
+      "relative_path": "scenes/standard_flat/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_flat\\explicit_floor_distal_pair_margin0_candidate\\heights_m.npy",
+      "sha256": "2797af3e149ed4cd565362585e1d0d54cf399610e8caf4055a9331f4e9d2c355",
+      "bytes": 528520
+    },
+    {
+      "relative_path": "scenes/standard_flat/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_flat\\explicit_floor_distal_pair_margin0_candidate\\terrain.hfield",
+      "sha256": "65440bf1960a0bad568848a9e9cd4f957f602a6fef790307b81bb7fb03ee8f1a",
+      "bytes": 264204
+    },
+    {
+      "relative_path": "scenes/standard_flat/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_flat\\explicit_floor_distal_pair_margin0_candidate\\terrain_contours.png",
+      "sha256": "87c205d0f45908f0015014ab17c84710c47fc3b68b3304c0d3cb33216bf48f1c",
+      "bytes": 28750
+    },
+    {
+      "relative_path": "scenes/standard_uphill_8deg/default_margin_001_control/ant_standard_scene.xml",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_uphill_8deg\\default_margin_001_control\\ant_standard_scene.xml",
+      "sha256": "fd62a15e77157e3ff0393e88440010373313f9c1a6176b68c90a924e90643436",
+      "bytes": 6227
+    },
+    {
+      "relative_path": "scenes/standard_uphill_8deg/default_margin_001_control/heights_m.npy",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_uphill_8deg\\default_margin_001_control\\heights_m.npy",
+      "sha256": "5602c376a6af0b6834196fcfc2a339699efc159100bfed7036f30c473c927492",
+      "bytes": 528520
+    },
+    {
+      "relative_path": "scenes/standard_uphill_8deg/default_margin_001_control/terrain.hfield",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_uphill_8deg\\default_margin_001_control\\terrain.hfield",
+      "sha256": "ca22e078aba52791555515f2b901e8d0f736586a222347581e48dcf6564d1f4e",
+      "bytes": 264204
+    },
+    {
+      "relative_path": "scenes/standard_uphill_8deg/default_margin_001_control/terrain_contours.png",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_uphill_8deg\\default_margin_001_control\\terrain_contours.png",
+      "sha256": "8e719960695ba913c76a9a4508c907902f5ef7694ccab7300f2f485e91ff25c3",
+      "bytes": 925
+    },
+    {
+      "relative_path": "scenes/standard_uphill_8deg/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_uphill_8deg\\explicit_floor_distal_pair_margin0_candidate\\ant_standard_scene.xml",
+      "sha256": "d6bdd7c25b51975a5783e68ac0e6739243344b457931e39d7bd359f548c21efa",
+      "bytes": 7069
+    },
+    {
+      "relative_path": "scenes/standard_uphill_8deg/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_uphill_8deg\\explicit_floor_distal_pair_margin0_candidate\\heights_m.npy",
+      "sha256": "5602c376a6af0b6834196fcfc2a339699efc159100bfed7036f30c473c927492",
+      "bytes": 528520
+    },
+    {
+      "relative_path": "scenes/standard_uphill_8deg/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_uphill_8deg\\explicit_floor_distal_pair_margin0_candidate\\terrain.hfield",
+      "sha256": "ca22e078aba52791555515f2b901e8d0f736586a222347581e48dcf6564d1f4e",
+      "bytes": 264204
+    },
+    {
+      "relative_path": "scenes/standard_uphill_8deg/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819\\source_stage1\\scenes\\standard_uphill_8deg\\explicit_floor_distal_pair_margin0_candidate\\terrain_contours.png",
+      "sha256": "8e719960695ba913c76a9a4508c907902f5ef7694ccab7300f2f485e91ff25c3",
+      "bytes": 925
+    }
+  ],
+  "claim_boundary": "This post-parent-gate audit diagnoses denominator and transient-contact confounding only. It cannot reverse the original gate, establish causal slip physics, authorise formal training, or support a fixed-map/generalisation claim."
+}

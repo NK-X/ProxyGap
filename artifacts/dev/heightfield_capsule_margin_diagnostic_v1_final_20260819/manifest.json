@@ -1,0 +1,39 @@
+{
+  "schema_version": "proxygap-heightfield-capsule-margin-diagnostic-v1",
+  "status": "bounded_development_diagnostic",
+  "config": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\heightfield_capsule_margin_diagnostic_v1_20260819.json",
+    "sha256": "128fbb56c9396cc6f1d2e4c87d8db0d02101dbb8c12941d43d903e210510ee2f"
+  },
+  "frozen_config": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\frozen_config.json",
+    "sha256": "c2a57c89f156387c97a0e8b5b04596a248d229f9ccc24a7a601c0bcbcfdb1184"
+  },
+  "parent_manifest": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\manifest.json",
+    "sha256": "b7d3dfefa04ceee60c539aec4ee5f3e707c2caf79c6ca98cb6c9284b5d4999f0"
+  },
+  "script": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\scripts\\diagnose_heightfield_capsule_margin.py",
+    "sha256": "121e0547e2c8f467ef68dfa04b049bb324ed986082da923a3df7a149c20a15fd"
+  },
+  "scene_manifest": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\scene_manifest.json",
+    "sha256": "fd7bdd7ca0bd30277af4fe9b68791894a8561424ef06b458d4f93884c6abe9d3"
+  },
+  "identical_pose_margin_probe": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\identical_pose_margin_probe.json",
+    "sha256": "f9fb599c1bde8c4d0b8d1b7c2f2f2f3bcf470199857d75fa7806b1e2d9798581"
+  },
+  "matched_open_loop_margin_summary": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\matched_open_loop_margin_summary.json",
+    "sha256": "a2da78aa75b5f08cc313f07041fec60ef0213a2952a56ab8264131fe52c7e5a7"
+  },
+  "static_drop_margin_summary": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_capsule_margin_diagnostic_v1_final_20260819\\static_drop_margin_summary.json",
+    "sha256": "1bfdbde0b195d2f8185b1e8a1c1401db31396e2ff6a7e1cb6519b836d61607e0"
+  },
+  "training_performed": false,
+  "formal_map_modified": false,
+  "friction_reward_energy_changed": false
+}

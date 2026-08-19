@@ -1,0 +1,77 @@
+{
+  "schema_version": "proxygap-standard-support-video-v2",
+  "selection_rule": "predeclared paired seed across every standard scene; no best-looking selection",
+  "condition_id": "CONTACT_GAP_W1_INTERVENTION",
+  "condition_decision": "rejected_intervention_not_promoted",
+  "retention_gate_passed": false,
+  "local_w1_vs_w0_gate_reference": "MATCHED_CONTACT_GAP_W0_CONTROL",
+  "local_gate_reference_is_not_promotion": true,
+  "incumbent_condition": "SOURCE_STAGE1_STANDARD_DIAGNOSIS",
+  "promoted_condition": null,
+  "source_stage1_mean_best_progress_m": 9.482237073554927,
+  "condition_mean_best_progress_m": 7.122662179012949,
+  "condition_progress_ratio_to_source": 0.7511584158634241,
+  "condition_task_success_count": 0,
+  "condition_task_episode_count": 12,
+  "scene_name": "downhill_8deg",
+  "signed_slope_degrees": -8.0,
+  "evaluation_seed": 76802,
+  "checkpoint": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\models\\contact_gap_w1_intervention\\checkpoint_2662400.zip",
+    "sha256": "f0f1783d07f3d8908873b834ebc87187eb125ab48236f08a36eb5c0f7e48e2f1"
+  },
+  "archived_trace": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\traces\\contact_gap_w1_intervention_downhill_8deg_seed_76802_trace.csv",
+    "sha256": "681519e4c9388f29e74108c80668c1ccb5f315ac2c0b23781a9037e19d94c24c"
+  },
+  "replay_trace": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w1\\down8_s76802_v2\\w1_down8_s76802_v2_trace.csv",
+    "sha256": "681519e4c9388f29e74108c80668c1ccb5f315ac2c0b23781a9037e19d94c24c"
+  },
+  "trace_byte_identical": true,
+  "scene": {
+    "xml": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\standard_scenes\\downhill_8deg\\ant_standard_scene.xml",
+    "xml_sha256": "87e69b47529337a430ae6b7a78e4f7b100ab07cd5e072c1a1d0fbfb5c02ae318",
+    "heights": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\standard_scenes\\downhill_8deg\\heights_m.npy",
+    "heights_sha256": "86592a74cafe95da499cd5025a6a0dfeb1e2ffd6617a55e18feec34dae173940",
+    "minimum_height_m": -1.4054083470239145,
+    "maximum_height_m": 1.4054083470239145,
+    "fixed_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "condim": 3
+  },
+  "video": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w1\\down8_s76802_v2\\w1_down8_s76802_v2.mp4",
+    "sha256": "b5154947f34919f1a3fe43938cf82cfd678cdc70685d82f70be21a3ebd772990",
+    "width": 1280,
+    "height": 720,
+    "fps": 20,
+    "frames": 361,
+    "duration_seconds": 18.05,
+    "physical_rollout_seconds": 30.0,
+    "render_stride": 2
+  },
+  "final_frame": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\videos\\w1\\down8_s76802_v2\\w1_down8_s76802_v2_final_frame.png",
+    "sha256": "25de2b832e9779ad995e24918ea2736b8d16147b698da19b423da17bc53348a2"
+  },
+  "camera_boundary": "follow and fixed side cameras, trail and annotations are MjvScene/PIL only; physical terrain and z scale remain 1:1",
+  "qa": {
+    "decoded_frames": 361,
+    "first_frame_shape": [
+      720,
+      1280,
+      3
+    ],
+    "last_frame_shape": [
+      720,
+      1280,
+      3
+    ],
+    "average_frame_rate": 20.0,
+    "decoded_duration_seconds": 18.05
+  }
+}

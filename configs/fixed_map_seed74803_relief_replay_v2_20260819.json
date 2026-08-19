@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "config_id": "fixed_map_seed74803_relief_replay_v2_20260819",
+  "status": "visualisation_only_deterministic_replay",
+  "purpose": "Replay the predeclared fixed-map seed 74803 baseline episode with the relief-v2 dual-view renderer; no training, policy selection, physics or task change.",
+  "source_evaluation_contract": {
+    "path": "configs/fixed_map_reach_a_corrected_replication_v2_20260819.json",
+    "sha256": "d477af60cc9b3ca39efeefa380c2b02c218bd12d6daec0a25da7c43d4e2c7b11"
+  },
+  "fixed_map_config": "configs/fixed_quad_terrain_v2_training_20260818.json",
+  "evaluation_seeds": [74801, 74802, 74803, 74804, 74805],
+  "horizon_steps": 12000,
+  "cruise_speed_m_per_s": 0.5,
+  "terminate_on_success": true,
+  "controller_conditions": [
+    {
+      "name": "reach_a_yaw",
+      "yaw_gain_per_second": 0.75,
+      "yaw_deadband_degrees": 0.0,
+      "maximum_abs_curvature_per_m": 0.35,
+      "curvature_speed_reduction_gain": 0.0,
+      "minimum_turn_speed_fraction": 1.0
+    }
+  ],
+  "output_root": "artifacts/dev/fixed_map_reach_a_corrected_replication_v2_20260819",
+  "representative_video": {
+    "evaluation_seed": 74803,
+    "selection_rule": "same predeclared seed 74803 as the archived dual-view-v1 video; visual comparison only, no best-looking rollout selection"
+  },
+  "claim_boundary": "The replay may establish visual equivalence and improved topographic legibility only. It cannot create new locomotion, navigation, safety or optimality evidence."
+}

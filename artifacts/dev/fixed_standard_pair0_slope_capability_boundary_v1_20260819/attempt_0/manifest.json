@@ -1,0 +1,1020 @@
+{
+  "schema_version": "proxygap-pair0-slope-capability-boundary-artifact-v1",
+  "status": "read_only_standard_slope_boundary_formally_evaluated",
+  "training_performed": false,
+  "checkpoint_modified": false,
+  "reward_changed": false,
+  "friction_changed": false,
+  "energy_formula_changed": false,
+  "energy_status": "measurement_only_not_reward_or_gate",
+  "fixed_map_evaluated": false,
+  "video_rendered": false,
+  "candidate_promoted": false,
+  "runtime_dependency_sha256_before": {
+    "scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e",
+    "scripts/run_fixed_standard_pair0_adaptation_l2b_extension.py": "6dfd283aaa7661e3806e9ca26f874a6088ebf0a39985d3ef3bd0c7edb6e493aa",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/evaluate_fixed_standard_distal_margin0_paired.py": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d",
+    "scripts/evaluate_local_preview_final_paired_direct_goal.py": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf",
+    "scripts/run_fixed_goal_support_priority_pilot.py": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a",
+    "scripts/run_fixed_goal_terrain_training.py": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d",
+    "scripts/run_curved_gait_training.py": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf",
+    "src/proxygap/__init__.py": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba",
+    "src/proxygap/ant_wrapper.py": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2",
+    "src/proxygap/curved_gait.py": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48",
+    "src/proxygap/fixed_goal_terrain.py": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2",
+    "src/proxygap/metrics.py": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397",
+    "src/proxygap/planar_transition.py": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805",
+    "src/proxygap/experiment.py": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629",
+    "src/proxygap/divergence.py": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459",
+    "src/proxygap/protocol.py": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d",
+    "src/proxygap/selection.py": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0",
+    "src/proxygap/two_experiment_protocol.py": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+  },
+  "runtime_snapshot_sha256_before": {
+    "scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e",
+    "scripts/run_fixed_standard_pair0_adaptation_l2b_extension.py": "6dfd283aaa7661e3806e9ca26f874a6088ebf0a39985d3ef3bd0c7edb6e493aa",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/evaluate_fixed_standard_distal_margin0_paired.py": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d",
+    "scripts/evaluate_local_preview_final_paired_direct_goal.py": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf",
+    "scripts/run_fixed_goal_support_priority_pilot.py": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a",
+    "scripts/run_fixed_goal_terrain_training.py": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d",
+    "scripts/run_curved_gait_training.py": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf",
+    "src/proxygap/__init__.py": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba",
+    "src/proxygap/ant_wrapper.py": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2",
+    "src/proxygap/curved_gait.py": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48",
+    "src/proxygap/fixed_goal_terrain.py": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2",
+    "src/proxygap/metrics.py": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397",
+    "src/proxygap/planar_transition.py": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805",
+    "src/proxygap/experiment.py": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629",
+    "src/proxygap/divergence.py": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459",
+    "src/proxygap/protocol.py": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d",
+    "src/proxygap/selection.py": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0",
+    "src/proxygap/two_experiment_protocol.py": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+  },
+  "runtime_dependency_sha256_after": {
+    "scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e",
+    "scripts/run_fixed_standard_pair0_adaptation_l2b_extension.py": "6dfd283aaa7661e3806e9ca26f874a6088ebf0a39985d3ef3bd0c7edb6e493aa",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/evaluate_fixed_standard_distal_margin0_paired.py": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d",
+    "scripts/evaluate_local_preview_final_paired_direct_goal.py": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf",
+    "scripts/run_fixed_goal_support_priority_pilot.py": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a",
+    "scripts/run_fixed_goal_terrain_training.py": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d",
+    "scripts/run_curved_gait_training.py": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf",
+    "src/proxygap/__init__.py": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba",
+    "src/proxygap/ant_wrapper.py": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2",
+    "src/proxygap/curved_gait.py": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48",
+    "src/proxygap/fixed_goal_terrain.py": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2",
+    "src/proxygap/metrics.py": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397",
+    "src/proxygap/planar_transition.py": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805",
+    "src/proxygap/experiment.py": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629",
+    "src/proxygap/divergence.py": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459",
+    "src/proxygap/protocol.py": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d",
+    "src/proxygap/selection.py": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0",
+    "src/proxygap/two_experiment_protocol.py": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+  },
+  "runtime_snapshot_sha256_after": {
+    "scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e",
+    "scripts/run_fixed_standard_pair0_adaptation_l2b_extension.py": "6dfd283aaa7661e3806e9ca26f874a6088ebf0a39985d3ef3bd0c7edb6e493aa",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/evaluate_fixed_standard_distal_margin0_paired.py": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d",
+    "scripts/evaluate_local_preview_final_paired_direct_goal.py": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf",
+    "scripts/run_fixed_goal_support_priority_pilot.py": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a",
+    "scripts/run_fixed_goal_terrain_training.py": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d",
+    "scripts/run_curved_gait_training.py": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf",
+    "src/proxygap/__init__.py": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba",
+    "src/proxygap/ant_wrapper.py": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2",
+    "src/proxygap/curved_gait.py": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48",
+    "src/proxygap/fixed_goal_terrain.py": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2",
+    "src/proxygap/metrics.py": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397",
+    "src/proxygap/planar_transition.py": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805",
+    "src/proxygap/experiment.py": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629",
+    "src/proxygap/divergence.py": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459",
+    "src/proxygap/protocol.py": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d",
+    "src/proxygap/selection.py": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0",
+    "src/proxygap/two_experiment_protocol.py": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+  },
+  "checkpoint": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\pair0_l2b_v3_20260819\\attempt_0\\pair0_adapt\\models\\checkpoint_2727936.zip",
+  "checkpoint_sha256": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+  "report": "REPORT.md",
+  "elapsed_seconds": 71.85910819999117,
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "mujoco": "3.11.0",
+    "stable_baselines3": "2.9.0",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.5.1"
+  },
+  "artifact_inventory_excludes_manifest_itself": [
+    {
+      "relative_path": "condition_assets/scenes/downhill_12deg/default_margin_001_control/ant_standard_scene.xml",
+      "size_bytes": 6219,
+      "sha256": "dc4de7cf61ca323a2ad2c4cad9dbf5e36daec180bbb5ff3b4a702f451cbc7634"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_12deg/default_margin_001_control/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "35ade9602169f70e38594476cfbed4681d7e8e311e699218025c16bdb7cd07d6"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_12deg/default_margin_001_control/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "2353a1aae025e50b7e89fe3eab5e9b90ad295d2b68059a8f0509569de2617a84"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_12deg/default_margin_001_control/terrain_contours.png",
+      "size_bytes": 920,
+      "sha256": "3e6f2f8c59d2de197782f30b2e2ed02370578878a2cbbdc01a514e5eadc70e7b"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_12deg/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "size_bytes": 7061,
+      "sha256": "3b096ce6e382dc34fdb8434b0b605ae6f1cab860ea0d8f5cd4617b026b5d1ffb"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_12deg/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "35ade9602169f70e38594476cfbed4681d7e8e311e699218025c16bdb7cd07d6"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_12deg/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "2353a1aae025e50b7e89fe3eab5e9b90ad295d2b68059a8f0509569de2617a84"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_12deg/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "size_bytes": 920,
+      "sha256": "3e6f2f8c59d2de197782f30b2e2ed02370578878a2cbbdc01a514e5eadc70e7b"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_16deg/default_margin_001_control/ant_standard_scene.xml",
+      "size_bytes": 6220,
+      "sha256": "bd877c7e18f9b5e71b1f20e82962a4e4fb414e942b61632d56677e54444336df"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_16deg/default_margin_001_control/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "f7773f651442d03006cf97c5f1ca9bd535c40e5a527cd655b73e9e36b219bd30"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_16deg/default_margin_001_control/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "d76e06b6e5b9860a10f3a4596eb2b5f0cfebb512e1fc6adfc31cd4277936e139"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_16deg/default_margin_001_control/terrain_contours.png",
+      "size_bytes": 923,
+      "sha256": "c7cdc70a57101494160e39b16ddc5d3743c9843c4c5821e5d9a0dd7dc93222db"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_16deg/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "size_bytes": 7062,
+      "sha256": "6e15e5a0e166d96425bfa67337eb28eba1e2baccbd865eab7793e71639f9db05"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_16deg/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "f7773f651442d03006cf97c5f1ca9bd535c40e5a527cd655b73e9e36b219bd30"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_16deg/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "d76e06b6e5b9860a10f3a4596eb2b5f0cfebb512e1fc6adfc31cd4277936e139"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_16deg/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "size_bytes": 923,
+      "sha256": "c7cdc70a57101494160e39b16ddc5d3743c9843c4c5821e5d9a0dd7dc93222db"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_20deg/default_margin_001_control/ant_standard_scene.xml",
+      "size_bytes": 6218,
+      "sha256": "ac320de99d66b5df081e36d68c353ac02ae61fcabf20f26accd2f436b23fb4c9"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_20deg/default_margin_001_control/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "0e02b567cd32fda7135cead00c5b08b69e2f83d9cce323570d49218cebf087e1"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_20deg/default_margin_001_control/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "282186846e18b9395cd20bb3630ada143761a6ef31747f58ac25c9af98fcf614"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_20deg/default_margin_001_control/terrain_contours.png",
+      "size_bytes": 920,
+      "sha256": "5839d858c07683aafbc9155a2734dc2ad4132e27a5f8e89e0c2d10c9c45a6922"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_20deg/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "size_bytes": 7060,
+      "sha256": "5147f037b3e1680e50c5f531282acadf9e3f9605a2671a085af9f32d49ffde66"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_20deg/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "0e02b567cd32fda7135cead00c5b08b69e2f83d9cce323570d49218cebf087e1"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_20deg/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "282186846e18b9395cd20bb3630ada143761a6ef31747f58ac25c9af98fcf614"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_20deg/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "size_bytes": 920,
+      "sha256": "5839d858c07683aafbc9155a2734dc2ad4132e27a5f8e89e0c2d10c9c45a6922"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_4deg/default_margin_001_control/ant_standard_scene.xml",
+      "size_bytes": 6225,
+      "sha256": "99a4979817726c390bc8cb3942f04ef2eb7cea29f8b110e6732c343b211b7699"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_4deg/default_margin_001_control/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "cfd5bdced043e687e5ebcd916148194bf80e34845624be473f4ee3a87e40c1a2"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_4deg/default_margin_001_control/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "0468327554891b671b3eb5a3780d6cb77a758be3647332bf19955f035df9c6f7"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_4deg/default_margin_001_control/terrain_contours.png",
+      "size_bytes": 920,
+      "sha256": "3e6f2f8c59d2de197782f30b2e2ed02370578878a2cbbdc01a514e5eadc70e7b"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_4deg/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "size_bytes": 7067,
+      "sha256": "bb8f0e68facab60a8bf8d483665b8ba00b6e7066b4862073fb0934d4673513bc"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_4deg/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "cfd5bdced043e687e5ebcd916148194bf80e34845624be473f4ee3a87e40c1a2"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_4deg/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "0468327554891b671b3eb5a3780d6cb77a758be3647332bf19955f035df9c6f7"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_4deg/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "size_bytes": 920,
+      "sha256": "3e6f2f8c59d2de197782f30b2e2ed02370578878a2cbbdc01a514e5eadc70e7b"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_8deg/default_margin_001_control/ant_standard_scene.xml",
+      "size_bytes": 6223,
+      "sha256": "87e69b47529337a430ae6b7a78e4f7b100ab07cd5e072c1a1d0fbfb5c02ae318"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_8deg/default_margin_001_control/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "86592a74cafe95da499cd5025a6a0dfeb1e2ffd6617a55e18feec34dae173940"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_8deg/default_margin_001_control/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "31ab14ea72a0fdf02f0ece4e5eda9a355fd56fa7f2b00feb59c1598844440242"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_8deg/default_margin_001_control/terrain_contours.png",
+      "size_bytes": 924,
+      "sha256": "fdc35c833c5ad14a610a3bb78a81f35301be93df7f35ccafc36c1c1fd9516cf0"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_8deg/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "size_bytes": 7065,
+      "sha256": "dfc03dd20abffe7eca8331fb80b04e5f17c7bf1faa7b72e6bd96deffb835d2f3"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_8deg/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "86592a74cafe95da499cd5025a6a0dfeb1e2ffd6617a55e18feec34dae173940"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_8deg/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "31ab14ea72a0fdf02f0ece4e5eda9a355fd56fa7f2b00feb59c1598844440242"
+    },
+    {
+      "relative_path": "condition_assets/scenes/downhill_8deg/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "size_bytes": 924,
+      "sha256": "fdc35c833c5ad14a610a3bb78a81f35301be93df7f35ccafc36c1c1fd9516cf0"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat/default_margin_001_control/ant_standard_scene.xml",
+      "size_bytes": 6234,
+      "sha256": "9ab941e158372fb328debf4aff3d57649981434e070f879d778301919adb1559"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat/default_margin_001_control/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "2797af3e149ed4cd565362585e1d0d54cf399610e8caf4055a9331f4e9d2c355"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat/default_margin_001_control/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "65440bf1960a0bad568848a9e9cd4f957f602a6fef790307b81bb7fb03ee8f1a"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat/default_margin_001_control/terrain_contours.png",
+      "size_bytes": 28750,
+      "sha256": "87c205d0f45908f0015014ab17c84710c47fc3b68b3304c0d3cb33216bf48f1c"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "size_bytes": 7076,
+      "sha256": "212b85ab8d34ff378271fe70a961cbdfa558e1cba8210d25a5d20a034ae2d6f9"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "2797af3e149ed4cd565362585e1d0d54cf399610e8caf4055a9331f4e9d2c355"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "65440bf1960a0bad568848a9e9cd4f957f602a6fef790307b81bb7fb03ee8f1a"
+    },
+    {
+      "relative_path": "condition_assets/scenes/flat/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "size_bytes": 28750,
+      "sha256": "87c205d0f45908f0015014ab17c84710c47fc3b68b3304c0d3cb33216bf48f1c"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_12deg/default_margin_001_control/ant_standard_scene.xml",
+      "size_bytes": 6221,
+      "sha256": "70de7dcd98f8696695b06989f2a709f700fceab12a3e708704c701a2490c7ca7"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_12deg/default_margin_001_control/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "0db369c6fbaa9f93f9c4eef6223b1b113b74cdaa972b714bdd5410ee6f46c004"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_12deg/default_margin_001_control/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "c9a52e84a12700ed122dc108584dded9891f895d2eac9bd360e15894eac60c2d"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_12deg/default_margin_001_control/terrain_contours.png",
+      "size_bytes": 921,
+      "sha256": "f842e208f144c022d6a00190f5aefd5f094cc61f8a6eca5f140f2a96e94d0b62"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_12deg/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "size_bytes": 7063,
+      "sha256": "33a226ec3f5207c0915e6d0726587e09b75c497b9bd7d2e82407ce133fb7a734"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_12deg/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "0db369c6fbaa9f93f9c4eef6223b1b113b74cdaa972b714bdd5410ee6f46c004"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_12deg/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "c9a52e84a12700ed122dc108584dded9891f895d2eac9bd360e15894eac60c2d"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_12deg/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "size_bytes": 921,
+      "sha256": "f842e208f144c022d6a00190f5aefd5f094cc61f8a6eca5f140f2a96e94d0b62"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_16deg/default_margin_001_control/ant_standard_scene.xml",
+      "size_bytes": 6223,
+      "sha256": "eb775b9ee095adb43926173e1c4c33801f53f8ac4feaa9bb2d82a97229ccdcbe"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_16deg/default_margin_001_control/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "31b6fba611751785c7cfdcb5b9b525c9ec6b91da623036e0b32eee67b9c2f8ea"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_16deg/default_margin_001_control/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "24822b1c8e3fca3627e721d57d9fe21f353d7f9dd49905190846e44f66e3e29f"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_16deg/default_margin_001_control/terrain_contours.png",
+      "size_bytes": 926,
+      "sha256": "3f4aa45dc19d2c3ef47333c98950b8175481bccb4aee71df38a698ac5d1faf5e"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_16deg/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "size_bytes": 7065,
+      "sha256": "c7b30631da16507f74322cfba974c9c1a840e9cf2ee27887373d0e15fa42fad0"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_16deg/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "31b6fba611751785c7cfdcb5b9b525c9ec6b91da623036e0b32eee67b9c2f8ea"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_16deg/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "24822b1c8e3fca3627e721d57d9fe21f353d7f9dd49905190846e44f66e3e29f"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_16deg/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "size_bytes": 926,
+      "sha256": "3f4aa45dc19d2c3ef47333c98950b8175481bccb4aee71df38a698ac5d1faf5e"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_20deg/default_margin_001_control/ant_standard_scene.xml",
+      "size_bytes": 6220,
+      "sha256": "934d908a8b055c538aac3cb3514298058ccbf2bfb6f02c7632cdd7f8b72f3aec"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_20deg/default_margin_001_control/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "2a5da922e242f96050581d7bc786bf539f950cb8cf966f80190b9d531b054395"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_20deg/default_margin_001_control/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "179888db3b111d3179b2a98fbf2414de289ae6bd76c2585fd802b9e9ea53487f"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_20deg/default_margin_001_control/terrain_contours.png",
+      "size_bytes": 920,
+      "sha256": "9dcbd263393bef97a3056c725642276bc87c659ca7bb48b1f2a4de17a5d0b508"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_20deg/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "size_bytes": 7062,
+      "sha256": "1b3789b1df0d2cd3d7b67d3f7b47f38ee8494f24ba3ac7f7aa3e503c2dafe200"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_20deg/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "2a5da922e242f96050581d7bc786bf539f950cb8cf966f80190b9d531b054395"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_20deg/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "179888db3b111d3179b2a98fbf2414de289ae6bd76c2585fd802b9e9ea53487f"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_20deg/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "size_bytes": 920,
+      "sha256": "9dcbd263393bef97a3056c725642276bc87c659ca7bb48b1f2a4de17a5d0b508"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_4deg/default_margin_001_control/ant_standard_scene.xml",
+      "size_bytes": 6227,
+      "sha256": "ec7391e54fcb05e0c728e35eb7390c5c0e93451b8cb82b866956562a40e3f777"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_4deg/default_margin_001_control/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "af79fff4b1b461e3322a8993133fe6b1b0fbb375ab4bbe0b5bce9741c72e0fe4"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_4deg/default_margin_001_control/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "8b53ce628558727c09c80cb140ba23e72ca1ca193378d9c4e1a198ac556ca433"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_4deg/default_margin_001_control/terrain_contours.png",
+      "size_bytes": 921,
+      "sha256": "f842e208f144c022d6a00190f5aefd5f094cc61f8a6eca5f140f2a96e94d0b62"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_4deg/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "size_bytes": 7069,
+      "sha256": "d96bf8555ad9451861182eb02320ef39cb71327baa3822f06b2f9c026b1608ad"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_4deg/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "af79fff4b1b461e3322a8993133fe6b1b0fbb375ab4bbe0b5bce9741c72e0fe4"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_4deg/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "8b53ce628558727c09c80cb140ba23e72ca1ca193378d9c4e1a198ac556ca433"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_4deg/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "size_bytes": 921,
+      "sha256": "f842e208f144c022d6a00190f5aefd5f094cc61f8a6eca5f140f2a96e94d0b62"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_8deg/default_margin_001_control/ant_standard_scene.xml",
+      "size_bytes": 6227,
+      "sha256": "fd62a15e77157e3ff0393e88440010373313f9c1a6176b68c90a924e90643436"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_8deg/default_margin_001_control/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "5602c376a6af0b6834196fcfc2a339699efc159100bfed7036f30c473c927492"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_8deg/default_margin_001_control/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "ca22e078aba52791555515f2b901e8d0f736586a222347581e48dcf6564d1f4e"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_8deg/default_margin_001_control/terrain_contours.png",
+      "size_bytes": 925,
+      "sha256": "8e719960695ba913c76a9a4508c907902f5ef7694ccab7300f2f485e91ff25c3"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_8deg/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml",
+      "size_bytes": 7069,
+      "sha256": "d6bdd7c25b51975a5783e68ac0e6739243344b457931e39d7bd359f548c21efa"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_8deg/explicit_floor_distal_pair_margin0_candidate/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "5602c376a6af0b6834196fcfc2a339699efc159100bfed7036f30c473c927492"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_8deg/explicit_floor_distal_pair_margin0_candidate/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "ca22e078aba52791555515f2b901e8d0f736586a222347581e48dcf6564d1f4e"
+    },
+    {
+      "relative_path": "condition_assets/scenes/uphill_8deg/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png",
+      "size_bytes": 925,
+      "sha256": "8e719960695ba913c76a9a4508c907902f5ef7694ccab7300f2f485e91ff25c3"
+    },
+    {
+      "relative_path": "corrected_slip_events.csv",
+      "size_bytes": 264,
+      "sha256": "8ebfb6bb920b38816b8387cf9575c405431f3e28436c54899b5d76894fbbc230"
+    },
+    {
+      "relative_path": "episode_metrics.csv",
+      "size_bytes": 13589,
+      "sha256": "e5c5cf0925cb28fdfa296a4876443dfaadbacc7fc4554163d02ac42c7ea69bee"
+    },
+    {
+      "relative_path": "frozen_config.json",
+      "size_bytes": 8257,
+      "sha256": "a5b496f30bb27aafea8f454ae3e64744602a97a2b9f8c5285b243c96f810f93b"
+    },
+    {
+      "relative_path": "prepared_scenes.json",
+      "size_bytes": 30120,
+      "sha256": "3dd471a3da79e133580c8985536403403ca43bce09b3ada3ac004d761d7bab8d"
+    },
+    {
+      "relative_path": "REPORT.md",
+      "size_bytes": 1909,
+      "sha256": "d7ad8304ce7af43aa17657e308e4a78f5f7888799cdd42750b8f6703c31879df"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/evaluate_fixed_standard_distal_margin0_paired.py",
+      "size_bytes": 52564,
+      "sha256": "6178d7ac3591fbbc5910e10e4b2f87d30b97763a7c05bcbd490e6f23e1292f0d"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py",
+      "size_bytes": 33298,
+      "sha256": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/evaluate_local_preview_final_paired_direct_goal.py",
+      "size_bytes": 48390,
+      "sha256": "e342d7555d1c0c164617f97d5ba2f446a67fa7094d16ca0fb9ab707ff971bdcf"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_curved_gait_training.py",
+      "size_bytes": 26577,
+      "sha256": "27dd9bbb7a7e46ebabe189088a0d0b1e862f35378954177090ed2862d127f9bf"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_fixed_goal_support_priority_pilot.py",
+      "size_bytes": 37911,
+      "sha256": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_fixed_goal_terrain_training.py",
+      "size_bytes": 27220,
+      "sha256": "6454c48dfb27d45160a9371975a7c78c033f72d11317b8c57c9c56421ccda56d"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py",
+      "size_bytes": 64791,
+      "sha256": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_fixed_standard_pair0_adaptation_l2b_extension.py",
+      "size_bytes": 66757,
+      "sha256": "6dfd283aaa7661e3806e9ca26f874a6088ebf0a39985d3ef3bd0c7edb6e493aa"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/run_fixed_standard_support_curriculum.py",
+      "size_bytes": 73213,
+      "sha256": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/__init__.py",
+      "size_bytes": 3658,
+      "sha256": "59111f68fc85d4b3997125aaeb6f152196c54a9324b3ffbfd2347138517b2aba"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/ant_wrapper.py",
+      "size_bytes": 114162,
+      "sha256": "a2d44ec441a2f8dbea6f0a84062e60b93c13c73619fa16a2efde5d49eeff3da2"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/curved_gait.py",
+      "size_bytes": 43440,
+      "sha256": "3ba08b7e7fe19b1e52e183f9bb6a248bd825c284e0570fbbb339c17347741b48"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/divergence.py",
+      "size_bytes": 15159,
+      "sha256": "7e62af228a85df3f68ef98928c5543a21b739be2a62536e7ecfe7ae5a2e49459"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/experiment.py",
+      "size_bytes": 36570,
+      "sha256": "b1530995a2ce2fd7eb0ad5f59601ff1d8ba7e03af107a49db58c0d7811f69629"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/fixed_goal_terrain.py",
+      "size_bytes": 31462,
+      "sha256": "22c2a71c0fc8561b709f8d48a79d9589814b314bc9772a068ae44f98a13ad1a2"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/metrics.py",
+      "size_bytes": 32658,
+      "sha256": "0d0fe4ab6ee5334b851c2ac9bd24aeb4217a9e1f5fd2cb5a164496c8c60fe397"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/planar_transition.py",
+      "size_bytes": 37380,
+      "sha256": "e2aa64f27453a8ad5ef58a5f52bb80ba5a96a65d6664965aabd4a0ae0ca5f805"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/protocol.py",
+      "size_bytes": 5746,
+      "sha256": "1abbae8a45c706f67b0e4a1778207f6f17e5e319bcb325a1f6fda663d592866d"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/selection.py",
+      "size_bytes": 6583,
+      "sha256": "3ee7912df101612276cf86de73fcd18b60cd618605fc5cf789c2702815ca75e0"
+    },
+    {
+      "relative_path": "runtime_snapshot/src/proxygap/two_experiment_protocol.py",
+      "size_bytes": 3519,
+      "sha256": "ae7ddc69f19ca5520f17648fd10f14a188a7a1521a34bac4e315193ad41a9314"
+    },
+    {
+      "relative_path": "scene_contract_audits.json",
+      "size_bytes": 141083,
+      "sha256": "a5093ada867eca7c10d756ea01f01fcb537da324e2e4cc2d197f00202c77c71a"
+    },
+    {
+      "relative_path": "scene_sources/downhill_12deg/standard_scene_manifest.json",
+      "size_bytes": 7408,
+      "sha256": "65fb20e357f6abe7671b35e71d38d7cb52137affdbc0efce0623c56160c8ab9d"
+    },
+    {
+      "relative_path": "scene_sources/downhill_12deg/standard_scenes/downhill_8deg/ant_standard_scene.xml",
+      "size_bytes": 6219,
+      "sha256": "dc4de7cf61ca323a2ad2c4cad9dbf5e36daec180bbb5ff3b4a702f451cbc7634"
+    },
+    {
+      "relative_path": "scene_sources/downhill_12deg/standard_scenes/downhill_8deg/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "35ade9602169f70e38594476cfbed4681d7e8e311e699218025c16bdb7cd07d6"
+    },
+    {
+      "relative_path": "scene_sources/downhill_12deg/standard_scenes/downhill_8deg/scene_manifest.json",
+      "size_bytes": 2022,
+      "sha256": "a004430da13f0e7c09791afaf39a24d66c22a5850df0db4404a23241efd9b4cf"
+    },
+    {
+      "relative_path": "scene_sources/downhill_12deg/standard_scenes/downhill_8deg/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "2353a1aae025e50b7e89fe3eab5e9b90ad295d2b68059a8f0509569de2617a84"
+    },
+    {
+      "relative_path": "scene_sources/downhill_12deg/standard_scenes/downhill_8deg/terrain_contours.png",
+      "size_bytes": 920,
+      "sha256": "3e6f2f8c59d2de197782f30b2e2ed02370578878a2cbbdc01a514e5eadc70e7b"
+    },
+    {
+      "relative_path": "scene_sources/downhill_16deg/standard_scene_manifest.json",
+      "size_bytes": 7405,
+      "sha256": "45132209417558201f4736ddedfc853723f51626a285e936eca56b303b25b7d4"
+    },
+    {
+      "relative_path": "scene_sources/downhill_16deg/standard_scenes/downhill_8deg/ant_standard_scene.xml",
+      "size_bytes": 6220,
+      "sha256": "bd877c7e18f9b5e71b1f20e82962a4e4fb414e942b61632d56677e54444336df"
+    },
+    {
+      "relative_path": "scene_sources/downhill_16deg/standard_scenes/downhill_8deg/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "f7773f651442d03006cf97c5f1ca9bd535c40e5a527cd655b73e9e36b219bd30"
+    },
+    {
+      "relative_path": "scene_sources/downhill_16deg/standard_scenes/downhill_8deg/scene_manifest.json",
+      "size_bytes": 2019,
+      "sha256": "e64a9cea886ed5b29951811a535dc0383e1d2904a6b6330a6038385ef9e7b139"
+    },
+    {
+      "relative_path": "scene_sources/downhill_16deg/standard_scenes/downhill_8deg/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "d76e06b6e5b9860a10f3a4596eb2b5f0cfebb512e1fc6adfc31cd4277936e139"
+    },
+    {
+      "relative_path": "scene_sources/downhill_16deg/standard_scenes/downhill_8deg/terrain_contours.png",
+      "size_bytes": 923,
+      "sha256": "c7cdc70a57101494160e39b16ddc5d3743c9843c4c5821e5d9a0dd7dc93222db"
+    },
+    {
+      "relative_path": "scene_sources/downhill_20deg/standard_scene_manifest.json",
+      "size_bytes": 7409,
+      "sha256": "4ce1ef3491146c1e5c94a6b2f5fafc39dacf544f2268469a1ec6bd9d17d9d5e9"
+    },
+    {
+      "relative_path": "scene_sources/downhill_20deg/standard_scenes/downhill_8deg/ant_standard_scene.xml",
+      "size_bytes": 6218,
+      "sha256": "ac320de99d66b5df081e36d68c353ac02ae61fcabf20f26accd2f436b23fb4c9"
+    },
+    {
+      "relative_path": "scene_sources/downhill_20deg/standard_scenes/downhill_8deg/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "0e02b567cd32fda7135cead00c5b08b69e2f83d9cce323570d49218cebf087e1"
+    },
+    {
+      "relative_path": "scene_sources/downhill_20deg/standard_scenes/downhill_8deg/scene_manifest.json",
+      "size_bytes": 2023,
+      "sha256": "d2560d92d594ac91b3f7439226e27f44d32f8af0d71b5d1f0e66f5f738a66f35"
+    },
+    {
+      "relative_path": "scene_sources/downhill_20deg/standard_scenes/downhill_8deg/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "282186846e18b9395cd20bb3630ada143761a6ef31747f58ac25c9af98fcf614"
+    },
+    {
+      "relative_path": "scene_sources/downhill_20deg/standard_scenes/downhill_8deg/terrain_contours.png",
+      "size_bytes": 920,
+      "sha256": "5839d858c07683aafbc9155a2734dc2ad4132e27a5f8e89e0c2d10c9c45a6922"
+    },
+    {
+      "relative_path": "scene_sources/downhill_4deg/standard_scene_manifest.json",
+      "size_bytes": 7403,
+      "sha256": "7e0fc29a573c9fd525b92fe7d88f9c40063bc41a9fc9e0d9c1a6879fd990b1f8"
+    },
+    {
+      "relative_path": "scene_sources/downhill_4deg/standard_scenes/downhill_8deg/ant_standard_scene.xml",
+      "size_bytes": 6225,
+      "sha256": "99a4979817726c390bc8cb3942f04ef2eb7cea29f8b110e6732c343b211b7699"
+    },
+    {
+      "relative_path": "scene_sources/downhill_4deg/standard_scenes/downhill_8deg/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "cfd5bdced043e687e5ebcd916148194bf80e34845624be473f4ee3a87e40c1a2"
+    },
+    {
+      "relative_path": "scene_sources/downhill_4deg/standard_scenes/downhill_8deg/scene_manifest.json",
+      "size_bytes": 2018,
+      "sha256": "73162d1e3a3c3d72513cfb1e0f78382ebc9cda67808c660a9e26f0816b20e9f8"
+    },
+    {
+      "relative_path": "scene_sources/downhill_4deg/standard_scenes/downhill_8deg/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "0468327554891b671b3eb5a3780d6cb77a758be3647332bf19955f035df9c6f7"
+    },
+    {
+      "relative_path": "scene_sources/downhill_4deg/standard_scenes/downhill_8deg/terrain_contours.png",
+      "size_bytes": 920,
+      "sha256": "3e6f2f8c59d2de197782f30b2e2ed02370578878a2cbbdc01a514e5eadc70e7b"
+    },
+    {
+      "relative_path": "scene_sources/downhill_8deg/standard_scene_manifest.json",
+      "size_bytes": 7402,
+      "sha256": "9680ef22622324a03db99448f840628e255080561b83ce8820a5763aab020ab5"
+    },
+    {
+      "relative_path": "scene_sources/downhill_8deg/standard_scenes/downhill_8deg/ant_standard_scene.xml",
+      "size_bytes": 6223,
+      "sha256": "87e69b47529337a430ae6b7a78e4f7b100ab07cd5e072c1a1d0fbfb5c02ae318"
+    },
+    {
+      "relative_path": "scene_sources/downhill_8deg/standard_scenes/downhill_8deg/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "86592a74cafe95da499cd5025a6a0dfeb1e2ffd6617a55e18feec34dae173940"
+    },
+    {
+      "relative_path": "scene_sources/downhill_8deg/standard_scenes/downhill_8deg/scene_manifest.json",
+      "size_bytes": 2017,
+      "sha256": "7de23917e2b7d8afc267f08d04f639e6a0dad5894de8463aef2ffce2a1ae2d07"
+    },
+    {
+      "relative_path": "scene_sources/downhill_8deg/standard_scenes/downhill_8deg/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "31ab14ea72a0fdf02f0ece4e5eda9a355fd56fa7f2b00feb59c1598844440242"
+    },
+    {
+      "relative_path": "scene_sources/downhill_8deg/standard_scenes/downhill_8deg/terrain_contours.png",
+      "size_bytes": 924,
+      "sha256": "fdc35c833c5ad14a610a3bb78a81f35301be93df7f35ccafc36c1c1fd9516cf0"
+    },
+    {
+      "relative_path": "scene_sources/flat/standard_scene_manifest.json",
+      "size_bytes": 7294,
+      "sha256": "59919c385365995f461ad725d44edee8b04c030cef4cb6abf53c98c9a231aef0"
+    },
+    {
+      "relative_path": "scene_sources/flat/standard_scenes/flat/ant_standard_scene.xml",
+      "size_bytes": 6234,
+      "sha256": "9ab941e158372fb328debf4aff3d57649981434e070f879d778301919adb1559"
+    },
+    {
+      "relative_path": "scene_sources/flat/standard_scenes/flat/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "2797af3e149ed4cd565362585e1d0d54cf399610e8caf4055a9331f4e9d2c355"
+    },
+    {
+      "relative_path": "scene_sources/flat/standard_scenes/flat/scene_manifest.json",
+      "size_bytes": 1936,
+      "sha256": "cca2789f9e056d235b168a589c978a8ebcbcf31f9cf4372d8f7c75b170600853"
+    },
+    {
+      "relative_path": "scene_sources/flat/standard_scenes/flat/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "65440bf1960a0bad568848a9e9cd4f957f602a6fef790307b81bb7fb03ee8f1a"
+    },
+    {
+      "relative_path": "scene_sources/flat/standard_scenes/flat/terrain_contours.png",
+      "size_bytes": 28750,
+      "sha256": "87c205d0f45908f0015014ab17c84710c47fc3b68b3304c0d3cb33216bf48f1c"
+    },
+    {
+      "relative_path": "scene_sources/uphill_12deg/standard_scene_manifest.json",
+      "size_bytes": 7384,
+      "sha256": "9f1e34eb05148a879ee5d3ba76cb9e1a11b19af702a2395e5236da99beffb6f5"
+    },
+    {
+      "relative_path": "scene_sources/uphill_12deg/standard_scenes/uphill_8deg/ant_standard_scene.xml",
+      "size_bytes": 6221,
+      "sha256": "70de7dcd98f8696695b06989f2a709f700fceab12a3e708704c701a2490c7ca7"
+    },
+    {
+      "relative_path": "scene_sources/uphill_12deg/standard_scenes/uphill_8deg/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "0db369c6fbaa9f93f9c4eef6223b1b113b74cdaa972b714bdd5410ee6f46c004"
+    },
+    {
+      "relative_path": "scene_sources/uphill_12deg/standard_scenes/uphill_8deg/scene_manifest.json",
+      "size_bytes": 2004,
+      "sha256": "3fffd91a42da64eddddcb4153e5647aa6089bbfb32a1c21a8d775006b97d99c8"
+    },
+    {
+      "relative_path": "scene_sources/uphill_12deg/standard_scenes/uphill_8deg/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "c9a52e84a12700ed122dc108584dded9891f895d2eac9bd360e15894eac60c2d"
+    },
+    {
+      "relative_path": "scene_sources/uphill_12deg/standard_scenes/uphill_8deg/terrain_contours.png",
+      "size_bytes": 921,
+      "sha256": "f842e208f144c022d6a00190f5aefd5f094cc61f8a6eca5f140f2a96e94d0b62"
+    },
+    {
+      "relative_path": "scene_sources/uphill_16deg/standard_scene_manifest.json",
+      "size_bytes": 7381,
+      "sha256": "e03d44ffc5b6267eac537edeb608540a13472bea439fe470c7f3c04a774648d1"
+    },
+    {
+      "relative_path": "scene_sources/uphill_16deg/standard_scenes/uphill_8deg/ant_standard_scene.xml",
+      "size_bytes": 6223,
+      "sha256": "eb775b9ee095adb43926173e1c4c33801f53f8ac4feaa9bb2d82a97229ccdcbe"
+    },
+    {
+      "relative_path": "scene_sources/uphill_16deg/standard_scenes/uphill_8deg/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "31b6fba611751785c7cfdcb5b9b525c9ec6b91da623036e0b32eee67b9c2f8ea"
+    },
+    {
+      "relative_path": "scene_sources/uphill_16deg/standard_scenes/uphill_8deg/scene_manifest.json",
+      "size_bytes": 2001,
+      "sha256": "99f69b3cbeca02193f6a341c27aac55e69a8a0894d61d2b0f5f7417635803a6b"
+    },
+    {
+      "relative_path": "scene_sources/uphill_16deg/standard_scenes/uphill_8deg/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "24822b1c8e3fca3627e721d57d9fe21f353d7f9dd49905190846e44f66e3e29f"
+    },
+    {
+      "relative_path": "scene_sources/uphill_16deg/standard_scenes/uphill_8deg/terrain_contours.png",
+      "size_bytes": 926,
+      "sha256": "3f4aa45dc19d2c3ef47333c98950b8175481bccb4aee71df38a698ac5d1faf5e"
+    },
+    {
+      "relative_path": "scene_sources/uphill_20deg/standard_scene_manifest.json",
+      "size_bytes": 7385,
+      "sha256": "7f8fb46f8be35a84b3adabbed375a22ba9a5ac2ee86ef1824d1e4484542ad613"
+    },
+    {
+      "relative_path": "scene_sources/uphill_20deg/standard_scenes/uphill_8deg/ant_standard_scene.xml",
+      "size_bytes": 6220,
+      "sha256": "934d908a8b055c538aac3cb3514298058ccbf2bfb6f02c7632cdd7f8b72f3aec"
+    },
+    {
+      "relative_path": "scene_sources/uphill_20deg/standard_scenes/uphill_8deg/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "2a5da922e242f96050581d7bc786bf539f950cb8cf966f80190b9d531b054395"
+    },
+    {
+      "relative_path": "scene_sources/uphill_20deg/standard_scenes/uphill_8deg/scene_manifest.json",
+      "size_bytes": 2005,
+      "sha256": "2f4a5e8fac37e9903e0464ae4c1c807f4240df517ba18b5024caef365c09b08d"
+    },
+    {
+      "relative_path": "scene_sources/uphill_20deg/standard_scenes/uphill_8deg/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "179888db3b111d3179b2a98fbf2414de289ae6bd76c2585fd802b9e9ea53487f"
+    },
+    {
+      "relative_path": "scene_sources/uphill_20deg/standard_scenes/uphill_8deg/terrain_contours.png",
+      "size_bytes": 920,
+      "sha256": "9dcbd263393bef97a3056c725642276bc87c659ca7bb48b1f2a4de17a5d0b508"
+    },
+    {
+      "relative_path": "scene_sources/uphill_4deg/standard_scene_manifest.json",
+      "size_bytes": 7379,
+      "sha256": "3458ff716f3ebf6b5aadd232a6e9e2309d20d6c9528614362523e024fcee1f07"
+    },
+    {
+      "relative_path": "scene_sources/uphill_4deg/standard_scenes/uphill_8deg/ant_standard_scene.xml",
+      "size_bytes": 6227,
+      "sha256": "ec7391e54fcb05e0c728e35eb7390c5c0e93451b8cb82b866956562a40e3f777"
+    },
+    {
+      "relative_path": "scene_sources/uphill_4deg/standard_scenes/uphill_8deg/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "af79fff4b1b461e3322a8993133fe6b1b0fbb375ab4bbe0b5bce9741c72e0fe4"
+    },
+    {
+      "relative_path": "scene_sources/uphill_4deg/standard_scenes/uphill_8deg/scene_manifest.json",
+      "size_bytes": 2000,
+      "sha256": "b5d888532aaa795eef07da899ae83cfaaad491a2190c8d40cba09c880e930543"
+    },
+    {
+      "relative_path": "scene_sources/uphill_4deg/standard_scenes/uphill_8deg/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "8b53ce628558727c09c80cb140ba23e72ca1ca193378d9c4e1a198ac556ca433"
+    },
+    {
+      "relative_path": "scene_sources/uphill_4deg/standard_scenes/uphill_8deg/terrain_contours.png",
+      "size_bytes": 921,
+      "sha256": "f842e208f144c022d6a00190f5aefd5f094cc61f8a6eca5f140f2a96e94d0b62"
+    },
+    {
+      "relative_path": "scene_sources/uphill_8deg/standard_scene_manifest.json",
+      "size_bytes": 7378,
+      "sha256": "f3ccbf8d0ba0ae475d7d2f4c8713d80ac8fffe1934e521c9abf3f193489bc2d0"
+    },
+    {
+      "relative_path": "scene_sources/uphill_8deg/standard_scenes/uphill_8deg/ant_standard_scene.xml",
+      "size_bytes": 6227,
+      "sha256": "fd62a15e77157e3ff0393e88440010373313f9c1a6176b68c90a924e90643436"
+    },
+    {
+      "relative_path": "scene_sources/uphill_8deg/standard_scenes/uphill_8deg/heights_m.npy",
+      "size_bytes": 528520,
+      "sha256": "5602c376a6af0b6834196fcfc2a339699efc159100bfed7036f30c473c927492"
+    },
+    {
+      "relative_path": "scene_sources/uphill_8deg/standard_scenes/uphill_8deg/scene_manifest.json",
+      "size_bytes": 1999,
+      "sha256": "6bddfb412c04205055ce311d2eccbe26d558fd8fa7a32e44c2eec3caf3a2b0ea"
+    },
+    {
+      "relative_path": "scene_sources/uphill_8deg/standard_scenes/uphill_8deg/terrain.hfield",
+      "size_bytes": 264204,
+      "sha256": "ca22e078aba52791555515f2b901e8d0f736586a222347581e48dcf6564d1f4e"
+    },
+    {
+      "relative_path": "scene_sources/uphill_8deg/standard_scenes/uphill_8deg/terrain_contours.png",
+      "size_bytes": 925,
+      "sha256": "8e719960695ba913c76a9a4508c907902f5ef7694ccab7300f2f485e91ff25c3"
+    },
+    {
+      "relative_path": "summary.json",
+      "size_bytes": 26238,
+      "sha256": "519a52666ae030ece23a286e5f2c3407470bc02fc99c880c5d5c330db2634674"
+    }
+  ]
+}

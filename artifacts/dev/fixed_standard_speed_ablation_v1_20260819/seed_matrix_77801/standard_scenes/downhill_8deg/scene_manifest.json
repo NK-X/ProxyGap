@@ -1,0 +1,37 @@
+{
+  "scene_name": "downhill_8deg",
+  "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\standard_scenes\\downhill_8deg\\ant_standard_scene.xml",
+  "xml_sha256": "87e69b47529337a430ae6b7a78e4f7b100ab07cd5e072c1a1d0fbfb5c02ae318",
+  "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\standard_scenes\\downhill_8deg\\heights_m.npy",
+  "heights_sha256": "86592a74cafe95da499cd5025a6a0dfeb1e2ffd6617a55e18feec34dae173940",
+  "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\standard_scenes\\downhill_8deg\\terrain.hfield",
+  "hfield_sha256": "31ab14ea72a0fdf02f0ece4e5eda9a355fd56fa7f2b00feb59c1598844440242",
+  "texture_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_speed_ablation_v1_20260819\\seed_matrix_77801\\standard_scenes\\downhill_8deg\\terrain_contours.png",
+  "texture_sha256": "fdc35c833c5ad14a610a3bb78a81f35301be93df7f35ccafc36c1c1fd9516cf0",
+  "map_half_extent_m": 10.0,
+  "start_xy_m": [
+    -6.0,
+    0.0
+  ],
+  "goal_xy_m": [
+    6.0,
+    0.0
+  ],
+  "minimum_height_m": -1.4054083470239145,
+  "maximum_height_m": 1.4054083470239145,
+  "height_range_m": 2.810816694047829,
+  "maximum_gradient_degrees": 8.000000000000043,
+  "start_surface": {
+    "terrain_height_m": 0.8432450082143487,
+    "gradient_x": -0.14054083470239148,
+    "gradient_y": 0.0,
+    "gradient_degrees": 8.000000000000002
+  },
+  "fixed_friction": [
+    1.0,
+    0.5,
+    0.5
+  ],
+  "condim": 3,
+  "robot_signature_matches_base": true
+}

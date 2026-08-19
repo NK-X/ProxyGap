@@ -1,0 +1,180 @@
+{
+  "schema_version": "proxygap-fixed-standard-pair0-adaptation-l2-pilot-v1",
+  "config_id": "fixed_standard_pair0_adaptation_l2_pilot_v1_20260819",
+  "status": "frozen_l2_exploratory_single_training_seed",
+  "purpose": "Paired continuation pilot testing whether a policy can adapt to four explicit terrain-to-distal-foot margin=0 contact pairs without changing reward, observation, friction, energy accounting or control frequency.",
+  "source": {
+    "standard_protocol": "configs/fixed_standard_support_curriculum_v1_20260819.json",
+    "standard_protocol_sha256": "06979405fa0122d9386a8d2ed12619db97d71c73b3cd1a08ef404ee6c627f927",
+    "reward_configuration": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+    "reward_configuration_sha256": "0d20c29caffb7206924e6520b6e52b718c86aac5cdaad1d01a4361c0b5ce3a7f",
+    "checkpoint": "artifacts/dev/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819/seed_62802/models/checkpoint_2596864.zip",
+    "checkpoint_sha256": "5bfd212b810af0189009f067ee7be8e8d4702fe1bee8cf025ba82401f931ff1e",
+    "checkpoint_timesteps": 2596864,
+    "observation_dimension": 135,
+    "action_dimension": 8,
+    "old_smoke_checkpoint_as_source": false
+  },
+  "authorising_l2_evidence": {
+    "pair_diagnostic_configuration": "configs/fixed_standard_distal_margin0_paired_diagnostic_v1_20260819.json",
+    "pair_diagnostic_configuration_sha256": "656a85519cf55d35a3dc0b0eed5670377c228f1545bdbc714390690e7cb69043",
+    "corrected_slip_configuration": "configs/fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819.json",
+    "corrected_slip_configuration_sha256": "534876e84db84fec3ce0b79996428e093b6b157534bb0140375a597e71faf0c2",
+    "corrected_slip_summary": "artifacts/dev/fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819/source_stage1/corrected_slip_summary.json",
+    "corrected_slip_summary_sha256": "d4ff08aacd665bc0bef4541effc8fbe4e1ee0e964d943e51c4b9752823c8f9c1",
+    "corrected_slip_manifest": "artifacts/dev/fixed_standard_explicit_pair_corrected_slip_audit_v1_20260819/source_stage1/manifest.json",
+    "corrected_slip_manifest_sha256": "9bc9cac51b3f04b954482c6541f03bdbeb55eb313563d0413942f0f975e87bed",
+    "required_supports_small_bounded_exploratory_training": true,
+    "formal_training_or_promotion_authorised": false
+  },
+  "conditions": [
+    {
+      "condition_id": "DEFAULT_CONTINUE",
+      "explicit_pair_count": 0
+    },
+    {
+      "condition_id": "PAIR0_ADAPT",
+      "explicit_pair_count": 4
+    }
+  ],
+  "contact_contract": {
+    "terrain_geom": "floor",
+    "distal_geoms": [
+      "left_ankle_geom",
+      "right_ankle_geom",
+      "third_ankle_geom",
+      "fourth_ankle_geom"
+    ],
+    "all_geom_margins_m": 0.01,
+    "explicit_pair_margin_m": 0.0,
+    "explicit_pair_gap_m": 0.0,
+    "condim": 3,
+    "geom_friction": [1.0, 0.5, 0.5],
+    "explicit_pair_friction": [1.0, 1.0, 0.5, 0.5, 0.5],
+    "solref": [0.02, 1.0],
+    "solreffriction": [0.0, 0.0],
+    "solimp": [0.9, 0.95, 0.001, 0.5, 2.0],
+    "adhesion": 0.0,
+    "all_ground_pairs_included": false
+  },
+  "training": {
+    "training_seed": 62805,
+    "scene_order": ["flat", "uphill_8deg", "downhill_8deg", "bowl_exit"],
+    "parallel_environments": 4,
+    "cruise_speed_m_per_s": 0.55,
+    "max_episode_steps": 600,
+    "additional_timesteps_per_condition": 65536,
+    "checkpoint_interval_timesteps": 16384,
+    "checkpoint_additional_timesteps": [16384, 32768, 49152, 65536],
+    "same_source_checkpoint_for_both_conditions": true,
+    "same_training_seed_for_both_conditions": true,
+    "condition_run_order": ["DEFAULT_CONTINUE", "PAIR0_ADAPT"]
+  },
+  "evaluation": {
+    "seeds": [82801, 82802, 82803],
+    "representative_trace_seed": 82802,
+    "scene_order": ["flat", "uphill_8deg", "downhill_8deg", "bowl_exit"],
+    "episodes_per_checkpoint": 12,
+    "max_episode_steps": 600,
+    "cruise_speed_m_per_s": 0.55,
+    "deterministic_policy": true,
+    "physics_timestep_seconds": 0.01,
+    "physics_substeps_per_control_step": 5,
+    "all_five_physics_substeps_required": true,
+    "corrected_slip": {
+      "tangential_speed_threshold_m_per_s": 0.2,
+      "minimum_normal_force_n": 1.0,
+      "landing_grace_seconds": 0.1,
+      "minimum_sustained_seconds": 0.2,
+      "denominator": "physics_substeps_with_at_least_one_distal_foot_contact"
+    }
+  },
+  "prospective_final_gate": {
+    "minimum_pair0_minus_default_pooled_full_interval_zero_foot_reduction": 0.10,
+    "minimum_pair0_minus_default_mean_support_count_increase": 0.20,
+    "minimum_pair0_to_default_mean_best_progress_ratio": 0.90,
+    "minimum_pair0_to_default_uphill_best_progress_ratio": 0.85,
+    "minimum_pair0_to_default_downhill_best_progress_ratio": 0.85,
+    "minimum_pair0_minus_default_success_count": 0,
+    "maximum_pair0_fall_count": 0,
+    "maximum_pair0_torso_ground_episode_count": 0,
+    "maximum_pair0_sustained_nonfoot_contact_episode_count": 0,
+    "maximum_pair0_minus_default_corrected_sustained_slip_per_supported_fraction": 0.02,
+    "maximum_pair0_minus_default_corrected_slip_events_per_100_supported_substeps": 0.20,
+    "frozen_unadapted_pair0_pooled_full_interval_zero_foot_fraction": 0.028055555555555556,
+    "maximum_pair0_full_interval_worsening_vs_frozen_unadapted_pair0": 0.03,
+    "required_all_checks": true
+  },
+  "checkpoint_early_stopping": {
+    "fail_on_any_nonfinite_or_contract_mismatch": true,
+    "maximum_fall_count_each_condition": 0,
+    "maximum_torso_ground_episode_count_each_condition": 0,
+    "maximum_sustained_nonfoot_contact_episode_count_each_condition": 0,
+    "nonfoot_contact_minimum_sustained_seconds": 0.20,
+    "maximum_pair0_pooled_full_interval_zero_foot_fraction": 0.08,
+    "maximum_corrected_sustained_slip_per_supported_fraction_each_condition": 0.02,
+    "maximum_corrected_slip_events_per_100_supported_substeps_each_condition": 0.20,
+    "qualified_transient_per_supported_warning_threshold": 0.10742616033755274,
+    "qualified_transient_warning_only": true,
+    "pair0_checkpoint_32768": {
+      "frozen_pair0_mean_best_progress_m": 6.082593159719103,
+      "minimum_fraction_of_frozen_pair0_progress": 0.80,
+      "absolute_progress_floor_m": 4.866074527775282,
+      "maximum_improvement_from_checkpoint_16384_m": 0.10,
+      "stop_only_if_both_progress_conditions_hold": true
+    }
+  },
+  "ppo": {
+    "policy": "MlpPolicy",
+    "n_steps": 512,
+    "batch_size": 1024,
+    "n_epochs": 10,
+    "learning_rate": 0.00003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.001,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "policy_kwargs": {
+      "net_arch": [64, 64],
+      "activation_fn": "Tanh"
+    },
+    "device": "cpu",
+    "torch_num_threads": 2
+  },
+  "invariants": {
+    "reward_unchanged": true,
+    "observation_135d_unchanged": true,
+    "friction_unchanged": true,
+    "energy_formula_unchanged": true,
+    "energy_status": "measurement_only_not_reward",
+    "control_frequency_20_hz_unchanged": true,
+    "robot_xml_change_limited_to_four_explicit_pairs_for_pair0": true,
+    "old_artifacts_overwritten": false
+  },
+  "turning_gate": {
+    "status": "not_run_in_this_pilot",
+    "fixed_map_entry_authorised_if_not_run": false
+  },
+  "smoke": {
+    "additional_timesteps_per_condition": 2048,
+    "checkpoint_interval_timesteps": 2048,
+    "evaluation_seeds": [82801],
+    "evaluation_max_episode_steps": 80,
+    "scientific_gate_applied": false
+  },
+  "execution": {
+    "smoke_output_root": "artifacts/smoke/fixed_standard_pair0_adaptation_l2_pilot_v1_20260819",
+    "development_output_root": "artifacts/dev/fixed_standard_pair0_adaptation_l2_pilot_v1_20260819",
+    "attempt_subdirectory_template": "attempt_{attempt}",
+    "maximum_protocol_retry_index": 1,
+    "fail_if_attempt_root_exists": true,
+    "subprocess_start_method": "spawn",
+    "fixed_map_evaluation": false,
+    "video_rendering": false,
+    "promotion": false
+  },
+  "claim_boundary": "This is an L2 exploratory one-training-seed paired pilot. It may justify or reject a later turning regression test; it cannot establish robustness, random-map generalisation, optimality, electrical-energy improvement or promotion."
+}

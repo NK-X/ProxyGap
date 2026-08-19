@@ -1,0 +1,90 @@
+{
+  "schema_version": "proxygap-post-seal-full-map-eval-video-v1",
+  "config_id": "post_seal_full_map_eval_video_v1_20260819",
+  "status": "frozen_read_only_formal_episode_video",
+  "purpose": "Render the already-completed single formal PAIR0 full-map episode as one auditable dual-view diagnostic video. The replay must match every comparable field in the frozen formal control trace and may not train, change seed, checkpoint, contact, controller or map.",
+  "formal_evidence": {
+    "artifact_root": "artifacts/dev/post_seal_full_map_eval_v1_20260819/attempt_0",
+    "manifest_sha256": "b3d37af196c16316cc0ea83581ea65945e207b5896da381548b57fa0336c6038",
+    "frozen_config": "artifacts/dev/post_seal_full_map_eval_v1_20260819/attempt_0/frozen_config.json",
+    "frozen_config_sha256": "2378d1b80d418d348e6aaa636e090e2c15c3652a7d60ee6ef431ba28a71482d0",
+    "execution_record": "artifacts/dev/post_seal_full_map_eval_v1_20260819/attempt_0/execution_record.json",
+    "execution_record_sha256": "fb569e5c87676382c1ff6b4d9ae97bee642f0dcf64d14d7aaba940f1796540c8",
+    "episode_result": "artifacts/dev/post_seal_full_map_eval_v1_20260819/attempt_0/episode_result.json",
+    "episode_result_sha256": "496bfaf2b4f7ae70bd540b518e4e28f6780389d622f47d3d1f667c8efdc0f174",
+    "control_trace": "artifacts/dev/post_seal_full_map_eval_v1_20260819/attempt_0/control_step_trace.csv",
+    "control_trace_sha256": "0dd0c954e1788a0ecc01a9116870d6aea425fd377b316c657c5b2e56ac91ef33",
+    "physics_substep_trace": "artifacts/dev/post_seal_full_map_eval_v1_20260819/attempt_0/physics_substep_trace.csv",
+    "physics_substep_trace_sha256": "2ec1e38ce879c2c550cc568b14db7814bd955d5375b758f3d0c64183e58d2cca",
+    "pair0_scene": "artifacts/dev/post_seal_full_map_eval_v1_20260819/attempt_0/task_scenes/spawn_0_0.000_pair0.xml",
+    "pair0_scene_sha256": "0b75be52ac76ef0147fb6f5e9eccce025067490d144892006c8098dfe1e5be46",
+    "contact_audit": "artifacts/dev/post_seal_full_map_eval_v1_20260819/attempt_0/compiled_pair0_contact_audit.json",
+    "contact_audit_sha256": "adff24abe10079e12035f48b30b7235eb8402969142b39b105f91f4de9cd12a9"
+  },
+  "episode_contract": {
+    "evaluation_seed": 1763594348,
+    "checkpoint": "artifacts/dev/pair0_l2b_v3_20260819/attempt_0/pair0_adapt/models/checkpoint_2727936.zip",
+    "checkpoint_sha256": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+    "observation_dimension": 135,
+    "action_dimension": 8,
+    "deterministic_policy": true,
+    "horizon_control_steps": 12000,
+    "physical_seconds": 600.0,
+    "formal_termination_reason": "horizon_truncated",
+    "formal_goal_entered": false,
+    "formal_strict_stable_dwell_success": false,
+    "formal_safety_qualified_success": false,
+    "display_outcome": "FAILED TO REACH / HORIZON",
+    "best_progress_m": 14.508399331597019,
+    "net_progress_m": 12.529837593989257,
+    "final_distance_m": 83.5848626964653,
+    "mean_support_count_per_physics_substep": 1.8646,
+    "full_control_interval_zero_foot_count": 383,
+    "full_control_interval_zero_foot_fraction": 0.03191666666666667,
+    "duration_corrected_slip_event_count": 0
+  },
+  "visualisation": {
+    "overview_profile": "configs/fixed_goal_dual_view_relief_v2_20260819.json",
+    "overview_profile_sha256": "e61dcc700889aaa6bd11afb6ee3af65262b9b00cfc01ca927e1b9e68478aa4f3",
+    "width": 1280,
+    "height": 720,
+    "fps": 20,
+    "render_stride_control_steps": 20,
+    "playback_speed_factor": 20,
+    "intro_seconds": 1.5,
+    "outro_seconds": 1.5,
+    "crf": 18,
+    "right_view": "fixed_goal_to_start_oblique_physical_relief_1_to_1",
+    "ground_trail": "actual_replayed_surface_trajectory_visual_only",
+    "mini_map": true,
+    "bottom_panel_fields": [
+      "FAILED TO REACH / HORIZON",
+      "best and net progress",
+      "current and mean support",
+      "cumulative full-control zero-foot count and fraction"
+    ]
+  },
+  "replay_exactness": {
+    "required_control_rows": 12000,
+    "comparison": "exact equality after CSV parsing for every recomputed formal control-trace field",
+    "maximum_mismatch_count": 0,
+    "rendering_may_start_only_after_input_hash_validation": true,
+    "video_is_valid_only_if_all_rows_match": true
+  },
+  "execution": {
+    "output_root": "artifacts/dev/post_seal_full_map_eval_video_v1_20260819/attempt_0",
+    "fail_if_output_root_exists": true,
+    "failure_record_name": "FAILURE_RECORD.json",
+    "training_permitted": false,
+    "model_save_permitted": false,
+    "seed_change_permitted": false,
+    "checkpoint_change_permitted": false,
+    "formal_artifact_mutation_permitted": false
+  },
+  "runtime_dependencies": {
+    "scripts/evaluate_post_seal_full_map_v1.py": "dc7225b353efa1371e43178ad2b0029efce28e60f12b0dccf358de89132295cf",
+    "scripts/render_fixed_goal_dual_view_video.py": "a6d2c4f84c58ec03582bd73273aa4332f373003a5c9ffde1f8d51661b9c2a80d",
+    "scripts/render_fixed_goal_training_video.py": "04a7f8bac2f29adee011e2bbef2876aeedebc887ab84b1405d271ef126f85a33"
+  },
+  "claim_boundary": "The video is a time-compressed visualisation of the one frozen formal failure episode. It is not a new evaluation sample, does not establish a failure rate, and cannot establish reliability, path optimality, unseen-map generalisation or electrical-energy efficiency."
+}

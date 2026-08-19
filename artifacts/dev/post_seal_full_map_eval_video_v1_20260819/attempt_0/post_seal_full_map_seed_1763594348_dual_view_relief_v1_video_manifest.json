@@ -1,0 +1,166 @@
+{
+  "schema_version": "proxygap-post-seal-full-map-eval-video-result-v1",
+  "status": "final_verified",
+  "outcome_displayed": "FAILED TO REACH / HORIZON",
+  "video": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\post_seal_full_map_eval_video_v1_20260819\\attempt_0\\post_seal_full_map_seed_1763594348_dual_view_relief_v1.mp4",
+    "sha256": "926d6ed4b3ccb343c208828c88a812f86a8a26ff8c6287dae149ab15f60a8e80",
+    "width": 1280,
+    "height": 720,
+    "fps": 20,
+    "encoded_frames": 661,
+    "duration_seconds": 33.05,
+    "physical_rollout_seconds": 600.0,
+    "render_stride_control_steps": 20,
+    "playback_speed_factor": 20,
+    "codec": "H.264/libx264",
+    "pixel_format": "yuv420p"
+  },
+  "formal_binding": {
+    "evaluation_seed": 1763594348,
+    "checkpoint": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\pair0_l2b_v3_20260819\\attempt_0\\pair0_adapt\\models\\checkpoint_2727936.zip",
+    "checkpoint_sha256_before": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+    "checkpoint_sha256_after": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+    "pair0_scene": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\post_seal_full_map_eval_v1_20260819\\attempt_0\\task_scenes\\spawn_0_0.000_pair0.xml",
+    "pair0_scene_sha256": "0b75be52ac76ef0147fb6f5e9eccce025067490d144892006c8098dfe1e5be46",
+    "formal_trace_sha256": "0dd0c954e1788a0ecc01a9116870d6aea425fd377b316c657c5b2e56ac91ef33",
+    "formal_result_sha256": "496bfaf2b4f7ae70bd540b518e4e28f6780389d622f47d3d1f667c8efdc0f174",
+    "formal_manifest_sha256": "b3d37af196c16316cc0ea83581ea65945e207b5896da381548b57fa0336c6038",
+    "input_hashes_before": {
+      "frozen_config": "2378d1b80d418d348e6aaa636e090e2c15c3652a7d60ee6ef431ba28a71482d0",
+      "execution_record": "fb569e5c87676382c1ff6b4d9ae97bee642f0dcf64d14d7aaba940f1796540c8",
+      "episode_result": "496bfaf2b4f7ae70bd540b518e4e28f6780389d622f47d3d1f667c8efdc0f174",
+      "control_trace": "0dd0c954e1788a0ecc01a9116870d6aea425fd377b316c657c5b2e56ac91ef33",
+      "physics_substep_trace": "2ec1e38ce879c2c550cc568b14db7814bd955d5375b758f3d0c64183e58d2cca",
+      "pair0_scene": "0b75be52ac76ef0147fb6f5e9eccce025067490d144892006c8098dfe1e5be46",
+      "contact_audit": "adff24abe10079e12035f48b30b7235eb8402969142b39b105f91f4de9cd12a9"
+    },
+    "input_hashes_after": {
+      "frozen_config": "2378d1b80d418d348e6aaa636e090e2c15c3652a7d60ee6ef431ba28a71482d0",
+      "execution_record": "fb569e5c87676382c1ff6b4d9ae97bee642f0dcf64d14d7aaba940f1796540c8",
+      "episode_result": "496bfaf2b4f7ae70bd540b518e4e28f6780389d622f47d3d1f667c8efdc0f174",
+      "control_trace": "0dd0c954e1788a0ecc01a9116870d6aea425fd377b316c657c5b2e56ac91ef33",
+      "physics_substep_trace": "2ec1e38ce879c2c550cc568b14db7814bd955d5375b758f3d0c64183e58d2cca",
+      "pair0_scene": "0b75be52ac76ef0147fb6f5e9eccce025067490d144892006c8098dfe1e5be46",
+      "contact_audit": "adff24abe10079e12035f48b30b7235eb8402969142b39b105f91f4de9cd12a9"
+    },
+    "trace_exactness": {
+      "schema_version": "proxygap-post-seal-formal-replay-exactness-v1",
+      "status": "exact",
+      "formal_trace": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\post_seal_full_map_eval_v1_20260819\\attempt_0\\control_step_trace.csv",
+      "formal_trace_sha256": "0dd0c954e1788a0ecc01a9116870d6aea425fd377b316c657c5b2e56ac91ef33",
+      "rows_compared": 12000,
+      "fields_compared_per_row": 32,
+      "float_fields": [
+        "time_seconds",
+        "x_m",
+        "y_m",
+        "torso_z_m",
+        "terrain_z_m",
+        "torso_clearance_m",
+        "goal_distance_m",
+        "minimum_goal_distance_so_far_m",
+        "net_progress_so_far_m",
+        "path_length_so_far_m",
+        "world_vx_m_per_s",
+        "world_vy_m_per_s",
+        "planar_speed_m_per_s",
+        "terrain_relative_torso_tilt_rad",
+        "mean_support_count_this_control_interval",
+        "reward_step"
+      ],
+      "integer_fields": [
+        "evaluation_seed",
+        "control_step",
+        "endpoint_support_count",
+        "full_control_interval_zero_foot",
+        "force_qualified_slip_candidate_in_interval",
+        "goal_entered",
+        "spatial_hold_run_steps",
+        "strict_stable_step",
+        "strict_stable_hold_run_steps",
+        "spatial_hold_success",
+        "strict_stable_dwell_success",
+        "finite_step",
+        "environment_terminated",
+        "environment_truncated"
+      ],
+      "other_fields": [
+        "mode",
+        "action"
+      ],
+      "mismatch_count": 0,
+      "mismatch_examples": [],
+      "replay_trace": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\post_seal_full_map_eval_video_v1_20260819\\attempt_0\\post_seal_full_map_seed_1763594348_dual_view_relief_v1_replay_control_trace.csv",
+      "replay_trace_sha256": "0dd0c954e1788a0ecc01a9116870d6aea425fd377b316c657c5b2e56ac91ef33",
+      "seed": 1763594348,
+      "checkpoint_sha256": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+      "pair0_scene_sha256": "0b75be52ac76ef0147fb6f5e9eccce025067490d144892006c8098dfe1e5be46"
+    }
+  },
+  "layout": {
+    "left": "deterministic following camera",
+    "right": "goal-to-start oblique relief-v2 overview at physical 1:1 vertical scale",
+    "ground_trail": "actual replayed surface trajectory, visual-only",
+    "mini_map": true,
+    "bottom_panel": "failure outcome, progress, support and full-interval zero-foot metrics"
+  },
+  "formal_result": {
+    "goal_entered": false,
+    "strict_stable_dwell_success": false,
+    "safety_qualified_success": false,
+    "termination_reason": "horizon_truncated",
+    "best_progress_m": 14.508399331597019,
+    "net_progress_m": 12.529837593989257,
+    "final_distance_m": 83.5848626964653,
+    "mean_support_count_per_physics_substep": 1.8646,
+    "full_control_interval_zero_foot_count": 383,
+    "full_control_interval_zero_foot_fraction": 0.03191666666666667,
+    "duration_corrected_slip_event_count": 0
+  },
+  "immutability": {
+    "training_performed": false,
+    "seed_changed": false,
+    "checkpoint_modified": false,
+    "formal_artifacts_modified": false,
+    "both_views_share_one_replay_state": true
+  },
+  "files": {
+    "replay_control_trace": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\post_seal_full_map_eval_video_v1_20260819\\attempt_0\\post_seal_full_map_seed_1763594348_dual_view_relief_v1_replay_control_trace.csv",
+    "replay_control_trace_sha256": "0dd0c954e1788a0ecc01a9116870d6aea425fd377b316c657c5b2e56ac91ef33",
+    "replay_exactness": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\post_seal_full_map_eval_video_v1_20260819\\attempt_0\\post_seal_full_map_seed_1763594348_dual_view_relief_v1_replay_exactness.json",
+    "replay_exactness_sha256": "9d34c6a4d3aca5c0854479526268730d5c0a74c9cf4eaa264e6fa9d7b188f84b",
+    "contact_sheet": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\post_seal_full_map_eval_video_v1_20260819\\attempt_0\\post_seal_full_map_seed_1763594348_dual_view_relief_v1_contact_sheet.png",
+    "contact_sheet_sha256": "e36db1d4ee7f4f06009bf63f5baf67d944adf883d4b671698490988b6fc491ac",
+    "final_frame": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\post_seal_full_map_eval_video_v1_20260819\\attempt_0\\post_seal_full_map_seed_1763594348_dual_view_relief_v1_final_frame.png",
+    "final_frame_sha256": "6e6f0d6a0383158c977dce11e28803bfb56edb936f126ae97ef1fcea2339b330",
+    "overview_profile": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\fixed_goal_dual_view_relief_v2_20260819.json",
+    "overview_profile_sha256": "e61dcc700889aaa6bd11afb6ee3af65262b9b00cfc01ca927e1b9e68478aa4f3"
+  },
+  "qa": {
+    "decoded_frames": 661,
+    "first_frame_shape": [
+      720,
+      1280,
+      3
+    ],
+    "last_frame_shape": [
+      720,
+      1280,
+      3
+    ],
+    "average_frame_rate": 20.0,
+    "decoded_duration_seconds": 33.05,
+    "decoded_every_frame": true,
+    "formal_trace_exact": true,
+    "checkpoint_before_after_equal": true,
+    "formal_inputs_before_after_equal": true
+  },
+  "runtime": {
+    "wall_seconds": 425.53347182273865,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+    "mujoco": "3.11.0"
+  },
+  "claim_boundary": "The video is a time-compressed visualisation of the one frozen formal failure episode. It is not a new evaluation sample, does not establish a failure rate, and cannot establish reliability, path optimality, unseen-map generalisation or electrical-energy efficiency."
+}

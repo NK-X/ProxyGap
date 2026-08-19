@@ -1,0 +1,85 @@
+{
+  "schema_version": "proxygap-pair0-turn-balance-smoke-gate-repair-v3",
+  "config_id": "fixed_standard_pair0_turn_balance_continuation_v3_gate_repair_20260819",
+  "status": "frozen_gate_only_repair_pending_independent_go",
+  "purpose": "Preserve the completed V2 smoke unchanged while repairing only an over-broad nested-manifest rejection: exactly two frozen terrain-generator provenance manifests are allowed before the unchanged V2 formal protocol runs.",
+  "frozen_v2_protocol": {
+    "configuration": "configs/fixed_standard_pair0_turn_balance_continuation_v2_20260819.json",
+    "configuration_sha256": "9004de242c2724dcbf128d78fb6f5d951f5826e5e2b5db80d4940e185e8f582c",
+    "runner": "scripts/run_fixed_standard_pair0_turn_balance_continuation_v2.py",
+    "runner_sha256": "7154424b7d944bbed415b9c814dffa075ed1570843471c84456ce3f56ce051ce",
+    "V1_configuration_sha256": "089cbfebae460cced4e7aa9c1881079b226844820b5cf340b937a6a76be0c9e1",
+    "source_checkpoint_sha256": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+    "scientific_protocol_changed": false,
+    "seeds_changed": false,
+    "budgets_changed": false,
+    "commands_changed": false,
+    "reward_changed": false,
+    "friction_changed": false,
+    "energy_changed": false,
+    "gates_changed": false
+  },
+  "immutable_completed_smoke": {
+    "root": "artifacts/smoke/pair0_turn_balance_v2_20260819/attempt_0",
+    "manifest": "artifacts/smoke/pair0_turn_balance_v2_20260819/attempt_0/manifest.json",
+    "manifest_size_bytes": 240781,
+    "manifest_sha256": "a02b8dad18c94f75d50c8d41dbc9600884bb735726c9301c7967d1e8238d32be",
+    "V2_configuration_sha256": "9004de242c2724dcbf128d78fb6f5d951f5826e5e2b5db80d4940e185e8f582c",
+    "rerun_permitted": false,
+    "mutation_permitted": false,
+    "training_branches": 2,
+    "timesteps_per_branch": 8192,
+    "absolute_final_timesteps": 2736128,
+    "checkpoint_written": false,
+    "scientifically_evaluable": false
+  },
+  "exact_scene_manifest_allowlist": [
+    {
+      "relative_path": "training_scene_assets/scene_source/standard_scene_manifest.json",
+      "size_bytes": 7224,
+      "sha256": "a68ae4276365cf818d1f98d2c52dc810c59215ba9346e7834292b51802e79efd"
+    },
+    {
+      "relative_path": "training_scene_assets/scene_source/standard_scenes/flat/scene_manifest.json",
+      "size_bytes": 1876,
+      "sha256": "da17bbebb58f9d18ed3b2dc3d97e26a9b53028dcf05228fd5cebaba29cb4af89"
+    }
+  ],
+  "repair_boundary": {
+    "only_suppressed_V2_error": "smoke contains forbidden scientific/checkpoint/media artifacts with exactly the two allowlisted terrain scene manifest paths in frozen order",
+    "all_V2_checks_before_the_overbroad_final_forbidden_path_check_must_pass": true,
+    "allow_any_other_nested_manifest": false,
+    "allow_any_zip_models_final_evaluation_video_fixed_map_or_promotion_artifact": false,
+    "allow_inventory_size_or_hash_mismatch": false,
+    "allow_formal_without_exact_V2_smoke_manifest_hash": false
+  },
+  "execution": {
+    "independent_audit_go_required": true,
+    "permitted_modes": ["validate_only", "formal_after_independent_go"],
+    "formal_output_root": "artifacts/dev/pair0_turn_balance_v2_20260819/attempt_0",
+    "formal_root_must_not_exist_before_launch": true,
+    "call_frozen_V2_run_parent_attempt_directly_after_gate": true,
+    "smoke_rerun": false,
+    "formal_attempt_index": 0,
+    "retry_after_partial_root": false,
+    "fixed_map": false,
+    "video_during_training_or_numeric_gate": false,
+    "promotion": false
+  },
+  "post_formal_boundary": {
+    "hard_stop_after_pass_fail_or_non_evaluable": true,
+    "further_optimisation_authorised": false,
+    "read_only_video_archive_required": true,
+    "video_seed": 96131,
+    "video_turn_conditions": ["curve_left_020", "curve_right_020"],
+    "video_participates_in_gate": false
+  },
+  "gate_runtime_contract": {
+    "exact_relative_path_sha256": {
+      "scripts/run_fixed_standard_pair0_turn_balance_continuation_v3_gate_repair.py": "7b2c36ba4c932c764de43cec2d2f407062605c695e0eb784f03a099d6cd83d0b",
+      "configs/fixed_standard_pair0_turn_balance_continuation_v2_20260819.json": "9004de242c2724dcbf128d78fb6f5d951f5826e5e2b5db80d4940e185e8f582c",
+      "scripts/run_fixed_standard_pair0_turn_balance_continuation_v2.py": "7154424b7d944bbed415b9c814dffa075ed1570843471c84456ce3f56ce051ce"
+    }
+  },
+  "claim_boundary": "V3 repairs only the V2 smoke prerequisite's over-broad rejection of two exact terrain provenance manifests. It neither reruns smoke nor changes or extends the scientific training/evaluation protocol, and it cannot authorise another optimisation round."
+}

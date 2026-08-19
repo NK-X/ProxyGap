@@ -1,0 +1,353 @@
+{
+  "schema_version": "proxygap-standard-scene-manifest-v1",
+  "base_xml": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\frozen\\fixed_quad_terrain_v2_approved_20260818\\map\\scene\\ant_fixed_quad_terrain.xml",
+  "base_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+  "robot_signature": {
+    "nq": 15,
+    "nv": 14,
+    "nu": 8,
+    "body_mass": [
+      0.0,
+      0.32724923474893675,
+      0.03915775372846671,
+      0.03915775372846671,
+      0.06759220453268026,
+      0.03915775372846671,
+      0.03915775372846671,
+      0.06759220453268026,
+      0.03915775372846671,
+      0.03915775372846671,
+      0.06759220453268026,
+      0.03915775372846671,
+      0.03915775372846671,
+      0.06759220453268026
+    ],
+    "joint_names": [
+      "root",
+      "hip_1",
+      "ankle_1",
+      "hip_2",
+      "ankle_2",
+      "hip_3",
+      "ankle_3",
+      "hip_4",
+      "ankle_4"
+    ],
+    "actuator_joint_names": [
+      "hip_4",
+      "ankle_4",
+      "hip_1",
+      "ankle_1",
+      "hip_2",
+      "ankle_2",
+      "hip_3",
+      "ankle_3"
+    ],
+    "actuator_gear": [
+      [
+        150.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        150.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        150.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        150.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        150.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        150.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        150.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        150.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "actuator_ctrlrange": [
+      [
+        -1.0,
+        1.0
+      ],
+      [
+        -1.0,
+        1.0
+      ],
+      [
+        -1.0,
+        1.0
+      ],
+      [
+        -1.0,
+        1.0
+      ],
+      [
+        -1.0,
+        1.0
+      ],
+      [
+        -1.0,
+        1.0
+      ],
+      [
+        -1.0,
+        1.0
+      ],
+      [
+        -1.0,
+        1.0
+      ]
+    ],
+    "robot_geom_names": [
+      "torso_geom",
+      "aux_1_geom",
+      "left_leg_geom",
+      "left_ankle_geom",
+      "aux_2_geom",
+      "right_leg_geom",
+      "right_ankle_geom",
+      "aux_3_geom",
+      "back_leg_geom",
+      "third_ankle_geom",
+      "aux_4_geom",
+      "rightback_leg_geom",
+      "fourth_ankle_geom"
+    ],
+    "robot_geom_type": [
+      2,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "robot_geom_size": [
+      [
+        0.25,
+        0.0,
+        0.0
+      ],
+      [
+        0.08,
+        0.14142135623730953,
+        0.0
+      ],
+      [
+        0.08,
+        0.14142135623730953,
+        0.0
+      ],
+      [
+        0.08,
+        0.28284271247461906,
+        0.0
+      ],
+      [
+        0.08,
+        0.14142135623730953,
+        0.0
+      ],
+      [
+        0.08,
+        0.14142135623730953,
+        0.0
+      ],
+      [
+        0.08,
+        0.28284271247461906,
+        0.0
+      ],
+      [
+        0.08,
+        0.14142135623730953,
+        0.0
+      ],
+      [
+        0.08,
+        0.14142135623730953,
+        0.0
+      ],
+      [
+        0.08,
+        0.28284271247461906,
+        0.0
+      ],
+      [
+        0.08,
+        0.14142135623730953,
+        0.0
+      ],
+      [
+        0.08,
+        0.14142135623730953,
+        0.0
+      ],
+      [
+        0.08,
+        0.28284271247461906,
+        0.0
+      ]
+    ],
+    "robot_geom_friction": [
+      [
+        1.0,
+        0.5,
+        0.5
+      ],
+      [
+        1.0,
+        0.5,
+        0.5
+      ],
+      [
+        1.0,
+        0.5,
+        0.5
+      ],
+      [
+        1.0,
+        0.5,
+        0.5
+      ],
+      [
+        1.0,
+        0.5,
+        0.5
+      ],
+      [
+        1.0,
+        0.5,
+        0.5
+      ],
+      [
+        1.0,
+        0.5,
+        0.5
+      ],
+      [
+        1.0,
+        0.5,
+        0.5
+      ],
+      [
+        1.0,
+        0.5,
+        0.5
+      ],
+      [
+        1.0,
+        0.5,
+        0.5
+      ],
+      [
+        1.0,
+        0.5,
+        0.5
+      ],
+      [
+        1.0,
+        0.5,
+        0.5
+      ],
+      [
+        1.0,
+        0.5,
+        0.5
+      ]
+    ],
+    "timestep_seconds": 0.01
+  },
+  "scenes": {
+    "flat": {
+      "scene_name": "flat",
+      "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_flat_turn_diagnostic_v1_20260819\\attempt_0\\scene_source\\standard_scenes\\flat\\ant_standard_scene.xml",
+      "xml_sha256": "49f8a8b2036d2e7fd5ecaa0e278873f2465d9f89d5a96c5ac20fe3500cebf787",
+      "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_flat_turn_diagnostic_v1_20260819\\attempt_0\\scene_source\\standard_scenes\\flat\\heights_m.npy",
+      "heights_sha256": "95b50d50db56309619d449568f588aa225816d5d7b1405b18154cb9fc9a200c4",
+      "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_flat_turn_diagnostic_v1_20260819\\attempt_0\\scene_source\\standard_scenes\\flat\\terrain.hfield",
+      "hfield_sha256": "0d2e01f11e448d99c308689e077918c8e033f61b652dba24cb6196da46386c09",
+      "texture_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_flat_turn_diagnostic_v1_20260819\\attempt_0\\scene_source\\standard_scenes\\flat\\terrain_contours.png",
+      "texture_sha256": "02df4b39114681a16d93d69ed83c93e5485d80d0606a601bf4edad355b9bd9f5",
+      "map_half_extent_m": 20.0,
+      "start_xy_m": [
+        0.0,
+        0.0
+      ],
+      "goal_xy_m": [
+        6.0,
+        0.0
+      ],
+      "minimum_height_m": -1.5e-06,
+      "maximum_height_m": 1.5e-06,
+      "height_range_m": 3e-06,
+      "maximum_gradient_degrees": 1.0062053339771739e-05,
+      "start_surface": {
+        "terrain_height_m": 0.0,
+        "gradient_x": 1.5707569005721505e-07,
+        "gradient_y": 7.853784502860752e-08,
+        "gradient_degrees": 1.0062053339771739e-05
+      },
+      "fixed_friction": [
+        1.0,
+        0.5,
+        0.5
+      ],
+      "condim": 3,
+      "robot_signature_matches_base": true,
+      "scene_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_pair0_flat_turn_diagnostic_v1_20260819\\attempt_0\\scene_source\\standard_scenes\\flat\\scene_manifest.json",
+      "scene_manifest_sha256": "ae7817e8876fda75ba42747812c55f3d48322938bb94a91421978a1f8f7f51f2"
+    }
+  }
+}

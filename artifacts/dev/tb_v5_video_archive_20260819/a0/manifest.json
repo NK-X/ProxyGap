@@ -1,0 +1,376 @@
+{
+  "schema_version": "proxygap-pair0-turn-balance-v5-video-archive-result-v1",
+  "status": "complete_four_episode_fieldwise_exact_read_only_archive",
+  "configuration": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\fixed_standard_pair0_turn_balance_v5_video_archive_v1_20260819.json",
+    "sha256": "51f98887eb771a5f9223af55c7c157bcb21653e479afd59c8fcf9d1b09e407c8",
+    "frozen_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\frozen_config.json",
+    "frozen_sha256": "51f98887eb771a5f9223af55c7c157bcb21653e479afd59c8fcf9d1b09e407c8"
+  },
+  "renderer": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\scripts\\render_fixed_standard_pair0_turn_balance_v5_video_archive.py",
+    "sha256": "6bd81e74ee5c0c19f89c6568e1d3635bb25504a27ab41cbe9ff6d2ccdc30277b",
+    "snapshot_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\runtime_snapshot\\scripts\\render_fixed_standard_pair0_turn_balance_v5_video_archive.py",
+    "snapshot_sha256": "6bd81e74ee5c0c19f89c6568e1d3635bb25504a27ab41cbe9ff6d2ccdc30277b"
+  },
+  "source_formal_manifest_sha256": "f107543dae1a19dc972df46fe5472cdaaa469506c6178ede2a9a4f289af2be7b",
+  "source_final_gate_sha256": "87feb712345ad2cf43b83ed29a3f6c78bd483e8004f383c9f3ee3196c7d14cce",
+  "frozen_gate_labels": {
+    "turn_gate": "FAIL",
+    "slope_continuity_gate": "PASS",
+    "fixed_map": "NOT AUTHORISED",
+    "final_decision": "both_fail_turning_HOLD_retain_source_PAIR0",
+    "stage_B": "HOLD"
+  },
+  "episodes": [
+    {
+      "branch_id": "C0_STRAIGHT_CONTINUE",
+      "condition_name": "curve_left_020",
+      "evaluation_seed": 96131,
+      "video_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c0_straight_continue_curve_left_020_seed_96131\\c0_straight_continue_curve_left_020_seed_96131_turn_gate_fail_archive.mp4",
+      "video_sha256": "e696d7800eb8056bd8c65664dbca7d8bc9aa60e4918388cb207258f29ace67e0",
+      "episode_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c0_straight_continue_curve_left_020_seed_96131\\c0_straight_continue_curve_left_020_seed_96131_turn_gate_fail_archive_manifest.json",
+      "episode_manifest_sha256": "12cc157cb4e2728e22579a35c43648836e2a90aee9718c5b91aedd4556b46ea0",
+      "final_frame_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c0_straight_continue_curve_left_020_seed_96131\\c0_straight_continue_curve_left_020_seed_96131_turn_gate_fail_archive_final_frame.png",
+      "final_frame_sha256": "d7dec5c3c0503f32c2228eff974d9771e9c7e8c894933bb8989ed2b00fb72987",
+      "contact_sheet_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c0_straight_continue_curve_left_020_seed_96131\\c0_straight_continue_curve_left_020_seed_96131_turn_gate_fail_archive_contact_sheet.png",
+      "contact_sheet_sha256": "27631671dea5d73819bafc6872a9ba1e00a573486e0050e9f50e12f118704eee",
+      "qa": {
+        "decoded_frames": 640,
+        "every_frame_decoded": true,
+        "all_decoded_frame_shapes_equal_expected": true,
+        "expected_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "average_frame_rate": 20.0,
+        "decoded_duration_seconds": 32.0
+      }
+    },
+    {
+      "branch_id": "C0_STRAIGHT_CONTINUE",
+      "condition_name": "curve_right_020",
+      "evaluation_seed": 96131,
+      "video_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c0_straight_continue_curve_right_020_seed_96131\\c0_straight_continue_curve_right_020_seed_96131_turn_gate_fail_archive.mp4",
+      "video_sha256": "3585c2e584d7957988c44a9f2b061ad7ccea1c5da396c5d5d37c9452d2fd6cff",
+      "episode_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c0_straight_continue_curve_right_020_seed_96131\\c0_straight_continue_curve_right_020_seed_96131_turn_gate_fail_archive_manifest.json",
+      "episode_manifest_sha256": "db3b9ea17cf1a2f269ff91f285ac151351b875e84eb98e67f57852c846117bd1",
+      "final_frame_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c0_straight_continue_curve_right_020_seed_96131\\c0_straight_continue_curve_right_020_seed_96131_turn_gate_fail_archive_final_frame.png",
+      "final_frame_sha256": "2fd4fb1baa4690b900cee15e6e846254ad715401622e3b3939471a908bc09c80",
+      "contact_sheet_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c0_straight_continue_curve_right_020_seed_96131\\c0_straight_continue_curve_right_020_seed_96131_turn_gate_fail_archive_contact_sheet.png",
+      "contact_sheet_sha256": "6dae28aee2f333bc9202fb09c588bc2dc00b397a98bddead1220a673042860d1",
+      "qa": {
+        "decoded_frames": 640,
+        "every_frame_decoded": true,
+        "all_decoded_frame_shapes_equal_expected": true,
+        "expected_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "average_frame_rate": 20.0,
+        "decoded_duration_seconds": 32.0
+      }
+    },
+    {
+      "branch_id": "C1_BALANCED_TURN",
+      "condition_name": "curve_left_020",
+      "evaluation_seed": 96131,
+      "video_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c1_balanced_turn_curve_left_020_seed_96131\\c1_balanced_turn_curve_left_020_seed_96131_turn_gate_fail_archive.mp4",
+      "video_sha256": "0bdbec4a0252146d540d24b13492b9431bcd2d09e4cd874b04a0edbd53e7cb59",
+      "episode_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c1_balanced_turn_curve_left_020_seed_96131\\c1_balanced_turn_curve_left_020_seed_96131_turn_gate_fail_archive_manifest.json",
+      "episode_manifest_sha256": "19a48ad2ac5ac3320620e6f32dee19bf73c321bcbc8619940f3197ed853b272c",
+      "final_frame_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c1_balanced_turn_curve_left_020_seed_96131\\c1_balanced_turn_curve_left_020_seed_96131_turn_gate_fail_archive_final_frame.png",
+      "final_frame_sha256": "1b625a1affce295ef357a954b3ff2543e2e789144e2eb73ebf0fef2aacbc2f8d",
+      "contact_sheet_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c1_balanced_turn_curve_left_020_seed_96131\\c1_balanced_turn_curve_left_020_seed_96131_turn_gate_fail_archive_contact_sheet.png",
+      "contact_sheet_sha256": "5a3439c945a57ccddd2ce625470a4e132e8483f9a996a01dfe59d2b8af0aaefc",
+      "qa": {
+        "decoded_frames": 640,
+        "every_frame_decoded": true,
+        "all_decoded_frame_shapes_equal_expected": true,
+        "expected_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "average_frame_rate": 20.0,
+        "decoded_duration_seconds": 32.0
+      }
+    },
+    {
+      "branch_id": "C1_BALANCED_TURN",
+      "condition_name": "curve_right_020",
+      "evaluation_seed": 96131,
+      "video_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c1_balanced_turn_curve_right_020_seed_96131\\c1_balanced_turn_curve_right_020_seed_96131_turn_gate_fail_archive.mp4",
+      "video_sha256": "e96d421bb6d17d4960289fbd9204b70fee5b7061667e1239f8aeb6c3600f3c0b",
+      "episode_manifest_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c1_balanced_turn_curve_right_020_seed_96131\\c1_balanced_turn_curve_right_020_seed_96131_turn_gate_fail_archive_manifest.json",
+      "episode_manifest_sha256": "df1370533c31f329c56b233f1de023c365f149519b52d0cb24e2b0f24737d118",
+      "final_frame_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c1_balanced_turn_curve_right_020_seed_96131\\c1_balanced_turn_curve_right_020_seed_96131_turn_gate_fail_archive_final_frame.png",
+      "final_frame_sha256": "9e9187b74b3a7faccf72193aea95bfb759de179046a2d27098408d955a64de8b",
+      "contact_sheet_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\c1_balanced_turn_curve_right_020_seed_96131\\c1_balanced_turn_curve_right_020_seed_96131_turn_gate_fail_archive_contact_sheet.png",
+      "contact_sheet_sha256": "16505bab2420b3374ac9bd86eae9faf791cc713f4f5caea1bd1cb774d6a2da13",
+      "qa": {
+        "decoded_frames": 640,
+        "every_frame_decoded": true,
+        "all_decoded_frame_shapes_equal_expected": true,
+        "expected_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "average_frame_rate": 20.0,
+        "decoded_duration_seconds": 32.0
+      }
+    }
+  ],
+  "root_contact_sheet": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\tb_v5_video_archive_20260819\\a0\\V5_TURN_ARCHIVE_FOUR_EPISODE_CONTACT_SHEET.png",
+    "sha256": "91c82590433c32044df51439fa27469ae740a175674aa8b08d086725c84c6e8f"
+  },
+  "all_four_formal_rows_field_order_and_values_exact": true,
+  "all_four_videos_fully_decoded": true,
+  "all_episode_extents_exact_600_controls_3000_substeps": true,
+  "formal_inputs_sha256_before": {
+    "artifacts/dev/tb_v5_20260819/a0/manifest.json": "f107543dae1a19dc972df46fe5472cdaaa469506c6178ede2a9a4f289af2be7b",
+    "artifacts/dev/tb_v5_20260819/a0/final_gate.json": "87feb712345ad2cf43b83ed29a3f6c78bd483e8004f383c9f3ee3196c7d14cce",
+    "artifacts/dev/tb_v5_20260819/a0/FINAL_OPTIMISATION_HARD_STOP.json": "aed2aeb06f27ff387977595a51517912fe13dbe3da31810993ee5c301dc8ccef",
+    "artifacts/dev/tb_v5_20260819/a0/frozen_config.json": "9004de242c2724dcbf128d78fb6f5d951f5826e5e2b5db80d4940e185e8f582c",
+    "configs/fixed_standard_pair0_turn_balance_continuation_v1_20260819.json": "089cbfebae460cced4e7aa9c1881079b226844820b5cf340b937a6a76be0c9e1",
+    "artifacts/dev/tb_v5_20260819/a0/training_scene.json": "9e892f933628a0d5360bccaa32fa31e139a0321324dd2e75f8190cb425f719cb",
+    "artifacts/dev/tb_v5_20260819/a0/training_scene_assets/condition_assets/scenes/turn_balance_flat/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml": "382612434f6d439e295d24f7e7b19625dfe582003feea0446180bc2dde8ee188",
+    "artifacts/dev/tb_v5_20260819/a0/training_scene_assets/condition_assets/scenes/turn_balance_flat/explicit_floor_distal_pair_margin0_candidate/heights_m.npy": "95b50d50db56309619d449568f588aa225816d5d7b1405b18154cb9fc9a200c4",
+    "artifacts/dev/tb_v5_20260819/a0/training_scene_assets/condition_assets/scenes/turn_balance_flat/explicit_floor_distal_pair_margin0_candidate/terrain.hfield": "0d2e01f11e448d99c308689e077918c8e033f61b652dba24cb6196da46386c09",
+    "artifacts/dev/tb_v5_20260819/a0/training_scene_assets/condition_assets/scenes/turn_balance_flat/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png": "02df4b39114681a16d93d69ed83c93e5485d80d0606a601bf4edad355b9bd9f5",
+    "artifacts/dev/tb_v5_20260819/a0/c0_straight_continue/models/checkpoint_2793472.zip": "b46240e3264af57a4ac2cf500962684348ce819029bcda97df4f9672a225b494",
+    "artifacts/dev/tb_v5_20260819/a0/c0_straight_continue/final_evaluation/turn_episode_metrics.csv": "3dc72644e0e0026b8f5724974bc4073e476e7fc6a998d5ed20382b59c220fc62",
+    "artifacts/dev/tb_v5_20260819/a0/c0_straight_continue/final_evaluation/branch_gate.json": "4f7d003851f6c286b542242f03aab5834fda11cc6ec9c55405d0ceb3819f322a",
+    "artifacts/dev/tb_v5_20260819/a0/c1_balanced_turn/models/checkpoint_2793472.zip": "ce258e289fe3a782b1d5e582240508a94e1c468f72357cce65dfc2f057a41d14",
+    "artifacts/dev/tb_v5_20260819/a0/c1_balanced_turn/final_evaluation/turn_episode_metrics.csv": "cd4044e8b4400bcca061dd3aa5a8d23d26cb81b3b2ece22da0c8cee14cb3d58c",
+    "artifacts/dev/tb_v5_20260819/a0/c1_balanced_turn/final_evaluation/branch_gate.json": "904b25ae4ef589c6192b9f5b3f35fa4039336e86ed82d268452f4afde3fe9025"
+  },
+  "formal_inputs_sha256_after": {
+    "artifacts/dev/tb_v5_20260819/a0/manifest.json": "f107543dae1a19dc972df46fe5472cdaaa469506c6178ede2a9a4f289af2be7b",
+    "artifacts/dev/tb_v5_20260819/a0/final_gate.json": "87feb712345ad2cf43b83ed29a3f6c78bd483e8004f383c9f3ee3196c7d14cce",
+    "artifacts/dev/tb_v5_20260819/a0/FINAL_OPTIMISATION_HARD_STOP.json": "aed2aeb06f27ff387977595a51517912fe13dbe3da31810993ee5c301dc8ccef",
+    "artifacts/dev/tb_v5_20260819/a0/frozen_config.json": "9004de242c2724dcbf128d78fb6f5d951f5826e5e2b5db80d4940e185e8f582c",
+    "configs/fixed_standard_pair0_turn_balance_continuation_v1_20260819.json": "089cbfebae460cced4e7aa9c1881079b226844820b5cf340b937a6a76be0c9e1",
+    "artifacts/dev/tb_v5_20260819/a0/training_scene.json": "9e892f933628a0d5360bccaa32fa31e139a0321324dd2e75f8190cb425f719cb",
+    "artifacts/dev/tb_v5_20260819/a0/training_scene_assets/condition_assets/scenes/turn_balance_flat/explicit_floor_distal_pair_margin0_candidate/ant_standard_scene.xml": "382612434f6d439e295d24f7e7b19625dfe582003feea0446180bc2dde8ee188",
+    "artifacts/dev/tb_v5_20260819/a0/training_scene_assets/condition_assets/scenes/turn_balance_flat/explicit_floor_distal_pair_margin0_candidate/heights_m.npy": "95b50d50db56309619d449568f588aa225816d5d7b1405b18154cb9fc9a200c4",
+    "artifacts/dev/tb_v5_20260819/a0/training_scene_assets/condition_assets/scenes/turn_balance_flat/explicit_floor_distal_pair_margin0_candidate/terrain.hfield": "0d2e01f11e448d99c308689e077918c8e033f61b652dba24cb6196da46386c09",
+    "artifacts/dev/tb_v5_20260819/a0/training_scene_assets/condition_assets/scenes/turn_balance_flat/explicit_floor_distal_pair_margin0_candidate/terrain_contours.png": "02df4b39114681a16d93d69ed83c93e5485d80d0606a601bf4edad355b9bd9f5",
+    "artifacts/dev/tb_v5_20260819/a0/c0_straight_continue/models/checkpoint_2793472.zip": "b46240e3264af57a4ac2cf500962684348ce819029bcda97df4f9672a225b494",
+    "artifacts/dev/tb_v5_20260819/a0/c0_straight_continue/final_evaluation/turn_episode_metrics.csv": "3dc72644e0e0026b8f5724974bc4073e476e7fc6a998d5ed20382b59c220fc62",
+    "artifacts/dev/tb_v5_20260819/a0/c0_straight_continue/final_evaluation/branch_gate.json": "4f7d003851f6c286b542242f03aab5834fda11cc6ec9c55405d0ceb3819f322a",
+    "artifacts/dev/tb_v5_20260819/a0/c1_balanced_turn/models/checkpoint_2793472.zip": "ce258e289fe3a782b1d5e582240508a94e1c468f72357cce65dfc2f057a41d14",
+    "artifacts/dev/tb_v5_20260819/a0/c1_balanced_turn/final_evaluation/turn_episode_metrics.csv": "cd4044e8b4400bcca061dd3aa5a8d23d26cb81b3b2ece22da0c8cee14cb3d58c",
+    "artifacts/dev/tb_v5_20260819/a0/c1_balanced_turn/final_evaluation/branch_gate.json": "904b25ae4ef589c6192b9f5b3f35fa4039336e86ed82d268452f4afde3fe9025"
+  },
+  "runtime_sha256_before": {
+    "scripts/render_fixed_standard_pair0_slope_delivery_video.py": "689bb4ddbef3229414c4ba0e7df9245c556429c85e67c9e2497d15356b87533b",
+    "scripts/render_fixed_goal_dual_view_video.py": "a6d2c4f84c58ec03582bd73273aa4332f373003a5c9ffde1f8d51661b9c2a80d",
+    "scripts/render_fixed_goal_training_video.py": "04a7f8bac2f29adee011e2bbef2876aeedebc887ab84b1405d271ef126f85a33",
+    "scripts/evaluate_fixed_standard_pair0_flat_turn_diagnostic.py": "fd422d61b1ed3e932067c0da9cd29062b18493e742a0ddf02f6f0cb1595f6729",
+    "scripts/run_fixed_standard_pair0_turn_balance_continuation_v2.py": "7154424b7d944bbed415b9c814dffa075ed1570843471c84456ce3f56ce051ce",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a"
+  },
+  "runtime_sha256_after": {
+    "scripts/render_fixed_standard_pair0_slope_delivery_video.py": "689bb4ddbef3229414c4ba0e7df9245c556429c85e67c9e2497d15356b87533b",
+    "scripts/render_fixed_goal_dual_view_video.py": "a6d2c4f84c58ec03582bd73273aa4332f373003a5c9ffde1f8d51661b9c2a80d",
+    "scripts/render_fixed_goal_training_video.py": "04a7f8bac2f29adee011e2bbef2876aeedebc887ab84b1405d271ef126f85a33",
+    "scripts/evaluate_fixed_standard_pair0_flat_turn_diagnostic.py": "fd422d61b1ed3e932067c0da9cd29062b18493e742a0ddf02f6f0cb1595f6729",
+    "scripts/run_fixed_standard_pair0_turn_balance_continuation_v2.py": "7154424b7d944bbed415b9c814dffa075ed1570843471c84456ce3f56ce051ce",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a"
+  },
+  "checkpoint_sha256_before": {
+    "C0_STRAIGHT_CONTINUE": "b46240e3264af57a4ac2cf500962684348ce819029bcda97df4f9672a225b494",
+    "C1_BALANCED_TURN": "ce258e289fe3a782b1d5e582240508a94e1c468f72357cce65dfc2f057a41d14"
+  },
+  "checkpoint_sha256_after": {
+    "C0_STRAIGHT_CONTINUE": "b46240e3264af57a4ac2cf500962684348ce819029bcda97df4f9672a225b494",
+    "C1_BALANCED_TURN": "ce258e289fe3a782b1d5e582240508a94e1c468f72357cce65dfc2f057a41d14"
+  },
+  "training_performed": false,
+  "checkpoint_modified": false,
+  "reward_changed": false,
+  "friction_changed": false,
+  "energy_formula_changed": false,
+  "video_participated_in_gate": false,
+  "turn_gate_passed": false,
+  "slope_continuity_gate_passed": true,
+  "fixed_map_authorised": false,
+  "stage_B": "HOLD",
+  "claim_boundary": "This archive shows four deterministic visual replays selected before training from one flat-scene, one-seed V5 evaluation. Both final branches passed the frozen slope-continuity gate but failed the turn gate. The videos do not change that result and do not establish fixed-map readiness, route optimality, random-map generalisation, natural gait, or battery-energy improvement.",
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "mujoco": "3.11.0",
+    "numpy": "2.5.1"
+  },
+  "elapsed_seconds": 453.5729173,
+  "artifact_inventory_excludes_root_manifest": [
+    {
+      "relative_path": "c0_straight_continue_curve_left_020_seed_96131/c0_straight_continue_curve_left_020_seed_96131_turn_gate_fail_archive.mp4",
+      "size_bytes": 2709825,
+      "sha256": "e696d7800eb8056bd8c65664dbca7d8bc9aa60e4918388cb207258f29ace67e0"
+    },
+    {
+      "relative_path": "c0_straight_continue_curve_left_020_seed_96131/c0_straight_continue_curve_left_020_seed_96131_turn_gate_fail_archive_contact_sheet.png",
+      "size_bytes": 263110,
+      "sha256": "27631671dea5d73819bafc6872a9ba1e00a573486e0050e9f50e12f118704eee"
+    },
+    {
+      "relative_path": "c0_straight_continue_curve_left_020_seed_96131/c0_straight_continue_curve_left_020_seed_96131_turn_gate_fail_archive_fieldwise_comparison.json",
+      "size_bytes": 18369,
+      "sha256": "483ba630bd554a38a06504fdf4b55e8ba02717de568353ddd1c89c8bede2ceff"
+    },
+    {
+      "relative_path": "c0_straight_continue_curve_left_020_seed_96131/c0_straight_continue_curve_left_020_seed_96131_turn_gate_fail_archive_final_frame.png",
+      "size_bytes": 151839,
+      "sha256": "d7dec5c3c0503f32c2228eff974d9771e9c7e8c894933bb8989ed2b00fb72987"
+    },
+    {
+      "relative_path": "c0_straight_continue_curve_left_020_seed_96131/c0_straight_continue_curve_left_020_seed_96131_turn_gate_fail_archive_manifest.json",
+      "size_bytes": 6603,
+      "sha256": "12cc157cb4e2728e22579a35c43648836e2a90aee9718c5b91aedd4556b46ea0"
+    },
+    {
+      "relative_path": "c0_straight_continue_curve_left_020_seed_96131/c0_straight_continue_curve_left_020_seed_96131_turn_gate_fail_archive_replay_episode_metrics.json",
+      "size_bytes": 2610,
+      "sha256": "05034e01ceb51e4d4893960d4404c1f9df2e3be55e8988c4590ce997ee423630"
+    },
+    {
+      "relative_path": "c0_straight_continue_curve_left_020_seed_96131/c0_straight_continue_curve_left_020_seed_96131_turn_gate_fail_archive_trace_600_steps.csv",
+      "size_bytes": 109619,
+      "sha256": "19a7e634951ecf939ae490e862d1d5aa26ba76d6966b3caad383fdd001995322"
+    },
+    {
+      "relative_path": "c0_straight_continue_curve_right_020_seed_96131/c0_straight_continue_curve_right_020_seed_96131_turn_gate_fail_archive.mp4",
+      "size_bytes": 3014381,
+      "sha256": "3585c2e584d7957988c44a9f2b061ad7ccea1c5da396c5d5d37c9452d2fd6cff"
+    },
+    {
+      "relative_path": "c0_straight_continue_curve_right_020_seed_96131/c0_straight_continue_curve_right_020_seed_96131_turn_gate_fail_archive_contact_sheet.png",
+      "size_bytes": 262677,
+      "sha256": "6dae28aee2f333bc9202fb09c588bc2dc00b397a98bddead1220a673042860d1"
+    },
+    {
+      "relative_path": "c0_straight_continue_curve_right_020_seed_96131/c0_straight_continue_curve_right_020_seed_96131_turn_gate_fail_archive_fieldwise_comparison.json",
+      "size_bytes": 18401,
+      "sha256": "610a6967ea32d6adbb58306145852e694166a75c6fc8a8263b5b3b365a901d0f"
+    },
+    {
+      "relative_path": "c0_straight_continue_curve_right_020_seed_96131/c0_straight_continue_curve_right_020_seed_96131_turn_gate_fail_archive_final_frame.png",
+      "size_bytes": 158755,
+      "sha256": "2fd4fb1baa4690b900cee15e6e846254ad715401622e3b3939471a908bc09c80"
+    },
+    {
+      "relative_path": "c0_straight_continue_curve_right_020_seed_96131/c0_straight_continue_curve_right_020_seed_96131_turn_gate_fail_archive_manifest.json",
+      "size_bytes": 6624,
+      "sha256": "db3b9ea17cf1a2f269ff91f285ac151351b875e84eb98e67f57852c846117bd1"
+    },
+    {
+      "relative_path": "c0_straight_continue_curve_right_020_seed_96131/c0_straight_continue_curve_right_020_seed_96131_turn_gate_fail_archive_replay_episode_metrics.json",
+      "size_bytes": 2618,
+      "sha256": "15cd518ff30b126961b8915e67ae49ddad8ea99ed224961dae44c4e4562a8f59"
+    },
+    {
+      "relative_path": "c0_straight_continue_curve_right_020_seed_96131/c0_straight_continue_curve_right_020_seed_96131_turn_gate_fail_archive_trace_600_steps.csv",
+      "size_bytes": 110964,
+      "sha256": "50cef5257f259ccb67ee466f331cff5f446157286ed529cde4f834fc30ad15ac"
+    },
+    {
+      "relative_path": "c1_balanced_turn_curve_left_020_seed_96131/c1_balanced_turn_curve_left_020_seed_96131_turn_gate_fail_archive.mp4",
+      "size_bytes": 2763383,
+      "sha256": "0bdbec4a0252146d540d24b13492b9431bcd2d09e4cd874b04a0edbd53e7cb59"
+    },
+    {
+      "relative_path": "c1_balanced_turn_curve_left_020_seed_96131/c1_balanced_turn_curve_left_020_seed_96131_turn_gate_fail_archive_contact_sheet.png",
+      "size_bytes": 260824,
+      "sha256": "5a3439c945a57ccddd2ce625470a4e132e8483f9a996a01dfe59d2b8af0aaefc"
+    },
+    {
+      "relative_path": "c1_balanced_turn_curve_left_020_seed_96131/c1_balanced_turn_curve_left_020_seed_96131_turn_gate_fail_archive_fieldwise_comparison.json",
+      "size_bytes": 18361,
+      "sha256": "6be255dd93cc0ddafa916e86e7d079009ab53bdfa0bfe942a7ad9b228b74c0b4"
+    },
+    {
+      "relative_path": "c1_balanced_turn_curve_left_020_seed_96131/c1_balanced_turn_curve_left_020_seed_96131_turn_gate_fail_archive_final_frame.png",
+      "size_bytes": 151069,
+      "sha256": "1b625a1affce295ef357a954b3ff2543e2e789144e2eb73ebf0fef2aacbc2f8d"
+    },
+    {
+      "relative_path": "c1_balanced_turn_curve_left_020_seed_96131/c1_balanced_turn_curve_left_020_seed_96131_turn_gate_fail_archive_manifest.json",
+      "size_bytes": 6545,
+      "sha256": "19a48ad2ac5ac3320620e6f32dee19bf73c321bcbc8619940f3197ed853b272c"
+    },
+    {
+      "relative_path": "c1_balanced_turn_curve_left_020_seed_96131/c1_balanced_turn_curve_left_020_seed_96131_turn_gate_fail_archive_replay_episode_metrics.json",
+      "size_bytes": 2608,
+      "sha256": "b1e0f6349533f00611077737ea07e5a7db0a2e59e51221e0938aa22a0e8b3c9a"
+    },
+    {
+      "relative_path": "c1_balanced_turn_curve_left_020_seed_96131/c1_balanced_turn_curve_left_020_seed_96131_turn_gate_fail_archive_trace_600_steps.csv",
+      "size_bytes": 107293,
+      "sha256": "b424a7050282aaaa1b07e0d44a3680dd0aa933bbe25f2537800fa5a7a636cf84"
+    },
+    {
+      "relative_path": "c1_balanced_turn_curve_right_020_seed_96131/c1_balanced_turn_curve_right_020_seed_96131_turn_gate_fail_archive.mp4",
+      "size_bytes": 3073651,
+      "sha256": "e96d421bb6d17d4960289fbd9204b70fee5b7061667e1239f8aeb6c3600f3c0b"
+    },
+    {
+      "relative_path": "c1_balanced_turn_curve_right_020_seed_96131/c1_balanced_turn_curve_right_020_seed_96131_turn_gate_fail_archive_contact_sheet.png",
+      "size_bytes": 261643,
+      "sha256": "16505bab2420b3374ac9bd86eae9faf791cc713f4f5caea1bd1cb774d6a2da13"
+    },
+    {
+      "relative_path": "c1_balanced_turn_curve_right_020_seed_96131/c1_balanced_turn_curve_right_020_seed_96131_turn_gate_fail_archive_fieldwise_comparison.json",
+      "size_bytes": 18369,
+      "sha256": "edf35f2b722365f953ca3333fd68d23d0eeb4d4851fab290751c28b59627d1e7"
+    },
+    {
+      "relative_path": "c1_balanced_turn_curve_right_020_seed_96131/c1_balanced_turn_curve_right_020_seed_96131_turn_gate_fail_archive_final_frame.png",
+      "size_bytes": 154030,
+      "sha256": "9e9187b74b3a7faccf72193aea95bfb759de179046a2d27098408d955a64de8b"
+    },
+    {
+      "relative_path": "c1_balanced_turn_curve_right_020_seed_96131/c1_balanced_turn_curve_right_020_seed_96131_turn_gate_fail_archive_manifest.json",
+      "size_bytes": 6560,
+      "sha256": "df1370533c31f329c56b233f1de023c365f149519b52d0cb24e2b0f24737d118"
+    },
+    {
+      "relative_path": "c1_balanced_turn_curve_right_020_seed_96131/c1_balanced_turn_curve_right_020_seed_96131_turn_gate_fail_archive_replay_episode_metrics.json",
+      "size_bytes": 2610,
+      "sha256": "f4085ec57ac06cd8fc1a1c092e06e4bed69c246d29af6e06513113449a98f007"
+    },
+    {
+      "relative_path": "c1_balanced_turn_curve_right_020_seed_96131/c1_balanced_turn_curve_right_020_seed_96131_turn_gate_fail_archive_trace_600_steps.csv",
+      "size_bytes": 108410,
+      "sha256": "ea0994cfe6acefc72c99b838cce844fc48767012e28dec3e372c87f47d1f4a46"
+    },
+    {
+      "relative_path": "frozen_config.json",
+      "size_bytes": 6457,
+      "sha256": "51f98887eb771a5f9223af55c7c157bcb21653e479afd59c8fcf9d1b09e407c8"
+    },
+    {
+      "relative_path": "REPORT.md",
+      "size_bytes": 545,
+      "sha256": "d0d2f50590ebd1a4364a9b5c3a91ce5e25334e2016cc06568b884a394fe57f0d"
+    },
+    {
+      "relative_path": "runtime_snapshot/scripts/render_fixed_standard_pair0_turn_balance_v5_video_archive.py",
+      "size_bytes": 53467,
+      "sha256": "6bd81e74ee5c0c19f89c6568e1d3635bb25504a27ab41cbe9ff6d2ccdc30277b"
+    },
+    {
+      "relative_path": "V5_TURN_ARCHIVE_FOUR_EPISODE_CONTACT_SHEET.png",
+      "size_bytes": 273155,
+      "sha256": "91c82590433c32044df51439fa27469ae740a175674aa8b08d086725c84c6e8f"
+    }
+  ]
+}

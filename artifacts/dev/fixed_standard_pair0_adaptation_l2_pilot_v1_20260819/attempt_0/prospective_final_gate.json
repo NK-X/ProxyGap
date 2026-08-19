@@ -1,0 +1,36 @@
+{
+  "evaluable": true,
+  "observed": {
+    "pooled_full_interval_zero_foot_reduction": 0.21597222222222223,
+    "mean_support_count_increase": 1.085388888888889,
+    "mean_best_progress_ratio": 0.8472474444774687,
+    "uphill_best_progress_ratio": 0.8254553087864801,
+    "downhill_best_progress_ratio": 0.6859485323327591,
+    "success_count_difference": 0,
+    "pair0_fall_count": 0,
+    "pair0_torso_ground_episode_count": 0,
+    "pair0_sustained_nonfoot_contact_episode_count": 0,
+    "corrected_sustained_slip_fraction_delta": 0.0,
+    "corrected_slip_events_per_100_delta": 0.0,
+    "pair0_full_interval_worsening_vs_frozen_unadapted_pair0": 0.0008333333333333318
+  },
+  "checks": {
+    "full_interval_reduction": true,
+    "support_increase": true,
+    "progress_retention": false,
+    "uphill_progress_retention": false,
+    "downhill_progress_retention": false,
+    "success_nondecrease": true,
+    "no_pair0_falls": true,
+    "no_pair0_torso_ground": true,
+    "no_pair0_sustained_nonfoot": true,
+    "corrected_slip_fraction_not_worse": true,
+    "corrected_slip_event_rate_not_worse": true,
+    "frozen_pair0_contact_retained": true
+  },
+  "passed": false,
+  "turning_regression_test_status": "not_run_in_this_pilot",
+  "fixed_map_entry_authorised": false,
+  "candidate_promoted": false,
+  "decision": "pair0_adaptation_rejected_by_predeclared_standard_scene_gate"
+}

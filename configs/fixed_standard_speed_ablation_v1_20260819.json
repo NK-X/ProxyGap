@@ -1,0 +1,88 @@
+{
+  "schema_version": "proxygap-fixed-standard-speed-ablation-v1",
+  "status": "predeclared_read_only_diagnostic",
+  "protocol_source": {
+    "configuration": "configs/fixed_standard_support_curriculum_v1_20260819.json",
+    "configuration_sha256": "06979405fa0122d9386a8d2ed12619db97d71c73b3cd1a08ef404ee6c627f927"
+  },
+  "models": [
+    {
+      "model_id": "SOURCE_STAGE1",
+      "checkpoint": "artifacts/dev/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819/seed_62802/models/checkpoint_2596864.zip",
+      "checkpoint_sha256": "5bfd212b810af0189009f067ee7be8e8d4702fe1bee8cf025ba82401f931ff1e",
+      "training_source": false
+    },
+    {
+      "model_id": "MATCHED_CONTACT_GAP_W0",
+      "checkpoint": "artifacts/dev/fixed_standard_support_curriculum_v1_20260819/paired_bound6_seed_62804/models/matched_contact_gap_w0_control/checkpoint_2662400.zip",
+      "checkpoint_sha256": "3be0a9177ac0f8c3a5f14bf38136bb5cca89c2cfbc45e4515729e8dbcf7ba5d5",
+      "training_source": false
+    }
+  ],
+  "evaluation": {
+    "speeds_m_per_s": [0.2, 0.3, 0.4, 0.55],
+    "baseline_speed_m_per_s": 0.55,
+    "scene_order": ["flat", "uphill_8deg", "downhill_8deg"],
+    "seeds": [77801, 77802, 77803],
+    "representative_trace_seed": 77802,
+    "max_episode_steps": 600,
+    "control_dt_seconds": 0.05,
+    "start_to_goal_distance_m": 12.0
+  },
+  "selection_rule": {
+    "candidate_speeds_exclude_baseline": true,
+    "minimum_mean_best_progress_m": 1.5,
+    "minimum_progress_to_commanded_distance_ratio": 0.35,
+    "maximum_additional_falls_vs_baseline": 0,
+    "maximum_sustained_slip_fraction_increase_vs_baseline": 0.02,
+    "minimum_endpoint_airborne_fraction_reduction_vs_baseline": 0.05,
+    "minimum_mean_support_count_increase_vs_baseline": 0.1,
+    "minimum_full_interval_zero_foot_fraction_reduction_vs_baseline": 0.05,
+    "meaningful_support_change_rule": "airborne_reduction_or_support_increase",
+    "candidate_ranking": [
+      "lowest_endpoint_airborne_fraction",
+      "highest_mean_support_count",
+      "highest_progress_to_commanded_distance_ratio",
+      "highest_speed"
+    ],
+    "rejection_rule": "reject_if_no_nonbaseline_speed_is_nonstalled_and_meets_at_least_one_support_change_threshold"
+  },
+  "high_frequency_contact": {
+    "run_for_selected_candidate_even_if_formally_rejected": true,
+    "paired_baseline_speed_m_per_s": 0.55,
+    "scenes": ["flat", "uphill_8deg"],
+    "seed": 77802,
+    "control_steps": 400,
+    "physics_substeps_per_control_step": 5,
+    "physics_timestep_seconds": 0.01
+  },
+  "flat_plane_comparator": {
+    "enabled": true,
+    "model_ids": ["SOURCE_STAGE1", "MATCHED_CONTACT_GAP_W0"],
+    "speed_m_per_s": 0.55,
+    "seeds": [77801, 77802, 77803],
+    "max_episode_steps": 600,
+    "substep_seed": 77802,
+    "substep_control_steps": 400,
+    "large_difference_thresholds": {
+      "absolute_best_progress_difference_m": 1.0,
+      "absolute_endpoint_airborne_fraction_difference": 0.05,
+      "absolute_full_interval_zero_foot_fraction_difference": 0.05,
+      "absolute_mean_support_count_difference": 0.1,
+      "additional_falls": 1
+    },
+    "decision_rule": "large_if_any_pooled_threshold_is_met",
+    "training_use": false
+  },
+  "execution": {
+    "output_root": "artifacts/dev/fixed_standard_speed_ablation_v1_20260819/seed_matrix_77801",
+    "fail_if_output_root_exists": true,
+    "torch_num_threads": 2,
+    "device": "cpu",
+    "training_timesteps": 0,
+    "energy_formula_changed": false,
+    "reward_changed": false,
+    "friction_changed": false
+  },
+  "claim_boundary": "Read-only single-checkpoint speed diagnosis with one fixed map recipe, three scenes and three seeds; not a trained speed curriculum or a population-level generalisation claim."
+}

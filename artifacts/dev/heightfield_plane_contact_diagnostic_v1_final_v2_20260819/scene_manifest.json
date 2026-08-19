@@ -1,0 +1,1887 @@
+{
+  "native_plane": {
+    "scene_name": "native_plane",
+    "kind": "plane",
+    "resolution": 257,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\native_plane\\ant_scene.xml",
+    "xml_sha256": "b53041c3826e09584551a9c59544864644a2bd38fb4d197021448d55f2b468ac",
+    "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\native_plane\\heights_m.npy",
+    "heights_sha256": "b95bdcebf07c7f23a909be38d07610674b56585bb01c2e6af3b316da44fdb9b0",
+    "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\native_plane\\terrain.hfield",
+    "hfield_sha256": "4b0ea8860330fdaffce6535f9bc4ef240461c9ed98196d87d31df878c68c79eb",
+    "map_half_extent_m": 10.0,
+    "start_xy_m": [
+      -6.0,
+      0.0
+    ],
+    "goal_xy_m": [
+      6.0,
+      0.0
+    ],
+    "height_min_m": 0.0,
+    "height_max_m": 0.0,
+    "height_range_m": 0.0,
+    "start_height_m": 0.0,
+    "grid_spacing_m": 0.078125,
+    "maximum_abs_height_within_2m_of_start_m": 0.0,
+    "compiled_floor_type": 0,
+    "compiled_floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "compiled_floor_condim": 3,
+    "compiled_floor_pos": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "compiled_floor_margin_m": 0.01,
+    "compiled_floor_gap_m": 0.0,
+    "compiled_floor_solref": [
+      0.02,
+      1.0
+    ],
+    "compiled_floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "compiled_robot_signature": {
+      "nq": 15,
+      "nv": 14,
+      "nu": 8,
+      "body_mass": [
+        0.0,
+        0.32724923474893675,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026
+      ],
+      "joint_names": [
+        "root",
+        "hip_1",
+        "ankle_1",
+        "hip_2",
+        "ankle_2",
+        "hip_3",
+        "ankle_3",
+        "hip_4",
+        "ankle_4"
+      ],
+      "actuator_joint_names": [
+        "hip_4",
+        "ankle_4",
+        "hip_1",
+        "ankle_1",
+        "hip_2",
+        "ankle_2",
+        "hip_3",
+        "ankle_3"
+      ],
+      "actuator_gear": [
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "actuator_ctrlrange": [
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ]
+      ],
+      "robot_geom_names": [
+        "torso_geom",
+        "aux_1_geom",
+        "left_leg_geom",
+        "left_ankle_geom",
+        "aux_2_geom",
+        "right_leg_geom",
+        "right_ankle_geom",
+        "aux_3_geom",
+        "back_leg_geom",
+        "third_ankle_geom",
+        "aux_4_geom",
+        "rightback_leg_geom",
+        "fourth_ankle_geom"
+      ],
+      "robot_geom_type": [
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "robot_geom_size": [
+        [
+          0.25,
+          0.0,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ]
+      ],
+      "robot_geom_friction": [
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ]
+      ],
+      "timestep_seconds": 0.01
+    },
+    "compiled_hfield_data_min": 0.0,
+    "compiled_hfield_data_max": 1.0
+  },
+  "hfield_plateau_129": {
+    "scene_name": "hfield_plateau_129",
+    "kind": "plateau",
+    "resolution": 129,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\hfield_plateau_129\\ant_scene.xml",
+    "xml_sha256": "44e670b4f9bd8bb47a7533c69f6c6419bf8bc9542db110b2fc9a80c1bb69fd9b",
+    "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\hfield_plateau_129\\heights_m.npy",
+    "heights_sha256": "b5553ee04fd3906bc4f3f0ac662026085aef4d6a7d2ca85cd1b36f8c440eb7fb",
+    "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\hfield_plateau_129\\terrain.hfield",
+    "hfield_sha256": "598f18cf7103e3180d47f363f7ed78ecb51bff09be6b6c5756b74a51a546c676",
+    "map_half_extent_m": 10.0,
+    "start_xy_m": [
+      -6.0,
+      0.0
+    ],
+    "goal_xy_m": [
+      6.0,
+      0.0
+    ],
+    "height_min_m": 0.0,
+    "height_max_m": 1e-09,
+    "height_range_m": 1e-09,
+    "start_height_m": 0.0,
+    "grid_spacing_m": 0.15625,
+    "maximum_abs_height_within_2m_of_start_m": 0.0,
+    "compiled_floor_type": 1,
+    "compiled_floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "compiled_floor_condim": 3,
+    "compiled_floor_pos": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "compiled_floor_margin_m": 0.01,
+    "compiled_floor_gap_m": 0.0,
+    "compiled_floor_solref": [
+      0.02,
+      1.0
+    ],
+    "compiled_floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "compiled_robot_signature": {
+      "nq": 15,
+      "nv": 14,
+      "nu": 8,
+      "body_mass": [
+        0.0,
+        0.32724923474893675,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026
+      ],
+      "joint_names": [
+        "root",
+        "hip_1",
+        "ankle_1",
+        "hip_2",
+        "ankle_2",
+        "hip_3",
+        "ankle_3",
+        "hip_4",
+        "ankle_4"
+      ],
+      "actuator_joint_names": [
+        "hip_4",
+        "ankle_4",
+        "hip_1",
+        "ankle_1",
+        "hip_2",
+        "ankle_2",
+        "hip_3",
+        "ankle_3"
+      ],
+      "actuator_gear": [
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "actuator_ctrlrange": [
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ]
+      ],
+      "robot_geom_names": [
+        "torso_geom",
+        "aux_1_geom",
+        "left_leg_geom",
+        "left_ankle_geom",
+        "aux_2_geom",
+        "right_leg_geom",
+        "right_ankle_geom",
+        "aux_3_geom",
+        "back_leg_geom",
+        "third_ankle_geom",
+        "aux_4_geom",
+        "rightback_leg_geom",
+        "fourth_ankle_geom"
+      ],
+      "robot_geom_type": [
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "robot_geom_size": [
+        [
+          0.25,
+          0.0,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ]
+      ],
+      "robot_geom_friction": [
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ]
+      ],
+      "timestep_seconds": 0.01
+    },
+    "compiled_hfield_data_min": 0.0,
+    "compiled_hfield_data_max": 1.0
+  },
+  "hfield_plateau_257": {
+    "scene_name": "hfield_plateau_257",
+    "kind": "plateau",
+    "resolution": 257,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\hfield_plateau_257\\ant_scene.xml",
+    "xml_sha256": "44e670b4f9bd8bb47a7533c69f6c6419bf8bc9542db110b2fc9a80c1bb69fd9b",
+    "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\hfield_plateau_257\\heights_m.npy",
+    "heights_sha256": "a1c3c7390982710386c3fb389f80fc0419d88a8e18d813e808b5cc617312b4e3",
+    "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\hfield_plateau_257\\terrain.hfield",
+    "hfield_sha256": "4b0ea8860330fdaffce6535f9bc4ef240461c9ed98196d87d31df878c68c79eb",
+    "map_half_extent_m": 10.0,
+    "start_xy_m": [
+      -6.0,
+      0.0
+    ],
+    "goal_xy_m": [
+      6.0,
+      0.0
+    ],
+    "height_min_m": 0.0,
+    "height_max_m": 1e-09,
+    "height_range_m": 1e-09,
+    "start_height_m": 0.0,
+    "grid_spacing_m": 0.078125,
+    "maximum_abs_height_within_2m_of_start_m": 0.0,
+    "compiled_floor_type": 1,
+    "compiled_floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "compiled_floor_condim": 3,
+    "compiled_floor_pos": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "compiled_floor_margin_m": 0.01,
+    "compiled_floor_gap_m": 0.0,
+    "compiled_floor_solref": [
+      0.02,
+      1.0
+    ],
+    "compiled_floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "compiled_robot_signature": {
+      "nq": 15,
+      "nv": 14,
+      "nu": 8,
+      "body_mass": [
+        0.0,
+        0.32724923474893675,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026
+      ],
+      "joint_names": [
+        "root",
+        "hip_1",
+        "ankle_1",
+        "hip_2",
+        "ankle_2",
+        "hip_3",
+        "ankle_3",
+        "hip_4",
+        "ankle_4"
+      ],
+      "actuator_joint_names": [
+        "hip_4",
+        "ankle_4",
+        "hip_1",
+        "ankle_1",
+        "hip_2",
+        "ankle_2",
+        "hip_3",
+        "ankle_3"
+      ],
+      "actuator_gear": [
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "actuator_ctrlrange": [
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ]
+      ],
+      "robot_geom_names": [
+        "torso_geom",
+        "aux_1_geom",
+        "left_leg_geom",
+        "left_ankle_geom",
+        "aux_2_geom",
+        "right_leg_geom",
+        "right_ankle_geom",
+        "aux_3_geom",
+        "back_leg_geom",
+        "third_ankle_geom",
+        "aux_4_geom",
+        "rightback_leg_geom",
+        "fourth_ankle_geom"
+      ],
+      "robot_geom_type": [
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "robot_geom_size": [
+        [
+          0.25,
+          0.0,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ]
+      ],
+      "robot_geom_friction": [
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ]
+      ],
+      "timestep_seconds": 0.01
+    },
+    "compiled_hfield_data_min": 0.0,
+    "compiled_hfield_data_max": 1.0
+  },
+  "hfield_plateau_513": {
+    "scene_name": "hfield_plateau_513",
+    "kind": "plateau",
+    "resolution": 513,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\hfield_plateau_513\\ant_scene.xml",
+    "xml_sha256": "44e670b4f9bd8bb47a7533c69f6c6419bf8bc9542db110b2fc9a80c1bb69fd9b",
+    "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\hfield_plateau_513\\heights_m.npy",
+    "heights_sha256": "cff8d12c15421735d2b1bce02c3cffec9d929868915925c2c8ad535396988300",
+    "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\hfield_plateau_513\\terrain.hfield",
+    "hfield_sha256": "26357acb0dade871699796173d8a076b745e788f9b18434297b4a2735da9ad25",
+    "map_half_extent_m": 10.0,
+    "start_xy_m": [
+      -6.0,
+      0.0
+    ],
+    "goal_xy_m": [
+      6.0,
+      0.0
+    ],
+    "height_min_m": 0.0,
+    "height_max_m": 1e-09,
+    "height_range_m": 1e-09,
+    "start_height_m": 0.0,
+    "grid_spacing_m": 0.0390625,
+    "maximum_abs_height_within_2m_of_start_m": 0.0,
+    "compiled_floor_type": 1,
+    "compiled_floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "compiled_floor_condim": 3,
+    "compiled_floor_pos": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "compiled_floor_margin_m": 0.01,
+    "compiled_floor_gap_m": 0.0,
+    "compiled_floor_solref": [
+      0.02,
+      1.0
+    ],
+    "compiled_floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "compiled_robot_signature": {
+      "nq": 15,
+      "nv": 14,
+      "nu": 8,
+      "body_mass": [
+        0.0,
+        0.32724923474893675,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026
+      ],
+      "joint_names": [
+        "root",
+        "hip_1",
+        "ankle_1",
+        "hip_2",
+        "ankle_2",
+        "hip_3",
+        "ankle_3",
+        "hip_4",
+        "ankle_4"
+      ],
+      "actuator_joint_names": [
+        "hip_4",
+        "ankle_4",
+        "hip_1",
+        "ankle_1",
+        "hip_2",
+        "ankle_2",
+        "hip_3",
+        "ankle_3"
+      ],
+      "actuator_gear": [
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "actuator_ctrlrange": [
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ]
+      ],
+      "robot_geom_names": [
+        "torso_geom",
+        "aux_1_geom",
+        "left_leg_geom",
+        "left_ankle_geom",
+        "aux_2_geom",
+        "right_leg_geom",
+        "right_ankle_geom",
+        "aux_3_geom",
+        "back_leg_geom",
+        "third_ankle_geom",
+        "aux_4_geom",
+        "rightback_leg_geom",
+        "fourth_ankle_geom"
+      ],
+      "robot_geom_type": [
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "robot_geom_size": [
+        [
+          0.25,
+          0.0,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ]
+      ],
+      "robot_geom_friction": [
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ]
+      ],
+      "timestep_seconds": 0.01
+    },
+    "compiled_hfield_data_min": 0.0,
+    "compiled_hfield_data_max": 1.0
+  },
+  "hfield_microrelief_257": {
+    "scene_name": "hfield_microrelief_257",
+    "kind": "microrelief",
+    "resolution": 257,
+    "xml_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\hfield_microrelief_257\\ant_scene.xml",
+    "xml_sha256": "ce29e6e3f5e7fb0a860e93750405b2f1e6ab50d830b83bf022be61f8187e56d4",
+    "heights_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\hfield_microrelief_257\\heights_m.npy",
+    "heights_sha256": "d61a3fc194256fc33362aa5142176b9eb395a301f329a8d0fd3c5eb503ca10d1",
+    "hfield_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\heightfield_plane_contact_diagnostic_v1_final_v2_20260819\\scenes\\hfield_microrelief_257\\terrain.hfield",
+    "hfield_sha256": "af96f2f87f2a58d71ea5907e51e389f31a590bf8abf3634e29f6f8774b9f3748",
+    "map_half_extent_m": 10.0,
+    "start_xy_m": [
+      -6.0,
+      0.0
+    ],
+    "goal_xy_m": [
+      6.0,
+      0.0
+    ],
+    "height_min_m": -5.489893883791291e-07,
+    "height_max_m": 2.451010611620871e-06,
+    "height_range_m": 3e-06,
+    "start_height_m": 0.0,
+    "grid_spacing_m": 0.078125,
+    "maximum_abs_height_within_2m_of_start_m": 6.4321540283736e-07,
+    "compiled_floor_type": 1,
+    "compiled_floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "compiled_floor_condim": 3,
+    "compiled_floor_pos": [
+      0.0,
+      0.0,
+      -5.48989388379e-07
+    ],
+    "compiled_floor_margin_m": 0.01,
+    "compiled_floor_gap_m": 0.0,
+    "compiled_floor_solref": [
+      0.02,
+      1.0
+    ],
+    "compiled_floor_solimp": [
+      0.9,
+      0.95,
+      0.001,
+      0.5,
+      2.0
+    ],
+    "compiled_qpos0": [
+      -6.0,
+      0.0,
+      0.75,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "compiled_robot_signature": {
+      "nq": 15,
+      "nv": 14,
+      "nu": 8,
+      "body_mass": [
+        0.0,
+        0.32724923474893675,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026,
+        0.03915775372846671,
+        0.03915775372846671,
+        0.06759220453268026
+      ],
+      "joint_names": [
+        "root",
+        "hip_1",
+        "ankle_1",
+        "hip_2",
+        "ankle_2",
+        "hip_3",
+        "ankle_3",
+        "hip_4",
+        "ankle_4"
+      ],
+      "actuator_joint_names": [
+        "hip_4",
+        "ankle_4",
+        "hip_1",
+        "ankle_1",
+        "hip_2",
+        "ankle_2",
+        "hip_3",
+        "ankle_3"
+      ],
+      "actuator_gear": [
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          150.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "actuator_ctrlrange": [
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ]
+      ],
+      "robot_geom_names": [
+        "torso_geom",
+        "aux_1_geom",
+        "left_leg_geom",
+        "left_ankle_geom",
+        "aux_2_geom",
+        "right_leg_geom",
+        "right_ankle_geom",
+        "aux_3_geom",
+        "back_leg_geom",
+        "third_ankle_geom",
+        "aux_4_geom",
+        "rightback_leg_geom",
+        "fourth_ankle_geom"
+      ],
+      "robot_geom_type": [
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "robot_geom_size": [
+        [
+          0.25,
+          0.0,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.14142135623730953,
+          0.0
+        ],
+        [
+          0.08,
+          0.28284271247461906,
+          0.0
+        ]
+      ],
+      "robot_geom_friction": [
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ],
+        [
+          1.0,
+          0.5,
+          0.5
+        ]
+      ],
+      "timestep_seconds": 0.01
+    },
+    "compiled_hfield_data_min": 0.0,
+    "compiled_hfield_data_max": 1.0
+  }
+}

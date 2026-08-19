@@ -1,0 +1,42 @@
+[
+  {
+    "condition_id": "SOURCE_STAGE1_SUBSTEP_AUDIT",
+    "scene_name": "flat",
+    "evaluation_seed": 75802,
+    "control_steps": 400,
+    "endpoint_zero_foot_fraction": 0.7475,
+    "full_interval_zero_foot_fraction": 0.33,
+    "control_steps_with_any_substep_foot_contact_fraction": 0.67,
+    "mean_zero_foot_physics_substep_fraction": 0.7645000000000001,
+    "endpoint_zero_with_earlier_substep_contact_fraction_of_all_steps": 0.4175,
+    "endpoint_zero_with_earlier_substep_contact_fraction_conditional": 0.5585284280936454,
+    "endpoint_zero_with_endpoint_nonfoot_ground_fraction_conditional": 0.0,
+    "endpoint_zero_with_any_substep_nonfoot_ground_fraction_conditional": 0.0,
+    "endpoint_zero_with_endpoint_torso_ground_fraction_conditional": 0.0,
+    "endpoint_vs_last_substep_foot_mask_mismatch_count": 0,
+    "interpretation_boundary": "full_interval_zero_foot means no named distal foot contacted world geometry during any of five sampled physics substeps; non-foot ground contact is reported separately",
+    "episode_length": 400,
+    "trace_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\high_frequency_contact\\source_stage1_substep_audit_flat_seed_75802_substeps.csv",
+    "trace_sha256": "87529e287ee8f0ed946d063f29244a0aa111dd26cfa459a56d63280de41f5f60"
+  },
+  {
+    "condition_id": "SOURCE_STAGE1_SUBSTEP_AUDIT",
+    "scene_name": "uphill_8deg",
+    "evaluation_seed": 75802,
+    "control_steps": 400,
+    "endpoint_zero_foot_fraction": 0.6825,
+    "full_interval_zero_foot_fraction": 0.255,
+    "control_steps_with_any_substep_foot_contact_fraction": 0.745,
+    "mean_zero_foot_physics_substep_fraction": 0.6745,
+    "endpoint_zero_with_earlier_substep_contact_fraction_of_all_steps": 0.4275,
+    "endpoint_zero_with_earlier_substep_contact_fraction_conditional": 0.6263736263736264,
+    "endpoint_zero_with_endpoint_nonfoot_ground_fraction_conditional": 0.0,
+    "endpoint_zero_with_any_substep_nonfoot_ground_fraction_conditional": 0.0,
+    "endpoint_zero_with_endpoint_torso_ground_fraction_conditional": 0.0,
+    "endpoint_vs_last_substep_foot_mask_mismatch_count": 0,
+    "interpretation_boundary": "full_interval_zero_foot means no named distal foot contacted world geometry during any of five sampled physics substeps; non-foot ground contact is reported separately",
+    "episode_length": 400,
+    "trace_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_standard_support_curriculum_v1_20260819\\paired_bound6_seed_62804\\high_frequency_contact\\source_stage1_substep_audit_uphill_8deg_seed_75802_substeps.csv",
+    "trace_sha256": "489cd59ea47fb2681ded46d1f1b91ccbb371dbe221fb892c1415ef9c117b06a7"
+  }
+]

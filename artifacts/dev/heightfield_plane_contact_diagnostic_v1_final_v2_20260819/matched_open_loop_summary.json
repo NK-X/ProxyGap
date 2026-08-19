@@ -1,0 +1,97 @@
+[
+  {
+    "sample_count": 800,
+    "zero_foot_contact_fraction": 0.19875,
+    "mean_support_count": 1.275,
+    "mean_foot_contact_point_count": 1.275,
+    "mean_contacts_per_supported_foot": 1.0,
+    "mean_world_robot_contact_count": 1.275,
+    "mean_normal_force_sum_n": 8.935957475885239,
+    "maximum_normal_force_sum_n": 146.26742935028233,
+    "surface_id": "native_plane",
+    "elapsed_seconds": 7.999999999999874,
+    "net_xy_displacement_m": 3.0039580633659715,
+    "final_root_position": [
+      -2.92297512377635,
+      0.46723757639907393,
+      0.6150646870973022
+    ],
+    "final_root_linear_speed_m_per_s": 0.6767591426179251
+  },
+  {
+    "sample_count": 800,
+    "zero_foot_contact_fraction": 0.73625,
+    "mean_support_count": 0.2925,
+    "mean_foot_contact_point_count": 0.945,
+    "mean_contacts_per_supported_foot": 3.230769230769231,
+    "mean_world_robot_contact_count": 0.945,
+    "mean_normal_force_sum_n": 11.234180964622324,
+    "maximum_normal_force_sum_n": 212.83604154391955,
+    "surface_id": "hfield_plateau_129",
+    "elapsed_seconds": 7.999999999999874,
+    "net_xy_displacement_m": 3.064097670595775,
+    "final_root_position": [
+      -3.209642408445831,
+      1.5555206098801064,
+      0.6114747325107636
+    ],
+    "final_root_linear_speed_m_per_s": 0.9448116953225547
+  },
+  {
+    "sample_count": 800,
+    "zero_foot_contact_fraction": 0.775,
+    "mean_support_count": 0.2425,
+    "mean_foot_contact_point_count": 1.65875,
+    "mean_contacts_per_supported_foot": 6.84020618556701,
+    "mean_world_robot_contact_count": 1.65875,
+    "mean_normal_force_sum_n": 13.000079237696493,
+    "maximum_normal_force_sum_n": 289.9616665771091,
+    "surface_id": "hfield_plateau_257",
+    "elapsed_seconds": 7.999999999999874,
+    "net_xy_displacement_m": 2.692557342619113,
+    "final_root_position": [
+      -3.214675496593975,
+      -0.03694028606644688,
+      0.6108970126006117
+    ],
+    "final_root_linear_speed_m_per_s": 0.41940705927009914
+  },
+  {
+    "sample_count": 800,
+    "zero_foot_contact_fraction": 0.80375,
+    "mean_support_count": 0.21375,
+    "mean_foot_contact_point_count": 3.57125,
+    "mean_contacts_per_supported_foot": 16.707602339181285,
+    "mean_world_robot_contact_count": 3.57125,
+    "mean_normal_force_sum_n": 14.834163230422552,
+    "maximum_normal_force_sum_n": 387.951038591694,
+    "surface_id": "hfield_plateau_513",
+    "elapsed_seconds": 7.999999999999874,
+    "net_xy_displacement_m": 2.77627265613221,
+    "final_root_position": [
+      -3.1285811304923223,
+      0.16760430030221482,
+      0.6206271617642714
+    ],
+    "final_root_linear_speed_m_per_s": 0.9255923582369966
+  },
+  {
+    "sample_count": 800,
+    "zero_foot_contact_fraction": 0.77875,
+    "mean_support_count": 0.2375,
+    "mean_foot_contact_point_count": 1.61375,
+    "mean_contacts_per_supported_foot": 6.794736842105263,
+    "mean_world_robot_contact_count": 1.61375,
+    "mean_normal_force_sum_n": 12.4116828244505,
+    "maximum_normal_force_sum_n": 289.9939801602362,
+    "surface_id": "hfield_microrelief_257",
+    "elapsed_seconds": 7.999999999999874,
+    "net_xy_displacement_m": 3.0510508804410907,
+    "final_root_position": [
+      -2.867334639023789,
+      0.39282912094686356,
+      0.6080496041394491
+    ],
+    "final_root_linear_speed_m_per_s": 0.8467202619662784
+  }
+]

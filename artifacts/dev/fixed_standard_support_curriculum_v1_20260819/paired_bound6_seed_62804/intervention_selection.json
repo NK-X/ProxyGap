@@ -1,0 +1,23 @@
+{
+  "schema_version": "proxygap-standard-support-intervention-selection-v1",
+  "predeclared_gate": {
+    "candidate": "per_foot_contact_gap_weight_only",
+    "permitted_reward_path": "preserved_pre_pitch_reward.foot_contact_gap_shaping_weight",
+    "control_weight": 0.0,
+    "intervention_weight": 1.0,
+    "fixed_grace_seconds": 0.5,
+    "fixed_scale_seconds": 0.5,
+    "minimum_mean_endpoint_airborne_fraction": 0.25,
+    "minimum_scenes_with_longest_per_foot_gap_above_seconds": 2,
+    "longest_per_foot_gap_threshold_seconds": 0.75,
+    "minimum_full_interval_airborne_fraction_in_any_audited_scene": 0.1
+  },
+  "observed": {
+    "mean_endpoint_airborne_fraction": 0.6968055555555556,
+    "scenes_with_longest_per_foot_gap_above_threshold": 4,
+    "maximum_full_interval_airborne_fraction_in_audited_scenes": 0.33
+  },
+  "selected": true,
+  "selected_intervention": "per_foot_contact_gap_weight_only",
+  "reason": "Endpoint and full-interval audits both show substantial support gaps; screen the existing per-foot gap term without changing timing constants."
+}

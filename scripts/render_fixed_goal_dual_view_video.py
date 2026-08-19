@@ -96,6 +96,14 @@ def parse_args() -> argparse.Namespace:
         help="Optional auditable condition label shown in the bottom panel.",
     )
     parser.add_argument(
+        "--overview-profile",
+        type=Path,
+        help=(
+            "Optional visualisation-only JSON profile for the fixed overview "
+            "camera, lighting and relief annotation. It cannot modify physics."
+        ),
+    )
+    parser.add_argument(
         "--airborne-shaping-weight",
         type=float,
         help=(
@@ -189,6 +197,7 @@ def overview_camera(
     goal: np.ndarray,
     half_extent: float,
     terrain_midpoint_height: float,
+    profile: dict[str, Any] | None = None,
 ) -> mujoco.MjvCamera:
     """Return a fixed camera located on the goal side of the map.
 
@@ -204,17 +213,122 @@ def overview_camera(
     camera.type = mujoco.mjtCamera.mjCAMERA_FREE
     camera.fixedcamid = -1
     camera.trackbodyid = -1
+    camera_settings = (profile or {}).get("camera", {})
+    distance_multiplier = float(
+        camera_settings.get("distance_half_extent_multiplier", 3.3)
+    )
+    elevation_degrees = float(camera_settings.get("elevation_degrees", -55.0))
+    azimuth_offset_degrees = float(
+        camera_settings.get("azimuth_offset_degrees", 0.0)
+    )
+    lookat_height_offset = float(camera_settings.get("lookat_height_offset_m", 0.0))
+    if not math.isfinite(distance_multiplier) or distance_multiplier <= 0.0:
+        raise ValueError("overview distance multiplier must be finite and positive")
+    if not math.isfinite(elevation_degrees) or not -89.0 <= elevation_degrees <= -5.0:
+        raise ValueError("overview elevation must be between -89 and -5 degrees")
+    if not math.isfinite(azimuth_offset_degrees):
+        raise ValueError("overview azimuth offset must be finite")
+    if not math.isfinite(lookat_height_offset):
+        raise ValueError("overview lookat height offset must be finite")
     camera.lookat[:] = (
         float((start[0] + goal[0]) / 2.0),
         float((start[1] + goal[1]) / 2.0),
-        float(terrain_midpoint_height),
+        float(terrain_midpoint_height + lookat_height_offset),
     )
     # Keep both diagonal corners in frame.  The extra margin is important near
     # the goal-side corner because the camera is oblique rather than vertical.
-    camera.distance = 3.3 * float(half_extent)
-    camera.azimuth = (bearing_degrees + 180.0) % 360.0
-    camera.elevation = -55.0
+    camera.distance = distance_multiplier * float(half_extent)
+    camera.azimuth = (
+        bearing_degrees + 180.0 + azimuth_offset_degrees
+    ) % 360.0
+    camera.elevation = elevation_degrees
     return camera
+
+
+def load_overview_profile(path: Path | None) -> tuple[dict[str, Any], Path | None]:
+    """Load an auditable, visualisation-only overview profile."""
+    if path is None:
+        return {
+            "schema_version": 1,
+            "profile_id": "legacy-v1",
+            "camera": {
+                "distance_half_extent_multiplier": 3.3,
+                "elevation_degrees": -55.0,
+                "azimuth_offset_degrees": 0.0,
+                "lookat_height_offset_m": 0.0,
+            },
+            "lighting": {"mode": "model-default"},
+            "annotation": {
+                "show_physical_relief": False,
+                "vertical_scale": 1.0,
+            },
+        }, None
+    resolved = path.expanduser().resolve()
+    if not resolved.is_file():
+        raise FileNotFoundError(resolved)
+    profile = json.loads(resolved.read_text(encoding="utf-8"))
+    if int(profile.get("schema_version", -1)) != 1:
+        raise ValueError("overview profile schema_version must equal 1")
+    if not str(profile.get("profile_id", "")).strip():
+        raise ValueError("overview profile requires a non-empty profile_id")
+    if profile.get("scope") != "visualisation-only":
+        raise ValueError("overview profile scope must be visualisation-only")
+    vertical_scale = float(profile.get("annotation", {}).get("vertical_scale", 1.0))
+    if not math.isclose(vertical_scale, 1.0, abs_tol=1e-12):
+        raise ValueError("overview profile must retain a truthful 1:1 vertical scale")
+    return profile, resolved
+
+
+def apply_overview_lighting(
+    scene: mujoco.MjvScene,
+    *,
+    profile: dict[str, Any],
+) -> None:
+    """Apply visual-only grazing illumination after scene construction.
+
+    The change is confined to ``MjvScene``. It never enters ``MjModel`` and
+    therefore cannot alter contacts, observations, actions or rewards.
+    """
+    settings = profile.get("lighting", {})
+    if settings.get("mode", "model-default") == "model-default":
+        return
+    if settings.get("mode") != "grazing-relief":
+        raise ValueError("unsupported overview lighting mode")
+    active_lights = list(scene.lights[: int(scene.nlight)])
+    headlights = [light for light in active_lights if int(light.headlight)]
+    world_lights = [light for light in active_lights if not int(light.headlight)]
+    if not headlights or not world_lights:
+        raise RuntimeError("relief lighting requires a headlight and a world light")
+
+    headlight = headlights[0]
+    headlight.ambient[:] = np.asarray(
+        settings.get("headlight_ambient", (0.07, 0.08, 0.09)), dtype=np.float32
+    )
+    headlight.diffuse[:] = np.asarray(
+        settings.get("headlight_diffuse", (0.10, 0.11, 0.12)), dtype=np.float32
+    )
+    headlight.specular[:] = np.asarray((0.02, 0.02, 0.02), dtype=np.float32)
+
+    key = world_lights[0]
+    key_direction = np.asarray(
+        settings.get("key_direction", (0.76, -0.52, -0.39)), dtype=np.float32
+    )
+    direction_norm = float(np.linalg.norm(key_direction))
+    if not math.isfinite(direction_norm) or direction_norm <= 1e-9:
+        raise ValueError("overview key-light direction must be non-zero and finite")
+    key.dir[:] = key_direction / direction_norm
+    key.diffuse[:] = np.asarray(
+        settings.get("key_diffuse", (0.95, 0.86, 0.68)), dtype=np.float32
+    )
+    key.specular[:] = np.asarray((0.03, 0.03, 0.03), dtype=np.float32)
+    key.castshadow = 1
+
+    if len(world_lights) > 1:
+        fill = world_lights[1]
+        fill.diffuse[:] = np.asarray(
+            settings.get("fill_diffuse", (0.10, 0.14, 0.18)), dtype=np.float32
+        )
+        fill.specular[:] = np.asarray((0.01, 0.01, 0.01), dtype=np.float32)
 
 
 def resample_surface_trail(
@@ -463,6 +577,10 @@ def compose_dual_view(
     floor_condim: int,
     map_hash: str,
     time_limit_reached: bool = False,
+    overview_profile_id: str = "legacy-v1",
+    terrain_min_height_m: float | None = None,
+    terrain_max_height_m: float | None = None,
+    overview_vertical_scale: float = 1.0,
 ) -> Image.Image:
     """Compose two rendered panes and a white provenance/status panel."""
     if left_rgb.shape != (VIEW_HEIGHT, VIEW_WIDTH, 3):
@@ -486,12 +604,46 @@ def compose_dual_view(
     )
     draw.text(
         (VIEW_WIDTH + 16, 14),
-        "GOAL-TO-START OVERVIEW",
+        (
+            "GOAL-TO-START RELIEF OVERVIEW"
+            if overview_profile_id != "legacy-v1"
+            else "GOAL-TO-START OVERVIEW"
+        ),
         font=font(12, bold=True),
         fill=WHITE,
         stroke_width=2,
         stroke_fill=(0, 0, 0, 170),
     )
+    if (
+        terrain_min_height_m is not None
+        and terrain_max_height_m is not None
+        and overview_profile_id != "legacy-v1"
+    ):
+        if not math.isclose(overview_vertical_scale, 1.0, abs_tol=1e-12):
+            raise ValueError("relief annotation requires a truthful 1:1 vertical scale")
+        relief = float(terrain_max_height_m - terrain_min_height_m)
+        draw.rounded_rectangle(
+            (VIEW_WIDTH + 16, 44, VIEW_WIDTH + 307, 94),
+            radius=7,
+            fill=(9, 17, 23, 192),
+            outline=(230, 238, 235, 105),
+            width=1,
+        )
+        draw.text(
+            (VIEW_WIDTH + 28, 51),
+            "PHYSICAL RELIEF - 1:1 VERTICAL SCALE",
+            font=font(10, bold=True),
+            fill=WHITE,
+        )
+        draw.text(
+            (VIEW_WIDTH + 28, 72),
+            (
+                f"z {terrain_min_height_m:+.1f} to {terrain_max_height_m:+.1f} m"
+                f"  |  elevation range {relief:.1f} m"
+            ),
+            font=font(10),
+            fill=(224, 235, 232),
+        )
     draw_minimap(
         image,
         map_base=map_base,
@@ -618,6 +770,7 @@ def render_pair(
     fixed_overview_camera: mujoco.MjvCamera,
     trail_xyz: list[np.ndarray],
     overview_position_xyz: np.ndarray,
+    overview_profile: dict[str, Any] | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     renderer.update_scene(data, camera=follow_camera, scene_option=scene_option)
     add_surface_trail(renderer.scene, trail_xyz)
@@ -627,6 +780,7 @@ def render_pair(
         camera=fixed_overview_camera,
         scene_option=scene_option,
     )
+    apply_overview_lighting(renderer.scene, profile=overview_profile or {})
     add_surface_trail(renderer.scene, trail_xyz)
     add_overview_position_marker(renderer.scene, overview_position_xyz)
     right = np.asarray(renderer.render(), dtype=np.uint8).copy()
@@ -641,6 +795,10 @@ def main() -> None:
         raise ValueError("render-stride must be positive")
     if args.intro_seconds < 0.0 or args.outro_seconds < 0.0:
         raise ValueError("intro and outro durations cannot be negative")
+    overview_profile, overview_profile_path = load_overview_profile(
+        args.overview_profile
+    )
+    overview_profile_id = str(overview_profile["profile_id"])
 
     run_root = args.run_root.expanduser().resolve()
     contract_path = args.evaluation_contract.expanduser().resolve()
@@ -730,9 +888,17 @@ def main() -> None:
         else ROOT
         / contract["output_root"]
         / "videos"
-        / f"seed_{args.evaluation_seed}_dual_view_v1"
+        / (
+            f"seed_{args.evaluation_seed}_dual_view_v1"
+            if overview_profile_id == "legacy-v1"
+            else f"seed_{args.evaluation_seed}_dual_view_{overview_profile_id}"
+        )
     )
-    stem = f"fixed_map_final_policy_seed_{args.evaluation_seed}_dual_view_v1"
+    stem = (
+        f"fixed_map_final_policy_seed_{args.evaluation_seed}_dual_view_v1"
+        if overview_profile_id == "legacy-v1"
+        else f"fixed_map_final_policy_seed_{args.evaluation_seed}_dual_view_{overview_profile_id}"
+    )
     video_path = output_dir / f"{stem}.mp4"
     if output_dir.exists() and any(output_dir.iterdir()) and not args.overwrite:
         raise RuntimeError(f"Refusing to overwrite non-empty output directory: {output_dir}")
@@ -791,6 +957,7 @@ def main() -> None:
         goal=goal,
         half_extent=half_extent,
         terrain_midpoint_height=float((heights.min() + heights.max()) / 2.0),
+        profile=overview_profile,
     )
 
     av_module = load_video_encoder()
@@ -839,6 +1006,7 @@ def main() -> None:
         fixed_overview_camera=fixed_overview_camera,
         trail_xyz=trail_xyz,
         overview_position_xyz=trail_xyz[-1],
+        overview_profile=overview_profile,
     )
     initial_frame = compose_dual_view(
         left,
@@ -874,6 +1042,12 @@ def main() -> None:
         floor_friction=floor_friction,
         floor_condim=floor_condim,
         map_hash=approved["heights_sha256"],
+        overview_profile_id=overview_profile_id,
+        terrain_min_height_m=float(heights.min()),
+        terrain_max_height_m=float(heights.max()),
+        overview_vertical_scale=float(
+            overview_profile.get("annotation", {}).get("vertical_scale", 1.0)
+        ),
     )
     for _ in range(intro_frames):
         encode_frame(stream, container, initial_frame)
@@ -969,6 +1143,7 @@ def main() -> None:
                 fixed_overview_camera=fixed_overview_camera,
                 trail_xyz=trail_xyz,
                 overview_position_xyz=trail_xyz[-1],
+                overview_profile=overview_profile,
             )
             frame = compose_dual_view(
                 left,
@@ -1005,6 +1180,12 @@ def main() -> None:
                 floor_condim=floor_condim,
                 map_hash=approved["heights_sha256"],
                 time_limit_reached=bool(step >= requested_steps or truncated),
+                overview_profile_id=overview_profile_id,
+                terrain_min_height_m=float(heights.min()),
+                terrain_max_height_m=float(heights.max()),
+                overview_vertical_scale=float(
+                    overview_profile.get("annotation", {}).get("vertical_scale", 1.0)
+                ),
             )
             encode_frame(stream, container, frame)
             rendered_rollout_frames += 1
@@ -1053,7 +1234,7 @@ def main() -> None:
             f"Decoded frame count {qa['decoded_frames']} differs from encoded count {total_frames}"
         )
     manifest = {
-        "schema_version": "proxygap-fixed-goal-dual-view-video-v1",
+        "schema_version": "proxygap-fixed-goal-dual-view-video-v2",
         "purpose": "dual-view visualisation of an existing deterministic fixed-map rollout",
         "training_status": "no new training; both panes visualise the same replayed policy trajectory",
         "selection_rule": contract.get("representative_video", {}).get(
@@ -1068,9 +1249,23 @@ def main() -> None:
                 "using deterministic 5 m local valley relief"
             ),
             "right": (
-                "fixed oblique overview at elevation -55 degrees, camera head on the "
-                "goal side, looking across the map towards the start; distance equals "
-                "3.3 times the 40 m map half-extent"
+                f"visualisation-only profile {overview_profile_id}; fixed oblique camera "
+                "on the goal side looking towards the start; camera geometry and lighting "
+                "come from the recorded overview profile"
+            ),
+        },
+        "overview_visual_profile": {
+            "profile_id": overview_profile_id,
+            "path": str(overview_profile_path) if overview_profile_path else None,
+            "sha256": sha256(overview_profile_path) if overview_profile_path else None,
+            "configuration": overview_profile,
+            "physical_vertical_scale": 1.0,
+            "terrain_min_height_m": float(heights.min()),
+            "terrain_max_height_m": float(heights.max()),
+            "terrain_height_range_m": float(np.ptp(heights)),
+            "dynamics_boundary": (
+                "camera, MjvScene lighting and text annotation only; frozen height array, "
+                "MjModel geometry, contacts and rollout states are unchanged"
             ),
         },
         "visual_only_geometry": {

@@ -1,0 +1,114 @@
+{
+  "schema_version": "proxygap-pair0-standard-slope-delivery-video-v1",
+  "config_id": "fixed_standard_pair0_slope_delivery_video_v1_20260819",
+  "status": "frozen_read_only_visual_replay",
+  "purpose": "Two auditable dual-view replays of predeclared representative PAIR0 standard-slope episodes; not a fixed-map or generalisation result.",
+  "source": {
+    "formal_root": "artifacts/dev/fixed_standard_pair0_slope_capability_boundary_v1_20260819/attempt_0",
+    "formal_manifest": "artifacts/dev/fixed_standard_pair0_slope_capability_boundary_v1_20260819/attempt_0/manifest.json",
+    "formal_manifest_sha256": "fd1995b28b1cbb24c1e371d3a1f6b24833eb52efb0cc1191440eccb3f73360e3",
+    "formal_frozen_config": "artifacts/dev/fixed_standard_pair0_slope_capability_boundary_v1_20260819/attempt_0/frozen_config.json",
+    "formal_frozen_config_sha256": "a5b496f30bb27aafea8f454ae3e64744602a97a2b9f8c5285b243c96f810f93b",
+    "formal_episode_metrics": "artifacts/dev/fixed_standard_pair0_slope_capability_boundary_v1_20260819/attempt_0/episode_metrics.csv",
+    "formal_episode_metrics_sha256": "e5c5cf0925cb28fdfa296a4876443dfaadbacc7fc4554163d02ac42c7ea69bee",
+    "formal_prepared_scenes": "artifacts/dev/fixed_standard_pair0_slope_capability_boundary_v1_20260819/attempt_0/prepared_scenes.json",
+    "formal_prepared_scenes_sha256": "3dd471a3da79e133580c8985536403403ca43bce09b3ada3ac004d761d7bab8d",
+    "formal_summary": "artifacts/dev/fixed_standard_pair0_slope_capability_boundary_v1_20260819/attempt_0/summary.json",
+    "formal_summary_sha256": "519a52666ae030ece23a286e5f2c3407470bc02fc99c880c5d5c330db2634674",
+    "checkpoint": "artifacts/dev/pair0_l2b_v3_20260819/attempt_0/pair0_adapt/models/checkpoint_2727936.zip",
+    "checkpoint_sha256": "5121abeff92859205e1537f123f0df1e97edb5ea1fa80be1a72959a5931fac1c",
+    "checkpoint_timesteps": 2727936,
+    "condition_id": "PAIR0_ADAPT"
+  },
+  "representative_episodes": [
+    {
+      "scene_name": "uphill_12deg",
+      "signed_slope_degrees": 12.0,
+      "evaluation_seed": 94153,
+      "selection_rule": "exact_scene_median_fixed_goal_best_progress_across_all_five_predeclared_heldout_seeds",
+      "selection_note": "Seed 94153 is the exact median-progress uphill-12 episode and its 33/600 = 0.055 full-interval zero-foot fraction passes the frozen 0.0580555556 limit. The earlier rounded 0.06 interpretation is explicitly rejected."
+    },
+    {
+      "scene_name": "downhill_16deg",
+      "signed_slope_degrees": -16.0,
+      "evaluation_seed": 94137,
+      "selection_rule": "exact_scene_median_fixed_goal_best_progress_across_all_five_predeclared_heldout_seeds",
+      "selection_note": "Seed 94137 is the exact median-progress downhill-16 episode."
+    }
+  ],
+  "replay": {
+    "max_episode_steps": 600,
+    "cruise_speed_m_per_s": 0.55,
+    "deterministic_policy": true,
+    "physics_timestep_seconds": 0.01,
+    "physics_substeps_per_control_step": 5,
+    "control_timestep_seconds": 0.05,
+    "require_formal_episode_row_fieldwise_exact_match": true,
+    "require_all_600_trace_rows": true,
+    "training": false,
+    "checkpoint_write": false,
+    "reward_change": false,
+    "friction_change": false,
+    "energy_formula_change": false
+  },
+  "render": {
+    "width_px": 1280,
+    "height_px": 720,
+    "fps": 20,
+    "view_height_px": 540,
+    "render_every_control_step": true,
+    "intro_seconds": 1.0,
+    "outro_seconds": 1.0,
+    "minimum_decoded_duration_seconds": 10.0,
+    "video_codec": "libx264",
+    "pixel_format": "yuv420p",
+    "crf": 18,
+    "left_camera": "adaptive_unobstructed_robot_follow",
+    "right_camera": "fixed_side_oblique_physical_1_to_1_vertical_scale",
+    "surface_trajectory_in_both_views": true,
+    "bottom_bar_required_fields": [
+      "condition",
+      "seed",
+      "checkpoint",
+      "angle",
+      "progress",
+      "support",
+      "zerofoot",
+      "safety",
+      "energy_measurement_only"
+    ],
+    "claim_label": "STANDARD-SLOPE DIAGNOSTIC / NOT FIXED-MAP / NOT GENERALISATION"
+  },
+  "energy": {
+    "status": "measurement_only_not_reward_or_gate",
+    "electrical_battery_energy_claim_permitted": false,
+    "display_components": [
+      "cumulative_squared_action",
+      "actuator_positive_mechanical_work_total_j"
+    ]
+  },
+  "output": {
+    "root": "artifacts/dev/fixed_standard_pair0_slope_delivery_video_v1_20260819/attempt_0",
+    "fail_if_exists": true,
+    "preserve_old_videos": true,
+    "required_per_episode_artifacts": [
+      "video",
+      "trace_600_steps",
+      "replay_episode_metrics",
+      "fieldwise_metric_comparison",
+      "final_frame",
+      "contact_sheet",
+      "episode_manifest"
+    ],
+    "root_manifest_required": true,
+    "full_frame_decode_required": true
+  },
+  "runtime_dependencies": {
+    "scripts/render_fixed_goal_dual_view_video.py": "a6d2c4f84c58ec03582bd73273aa4332f373003a5c9ffde1f8d51661b9c2a80d",
+    "scripts/render_fixed_goal_training_video.py": "04a7f8bac2f29adee011e2bbef2876aeedebc887ab84b1405d271ef126f85a33",
+    "scripts/run_fixed_standard_pair0_adaptation_l2_pilot.py": "1c426d7a78cd73bd7e9448e2ecd7f6ab5688871894281d607ca61c61fdd7e7dd",
+    "scripts/evaluate_fixed_standard_pair0_slope_capability_boundary.py": "cebdb50702b8d733b016cfa21dcf663d959dc5bd671d587d5f226e52c7303c9e",
+    "scripts/run_fixed_standard_support_curriculum.py": "959e63241e10c88ddd7aba86f353a0795148e96df9920bc2b8e63bd3a4d7946a"
+  },
+  "claim_boundary": "These videos are deterministic visual replays of two selected standard-slope episodes for one frozen PAIR0 policy. They do not establish fixed-map arrival, random-map generalisation, optimality, or electrical battery energy."
+}

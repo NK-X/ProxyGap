@@ -1,0 +1,21 @@
+{
+  "evaluable": true,
+  "branch_evaluable": {
+    "C0_STRAIGHT_CONTINUE": true,
+    "C1_BALANCED_TURN": true
+  },
+  "branch_pass": {
+    "C0_STRAIGHT_CONTINUE": false,
+    "C1_BALANCED_TURN": false
+  },
+  "C1_passed_both_turn_and_slope": false,
+  "passed": false,
+  "decision": "both_fail_turning_HOLD_retain_source_PAIR0",
+  "source_PAIR0_retained_as_known_best_slope_candidate": true,
+  "fixed_map_authorised": false,
+  "candidate_promoted": false,
+  "hard_stop": true,
+  "further_optimisation_authorised": false,
+  "post_result_video_archive_required": true,
+  "video_participated_in_gate": false
+}
