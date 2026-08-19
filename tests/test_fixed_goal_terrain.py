@@ -153,6 +153,19 @@ def test_hold_annulus_cannot_establish_success_before_true_arrival() -> None:
     assert wrapper._goal_hold_run_steps == 0
     assert wrapper._task_success is False
 
+
+def test_true_arrival_can_establish_success_after_continuous_hold() -> None:
+    wrapper = object.__new__(FixedGoalTerrainWrapper)
+    wrapper.arrival_radius = 1.5
+    wrapper.hold_radius = 2.0
+    wrapper.required_hold_steps = 3
+    wrapper._goal_entered = False
+    wrapper._goal_hold_run_steps = 0
+    wrapper._longest_goal_hold_run_steps = 0
+    wrapper._task_success = False
+    wrapper._success_step = None
+    wrapper._task_steps = 10
+
     wrapper._update_goal_state(1.4)
     wrapper._update_goal_state(1.8)
     wrapper._task_steps = 13
@@ -161,3 +174,34 @@ def test_hold_annulus_cannot_establish_success_before_true_arrival() -> None:
     assert wrapper._longest_goal_hold_run_steps == 3
     assert wrapper._task_success is True
     assert wrapper._success_step == 13
+
+
+def test_leaving_hold_radius_after_arrival_resets_continuous_hold() -> None:
+    wrapper = object.__new__(FixedGoalTerrainWrapper)
+    wrapper.arrival_radius = 1.5
+    wrapper.hold_radius = 2.0
+    wrapper.required_hold_steps = 3
+    wrapper._goal_entered = False
+    wrapper._goal_hold_run_steps = 0
+    wrapper._longest_goal_hold_run_steps = 0
+    wrapper._task_success = False
+    wrapper._success_step = None
+    wrapper._task_steps = 20
+
+    wrapper._update_goal_state(1.4)
+    wrapper._update_goal_state(1.8)
+    assert wrapper._goal_hold_run_steps == 2
+
+    wrapper._update_goal_state(2.01)
+    assert wrapper._goal_entered is True
+    assert wrapper._goal_hold_run_steps == 0
+    assert wrapper._longest_goal_hold_run_steps == 2
+    assert wrapper._task_success is False
+
+    wrapper._update_goal_state(1.9)
+    wrapper._update_goal_state(1.8)
+    wrapper._task_steps = 25
+    wrapper._update_goal_state(1.7)
+    assert wrapper._goal_hold_run_steps == 3
+    assert wrapper._task_success is True
+    assert wrapper._success_step == 25

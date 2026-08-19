@@ -1,0 +1,37 @@
+{
+  "schema_version": "proxygap-fixed-map-waypoint-route-v1",
+  "status": "complete",
+  "phase": "screen",
+  "config_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_map_waypoint_route_v1_20260819\\screen\\frozen_config.json",
+  "config_sha256": "cfaed7bf9221e5ff06ade82b7bf34765d80af541b0bf9c3d068719e7d72d935a",
+  "script_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_map_waypoint_route_v1_20260819\\screen\\frozen_evaluation_script.py",
+  "script_sha256": "cab836c54749499df9d5f47e9e33f0018a04b2ba64b025b6800812162cc3896b",
+  "checkpoint_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_training_20260818\\seed_62801\\models\\checkpoint_2465792.zip",
+  "checkpoint_sha256": "d69ae7a45efdad14a72426ea49c300a670b8c4b92558a97577b3b4130d649abb",
+  "fixed_map_height_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+  "fixed_friction": [
+    1.0,
+    0.5,
+    0.5
+  ],
+  "condim": 3,
+  "route_manifest": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_map_waypoint_route_v1_20260819\\screen\\route\\route_manifest.json",
+  "route_manifest_sha256": "17a181566f80a15a92da38c6d66b131f4ff19840cbe5083feb80832bf5b06719",
+  "episode_count": 10,
+  "all_failures_retained": true,
+  "terminate_on_success": false,
+  "v2_energy_used_in_reward_or_route_cost": false,
+  "scene_metadata": [
+    {
+      "spawn_fraction": 0.0,
+      "x_m": -34.0,
+      "y_m": -34.0,
+      "terrain_height_m": -1.9348310229819923,
+      "gradient_x": -0.005898527666695688,
+      "gradient_y": -0.005898527666695688,
+      "gradient_degrees": 0.4779375773693289,
+      "scene_sha256": "bc72dd66e6b171c0444e8e55d19b145b0a2095d4b584e407df9d76c4033096a7"
+    }
+  ],
+  "claim_boundary": "Exploratory deterministic-policy evaluation on one repeatedly inspected fixed map. All failures are retained. Existing mechanical-work quantities are diagnostics, not V2 relative mission energy, and no route is eligible for time-energy ranking unless it passes the separately computed arrival, stable-dwell and whole-episode safety gates."
+}

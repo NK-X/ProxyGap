@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "config_id": "fixed_map_local_preview_final_paired_direct_goal_v1_20260819",
+  "status": "predeclared_paired_development_evaluation",
+  "purpose": "Paired fixed-seed direct-goal re-evaluation of the frozen 122-dimensional control checkpoint and the final 135-dimensional local-terrain-preview checkpoint under one independently audited arrival, dwell, slip and mechanical-work protocol.",
+  "fixed_map_configuration": "configs/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819.json",
+  "fixed_map_configuration_sha256": "e673e59df5c9f42fdc6e0db01d7215205ac0648d7937034e78d2622262ececa2",
+  "evaluation_seeds": [74801, 74802, 74803, 74804, 74805],
+  "horizon_steps": 12000,
+  "deterministic_policy": true,
+  "controller": {
+    "cruise_speed_m_per_s": 0.5,
+    "yaw_gain_per_second": 0.75,
+    "yaw_deadband_degrees": 0.0,
+    "slow_radius_m": 4.0,
+    "maximum_abs_curvature_per_m": 0.35,
+    "curvature_speed_reduction_gain": 0.0,
+    "minimum_turn_speed_fraction": 1.0
+  },
+  "independent_success": {
+    "arrival_radius_m": 1.5,
+    "hold_radius_m": 2.0,
+    "hold_seconds": 2.0,
+    "require_arrival_entry_before_hold": true,
+    "terminate_evaluation_on_spatial_success": true
+  },
+  "strict_stable_dwell": {
+    "maximum_planar_speed_m_per_s": 0.2,
+    "maximum_terrain_relative_torso_tilt_degrees": 30.0,
+    "minimum_foot_support_count": 1,
+    "require_finite_state": true,
+    "require_no_duration_corrected_slip_candidate": true
+  },
+  "duration_corrected_slip": {
+    "tangential_speed_threshold_m_per_s": 0.2,
+    "minimum_normal_force_n": 1.0,
+    "landing_grace_seconds": 0.1,
+    "minimum_sustained_seconds": 0.2,
+    "definition": "Per foot: contact remains active beyond landing grace, sampled normal force is at least the force gate, and tangential contact speed remains above threshold for the minimum sustained duration. Body and shin sliding are outside this foot-only metric."
+  },
+  "qualification": {
+    "requires_spatial_success": true,
+    "requires_strict_stable_dwell": true,
+    "requires_no_fall": true,
+    "requires_zero_four_foot_airborne_steps": true,
+    "requires_zero_duration_corrected_slip_events": true
+  },
+  "trace_stride_steps": 1,
+  "candidates": [
+    {
+      "name": "control_122d_checkpoint_2465792",
+      "role": "paired_control",
+      "policy_configuration": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+      "policy_configuration_sha256": "0d20c29caffb7206924e6520b6e52b718c86aac5cdaad1d01a4361c0b5ce3a7f",
+      "model_path": "artifacts/dev/fixed_quad_terrain_v2_training_20260818/seed_62801/models/checkpoint_2465792.zip",
+      "model_sha256": "d69ae7a45efdad14a72426ea49c300a670b8c4b92558a97577b3b4130d649abb",
+      "observation_dimension": 122,
+      "augment_local_terrain_observation": false
+    },
+    {
+      "name": "local_preview_135d_final_checkpoint_2727936",
+      "role": "local_preview_intervention",
+      "policy_configuration": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+      "policy_configuration_sha256": "0d20c29caffb7206924e6520b6e52b718c86aac5cdaad1d01a4361c0b5ce3a7f",
+      "model_path": "artifacts/dev/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819/seed_62802/models/checkpoint_2727936.zip",
+      "model_sha256": "e87cef2babe4f9c16978ad7ed258ef35bff475cad7c247b46aefd59c09aa1ea2",
+      "observation_dimension": 135,
+      "augment_local_terrain_observation": true
+    }
+  ],
+  "representative_video": {
+    "selection_rule": "predeclared_seed_74803_local_preview_final_irrespective_of_outcome",
+    "candidate": "local_preview_135d_final_checkpoint_2727936",
+    "evaluation_seed": 74803,
+    "minimum_physical_seconds": 10.0,
+    "renderer": "scripts/render_fixed_goal_dual_view_video.py"
+  },
+  "output_root": "artifacts/dev/fixed_map_local_preview_final_paired_direct_goal_v1_20260819",
+  "claim_boundary": "Five fixed seeds on one approved map provide a paired development diagnostic only. They do not establish statistical superiority, unseen-map generalisation, electrical battery energy, or causal proof of the mechanism."
+}

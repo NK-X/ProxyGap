@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "config_id": "fixed_map_waypoint_route_v1_20260819",
+  "status": "exploratory_route_following_not_formal",
+  "purpose": "Reconstruct the unarchived 16-degree slope-constrained route candidate and evaluate whether explicit waypoint following improves fixed-map traversal without changing locomotion weights, reward, energy, termination, robot XML, friction or terrain.",
+  "fixed_map_config": "configs/fixed_quad_terrain_v2_training_20260818.json",
+  "policy": {
+    "configuration": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+    "model_path": "artifacts/dev/fixed_quad_terrain_v2_training_20260818/seed_62801/models/checkpoint_2465792.zip",
+    "model_sha256": "d69ae7a45efdad14a72426ea49c300a670b8c4b92558a97577b3b4130d649abb",
+    "deterministic": true
+  },
+  "route_reconstruction": {
+    "algorithm_label": "heading_state_astar_with_corridor_slope_checks_and_line_of_sight_simplification",
+    "claim_boundary": "This independently reconstructed polyline is not an exact reproduction of the previously reported 106.83 m route because the original waypoints, script and hash were not archived.",
+    "grid_spacing_m": 0.5,
+    "grid_boundary_m": 36.0,
+    "connectivity": 8,
+    "maximum_abs_directional_slope_degrees": 16.0,
+    "corridor_half_width_m": 0.5,
+    "corridor_offsets_m": [-0.5, 0.0, 0.5],
+    "edge_sample_spacing_m": 0.125,
+    "slope_cost_weight": 0.4,
+    "turn_cost_m_per_rad": 0.35,
+    "start_heading_degrees": 78.0,
+    "line_of_sight_max_span_m": 12.0,
+    "output_waypoint_spacing_m": 0.5
+  },
+  "evaluation": {
+    "smoke_seed": 74803,
+    "paired_seeds": [74801, 74802, 74803, 74804, 74805],
+    "horizon_steps": 12000,
+    "trace_stride_steps": 10,
+    "arrival_radius_m": 1.5,
+    "hold_radius_m": 2.0,
+    "hold_seconds": 2.0,
+    "stable_dwell": {
+      "minimum_supporting_feet": 2,
+      "maximum_planar_speed_m_per_s": 0.15,
+      "maximum_root_angular_speed_rad_per_s": 0.5,
+      "maximum_torso_tilt_degrees": 20.0,
+      "maximum_contact_tangential_speed_m_per_s": 0.2
+    },
+    "terminate_environment_on_wrapper_success": false,
+    "stop_harness_after_qualified_dwell": true,
+    "energy_use": "record_existing_mechanical_work_diagnostics_only_not_reward_or_route_cost"
+  },
+  "smoke_conditions": [
+    {
+      "condition_id": "D0_direct_scene_yaw45_reference",
+      "route_mode": "direct_goal",
+      "initial_heading_degrees": null,
+      "cruise_speed_m_per_s": 0.5,
+      "lookahead_m": null,
+      "maximum_abs_curvature_per_m": 0.35,
+      "yaw_gain_per_second": 0.75
+    },
+    {
+      "condition_id": "D1_direct_yaw78",
+      "route_mode": "direct_goal",
+      "initial_heading_degrees": 78.0,
+      "cruise_speed_m_per_s": 0.5,
+      "lookahead_m": null,
+      "maximum_abs_curvature_per_m": 0.35,
+      "yaw_gain_per_second": 0.75
+    },
+    {
+      "condition_id": "R1_route_yaw78_v040_l050_k012",
+      "route_mode": "waypoint_route",
+      "initial_heading_degrees": 78.0,
+      "cruise_speed_m_per_s": 0.4,
+      "lookahead_m": 5.0,
+      "maximum_abs_curvature_per_m": 0.12,
+      "yaw_gain_per_second": 0.75
+    }
+  ],
+  "paired_conditions": [
+    {
+      "condition_id": "D0_direct_scene_yaw45_reference",
+      "route_mode": "direct_goal",
+      "initial_heading_degrees": null,
+      "cruise_speed_m_per_s": 0.5,
+      "lookahead_m": null,
+      "maximum_abs_curvature_per_m": 0.35,
+      "yaw_gain_per_second": 0.75
+    },
+    {
+      "condition_id": "D1_direct_yaw78",
+      "route_mode": "direct_goal",
+      "initial_heading_degrees": 78.0,
+      "cruise_speed_m_per_s": 0.5,
+      "lookahead_m": null,
+      "maximum_abs_curvature_per_m": 0.35,
+      "yaw_gain_per_second": 0.75
+    },
+    {
+      "condition_id": "R_v040_l030_k012",
+      "route_mode": "waypoint_route",
+      "initial_heading_degrees": 78.0,
+      "cruise_speed_m_per_s": 0.4,
+      "lookahead_m": 3.0,
+      "maximum_abs_curvature_per_m": 0.12,
+      "yaw_gain_per_second": 0.75
+    },
+    {
+      "condition_id": "R_v040_l030_k020",
+      "route_mode": "waypoint_route",
+      "initial_heading_degrees": 78.0,
+      "cruise_speed_m_per_s": 0.4,
+      "lookahead_m": 3.0,
+      "maximum_abs_curvature_per_m": 0.2,
+      "yaw_gain_per_second": 0.75
+    },
+    {
+      "condition_id": "R_v040_l050_k012",
+      "route_mode": "waypoint_route",
+      "initial_heading_degrees": 78.0,
+      "cruise_speed_m_per_s": 0.4,
+      "lookahead_m": 5.0,
+      "maximum_abs_curvature_per_m": 0.12,
+      "yaw_gain_per_second": 0.75
+    },
+    {
+      "condition_id": "R_v040_l050_k020",
+      "route_mode": "waypoint_route",
+      "initial_heading_degrees": 78.0,
+      "cruise_speed_m_per_s": 0.4,
+      "lookahead_m": 5.0,
+      "maximum_abs_curvature_per_m": 0.2,
+      "yaw_gain_per_second": 0.75
+    },
+    {
+      "condition_id": "R_v050_l030_k012",
+      "route_mode": "waypoint_route",
+      "initial_heading_degrees": 78.0,
+      "cruise_speed_m_per_s": 0.5,
+      "lookahead_m": 3.0,
+      "maximum_abs_curvature_per_m": 0.12,
+      "yaw_gain_per_second": 0.75
+    },
+    {
+      "condition_id": "R_v050_l030_k020",
+      "route_mode": "waypoint_route",
+      "initial_heading_degrees": 78.0,
+      "cruise_speed_m_per_s": 0.5,
+      "lookahead_m": 3.0,
+      "maximum_abs_curvature_per_m": 0.2,
+      "yaw_gain_per_second": 0.75
+    },
+    {
+      "condition_id": "R_v050_l050_k012",
+      "route_mode": "waypoint_route",
+      "initial_heading_degrees": 78.0,
+      "cruise_speed_m_per_s": 0.5,
+      "lookahead_m": 5.0,
+      "maximum_abs_curvature_per_m": 0.12,
+      "yaw_gain_per_second": 0.75
+    },
+    {
+      "condition_id": "R_v050_l050_k020",
+      "route_mode": "waypoint_route",
+      "initial_heading_degrees": 78.0,
+      "cruise_speed_m_per_s": 0.5,
+      "lookahead_m": 5.0,
+      "maximum_abs_curvature_per_m": 0.2,
+      "yaw_gain_per_second": 0.75
+    }
+  ],
+  "output_root": "artifacts/dev/fixed_map_waypoint_route_v1_20260819",
+  "claim_boundary": "Exploratory deterministic-policy evaluation on one repeatedly inspected fixed map. All failures are retained. Existing mechanical-work quantities are diagnostics, not V2 relative mission energy, and no route is eligible for time-energy ranking unless it passes the separately computed arrival, stable-dwell and whole-episode safety gates."
+}

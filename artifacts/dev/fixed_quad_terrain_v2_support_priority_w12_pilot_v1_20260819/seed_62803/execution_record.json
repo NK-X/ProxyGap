@@ -1,0 +1,83 @@
+{
+  "schema_version": "proxygap-fixed-goal-support-priority-pilot-v1",
+  "status": "complete",
+  "smoke": false,
+  "config_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819.json",
+  "config_sha256": "e103142150c0a83dd5cf270ee6b165f13415b046ec1fe6b3b7879d4c3ae38fea",
+  "runner_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\scripts\\run_fixed_goal_support_priority_pilot.py",
+  "runner_sha256": "d2d5a85a097b2a70d5faa28bfad09973c6cfe151a2c06d43ea534e62b306a7ca",
+  "source_model": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_local_preview_pilot_v1_20260819\\seed_62802\\models\\checkpoint_2596864.zip",
+  "source_model_sha256": "5bfd212b810af0189009f067ee7be8e8d4702fe1bee8cf025ba82401f931ff1e",
+  "source_model_timesteps": 2596864,
+  "approved_height_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+  "approved_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+  "fixed_friction": [
+    1.0,
+    0.5,
+    0.5
+  ],
+  "condim": 3,
+  "observation_dimension": 135,
+  "action_dimension": 8,
+  "training_seed": 62803,
+  "evaluation_seeds": [
+    73801,
+    73802,
+    73803
+  ],
+  "training_budget_per_variant": 131072,
+  "smoke_overrides": {},
+  "energy_v2_used_as_reward": false,
+  "ctrl_cost_weight": 0.5,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.5.1",
+  "torch": "2.13.0+cpu",
+  "mujoco": "3.11.0",
+  "model_records": [
+    {
+      "condition_id": "W4_MATCHED_CONTINUATION_CONTROL",
+      "airborne_shaping_weight": 4.0,
+      "checkpoint_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\models\\w4_matched_continuation_control\\checkpoint_2727936.zip",
+      "checkpoint_sha256": "c6073f2ea61edd7a50fee4c2d2623243ed3c9ce866b4f328cad1a4c6289ecbd2",
+      "checkpoint_timesteps": 2727936,
+      "reward_json_differences_from_w4": []
+    },
+    {
+      "condition_id": "W12_SUPPORT_PRIORITY_INTERVENTION",
+      "airborne_shaping_weight": 12.0,
+      "checkpoint_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\models\\w12_support_priority_intervention\\checkpoint_2727936.zip",
+      "checkpoint_sha256": "e152df7462033144318549b0983ebbb651ec907d6b152f4644e42f245cdd752c",
+      "checkpoint_timesteps": 2727936,
+      "reward_json_differences_from_w4": [
+        [
+          "preserved_pre_pitch_reward.airborne_shaping_weight",
+          4,
+          12.0
+        ]
+      ]
+    }
+  ],
+  "trace_records": [
+    {
+      "condition_id": "W4_MATCHED_CONTINUATION_CONTROL",
+      "evaluation_seed": 73802,
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\traces\\w4_matched_continuation_control_seed_73802_trace.csv",
+      "sha256": "e91a02cd9f5bc72325f2c2386e85de9cb8914b6baea9aa0cf4ecc6a7136f11bd",
+      "rows": 3600
+    },
+    {
+      "condition_id": "W12_SUPPORT_PRIORITY_INTERVENTION",
+      "evaluation_seed": 73802,
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\traces\\w12_support_priority_intervention_seed_73802_trace.csv",
+      "sha256": "3bfe3454f362a7cdb2c6e316c947397c33d61af0a618c2616dd518387a97e900",
+      "rows": 3600
+    }
+  ],
+  "evaluation_episode_rows": 9,
+  "comparison_summary": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\comparison_summary.json",
+  "comparison_summary_sha256": "09a8d49e5bdafbe8b9c91dfb3c95831cf10badbb25d621191b9a64e9e3fdeda4",
+  "manifest": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\manifest.json",
+  "manifest_sha256": "b2e986ce8ad79910a43deb56c2bb5554be4ec40a22fe0181df807d7eee658eb8",
+  "representative_trace_seed_configured": 73802
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "config_id": "fixed_quad_terrain_v2_local_preview_pilot_v1_20260819",
+  "status": "frozen_local_terrain_preview_pilot",
+  "formal_generalisation_claim": "prohibited",
+  "purpose": "Isolate whether a 13-value local terrain preview improves the existing 122-value contact-aware locomotion policy on the approved fixed map without changing reward, friction, robot XML, energy accounting or route objective.",
+  "comparison_control": {
+    "configuration": "configs/fixed_quad_terrain_v2_training_20260818.json",
+    "configuration_sha256": "f27ae1abc12d43f4d452772f787e9a9116762a924e781f8f65ddb8afbb14fe83",
+    "permitted_intervention": "append_local_terrain_observation_only"
+  },
+  "approved_map": {
+    "frozen_root": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818",
+    "xml_path": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/ant_fixed_quad_terrain.xml",
+    "xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+    "heights_path": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/heights_m.npy",
+    "heights_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+    "hfield_sha256": "d1632c89688f459f5e7abe9d1cc9b5af7f22230b1b19290f737ae3fed849f3db",
+    "map_half_extent_m": 40.0,
+    "start_xy_m": [-34.0, -34.0],
+    "goal_xy_m": [34.0, 34.0],
+    "fixed_friction": [1.0, 0.5, 0.5],
+    "condim": 3
+  },
+  "base_policy": {
+    "configuration": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+    "configuration_sha256": "0d20c29caffb7206924e6520b6e52b718c86aac5cdaad1d01a4361c0b5ce3a7f",
+    "source_run_configuration": "artifacts/dev/fixed_quad_terrain_v2_training_20260818/seed_62801/frozen_run_config.json",
+    "source_run_configuration_sha256": "f27ae1abc12d43f4d452772f787e9a9116762a924e781f8f65ddb8afbb14fe83",
+    "model_path": "artifacts/dev/fixed_quad_terrain_v2_training_20260818/seed_62801/models/checkpoint_2465792.zip",
+    "model_sha256": "d69ae7a45efdad14a72426ea49c300a670b8c4b92558a97577b3b4130d649abb",
+    "source_timesteps": 2465792,
+    "observation_dimension": 122,
+    "action_dimension": 8
+  },
+  "task_adapter": {
+    "policy_observes_global_position": false,
+    "policy_observes_goal_coordinates": false,
+    "high_level_controller_uses_global_position": true,
+    "local_policy_interface": "forward speed plus yaw-rate and target-heading error",
+    "additional_task_reward": 0.0,
+    "maximum_abs_curvature_per_m": 0.35,
+    "yaw_gain_per_second": 1.5,
+    "slow_radius_m": 5.0,
+    "arrival_radius_m": 1.5,
+    "hold_radius_m": 2.0,
+    "hold_seconds": 2.0,
+    "hold_speed_m_per_s": 0.05,
+    "terrain_relative_healthy_clearance_m": [0.18, 1.40],
+    "maximum_healthy_tilt_degrees": 80.0,
+    "unhealthy_grace_steps": 5,
+    "slip_speed_threshold_m_per_s": 0.20,
+    "augment_local_terrain_observation": true,
+    "terrain_preview_longitudinal_m": [0.5, 1.0, 1.5],
+    "terrain_preview_lateral_m": [-0.4, 0.0, 0.4]
+  },
+  "observation_transfer": {
+    "initialisation": "append_zero_local_terrain_preview",
+    "source_observation_dimension": 122,
+    "target_observation_dimension": 135,
+    "appended_columns": 13,
+    "appended_feature_names": [
+      "relative_height_longitudinal_0.5_lateral_-0.4_m",
+      "relative_height_longitudinal_0.5_lateral_0.0_m",
+      "relative_height_longitudinal_0.5_lateral_0.4_m",
+      "relative_height_longitudinal_1.0_lateral_-0.4_m",
+      "relative_height_longitudinal_1.0_lateral_0.0_m",
+      "relative_height_longitudinal_1.0_lateral_0.4_m",
+      "relative_height_longitudinal_1.5_lateral_-0.4_m",
+      "relative_height_longitudinal_1.5_lateral_0.0_m",
+      "relative_height_longitudinal_1.5_lateral_0.4_m",
+      "terrain_normal_target_forward",
+      "terrain_normal_target_left",
+      "terrain_normal_world_up",
+      "signed_forward_slope_rad"
+    ],
+    "previous_columns_copied_exactly": true,
+    "new_columns_initial_value": 0.0,
+    "optimizer_state": "fresh",
+    "restore_source_num_timesteps": true,
+    "required_equivalence_tolerance": 1e-7
+  },
+  "training": {
+    "training_seed": 62802,
+    "parallel_environments": 4,
+    "spawn_fractions": [0.0, 0.25, 0.5, 0.75],
+    "max_episode_steps": 900,
+    "stages": [
+      {
+        "name": "local_preview_stability_131k",
+        "additional_target_timesteps": 131072,
+        "cruise_speed_m_per_s": 0.55
+      },
+      {
+        "name": "local_preview_traversal_262k",
+        "additional_target_timesteps": 262144,
+        "cruise_speed_m_per_s": 0.70
+      }
+    ]
+  },
+  "evaluation": {
+    "full_route_max_episode_steps": 3600,
+    "cruise_speed_m_per_s": 0.70,
+    "validation_seeds": [73801, 73802, 73803],
+    "paired_test_seeds": [74801, 74802, 74803, 74804, 74805],
+    "deterministic_policy": true,
+    "final_checkpoint_rule": "last predeclared training-budget checkpoint; no best-seed selection"
+  },
+  "ppo": {
+    "policy": "MlpPolicy",
+    "n_steps": 512,
+    "batch_size": 1024,
+    "n_epochs": 10,
+    "learning_rate": 0.00003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.001,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "policy_kwargs": {
+      "net_arch": [64, 64],
+      "activation_fn": "Tanh"
+    },
+    "device": "cpu",
+    "torch_num_threads": 2
+  },
+  "execution": {
+    "output_root": "artifacts/dev/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819",
+    "subprocess_start_method": "spawn"
+  },
+  "claim_boundary": "This is an observation-only fixed-map pilot. A zero-column migration proves initial policy equivalence, not terrain adaptation. Any post-training result remains a single training-run development diagnostic and cannot establish generalisation to unseen maps."
+}

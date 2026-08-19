@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "config_id": "fixed_quad_terrain_v2_terrain_frame_video_contract_v1_20260819",
+  "status": "predeclared_representative_negative_result_video",
+  "controller": {
+    "name": "terrain_frame_formal_pilot_controller",
+    "cruise_speed_m_per_s": 0.70,
+    "yaw_gain_per_second": 1.5,
+    "maximum_abs_curvature_per_m": 0.35,
+    "curvature_speed_reduction_gain": 0.0,
+    "minimum_turn_speed_fraction": 1.0
+  },
+  "evaluation_seeds": [73801, 73802, 73803],
+  "representative_seed": 73802,
+  "horizon_steps": 3600,
+  "terminate_on_success": true,
+  "independent_success": {
+    "arrival_radius_m": 1.5,
+    "hold_radius_m": 2.0,
+    "hold_seconds": 2.0
+  },
+  "claim_boundary": "Representative replay of the predeclared terrain-frame pilot condition; it remains evidence even when the retention gate fails."
+}

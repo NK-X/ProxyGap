@@ -1,0 +1,30 @@
+[
+  {
+    "condition_id": "R45_route_scene_yaw_v050_l030_k020",
+    "episodes": 1,
+    "final_goal_entered_count": 0,
+    "spatial_hold_completed_count": 0,
+    "stable_dwell_completed_count": 0,
+    "qualified_completion_count": 0,
+    "fall_count": 1,
+    "mean_net_progress_m": 88.31744114140486,
+    "mean_minimum_final_distance_m": 2.900748152370778,
+    "mean_route_progress_fraction": 1.0,
+    "mean_airborne_fraction": 0.683061267754929,
+    "mean_contact_speed_exceedance_fraction": 0.24358702565189738
+  },
+  {
+    "condition_id": "R45_route_scene_yaw_v050_l050_k020",
+    "episodes": 1,
+    "final_goal_entered_count": 0,
+    "spatial_hold_completed_count": 0,
+    "stable_dwell_completed_count": 0,
+    "qualified_completion_count": 0,
+    "fall_count": 0,
+    "mean_net_progress_m": 6.091812548387168,
+    "mean_minimum_final_distance_m": 85.41374791591379,
+    "mean_route_progress_fraction": 0.14130966707186657,
+    "mean_airborne_fraction": 0.6543333333333333,
+    "mean_contact_speed_exceedance_fraction": 0.24266666666666667
+  }
+]

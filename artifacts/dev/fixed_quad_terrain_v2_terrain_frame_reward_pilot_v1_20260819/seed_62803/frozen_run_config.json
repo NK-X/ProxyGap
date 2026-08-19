@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "config_id": "fixed_quad_terrain_v2_terrain_frame_reward_pilot_v1_20260819",
+  "status": "frozen_terrain_frame_grouped_ablation",
+  "formal_generalisation_claim": "prohibited",
+  "purpose": "Paired continuation from the 135-value local-preview stage-1 checkpoint to isolate terrain/target-frame correction of the already-active pre-pitch shaping terms. Source and archived W4 controls remain world-frame; map, XML, friction, robot, observations, controller, reward weights, ctrl cost, PPO, seeds and budget stay fixed.",
+  "comparison_control": {
+    "local_preview_configuration": "configs/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819.json",
+    "local_preview_configuration_sha256": "e673e59df5c9f42fdc6e0db01d7215205ac0648d7937034e78d2622262ececa2",
+    "source_run_configuration": "artifacts/dev/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819/seed_62802/frozen_run_config.json",
+    "source_run_configuration_sha256": "e673e59df5c9f42fdc6e0db01d7215205ac0648d7937034e78d2622262ececa2",
+    "archived_w4_configuration": "configs/fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819.json",
+    "archived_w4_configuration_sha256": "e103142150c0a83dd5cf270ee6b165f13415b046ec1fe6b3b7879d4c3ae38fea",
+    "archived_w4_model_path": "artifacts/dev/fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819/seed_62803/models/w4_matched_continuation_control/checkpoint_2727936.zip",
+    "archived_w4_model_sha256": "c6073f2ea61edd7a50fee4c2d2623243ed3c9ce866b4f328cad1a4c6289ecbd2",
+    "archived_w4_timesteps": 2727936,
+    "permitted_intervention": "terrain_frame_shaping_context_only",
+    "permitted_configuration_path": "task_adapter.terrain_frame_shaping_enabled",
+    "source_and_w4_flag": false,
+    "intervention_flag": true
+  },
+  "approved_map": {
+    "frozen_root": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818",
+    "xml_path": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/ant_fixed_quad_terrain.xml",
+    "xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+    "heights_path": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/heights_m.npy",
+    "heights_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+    "hfield_sha256": "d1632c89688f459f5e7abe9d1cc9b5af7f22230b1b19290f737ae3fed849f3db",
+    "map_half_extent_m": 40.0,
+    "start_xy_m": [-34.0, -34.0],
+    "goal_xy_m": [34.0, 34.0],
+    "fixed_friction": [1.0, 0.5, 0.5],
+    "condim": 3
+  },
+  "base_policy": {
+    "reward_configuration": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+    "reward_configuration_sha256": "0d20c29caffb7206924e6520b6e52b718c86aac5cdaad1d01a4361c0b5ce3a7f",
+    "model_path": "artifacts/dev/fixed_quad_terrain_v2_local_preview_pilot_v1_20260819/seed_62802/models/checkpoint_2596864.zip",
+    "model_sha256": "5bfd212b810af0189009f067ee7be8e8d4702fe1bee8cf025ba82401f931ff1e",
+    "source_timesteps": 2596864,
+    "observation_dimension": 135,
+    "action_dimension": 8,
+    "source_stage": "local_preview_stability_131k",
+    "source_stage_cruise_speed_m_per_s": 0.55
+  },
+  "task_adapter": {
+    "policy_observes_global_position": false,
+    "policy_observes_goal_coordinates": false,
+    "high_level_controller_uses_global_position": true,
+    "local_policy_interface": "forward speed plus yaw-rate and target-heading error",
+    "additional_task_reward": 0.0,
+    "maximum_abs_curvature_per_m": 0.35,
+    "yaw_gain_per_second": 1.5,
+    "slow_radius_m": 5.0,
+    "arrival_radius_m": 1.5,
+    "hold_radius_m": 2.0,
+    "hold_seconds": 2.0,
+    "hold_speed_m_per_s": 0.05,
+    "terrain_relative_healthy_clearance_m": [0.18, 1.40],
+    "maximum_healthy_tilt_degrees": 80.0,
+    "unhealthy_grace_steps": 5,
+    "slip_speed_threshold_m_per_s": 0.20,
+    "augment_local_terrain_observation": true,
+    "terrain_preview_longitudinal_m": [0.5, 1.0, 1.5],
+    "terrain_preview_lateral_m": [-0.4, 0.0, 0.4],
+    "terrain_frame_shaping_enabled": true,
+    "terrain_frame_components": [
+      "distal foot clearance above heightfield at each foot XY",
+      "foot lateral velocity on target-left local tangent",
+      "foot vertical velocity on each foot local normal",
+      "root vertical velocity on root local normal",
+      "full torso-up alignment with root local normal",
+      "root angular speed perpendicular to root local normal"
+    ]
+  },
+  "training": {
+    "training_seed": 62803,
+    "parallel_environments": 4,
+    "spawn_fractions": [0.0, 0.25, 0.5, 0.75],
+    "max_episode_steps": 900,
+    "additional_target_timesteps": 131072,
+    "cruise_speed_m_per_s": 0.55,
+    "condition_id": "TERRAIN_FRAME_REWARD_INTERVENTION"
+  },
+  "evaluation": {
+    "conditions": [
+      "SOURCE_STAGE1_WORLD_FRAME",
+      "W4_ARCHIVED_WORLD_FRAME_CONTROL",
+      "TERRAIN_FRAME_REWARD_INTERVENTION"
+    ],
+    "max_episode_steps": 3600,
+    "cruise_speed_m_per_s": 0.70,
+    "validation_seeds": [73801, 73802, 73803],
+    "deterministic_policy": true,
+    "representative_trace_seed": 73802,
+    "slip_transient_minimum_seconds": 0.20,
+    "retention_gate": {
+      "minimum_absolute_airborne_fraction_reduction_vs_w4": 0.05,
+      "minimum_best_progress_ratio_vs_w4": 0.80,
+      "maximum_additional_falls_vs_w4": 0
+    },
+    "claim_boundary": "Three paired validation seeds and one training seed are a development screen only; they do not establish statistical superiority or unseen-map generalisation."
+  },
+  "ppo": {
+    "policy": "MlpPolicy",
+    "n_steps": 512,
+    "batch_size": 1024,
+    "n_epochs": 10,
+    "learning_rate": 0.00003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.001,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "policy_kwargs": {
+      "net_arch": [64, 64],
+      "activation_fn": "Tanh"
+    },
+    "device": "cpu",
+    "torch_num_threads": 2
+  },
+  "energy_boundary": {
+    "relative_mission_energy_v2_status": "measurement_only_not_implemented_as_reward",
+    "ctrl_cost_weight_unchanged": 0.5,
+    "recorded_diagnostics": [
+      "cumulative squared applied action",
+      "control effort",
+      "absolute torque time integral",
+      "positive mechanical work",
+      "absolute negative mechanical work",
+      "absolute mechanical work"
+    ]
+  },
+  "execution": {
+    "output_root": "artifacts/dev/fixed_quad_terrain_v2_terrain_frame_reward_pilot_v1_20260819",
+    "subprocess_start_method": "spawn"
+  }
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "condition_id": "R45_route_slope_speed_v050_l050_k020",
+    "episodes": 1,
+    "final_goal_entered_count": 0,
+    "spatial_hold_completed_count": 0,
+    "stable_dwell_completed_count": 0,
+    "qualified_completion_count": 0,
+    "fall_count": 0,
+    "mean_net_progress_m": 6.314285726106036,
+    "mean_minimum_final_distance_m": 83.64801853588433,
+    "mean_route_progress_fraction": 0.16015095601478213,
+    "mean_airborne_fraction": 0.6733333333333333,
+    "mean_contact_speed_exceedance_fraction": 0.23966666666666667
+  }
+]

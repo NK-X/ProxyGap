@@ -211,6 +211,9 @@ def make_task_env(
         max_abs_lateral_speed=0.0,
         fixed_lateral_speed=0.0,
         heading_termination_enabled=False,
+        terrain_frame_shaping_enabled=bool(
+            task.get("terrain_frame_shaping_enabled", False)
+        ),
         **common_env_kwargs(v22_config),
     )
     return FixedGoalTerrainWrapper(
@@ -245,6 +248,9 @@ def make_task_env(
         slip_speed_threshold_m_per_s=float(task["slip_speed_threshold_m_per_s"]),
         augment_local_terrain_observation=bool(
             task.get("augment_local_terrain_observation", False)
+        ),
+        terrain_frame_shaping_enabled=bool(
+            task.get("terrain_frame_shaping_enabled", False)
         ),
         terrain_preview_longitudinal_m=tuple(
             float(value)

@@ -1,0 +1,51 @@
+{
+  "schema_version": "proxygap-terrain-frame-video-qa-v1",
+  "selection_rule": "Predeclared validation seed 73802 (2/3), full 180 physical seconds, 20x playback; retained even though the formal gate failed.",
+  "video": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_terrain_frame_reward_pilot_v1_20260819\\seed_62803\\videos\\tf73802_v1\\fixed_map_final_policy_seed_73802_dual_view_v1.mp4",
+  "video_sha256": "f9bd900e2bfd7cdeedd18a9d2038130e5ec6d084d283dd0d0d0ff26f88a97959",
+  "video_manifest": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_terrain_frame_reward_pilot_v1_20260819\\seed_62803\\videos\\tf73802_v1\\fixed_map_final_policy_seed_73802_dual_view_v1_video_manifest.json",
+  "video_manifest_sha256": "8a332ad2c7f0e797f35a5e4abbc8e5d183aeef4803046c5d47dc3643ff87bb11",
+  "independent_full_decode": {
+    "decoded_frames": 241,
+    "first_frame_shape": [
+      720,
+      1280,
+      3
+    ],
+    "last_frame_shape": [
+      720,
+      1280,
+      3
+    ],
+    "average_frame_rate": 20.0,
+    "decoded_duration_seconds": 12.05
+  },
+  "formal_trace_verification": {
+    "formal_trace": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_terrain_frame_reward_pilot_v1_20260819\\seed_62803\\traces\\terrain_frame_reward_intervention_seed_73802_trace.csv",
+    "formal_trace_sha256": "6479d93497fd32306efb431fa94d9fcd6c39de60d79b01f0982170535a752358",
+    "video_trace": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_terrain_frame_reward_pilot_v1_20260819\\seed_62803\\videos\\tf73802_v1\\fixed_map_final_policy_seed_73802_dual_view_v1_trace.csv",
+    "video_trace_sha256": "807af846bc8ca1d3a9b664470076d82377cc6743bff746b87df1c5effe975dd3",
+    "rows": 3600,
+    "numeric_maximum_absolute_errors": {
+      "x_m": 0.0,
+      "y_m": 0.0,
+      "terrain_height_m": 0.0,
+      "torso_z_m": 0.0,
+      "distance_to_goal_m": 0.0,
+      "support_count": 0.0,
+      "maximum_contact_tangential_speed_m_per_s": 0.0,
+      "reward": 0.0
+    },
+    "boolean_mismatch_counts": {
+      "airborne": 0,
+      "terminated": 0,
+      "truncated": 0
+    },
+    "exact_state_reward_match": true
+  },
+  "canonical_publish_path": "videos/tf73802_v1",
+  "intermediate_do_not_publish": [
+    "videos/terrain_frame_seed_73802_dual_view_v1"
+  ],
+  "claim_boundary": "Qualitative negative-result evidence; it cannot establish generalisation or statistical superiority."
+}

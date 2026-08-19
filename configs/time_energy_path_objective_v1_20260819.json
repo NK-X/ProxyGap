@@ -1,0 +1,265 @@
+{
+  "$schema": "./time_energy_path_objective_v1.schema.json",
+  "schema_version": 1,
+  "config_id": "time_energy_path_objective_v1_20260819",
+  "status": "design_only_scientifically_unresolved",
+  "scope": {
+    "modifies_locomotion": false,
+    "modifies_reward": false,
+    "modifies_energy": false,
+    "modifies_termination": false
+  },
+  "objective": {
+    "mode": "lexicographic_constraints_then_pareto",
+    "validity_precedes_efficiency": true,
+    "time_metric": "mission_time_seconds_including_two_second_dwell",
+    "energy_metric": "relative_mission_energy_proxy_v2",
+    "energy_budget_mode": "unbounded_no_energy_depletion_termination",
+    "low_energy_preference_applies_only_after_validity": true,
+    "normalised_cost": "w_time*(T/T_ref)+w_energy*(E_rel/E_ref)",
+    "normalisation_status": "blocked_until_v2_is_implemented_and_calibrated",
+    "reference_scale_source": "median_valid_baseline_trajectory_on_training_and_validation_maps_only",
+    "test_data_may_set_reference_scales": false,
+    "raw_metrics_must_be_retained": [
+      "mission_time_seconds",
+      "relative_mission_energy_score",
+      "travel_energy_score",
+      "dwell_energy_score"
+    ],
+    "valid_episode": {
+      "arrival_radius_m": 1.5,
+      "hold_radius_m": 2.0,
+      "hold_seconds": 2.0,
+      "hold_steps": 40,
+      "position_hysteresis_alone_is_sufficient": false,
+      "stable_dwell_gate": {
+        "continuous_gate_required": true,
+        "minimum_supporting_feet_candidate": 2,
+        "minimum_supporting_feet_status": "requires_static_dwell_pilot_then_freeze",
+        "four_foot_airborne_allowed": false,
+        "fall_allowed": false,
+        "disqualifying_sustained_slip_allowed": false,
+        "bounded_root_planar_speed_required": true,
+        "bounded_root_angular_speed_required": true,
+        "healthy_torso_posture_required": true,
+        "numeric_speed_and_posture_thresholds": null
+      },
+      "maximum_horizon_steps": 12000,
+      "control_dt_seconds": 0.05,
+      "fall_allowed": false,
+      "four_foot_airborne_allowed": false,
+      "disqualifying_sustained_slip_allowed": false,
+      "failure_or_inactivity_ranked_as_low_energy": false,
+      "no_valid_route_result": "no_valid_route"
+    }
+  },
+  "human_intent": {
+    "explicit_input": true,
+    "default_profile": "balanced_demo",
+    "default_is_universal_preference": false,
+    "profiles": [
+      {
+        "name": "time_prioritised",
+        "w_time": 0.7,
+        "w_energy": 0.3,
+        "interpretation": "Prefer shorter mission time after all success and safety constraints are satisfied."
+      },
+      {
+        "name": "balanced_demo",
+        "w_time": 0.5,
+        "w_energy": 0.5,
+        "interpretation": "Demonstration-only compromise; not a universal optimum."
+      },
+      {
+        "name": "energy_prioritised",
+        "w_time": 0.3,
+        "w_energy": 0.7,
+        "interpretation": "Prefer lower total mission energy after all success and safety constraints are satisfied."
+      }
+    ],
+    "pareto_weight_grid": [
+      {"name": "pareto_E000", "w_time": 1.0, "w_energy": 0.0},
+      {"name": "pareto_E025", "w_time": 0.75, "w_energy": 0.25},
+      {"name": "pareto_E050", "w_time": 0.5, "w_energy": 0.5},
+      {"name": "pareto_E075", "w_time": 0.25, "w_energy": 0.75},
+      {"name": "pareto_E100", "w_time": 0.0, "w_energy": 1.0}
+    ]
+  },
+  "fixed_map_development": {
+    "role": "development_and_validation_only_not_unseen_test",
+    "map_config": "configs/fixed_quad_terrain_v2_training_20260818.json",
+    "map_height_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+    "start_xy_m": [-34.0, -34.0],
+    "goal_xy_m": [34.0, 34.0],
+    "fixed_friction": [1.0, 0.5, 0.5],
+    "planner_sequence": [
+      "distance_only_astar_baseline",
+      "geometric_multiobjective_astar_or_hybrid_astar",
+      "learned_time_energy_edge_cost_after_v2_calibration"
+    ],
+    "geometry_route_screen_working_record": {
+      "provenance_status": "legacy_three_route_record_unarchived_but_new_16_degree_candidate_independently_archived",
+      "working_record_source": "artifacts/dev/fixed_map_reach_a_corrected_replication_v2_20260819/REACH_A_CORRECTED_REPORT_CN.md",
+      "formal_claim_allowed": false,
+      "legacy_12_and_20_degree_reconstruction_required": true,
+      "new_16_degree_candidate": {
+        "status": "independently_reconstructed_and_dynamically_evaluated_not_optimal_not_qualified",
+        "path_length_m": 106.14985026021873,
+        "cumulative_ascent_m": 5.711292883692449,
+        "cumulative_descent_m": 3.481359159516632,
+        "maximum_corridor_slope_degrees": 15.968086587024358,
+        "cumulative_turning_degrees": 129.07330987627884,
+        "waypoint_count": 214,
+        "waypoints_sha256": "fbb764566f1ab5d40714c6fe420b454154fe3cae69720e69c33ce64201f37b53",
+        "configuration": "configs/fixed_map_waypoint_route_v1_20260819.json",
+        "evaluation_script": "scripts/evaluate_fixed_map_waypoint_route.py",
+        "evaluation_report": "docs/FIXED_MAP_ROUTE_FOLLOWING_EVALUATION_20260819_CN.md",
+        "paired_spatial_hold_count": 1,
+        "paired_stable_dwell_count": 0,
+        "paired_qualified_count": 0
+      },
+      "routes": [
+        {
+          "maximum_allowed_slope_degrees": 12.0,
+          "path_length_m": 127.65,
+          "cumulative_ascent_m": 4.22,
+          "cumulative_descent_m": 1.99,
+          "observed_maximum_slope_degrees": 11.94,
+          "cumulative_turning_degrees": 307.7
+        },
+        {
+          "maximum_allowed_slope_degrees": 16.0,
+          "path_length_m": 106.83,
+          "cumulative_ascent_m": 5.64,
+          "cumulative_descent_m": 3.41,
+          "observed_maximum_slope_degrees": 15.99,
+          "cumulative_turning_degrees": 106.9,
+          "status": "preferred_geometry_candidate_not_dynamically_tested",
+          "suggested_maximum_abs_curvature_per_m": 0.12,
+          "suggested_initial_heading_degrees": [77.0, 79.0]
+        },
+        {
+          "maximum_allowed_slope_degrees": 20.0,
+          "path_length_m": 101.26,
+          "cumulative_ascent_m": 6.79,
+          "cumulative_descent_m": 4.56,
+          "observed_maximum_slope_degrees": 19.95,
+          "cumulative_turning_degrees": 69.8
+        }
+      ]
+    },
+    "current_execution_classification": {
+      "evaluation_seeds": [74801, 74802, 74803, 74804, 74805],
+      "spatial_arrival_count": 1,
+      "qualified_completion_count": 0,
+      "eligible_for_time_energy_ranking_count": 0,
+      "seed_74803_final_hold_audit": {
+        "hold_steps": 40,
+        "airborne_steps": 24,
+        "maximum_support_count": 1,
+        "mean_support_count": 0.4,
+        "final_step": 9475,
+        "final_step_airborne": true,
+        "classification": "spatial_arrival_only_not_stable_dwell"
+      },
+      "evidence_trace": "artifacts/dev/fixed_map_reach_a_corrected_replication_v2_20260819/videos/seed_74803/fixed_map_final_policy_seed_74803_trace.csv"
+    }
+  },
+  "generalisation": {
+    "split_unit": "terrain_generation_seed",
+    "fixed_map_excluded_from_unseen_test": true,
+    "terrain_seed_splits": {
+      "train": {
+        "count": 64,
+        "seed_range_inclusive": [640001, 640064]
+      },
+      "validation": {
+        "count": 16,
+        "seed_range_inclusive": [650001, 650016]
+      },
+      "test": {
+        "count": 16,
+        "seed_range_inclusive": [660001, 660016],
+        "preview_or_tuning_prohibited": true
+      }
+    },
+    "terrain_seed_separate_from_start_goal_seed": true,
+    "test_exposure_rule": "Any test terrain used for debugging, visual review or threshold selection is relabelled as validation and replaced before formal evaluation.",
+    "pilot_independent_training_seeds": [91001, 91002, 91003, 91004, 91005],
+    "pilot_seed_count_is_statistical_adequacy_claim": false,
+    "formal_training_seed_count": null,
+    "formal_seed_count_rule": "Determine after pilot from cross-run variability, rare-failure prevalence, decision margin, interval precision and compute budget; freeze before formal runs.",
+    "evaluation_episodes_are_nested_within_trained_policy": true,
+    "equalised_items": [
+      "training_environment_support",
+      "training_interaction_budget",
+      "hyperparameter_search_budget",
+      "planner_call_budget",
+      "low_level_policy_checkpoint_rule",
+      "evaluation_horizon",
+      "failure_handling"
+    ]
+  },
+  "experiment_matrix": [
+    {
+      "condition_id": "B0_direct_goal_yaw",
+      "high_level_method": "current_direct_goal_heading_controller",
+      "purpose": "Current-practice baseline without global route optimisation."
+    },
+    {
+      "condition_id": "B1_distance_astar",
+      "high_level_method": "astar",
+      "edge_cost": "traversable_distance_only",
+      "purpose": "Shortest traversable graph-path baseline."
+    },
+    {
+      "condition_id": "P1_geometric_multiobjective",
+      "high_level_method": "astar_or_hybrid_astar",
+      "edge_cost": "geometric_time_proxy_plus_geometric_energy_proxy",
+      "purpose": "Development planner before V2 energy calibration; cannot support a V2 energy-optimality claim."
+    },
+    {
+      "condition_id": "P2_learned_edge_cost",
+      "high_level_method": "astar_or_hybrid_astar",
+      "edge_cost": "learned_time_plus_v2_relative_energy_plus_failure_risk",
+      "enabled": false,
+      "enable_after": "low_level_safety_gate_and_v2_calibration"
+    },
+    {
+      "condition_id": "P3_weight_conditioned_high_level_policy",
+      "high_level_method": "goal_and_weight_conditioned_policy",
+      "enabled": false,
+      "role": "later_ablation_after_search_planner_baseline"
+    }
+  ],
+  "acceptance_gates": {
+    "before_planner_training": [
+      "low_level_locomotion_passes_frozen_success_and_safety_thresholds_within_declared_capability_range",
+      "sustained_slip_threshold_and_duration_are_calibrated_and_frozen",
+      "success_requires_arrival_then_two_second_dwell",
+      "stable_dwell_uses_frozen_speed_posture_support_airborne_and_slip_gates_not_position_only",
+      "relative_energy_v2_is_implemented_calibrated_and_reproducible",
+      "T_ref_and_E_ref_are_frozen_without_test_data",
+      "geometry_route_waypoints_script_config_and_hash_are_archived",
+      "terrain_seed_splits_and_hashes_are_frozen"
+    ],
+    "before_optimal_path_claim": [
+      "all_failed_timed_out_and_no_route_cases_are_retained",
+      "multiple_independent_training_runs_are_reported",
+      "full_time_energy_pareto_front_is_reported",
+      "raw_time_and_energy_are_reported_separately",
+      "candidate_routes_are_executed_in_mujoco_not_only_scored_geometrically",
+      "claim_is_bounded_to_frozen_discretisation_cost_model_map_distribution_and_hardware_software_stack"
+    ],
+    "currently_blocked_by": [
+      "severe_four_foot_airborne_behaviour_and_contact_speed_exceedance",
+      "relative_energy_v2_combined_score_not_integrated",
+      "energy_and_time_reference_scales_not_calibrated",
+      "disqualifying_sustained_slip_rule_not_frozen",
+      "stable_dwell_speed_posture_and_support_thresholds_not_frozen",
+      "geometry_route_has_zero_qualified_dynamic_executions",
+      "formal_training_seed_count_not_dimensioned"
+    ]
+  },
+  "claim_boundary": "This design defines constrained time-energy route selection. It does not modify the current reward or locomotion policy, does not establish that the 16-degree route is dynamically feasible or optimal, and does not permit an unseen-map generalisation claim until map-level isolation, multiple independent training runs, equal budgets and frozen evaluation rules have been completed."
+}

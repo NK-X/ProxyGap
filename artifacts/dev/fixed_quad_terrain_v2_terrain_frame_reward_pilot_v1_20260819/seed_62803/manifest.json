@@ -1,0 +1,47 @@
+{
+  "schema_version": "proxygap-terrain-frame-reward-manifest-v1",
+  "config_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\fixed_quad_terrain_v2_terrain_frame_reward_pilot_v1_20260819.json",
+  "config_sha256": "1ad2d0929a1d3f9c7ebd90a3726df3092a86452e115d37f092ace0ed714a92ec",
+  "runner_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\scripts\\run_fixed_goal_terrain_frame_reward_pilot.py",
+  "runner_sha256": "3c7a2118ac14172e1d02478ea822d6b018cb5f7036df7598bb53393d1e9a27cd",
+  "source_model_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_local_preview_pilot_v1_20260819\\seed_62802\\models\\checkpoint_2596864.zip",
+  "source_model_sha256": "5bfd212b810af0189009f067ee7be8e8d4702fe1bee8cf025ba82401f931ff1e",
+  "archived_w4_model_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\models\\w4_matched_continuation_control\\checkpoint_2727936.zip",
+  "archived_w4_model_sha256": "c6073f2ea61edd7a50fee4c2d2623243ed3c9ce866b4f328cad1a4c6289ecbd2",
+  "intervention_model_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_terrain_frame_reward_pilot_v1_20260819\\seed_62803\\models\\terrain_frame_reward_intervention\\checkpoint_2727936.zip",
+  "intervention_model_sha256": "f43cb53fc1f11752c9a63895071aa00f6b9a67825d6df656454acc56884c0f31",
+  "intervention_model_timesteps": 2727936,
+  "approved_height_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+  "approved_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+  "fixed_friction": [
+    1.0,
+    0.5,
+    0.5
+  ],
+  "condim": 3,
+  "traces": [
+    {
+      "condition_id": "TERRAIN_FRAME_REWARD_INTERVENTION",
+      "evaluation_seed": 73802,
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_terrain_frame_reward_pilot_v1_20260819\\seed_62803\\traces\\terrain_frame_reward_intervention_seed_73802_trace.csv",
+      "sha256": "6479d93497fd32306efb431fa94d9fcd6c39de60d79b01f0982170535a752358",
+      "rows": 3600
+    }
+  ],
+  "evaluation_csv": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_terrain_frame_reward_pilot_v1_20260819\\seed_62803\\logs\\evaluation_episodes.csv",
+  "evaluation_csv_sha256": "b745f7c4689b15a2718da3550c437aaf25737cfa267d9c514a40dfd9f49af972",
+  "comparison_summary": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_terrain_frame_reward_pilot_v1_20260819\\seed_62803\\comparison_summary.json",
+  "comparison_summary_sha256": "154fe479e1fd8f155c468745639cc5b5e0da14d2b6421a7b2d60299f34dcbaa1",
+  "energy_boundary": {
+    "relative_mission_energy_v2_status": "measurement_only_not_implemented_as_reward",
+    "ctrl_cost_weight_unchanged": 0.5,
+    "recorded_diagnostics": [
+      "cumulative squared applied action",
+      "control effort",
+      "absolute torque time integral",
+      "positive mechanical work",
+      "absolute negative mechanical work",
+      "absolute mechanical work"
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "config_id": "fixed_map_support_priority_video_v1_20260819",
+  "status": "predeclared_paired_support_video",
+  "purpose": "Render the same predeclared validation seed for the equal-budget W4 and W12 support-priority continuations.",
+  "fixed_map_config": "configs/fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819.json",
+  "evaluation_seeds": [73801, 73802, 73803],
+  "horizon_steps": 900,
+  "cruise_speed_m_per_s": 0.70,
+  "terminate_on_success": true,
+  "save_step_traces": true,
+  "trace_stride_steps": 1,
+  "controller_conditions": [
+    {
+      "name": "unchanged_support_pilot_controller",
+      "yaw_gain_per_second": 1.5,
+      "yaw_deadband_degrees": 0.0,
+      "maximum_abs_curvature_per_m": 0.35,
+      "curvature_speed_reduction_gain": 0.0,
+      "minimum_turn_speed_fraction": 1.0
+    }
+  ],
+  "output_root": "artifacts/dev/fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819/seed_62803/videos",
+  "selection_rule": "Seed 73802 was declared before formal training as the representative trace seed. Both conditions use the first 45 physical seconds and identical rendering settings.",
+  "representative_video": {
+    "selection_rule": "Seed 73802 was declared before formal training as the representative trace seed. Both W4 and W12 use the first 45 physical seconds and identical rendering settings; neither was selected for appearance."
+  },
+  "claim_boundary": "The videos are qualitative paired evidence. Render decorations and camera motion do not affect dynamics; brief contact-speed exceedance is not by itself proof of sustained sliding."
+}

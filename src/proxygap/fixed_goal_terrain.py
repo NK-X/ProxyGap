@@ -63,6 +63,7 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
         unhealthy_grace_steps: int = 5,
         slip_speed_threshold_m_per_s: float = 0.20,
         augment_local_terrain_observation: bool = False,
+        terrain_frame_shaping_enabled: bool = False,
         terrain_preview_longitudinal_m: Sequence[float] = (0.5, 1.0, 1.5),
         terrain_preview_lateral_m: Sequence[float] = (-0.4, 0.0, 0.4),
     ) -> None:
@@ -80,6 +81,9 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
         self.map_half_extent_m = self._positive(map_half_extent_m, "map_half_extent_m")
         self.augment_local_terrain_observation = bool(
             augment_local_terrain_observation
+        )
+        self.terrain_frame_shaping_enabled = bool(
+            terrain_frame_shaping_enabled
         )
         self.terrain_preview_longitudinal = self._preview_axis(
             terrain_preview_longitudinal_m,
@@ -228,6 +232,7 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
         )
 
     def _reset_metrics(self) -> None:
+        self._terrain_frame_context_ready = False
         self._task_steps = 0
         self._initial_distance = float("nan")
         self._previous_distance = float("nan")
@@ -257,6 +262,22 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
 
     def _terrain_height(self, x: float, y: float) -> float:
         return self._terrain_value(self.heights, x, y)
+
+    def _terrain_normal(self, x: float, y: float) -> np.ndarray:
+        gradient = np.asarray(
+            [
+                self._terrain_value(self._terrain_dz_dx, x, y),
+                self._terrain_value(self._terrain_dz_dy, x, y),
+            ],
+            dtype=np.float64,
+        )
+        if not np.all(np.isfinite(gradient)):
+            raise ValueError("heightfield gradient is non-finite")
+        normal = np.asarray([-gradient[0], -gradient[1], 1.0], dtype=np.float64)
+        normal_norm = float(np.linalg.norm(normal))
+        if not np.isfinite(normal_norm) or normal_norm <= 0.0:
+            raise ValueError("heightfield normal is invalid")
+        return normal / normal_norm
 
     def _terrain_value(self, values: np.ndarray, x: float, y: float) -> float:
         rows, cols = self.heights.shape
@@ -423,6 +444,13 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
             speed=target_speed,
             lateral_speed=0.0,
         )
+        if self.terrain_frame_shaping_enabled:
+            self.env.set_terrain_shaping_context(
+                height_sampler=self._terrain_height,
+                normal_sampler=self._terrain_normal,
+                target_heading=target_heading,
+            )
+            self._terrain_frame_context_ready = True
         return self._append_local_terrain_observation(
             command_observation,
             position,
@@ -566,6 +594,12 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
             "proxygap_terrain_relative_unhealthy_run_steps": self._terrain_unhealthy_run_steps,
             "proxygap_local_terrain_observation_enabled": (
                 self.augment_local_terrain_observation
+            ),
+            "proxygap_terrain_frame_shaping_enabled": (
+                self.terrain_frame_shaping_enabled
+            ),
+            "proxygap_terrain_frame_context_valid": bool(
+                self._terrain_frame_context_ready
             ),
         }
 

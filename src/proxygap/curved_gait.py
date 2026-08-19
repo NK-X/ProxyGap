@@ -627,6 +627,24 @@ class CurvedGaitCommandWrapper(gym.Wrapper):
         self._refresh_command()
         return self._augment_observation(base_observation)
 
+    def set_terrain_shaping_context(
+        self,
+        *,
+        height_sampler: Any,
+        normal_sampler: Any,
+        target_heading: float,
+    ) -> None:
+        """Forward the fixed-map terrain frame to the inner reward wrapper."""
+
+        setter = getattr(self.env, "set_terrain_shaping_context", None)
+        if setter is None:
+            raise RuntimeError("inner locomotion wrapper lacks terrain-frame support")
+        setter(
+            height_sampler=height_sampler,
+            normal_sampler=normal_sampler,
+            target_heading=target_heading,
+        )
+
     def _torso_yaw(self) -> float:
         qpos = np.asarray(self.unwrapped.data.qpos, dtype=np.float64)
         return quaternion_yaw_angle(qpos[3:7])
@@ -820,6 +838,7 @@ def make_curved_gait_env(
     foot_contact_gap_scale_seconds: float = 0.5,
     foot_geom_names: Sequence[str] = DEFAULT_FOOT_GEOM_NAMES,
     augment_previous_applied_action: bool = True,
+    terrain_frame_shaping_enabled: bool = False,
     **curve_kwargs: Any,
 ) -> CurvedGaitCommandWrapper:
     """Create the preserved pre-pitch reward package plus curve commands."""
@@ -864,6 +883,7 @@ def make_curved_gait_env(
         pitch_balance_shaping_weight=0.0,
         foot_geom_names=tuple(foot_geom_names),
         augment_previous_applied_action=augment_previous_applied_action,
+        terrain_frame_shaping_enabled=bool(terrain_frame_shaping_enabled),
     )
     return CurvedGaitCommandWrapper(base, **curve_kwargs)
 

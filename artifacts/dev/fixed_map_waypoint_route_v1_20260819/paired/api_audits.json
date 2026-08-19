@@ -1,0 +1,1022 @@
+[
+  {
+    "condition_id": "D0_direct_scene_yaw45_reference",
+    "evaluation_seed": 74801,
+    "initial_heading": {
+      "initial_heading_mode": "scene_default",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": null,
+      "reset_actual_yaw_degrees": 48.46994948518596,
+      "reset_yaw_error_from_target_degrees": null
+    },
+    "dynamic_goal_observation": {
+      "verified": false,
+      "reason": "direct_goal_does_not_rewrite_goal"
+    }
+  },
+  {
+    "condition_id": "D0_direct_scene_yaw45_reference",
+    "evaluation_seed": 74802,
+    "initial_heading": {
+      "initial_heading_mode": "scene_default",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": null,
+      "reset_actual_yaw_degrees": 46.18462592822953,
+      "reset_yaw_error_from_target_degrees": null
+    },
+    "dynamic_goal_observation": {
+      "verified": false,
+      "reason": "direct_goal_does_not_rewrite_goal"
+    }
+  },
+  {
+    "condition_id": "D0_direct_scene_yaw45_reference",
+    "evaluation_seed": 74803,
+    "initial_heading": {
+      "initial_heading_mode": "scene_default",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": null,
+      "reset_actual_yaw_degrees": 51.91754173967749,
+      "reset_yaw_error_from_target_degrees": null
+    },
+    "dynamic_goal_observation": {
+      "verified": false,
+      "reason": "direct_goal_does_not_rewrite_goal"
+    }
+  },
+  {
+    "condition_id": "D0_direct_scene_yaw45_reference",
+    "evaluation_seed": 74804,
+    "initial_heading": {
+      "initial_heading_mode": "scene_default",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": null,
+      "reset_actual_yaw_degrees": 49.79990654439424,
+      "reset_yaw_error_from_target_degrees": null
+    },
+    "dynamic_goal_observation": {
+      "verified": false,
+      "reason": "direct_goal_does_not_rewrite_goal"
+    }
+  },
+  {
+    "condition_id": "D0_direct_scene_yaw45_reference",
+    "evaluation_seed": 74805,
+    "initial_heading": {
+      "initial_heading_mode": "scene_default",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": null,
+      "reset_actual_yaw_degrees": 36.67889805206399,
+      "reset_yaw_error_from_target_degrees": null
+    },
+    "dynamic_goal_observation": {
+      "verified": false,
+      "reason": "direct_goal_does_not_rewrite_goal"
+    }
+  },
+  {
+    "condition_id": "D1_direct_yaw78",
+    "evaluation_seed": 74801,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 80.36825560122429,
+      "reset_yaw_error_from_target_degrees": 2.368255601224298
+    },
+    "dynamic_goal_observation": {
+      "verified": false,
+      "reason": "direct_goal_does_not_rewrite_goal"
+    }
+  },
+  {
+    "condition_id": "D1_direct_yaw78",
+    "evaluation_seed": 74802,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 76.77990572396874,
+      "reset_yaw_error_from_target_degrees": -1.2200942760312605
+    },
+    "dynamic_goal_observation": {
+      "verified": false,
+      "reason": "direct_goal_does_not_rewrite_goal"
+    }
+  },
+  {
+    "condition_id": "D1_direct_yaw78",
+    "evaluation_seed": 74803,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 82.30682017691743,
+      "reset_yaw_error_from_target_degrees": 4.306820176917434
+    },
+    "dynamic_goal_observation": {
+      "verified": false,
+      "reason": "direct_goal_does_not_rewrite_goal"
+    }
+  },
+  {
+    "condition_id": "D1_direct_yaw78",
+    "evaluation_seed": 74804,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 80.37203327622976,
+      "reset_yaw_error_from_target_degrees": 2.3720332762297653
+    },
+    "dynamic_goal_observation": {
+      "verified": false,
+      "reason": "direct_goal_does_not_rewrite_goal"
+    }
+  },
+  {
+    "condition_id": "D1_direct_yaw78",
+    "evaluation_seed": 74805,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 70.07779108898887,
+      "reset_yaw_error_from_target_degrees": -7.92220891101112
+    },
+    "dynamic_goal_observation": {
+      "verified": false,
+      "reason": "direct_goal_does_not_rewrite_goal"
+    }
+  },
+  {
+    "condition_id": "R_v040_l030_k020",
+    "evaluation_seed": 74801,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 80.36825560122429,
+      "reset_yaw_error_from_target_degrees": 2.368255601224298
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.9131309547391067,
+        0.4076663580641006
+      ],
+      "restored_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.14326706973864356,
+        0.9896840640974789
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v040_l030_k020",
+    "evaluation_seed": 74802,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 76.77990572396874,
+      "reset_yaw_error_from_target_degrees": -1.2200942760312605
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.9368555922735432,
+        0.3497164554689823
+      ],
+      "restored_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.20511937537231978,
+        0.9787369625424747
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v040_l030_k020",
+    "evaluation_seed": 74803,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 82.30682017691743,
+      "reset_yaw_error_from_target_degrees": 4.306820176917434
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.8988178572200798,
+        0.43832232380099495
+      ],
+      "restored_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.11812303675199974,
+        0.9929989668617414
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v040_l030_k020",
+    "evaluation_seed": 74804,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 80.37203327622976,
+      "reset_yaw_error_from_target_degrees": 2.3720332762297653
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.9131040741426385,
+        0.4077265625196804
+      ],
+      "restored_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.13544936021525789,
+        0.990784270574214
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v040_l030_k020",
+    "evaluation_seed": 74805,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 70.07779108898887,
+      "reset_yaw_error_from_target_degrees": -7.92220891101112
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.9712679379272515,
+        0.23798863996952613
+      ],
+      "restored_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.35911607488847813,
+        0.9332929040535415
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v040_l050_k020",
+    "evaluation_seed": 74801,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 80.36825560122429,
+      "reset_yaw_error_from_target_degrees": 2.368255601224298
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.9131309547391067,
+        0.4076663580641006
+      ],
+      "restored_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.1528685637538796,
+        0.9882465290684436
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v040_l050_k020",
+    "evaluation_seed": 74802,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 76.77990572396874,
+      "reset_yaw_error_from_target_degrees": -1.2200942760312605
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.9368555922735432,
+        0.3497164554689823
+      ],
+      "restored_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.2147357940802161,
+        0.9766721756765363
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v040_l050_k020",
+    "evaluation_seed": 74803,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 82.30682017691743,
+      "reset_yaw_error_from_target_degrees": 4.306820176917434
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.8988178572200798,
+        0.43832232380099495
+      ],
+      "restored_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.12440706560386545,
+        0.9922312643874086
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v040_l050_k020",
+    "evaluation_seed": 74804,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 80.37203327622976,
+      "reset_yaw_error_from_target_degrees": 2.3720332762297653
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.9131040741426385,
+        0.4077265625196804
+      ],
+      "restored_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.14806479369377917,
+        0.9889776624719179
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v040_l050_k020",
+    "evaluation_seed": 74805,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 70.07779108898887,
+      "reset_yaw_error_from_target_degrees": -7.92220891101112
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.9712679379272515,
+        0.23798863996952613
+      ],
+      "restored_curve_command": [
+        0.4,
+        0.0,
+        0.08000000000000002,
+        -0.3516909219760411,
+        0.9361161762300885
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v050_l030_k020",
+    "evaluation_seed": 74801,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 80.36825560122429,
+      "reset_yaw_error_from_target_degrees": 2.368255601224298
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.9131309547391067,
+        0.4076663580641006
+      ],
+      "restored_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.14326706973864356,
+        0.9896840640974789
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v050_l030_k020",
+    "evaluation_seed": 74802,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 76.77990572396874,
+      "reset_yaw_error_from_target_degrees": -1.2200942760312605
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.9368555922735432,
+        0.3497164554689823
+      ],
+      "restored_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.20511937537231978,
+        0.9787369625424747
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v050_l030_k020",
+    "evaluation_seed": 74803,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 82.30682017691743,
+      "reset_yaw_error_from_target_degrees": 4.306820176917434
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.8988178572200798,
+        0.43832232380099495
+      ],
+      "restored_curve_command": [
+        0.5,
+        0.0,
+        0.08879960410401821,
+        -0.11812303675199974,
+        0.9929989668617414
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v050_l030_k020",
+    "evaluation_seed": 74804,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 80.37203327622976,
+      "reset_yaw_error_from_target_degrees": 2.3720332762297653
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.9131040741426385,
+        0.4077265625196804
+      ],
+      "restored_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.13544936021525789,
+        0.990784270574214
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v050_l030_k020",
+    "evaluation_seed": 74805,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 70.07779108898887,
+      "reset_yaw_error_from_target_degrees": -7.92220891101112
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.9712679379272515,
+        0.23798863996952613
+      ],
+      "restored_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.35911607488847813,
+        0.9332929040535415
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v050_l050_k020",
+    "evaluation_seed": 74801,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 80.36825560122429,
+      "reset_yaw_error_from_target_degrees": 2.368255601224298
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.9131309547391067,
+        0.4076663580641006
+      ],
+      "restored_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.1528685637538796,
+        0.9882465290684436
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v050_l050_k020",
+    "evaluation_seed": 74802,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 76.77990572396874,
+      "reset_yaw_error_from_target_degrees": -1.2200942760312605
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.9368555922735432,
+        0.3497164554689823
+      ],
+      "restored_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.2147357940802161,
+        0.9766721756765363
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v050_l050_k020",
+    "evaluation_seed": 74803,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 82.30682017691743,
+      "reset_yaw_error_from_target_degrees": 4.306820176917434
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.8988178572200798,
+        0.43832232380099495
+      ],
+      "restored_curve_command": [
+        0.5,
+        0.0,
+        0.0935476739488067,
+        -0.12440706560386545,
+        0.9922312643874086
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v050_l050_k020",
+    "evaluation_seed": 74804,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 80.37203327622976,
+      "reset_yaw_error_from_target_degrees": 2.3720332762297653
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.9131040741426385,
+        0.4077265625196804
+      ],
+      "restored_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.14806479369377917,
+        0.9889776624719179
+      ]
+    }
+  },
+  {
+    "condition_id": "R_v050_l050_k020",
+    "evaluation_seed": 74805,
+    "initial_heading": {
+      "initial_heading_mode": "terrain_tangent_override_before_seeded_reset",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": 78.0,
+      "target_init_quaternion_wxyz": [
+        0.7771442024469974,
+        -0.0004359981911245141,
+        0.004147928645976383,
+        0.6293087423487341
+      ],
+      "start_gradient_xy": [
+        -0.005898527666695688,
+        -0.005898527666695688
+      ],
+      "reset_actual_yaw_degrees": 70.07779108898887,
+      "reset_yaw_error_from_target_degrees": -7.92220891101112
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.9712679379272515,
+        0.23798863996952613
+      ],
+      "restored_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.3516909219760411,
+        0.9361161762300885
+      ]
+    }
+  }
+]

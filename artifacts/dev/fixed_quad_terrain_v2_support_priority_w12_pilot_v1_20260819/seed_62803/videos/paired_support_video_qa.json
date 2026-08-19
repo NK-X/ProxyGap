@@ -1,0 +1,118 @@
+{
+  "schema_version": "proxygap-paired-support-video-qa-v1",
+  "selection_rule": "Both equal-budget conditions use predeclared validation seed 73802 (paired evaluation 2/3), the first 45 physical seconds, a five-times playback speed and identical cameras.",
+  "conditions": [
+    {
+      "condition_id": "W4_MATCHED_CONTINUATION_CONTROL",
+      "airborne_shaping_weight": 4.0,
+      "evaluation_seed": 73802,
+      "model_sha256": "c6073f2ea61edd7a50fee4c2d2623243ed3c9ce866b4f328cad1a4c6289ecbd2",
+      "video": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\videos\\w4_seed_73802_dual_view_v3\\fixed_map_final_policy_seed_73802_dual_view_v1.mp4",
+      "video_sha256": "847a18e21b17e08a48752e8c13dab2eef5a3b4676748f19cff9f767ff3fea4ab",
+      "video_manifest": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\videos\\w4_seed_73802_dual_view_v3\\fixed_map_final_policy_seed_73802_dual_view_v1_video_manifest.json",
+      "video_manifest_sha256": "2cb7254d3e94e9b6f02a6ac298d4629d33de13e9946fc38d4aa9985172f781fe",
+      "independent_full_decode": {
+        "decoded_frames": 241,
+        "first_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "last_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "average_frame_rate": 20.0,
+        "decoded_duration_seconds": 12.05
+      },
+      "formal_trace_prefix_verification": {
+        "formal_trace": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\traces\\w4_matched_continuation_control_seed_73802_trace.csv",
+        "formal_trace_sha256": "e91a02cd9f5bc72325f2c2386e85de9cb8914b6baea9aa0cf4ecc6a7136f11bd",
+        "video_trace": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\videos\\w4_seed_73802_dual_view_v3\\fixed_map_final_policy_seed_73802_dual_view_v1_trace.csv",
+        "video_trace_sha256": "b315175dc68809fdbefea26979451667a14d6be2d50efad4ffc7c6689ccd1ef1",
+        "formal_rows": 3600,
+        "video_rows": 900,
+        "numeric_prefix_maximum_absolute_errors": {
+          "x_m": 0.0,
+          "y_m": 0.0,
+          "terrain_height_m": 0.0,
+          "torso_z_m": 0.0,
+          "distance_to_goal_m": 0.0,
+          "support_count": 0.0,
+          "maximum_contact_tangential_speed_m_per_s": 0.0,
+          "reward": 0.0
+        },
+        "boolean_prefix_mismatch_counts": {
+          "airborne": 0,
+          "terminated": 0
+        },
+        "expected_final_truncation_mismatch_count": 1,
+        "exact_state_reward_prefix_match": true
+      }
+    },
+    {
+      "condition_id": "W12_SUPPORT_PRIORITY_INTERVENTION",
+      "airborne_shaping_weight": 12.0,
+      "evaluation_seed": 73802,
+      "model_sha256": "e152df7462033144318549b0983ebbb651ec907d6b152f4644e42f245cdd752c",
+      "video": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\videos\\w12_seed_73802_dual_view_v3\\fixed_map_final_policy_seed_73802_dual_view_v1.mp4",
+      "video_sha256": "10390742cf2aa418a68bfc81c00619b48baa4d7d712da28f58f96ff46ba4a636",
+      "video_manifest": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\videos\\w12_seed_73802_dual_view_v3\\fixed_map_final_policy_seed_73802_dual_view_v1_video_manifest.json",
+      "video_manifest_sha256": "0b39f7d1effd8482ca2936af99084d6e08270b02e794ada59709417f7c2014fb",
+      "independent_full_decode": {
+        "decoded_frames": 241,
+        "first_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "last_frame_shape": [
+          720,
+          1280,
+          3
+        ],
+        "average_frame_rate": 20.0,
+        "decoded_duration_seconds": 12.05
+      },
+      "formal_trace_prefix_verification": {
+        "formal_trace": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\traces\\w12_support_priority_intervention_seed_73802_trace.csv",
+        "formal_trace_sha256": "3bfe3454f362a7cdb2c6e316c947397c33d61af0a618c2616dd518387a97e900",
+        "video_trace": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_support_priority_w12_pilot_v1_20260819\\seed_62803\\videos\\w12_seed_73802_dual_view_v3\\fixed_map_final_policy_seed_73802_dual_view_v1_trace.csv",
+        "video_trace_sha256": "53de827f8eb3dc427181b4a131cd326b6c4b528ed1f41514e1df7f6ca498272e",
+        "formal_rows": 3600,
+        "video_rows": 900,
+        "numeric_prefix_maximum_absolute_errors": {
+          "x_m": 0.0,
+          "y_m": 0.0,
+          "terrain_height_m": 0.0,
+          "torso_z_m": 0.0,
+          "distance_to_goal_m": 0.0,
+          "support_count": 0.0,
+          "maximum_contact_tangential_speed_m_per_s": 0.0,
+          "reward": 0.0
+        },
+        "boolean_prefix_mismatch_counts": {
+          "airborne": 0,
+          "terminated": 0
+        },
+        "expected_final_truncation_mismatch_count": 1,
+        "exact_state_reward_prefix_match": true
+      }
+    }
+  ],
+  "pair_is_a_visualisation_of_formal_rollout_prefixes": true,
+  "publication_boundary": {
+    "publish_only": [
+      "videos/w4_seed_73802_dual_view_v3",
+      "videos/w12_seed_73802_dual_view_v3"
+    ],
+    "intermediate_do_not_publish": [
+      "videos/w4_seed_73802_dual_view_v1",
+      "videos/w4_seed_73802_dual_view_v2",
+      "videos/w12_seed_73802_dual_view_v2"
+    ]
+  },
+  "truncation_boundary": "Formal evaluations run 180 s. Each video intentionally truncates at 45 s; therefore only the final truncated flag differs from the formal prefix.",
+  "claim_boundary": "Videos are qualitative evidence and cannot establish superiority. Contact-speed exceedance includes brief landing transients and is not automatically sustained physical sliding."
+}

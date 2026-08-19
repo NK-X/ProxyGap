@@ -1,0 +1,93 @@
+{
+  "schema_version": "proxygap-ppo-appended-observation-transfer-v1",
+  "source_observation_dimension": 122,
+  "target_observation_dimension": 135,
+  "appended_observation_columns": 13,
+  "appended_feature_names": [
+    "relative_height_longitudinal_0.5_lateral_-0.4_m",
+    "relative_height_longitudinal_0.5_lateral_0.0_m",
+    "relative_height_longitudinal_0.5_lateral_0.4_m",
+    "relative_height_longitudinal_1.0_lateral_-0.4_m",
+    "relative_height_longitudinal_1.0_lateral_0.0_m",
+    "relative_height_longitudinal_1.0_lateral_0.4_m",
+    "relative_height_longitudinal_1.5_lateral_-0.4_m",
+    "relative_height_longitudinal_1.5_lateral_0.0_m",
+    "relative_height_longitudinal_1.5_lateral_0.4_m",
+    "terrain_normal_target_forward",
+    "terrain_normal_target_left",
+    "terrain_normal_world_up",
+    "signed_forward_slope_rad"
+  ],
+  "action_dimension": 8,
+  "copied_parameter_tensors": [
+    "action_net.bias",
+    "action_net.weight",
+    "log_std",
+    "mlp_extractor.policy_net.0.bias",
+    "mlp_extractor.policy_net.2.bias",
+    "mlp_extractor.policy_net.2.weight",
+    "mlp_extractor.value_net.0.bias",
+    "mlp_extractor.value_net.2.bias",
+    "mlp_extractor.value_net.2.weight",
+    "value_net.bias",
+    "value_net.weight"
+  ],
+  "expanded_parameter_tensors": [
+    "mlp_extractor.policy_net.0.weight",
+    "mlp_extractor.value_net.0.weight"
+  ],
+  "appended_column_max_abs_by_tensor": {
+    "mlp_extractor.policy_net.0.weight": 0.0,
+    "mlp_extractor.value_net.0.weight": 0.0
+  },
+  "previous_columns_copied_exactly": true,
+  "new_columns_initialised_to_zero": true,
+  "optimizer_state_restored": false,
+  "optimizer_state_entries_before_clear": 0,
+  "optimizer_state_entries_after_clear": 0,
+  "source_num_timesteps": 2465792,
+  "target_num_timesteps": 2465792,
+  "source_model": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_training_20260818\\seed_62801\\models\\checkpoint_2465792.zip",
+  "source_model_sha256": "d69ae7a45efdad14a72426ea49c300a670b8c4b92558a97577b3b4130d649abb",
+  "source_configuration": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_training_20260818\\seed_62801\\frozen_run_config.json",
+  "source_configuration_sha256": "f27ae1abc12d43f4d452772f787e9a9116762a924e781f8f65ddb8afbb14fe83",
+  "pilot_configuration": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\fixed_quad_terrain_v2_local_preview_pilot_v1_20260819.json",
+  "pilot_configuration_sha256": "e673e59df5c9f42fdc6e0db01d7215205ac0648d7937034e78d2622262ececa2",
+  "approved_height_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+  "approved_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+  "fixed_friction": [
+    1.0,
+    0.5,
+    0.5
+  ],
+  "condim": 3,
+  "migration_runner": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\scripts\\run_fixed_goal_local_preview_pilot.py",
+  "migration_runner_sha256": "9bc6eeccd6c60e9456c3a4d9636b889feb28547465468cc4ac1a4a90ba963a21",
+  "transfer_module": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\src\\proxygap\\ppo_observation_transfer.py",
+  "transfer_module_sha256": "5053f456f74e6f812b8066d95e93974f94aa001505539e8ef4c58cca50455331",
+  "initial_equivalence": {
+    "observation_prefix_max_abs_error": 0.0,
+    "action_distribution_location_max_abs_error": 0.0,
+    "action_distribution_scale_max_abs_error": 0.0,
+    "deterministic_action_max_abs_error": 0.0,
+    "value_prediction_max_abs_error": 0.0,
+    "maximum_equivalence_error": 0.0,
+    "tolerance": 1.1920928955078125e-07,
+    "equivalent_within_tolerance": true,
+    "batch_size": 4
+  },
+  "initial_migrated_model": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_local_preview_pilot_v1_20260819\\seed_62802\\models\\initial_zero_column_transfer_2465792.zip",
+  "initial_migrated_model_sha256": "3ccdbf9049a85552a68f6d1053b51891ef29fd9e209f88ee1f4f27e17dbe9dde",
+  "reloaded_initial_equivalence": {
+    "observation_prefix_max_abs_error": 0.0,
+    "action_distribution_location_max_abs_error": 0.0,
+    "action_distribution_scale_max_abs_error": 0.0,
+    "deterministic_action_max_abs_error": 0.0,
+    "value_prediction_max_abs_error": 0.0,
+    "maximum_equivalence_error": 0.0,
+    "tolerance": 1.1920928955078125e-07,
+    "equivalent_within_tolerance": true,
+    "batch_size": 4
+  },
+  "reloaded_optimizer_state_entries": 0
+}

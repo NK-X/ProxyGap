@@ -1,0 +1,33 @@
+[
+  {
+    "condition_id": "R45_route_slope_speed_v050_l050_k020",
+    "evaluation_seed": 74803,
+    "initial_heading": {
+      "initial_heading_mode": "scene_default",
+      "scene_init_yaw_degrees": 45.00000000004813,
+      "target_init_yaw_degrees": null,
+      "reset_actual_yaw_degrees": 51.91754173967749,
+      "reset_yaw_error_from_target_degrees": null
+    },
+    "dynamic_goal_observation": {
+      "verified": true,
+      "observation_shape": [
+        122
+      ],
+      "alternative_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.9970629322380403,
+        -0.07658661212562613
+      ],
+      "restored_curve_command": [
+        0.5,
+        0.0,
+        0.1,
+        -0.6092569405987307,
+        0.792972874903218
+      ]
+    }
+  }
+]

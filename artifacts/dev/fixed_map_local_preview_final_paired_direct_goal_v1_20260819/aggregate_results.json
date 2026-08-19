@@ -1,0 +1,111 @@
+{
+  "by_candidate": {
+    "control_122d_checkpoint_2465792": {
+      "episodes": 5,
+      "spatial_successes": 1,
+      "strict_stable_dwell_successes": 0,
+      "qualified_episodes": 0,
+      "falls": 2,
+      "mean_final_distance_m": 76.13773500166337,
+      "mean_minimum_distance_m": 74.88868310494334,
+      "mean_path_length_m": 117.39543247982508,
+      "mean_airborne_step_fraction": 0.6985175698798282,
+      "mean_raw_contact_speed_exceedance_step_fraction": 0.2277316277775463,
+      "total_duration_corrected_slip_events": 0,
+      "mean_duration_corrected_slip_step_fraction": 0.0,
+      "mean_positive_mechanical_work_proxy_j": 47101.23294137321,
+      "mean_absolute_mechanical_work_proxy_j": 53399.6040217346
+    },
+    "local_preview_135d_final_checkpoint_2727936": {
+      "episodes": 5,
+      "spatial_successes": 0,
+      "strict_stable_dwell_successes": 0,
+      "qualified_episodes": 0,
+      "falls": 0,
+      "mean_final_distance_m": 92.72029497291524,
+      "mean_minimum_distance_m": 91.78241566156899,
+      "mean_path_length_m": 116.30059646066138,
+      "mean_airborne_step_fraction": 0.6688166666666667,
+      "mean_raw_contact_speed_exceedance_step_fraction": 0.19476666666666667,
+      "total_duration_corrected_slip_events": 0,
+      "mean_duration_corrected_slip_step_fraction": 0.0,
+      "mean_positive_mechanical_work_proxy_j": 47565.91466283314,
+      "mean_absolute_mechanical_work_proxy_j": 53221.94232693252
+    }
+  },
+  "paired_rows": [
+    {
+      "evaluation_seed": 74801,
+      "spatial_success_delta": 0,
+      "strict_stable_dwell_success_delta": 0,
+      "qualified_delta": 0,
+      "fall_delta": 0,
+      "final_distance_delta_m": -3.506058819098243,
+      "minimum_distance_delta_m": -3.4562952907435545,
+      "airborne_fraction_delta": 0.0071666666666666545,
+      "duration_corrected_slip_fraction_delta": 0.0,
+      "positive_mechanical_work_proxy_delta_j": -14928.96331716131,
+      "absolute_mechanical_work_proxy_delta_j": -16435.822234449777
+    },
+    {
+      "evaluation_seed": 74802,
+      "spatial_success_delta": 0,
+      "strict_stable_dwell_success_delta": 0,
+      "qualified_delta": 0,
+      "fall_delta": -1,
+      "final_distance_delta_m": -0.916531418482748,
+      "minimum_distance_delta_m": -0.5848261184038535,
+      "airborne_fraction_delta": -0.09037718425127184,
+      "duration_corrected_slip_fraction_delta": 0.0,
+      "positive_mechanical_work_proxy_delta_j": 30544.564939932745,
+      "absolute_mechanical_work_proxy_delta_j": 33476.64285335856
+    },
+    {
+      "evaluation_seed": 74803,
+      "spatial_success_delta": -1,
+      "strict_stable_dwell_success_delta": 0,
+      "qualified_delta": 0,
+      "fall_delta": 0,
+      "final_distance_delta_m": 89.18644861908199,
+      "minimum_distance_delta_m": 88.93009163380172,
+      "airborne_fraction_delta": -0.023868926435092863,
+      "duration_corrected_slip_fraction_delta": 0.0,
+      "positive_mechanical_work_proxy_delta_j": -15035.634073511203,
+      "absolute_mechanical_work_proxy_delta_j": -19388.273156655327
+    },
+    {
+      "evaluation_seed": 74804,
+      "spatial_success_delta": 0,
+      "strict_stable_dwell_success_delta": 0,
+      "qualified_delta": 0,
+      "fall_delta": 0,
+      "final_distance_delta_m": -0.9728455885285427,
+      "minimum_distance_delta_m": 0.12850189089634512,
+      "airborne_fraction_delta": 0.05458333333333332,
+      "duration_corrected_slip_fraction_delta": 0.0,
+      "positive_mechanical_work_proxy_delta_j": -30247.200903928308,
+      "absolute_mechanical_work_proxy_delta_j": -33706.43320166666
+    },
+    {
+      "evaluation_seed": 74805,
+      "spatial_success_delta": 0,
+      "strict_stable_dwell_success_delta": 0,
+      "qualified_delta": 0,
+      "fall_delta": -1,
+      "final_distance_delta_m": -0.8782129367130693,
+      "minimum_distance_delta_m": -0.5488093324225076,
+      "airborne_fraction_delta": -0.09600840537944277,
+      "duration_corrected_slip_fraction_delta": 0.0,
+      "positive_mechanical_work_proxy_delta_j": 31990.641961967696,
+      "absolute_mechanical_work_proxy_delta_j": 35165.57726540273
+    }
+  ],
+  "paired_mean_delta_local_preview_minus_control": {
+    "final_distance_delta_m": 16.582559971251875,
+    "minimum_distance_delta_m": 16.89373255662563,
+    "airborne_fraction_delta": -0.0297009032131615,
+    "duration_corrected_slip_fraction_delta": 0.0,
+    "positive_mechanical_work_proxy_delta_j": 464.6817214599243,
+    "absolute_mechanical_work_proxy_delta_j": -177.661694802095
+  }
+}

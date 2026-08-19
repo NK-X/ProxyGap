@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "time_energy_path_objective_v1.schema.json",
+  "title": "ProxyGap Time-Energy Path Objective V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "config_id",
+    "status",
+    "scope",
+    "objective",
+    "human_intent",
+    "fixed_map_development",
+    "generalisation",
+    "experiment_matrix",
+    "acceptance_gates",
+    "claim_boundary"
+  ],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schema_version": {"const": 1},
+    "config_id": {"const": "time_energy_path_objective_v1_20260819"},
+    "status": {"const": "design_only_scientifically_unresolved"},
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["modifies_locomotion", "modifies_reward", "modifies_energy", "modifies_termination"],
+      "properties": {
+        "modifies_locomotion": {"const": false},
+        "modifies_reward": {"const": false},
+        "modifies_energy": {"const": false},
+        "modifies_termination": {"const": false}
+      }
+    },
+    "objective": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["mode", "validity_precedes_efficiency", "time_metric", "energy_metric", "normalised_cost", "normalisation_status"],
+      "properties": {
+        "mode": {"const": "lexicographic_constraints_then_pareto"},
+        "validity_precedes_efficiency": {"const": true},
+        "time_metric": {"const": "mission_time_seconds_including_two_second_dwell"},
+        "energy_metric": {"const": "relative_mission_energy_proxy_v2"},
+        "normalised_cost": {"const": "w_time*(T/T_ref)+w_energy*(E_rel/E_ref)"},
+        "normalisation_status": {"const": "blocked_until_v2_is_implemented_and_calibrated"}
+      }
+    },
+    "human_intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["explicit_input", "default_profile", "profiles", "pareto_weight_grid"],
+      "properties": {
+        "explicit_input": {"const": true},
+        "default_profile": {"const": "balanced_demo"},
+        "default_is_universal_preference": {"const": false},
+        "profiles": {
+          "type": "array",
+          "minItems": 3,
+          "items": {"$ref": "#/$defs/profile"}
+        },
+        "pareto_weight_grid": {
+          "type": "array",
+          "minItems": 5,
+          "items": {"$ref": "#/$defs/profile"}
+        }
+      }
+    },
+    "fixed_map_development": {"type": "object"},
+    "generalisation": {"type": "object"},
+    "experiment_matrix": {"type": "array", "minItems": 4},
+    "acceptance_gates": {"type": "object"},
+    "claim_boundary": {"type": "string", "minLength": 40}
+  },
+  "$defs": {
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "w_time", "w_energy"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "w_time": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+        "w_energy": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+        "interpretation": {"type": "string"}
+      }
+    }
+  }
+}

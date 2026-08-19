@@ -1,0 +1,41 @@
+{
+  "settings": {
+    "algorithm_label": "heading_state_astar_with_corridor_slope_checks_and_line_of_sight_simplification",
+    "claim_boundary": "This independently reconstructed polyline is not an exact reproduction of the previously reported 106.83 m route because the original waypoints, script and hash were not archived.",
+    "grid_spacing_m": 0.5,
+    "grid_boundary_m": 36.0,
+    "connectivity": 8,
+    "maximum_abs_directional_slope_degrees": 16.0,
+    "corridor_half_width_m": 0.5,
+    "corridor_offsets_m": [
+      -0.5,
+      0.0,
+      0.5
+    ],
+    "edge_sample_spacing_m": 0.125,
+    "slope_cost_weight": 0.4,
+    "turn_cost_m_per_rad": 0.35,
+    "start_heading_degrees": 78.0,
+    "line_of_sight_max_span_m": 12.0,
+    "output_waypoint_spacing_m": 0.5
+  },
+  "settings_source": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\fixed_map_waypoint_route_v1_20260819.json",
+  "height_array_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+  "metrics": {
+    "path_length_m": 106.14985026021873,
+    "cumulative_ascent_m": 5.711292883692449,
+    "cumulative_descent_m": 3.481359159516632,
+    "maximum_corridor_slope_degrees": 15.968086587024358,
+    "cumulative_turning_degrees": 129.07330987627884,
+    "first_segment_heading_degrees": 90.0,
+    "expanded_heading_states": 52055,
+    "cached_edges": 31128,
+    "raw_grid_point_count": 177,
+    "simplified_vertex_count": 11,
+    "waypoint_count": 214,
+    "initial_grid_direction_degrees": 90.0
+  },
+  "waypoints_csv": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_map_waypoint_route_v1_20260819\\paired\\route\\route_waypoints.csv",
+  "waypoints_csv_sha256": "fbb764566f1ab5d40714c6fe420b454154fe3cae69720e69c33ce64201f37b53",
+  "claim_boundary": "This independently reconstructed polyline is not an exact reproduction of the previously reported 106.83 m route because the original waypoints, script and hash were not archived."
+}

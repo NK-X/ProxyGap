@@ -5,9 +5,10 @@ from __future__ import annotations
 import csv
 import gzip
 import json
+import math
 from pathlib import Path
 import tempfile
-from typing import Any, TextIO
+from typing import Any, Callable, TextIO
 
 import gymnasium as gym
 import mujoco
@@ -131,6 +132,125 @@ DEFAULT_FOOT_GEOM_NAMES = (
     "third_ankle_geom",
     "fourth_ankle_geom",
 )
+
+
+def validated_terrain_normal(
+    normal_world: np.ndarray,
+    *,
+    unit_tolerance: float = 1e-6,
+) -> np.ndarray:
+    """Return a copied, upward unit terrain normal or fail closed.
+
+    Terrain-frame shaping is deliberately stricter than generic vector
+    normalisation: the heightfield adapter is responsible for supplying an
+    already normalised vector.  Rejecting malformed context avoids silently
+    changing the magnitude of velocity projections or accepting a downward
+    frame.
+    """
+
+    normal = np.asarray(normal_world, dtype=np.float64)
+    if normal.shape != (3,) or not np.all(np.isfinite(normal)):
+        raise ValueError("terrain normal must contain three finite values")
+    norm = float(np.linalg.norm(normal))
+    if not np.isfinite(norm) or abs(norm - 1.0) > float(unit_tolerance):
+        raise ValueError("terrain normal must already be unit length")
+    if float(normal[2]) <= 0.0:
+        raise ValueError("terrain normal must point into the upper hemisphere")
+    return normal.copy()
+
+
+def target_tangent_frame(
+    normal_world: np.ndarray,
+    target_heading: float,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Construct target-forward, target-left and normal terrain axes.
+
+    The requested horizontal heading is orthogonally projected onto the local
+    tangent plane.  ``left = normal x forward`` preserves the conventional
+    world ``+y`` left axis on a flat surface with a ``+x`` target heading.
+    """
+
+    normal = validated_terrain_normal(normal_world)
+    heading = float(target_heading)
+    if not np.isfinite(heading):
+        raise ValueError("target heading must be finite")
+    horizontal_forward = np.asarray(
+        [math.cos(heading), math.sin(heading), 0.0],
+        dtype=np.float64,
+    )
+    tangent_forward = horizontal_forward - float(
+        np.dot(horizontal_forward, normal)
+    ) * normal
+    forward_norm = float(np.linalg.norm(tangent_forward))
+    if not np.isfinite(forward_norm) or forward_norm <= EPSILON:
+        raise ValueError("target heading cannot define a terrain tangent")
+    tangent_forward /= forward_norm
+    tangent_left = np.cross(normal, tangent_forward)
+    left_norm = float(np.linalg.norm(tangent_left))
+    if not np.isfinite(left_norm) or left_norm <= EPSILON:
+        raise ValueError("terrain normal and target tangent are degenerate")
+    tangent_left /= left_norm
+    return tangent_forward, tangent_left, normal
+
+
+def project_velocity_onto_axis(
+    velocity_world: np.ndarray,
+    axis_world: np.ndarray,
+) -> float:
+    """Project a finite world-frame velocity onto a validated unit axis."""
+
+    velocity = np.asarray(velocity_world, dtype=np.float64)
+    if velocity.shape != (3,) or not np.all(np.isfinite(velocity)):
+        raise ValueError("world velocity must contain three finite values")
+    axis = np.asarray(axis_world, dtype=np.float64)
+    if axis.shape != (3,) or not np.all(np.isfinite(axis)):
+        raise ValueError("projection axis must contain three finite values")
+    axis_norm = float(np.linalg.norm(axis))
+    if not np.isfinite(axis_norm) or abs(axis_norm - 1.0) > 1e-6:
+        raise ValueError("projection axis must already be unit length")
+    return float(np.dot(velocity, axis))
+
+
+def angular_speed_perpendicular_to_normal(
+    angular_velocity_world: np.ndarray,
+    normal_world: np.ndarray,
+) -> float:
+    """Return angular speed excluding rotation about the terrain normal."""
+
+    angular_velocity = np.asarray(angular_velocity_world, dtype=np.float64)
+    if angular_velocity.shape != (3,) or not np.all(np.isfinite(angular_velocity)):
+        raise ValueError("world angular velocity must contain three finite values")
+    normal = validated_terrain_normal(normal_world)
+    perpendicular = angular_velocity - float(
+        np.dot(angular_velocity, normal)
+    ) * normal
+    return float(np.linalg.norm(perpendicular))
+
+
+def quaternion_tilt_relative_to_normal(
+    quaternion_wxyz: np.ndarray,
+    normal_world: np.ndarray,
+) -> float:
+    """Return full torso-up misalignment from a local terrain normal."""
+
+    quaternion = np.asarray(quaternion_wxyz, dtype=np.float64)
+    if quaternion.shape != (4,) or not np.all(np.isfinite(quaternion)):
+        raise ValueError("torso quaternion must contain four finite values")
+    quaternion_norm = float(np.linalg.norm(quaternion))
+    if quaternion_norm < EPSILON or not np.isfinite(quaternion_norm):
+        return float("nan")
+    w, x, y, z = quaternion / quaternion_norm
+    torso_up = np.asarray(
+        [
+            2.0 * (x * z + w * y),
+            2.0 * (y * z - w * x),
+            1.0 - 2.0 * (x * x + y * y),
+        ],
+        dtype=np.float64,
+    )
+    normal = validated_terrain_normal(normal_world)
+    alignment = float(np.clip(np.dot(torso_up, normal), -1.0, 1.0))
+    return float(math.acos(alignment))
 
 
 def project_action_l2_slew(
@@ -421,6 +541,7 @@ class ProxyGapAntWrapper(gym.Wrapper):
         action_saturation_threshold: float = DEFAULT_ACTION_SATURATION_THRESHOLD,
         augment_previous_applied_action: bool = False,
         action_slew_l2_limit: float | None = None,
+        terrain_frame_shaping_enabled: bool = False,
         step_log_path: str | Path | None = None,
     ) -> None:
         super().__init__(env)
@@ -640,6 +761,15 @@ class ProxyGapAntWrapper(gym.Wrapper):
         self.action_slew_l2_limit = (
             None if action_slew_l2_limit is None else float(action_slew_l2_limit)
         )
+        self.terrain_frame_shaping_enabled = bool(
+            terrain_frame_shaping_enabled
+        )
+        self._terrain_height_sampler: Callable[[float, float], float] | None = None
+        self._terrain_normal_sampler: (
+            Callable[[float, float], np.ndarray] | None
+        ) = None
+        self._terrain_target_heading: float | None = None
+        self._terrain_frame_context_valid = False
         if self.action_slew_l2_limit is not None:
             if self.action_slew_l2_limit <= 0 or not np.isfinite(
                 self.action_slew_l2_limit
@@ -759,8 +889,85 @@ class ProxyGapAntWrapper(gym.Wrapper):
             self._step_writer = csv.DictWriter(self._step_handle, fieldnames=STEP_LOG_SCHEMA)
             self._step_writer.writeheader()
 
+    def set_terrain_shaping_context(
+        self,
+        *,
+        height_sampler: Callable[[float, float], float],
+        normal_sampler: Callable[[float, float], np.ndarray],
+        target_heading: float,
+    ) -> None:
+        """Install the heightfield/target frame used by the *next* step.
+
+        The fixed-goal adapter owns the frozen terrain and therefore supplies
+        the samplers.  Validation is performed immediately at the current root
+        position and again at every sampled root/foot position.  An enabled
+        wrapper refuses to step without a valid context.
+        """
+
+        self._terrain_frame_context_valid = False
+        if not self.terrain_frame_shaping_enabled:
+            raise RuntimeError(
+                "terrain shaping context cannot be installed when the feature is disabled"
+            )
+        if not callable(height_sampler) or not callable(normal_sampler):
+            raise TypeError("terrain height and normal samplers must be callable")
+        heading = float(target_heading)
+        if not np.isfinite(heading):
+            raise ValueError("terrain shaping target heading must be finite")
+        qpos = np.asarray(self.unwrapped.data.qpos, dtype=np.float64)
+        if qpos.shape[0] < 2 or not np.all(np.isfinite(qpos[:2])):
+            raise ValueError("root position is unavailable for terrain context")
+        x, y = float(qpos[0]), float(qpos[1])
+        height = float(height_sampler(x, y))
+        if not np.isfinite(height):
+            raise ValueError("terrain height sampler returned a non-finite value")
+        normal = validated_terrain_normal(normal_sampler(x, y))
+        target_tangent_frame(normal, heading)
+        self._terrain_height_sampler = height_sampler
+        self._terrain_normal_sampler = normal_sampler
+        self._terrain_target_heading = heading
+        self._terrain_frame_context_valid = True
+
+    def _terrain_frame_at(
+        self,
+        x: float,
+        y: float,
+    ) -> tuple[float, np.ndarray, np.ndarray, np.ndarray]:
+        if not self.terrain_frame_shaping_enabled:
+            raise RuntimeError("terrain frame requested while shaping is disabled")
+        if (
+            not self._terrain_frame_context_valid
+            or self._terrain_height_sampler is None
+            or self._terrain_normal_sampler is None
+            or self._terrain_target_heading is None
+        ):
+            raise RuntimeError("terrain-frame shaping has no valid next-step context")
+        height = float(self._terrain_height_sampler(float(x), float(y)))
+        if not np.isfinite(height):
+            self._terrain_frame_context_valid = False
+            raise ValueError("terrain height sampler returned a non-finite value")
+        normal = validated_terrain_normal(
+            self._terrain_normal_sampler(float(x), float(y))
+        )
+        _, tangent_left, normal = target_tangent_frame(
+            normal,
+            self._terrain_target_heading,
+        )
+        return height, tangent_left, normal, np.asarray(
+            [
+                math.cos(self._terrain_target_heading),
+                math.sin(self._terrain_target_heading),
+                0.0,
+            ],
+            dtype=np.float64,
+        )
+
     def reset(self, **kwargs: Any) -> tuple[np.ndarray, dict[str, Any]]:
         observation, info = self.env.reset(**kwargs)
+        self._terrain_height_sampler = None
+        self._terrain_normal_sampler = None
+        self._terrain_target_heading = None
+        self._terrain_frame_context_valid = False
         self._previous_applied_action.fill(0.0)
         self._previous_proposed_action = None
         self._slew_intervention_count = 0
@@ -805,7 +1012,11 @@ class ProxyGapAntWrapper(gym.Wrapper):
         self._actuator_positive_mechanical_work.fill(0.0)
         self._actuator_negative_mechanical_work_abs.fill(0.0)
         self._reward_pitch_balance_shaping_sum = 0.0
-        initial_grounded = self._foot_landing_kinematics()[3]
+        initial_grounded = (
+            np.zeros(4, dtype=bool)
+            if self.terrain_frame_shaping_enabled
+            else self._foot_landing_kinematics()[3]
+        )
         self._pitch_balance_tracker.reset(initial_grounded=initial_grounded)
         initial_foot_contact_mask = self._foot_contact_diagnostics()[0]
         self._previous_foot_contact_mask = initial_foot_contact_mask.copy()
@@ -817,6 +1028,11 @@ class ProxyGapAntWrapper(gym.Wrapper):
         info["proxygap_foot_contact_mask_step"] = (
             initial_foot_contact_mask.copy()
         )
+        info["proxygap_terrain_frame_shaping_enabled"] = bool(
+            self.terrain_frame_shaping_enabled
+        )
+        info["proxygap_terrain_frame_context_valid"] = False
+        info["proxygap_terrain_frame_shaping_applied_step"] = False
         info.update(self._prefixed_summary())
         return self._augment_observation(observation), info
 
@@ -827,8 +1043,11 @@ class ProxyGapAntWrapper(gym.Wrapper):
 
         Ant's ankle capsules are authored from the ankle joint to the distal
         contact sphere. MuJoCo compiles that distal endpoint onto the negative
-        local-z axis of each named geometry. Height is measured at the bottom
-        of the distal sphere relative to the world z=0 floor.
+        local-z axis of each named geometry. By default, height and velocity
+        retain the frozen world-z/world-y definition. When the optional
+        terrain frame is enabled, height is clearance above the heightfield at
+        the distal sphere's XY position and the two velocity components are
+        projected onto local terrain-normal and target-left tangent axes.
         """
         foot_count = len(self.foot_geom_names)
         if not self._foot_geom_ids:
@@ -852,9 +1071,7 @@ class ProxyGapAntWrapper(gym.Wrapper):
                 np.asarray(data.geom_xpos[geom_id], dtype=np.float64)
                 - rotation[:, 2] * float(model.geom_size[geom_id, 1])
             )
-            heights[index] = float(
-                distal_center[2] - float(model.geom_size[geom_id, 0])
-            )
+            sphere_radius = float(model.geom_size[geom_id, 0])
             jacobian_position = np.zeros((3, model.nv), dtype=np.float64)
             jacobian_rotation = np.zeros((3, model.nv), dtype=np.float64)
             mujoco.mj_jac(
@@ -866,8 +1083,26 @@ class ProxyGapAntWrapper(gym.Wrapper):
                 int(model.geom_bodyid[geom_id]),
             )
             velocity = jacobian_position @ qvel
-            lateral_velocities[index] = float(velocity[1])
-            vertical_velocities[index] = float(velocity[2])
+            if self.terrain_frame_shaping_enabled:
+                terrain_height, tangent_left, normal, _ = self._terrain_frame_at(
+                    float(distal_center[0]),
+                    float(distal_center[1]),
+                )
+                heights[index] = float(
+                    distal_center[2] - sphere_radius - terrain_height
+                )
+                lateral_velocities[index] = project_velocity_onto_axis(
+                    velocity,
+                    tangent_left,
+                )
+                vertical_velocities[index] = project_velocity_onto_axis(
+                    velocity,
+                    normal,
+                )
+            else:
+                heights[index] = float(distal_center[2] - sphere_radius)
+                lateral_velocities[index] = float(velocity[1])
+                vertical_velocities[index] = float(velocity[2])
         landing_mask = heights <= self.foot_landing_height_threshold
         return heights, lateral_velocities, vertical_velocities, landing_mask
 
@@ -970,6 +1205,15 @@ class ProxyGapAntWrapper(gym.Wrapper):
         self,
         action: np.ndarray,
     ) -> tuple[np.ndarray, float, bool, bool, dict[str, Any]]:
+        if self.terrain_frame_shaping_enabled and not (
+            self._terrain_frame_context_valid
+            and self._terrain_height_sampler is not None
+            and self._terrain_normal_sampler is not None
+            and self._terrain_target_heading is not None
+        ):
+            raise RuntimeError(
+                "enabled terrain-frame shaping requires a valid next-step context"
+            )
         proposed_action = np.asarray(action, dtype=np.float64).reshape(
             self.action_space.shape
         )
@@ -1038,8 +1282,53 @@ class ProxyGapAntWrapper(gym.Wrapper):
         squared_action = float(np.sum(np.square(applied_action)))
         forward_velocity = self._root_x_velocity(info)
         qvel = np.asarray(self.unwrapped.data.qvel, dtype=np.float64)
-        root_vertical_velocity = float(qvel[2])
-        root_roll_pitch_angular_speed = float(np.linalg.norm(qvel[3:5]))
+        if self.terrain_frame_shaping_enabled:
+            qpos = np.asarray(self.unwrapped.data.qpos, dtype=np.float64)
+            _, _, root_terrain_normal, _ = self._terrain_frame_at(
+                float(qpos[0]),
+                float(qpos[1]),
+            )
+            root_vertical_velocity = project_velocity_onto_axis(
+                qvel[:3],
+                root_terrain_normal,
+            )
+            if np.allclose(
+                root_terrain_normal,
+                np.asarray([0.0, 0.0, 1.0], dtype=np.float64),
+                atol=1e-12,
+                rtol=0.0,
+            ):
+                # Preserve the frozen formula bit-for-bit on canonical flat
+                # terrain; the slope branch below performs a world projection.
+                root_roll_pitch_angular_speed = float(np.linalg.norm(qvel[3:5]))
+            else:
+                torso_body_id = int(
+                    mujoco.mj_name2id(
+                        self.unwrapped.model,
+                        mujoco.mjtObj.mjOBJ_BODY,
+                        "torso",
+                    )
+                )
+                if torso_body_id < 0:
+                    raise RuntimeError("terrain-frame shaping requires torso body")
+                torso_rotation = np.asarray(
+                    self.unwrapped.data.xmat[torso_body_id],
+                    dtype=np.float64,
+                ).reshape(3, 3)
+                angular_velocity_world = torso_rotation @ qvel[3:6]
+                root_roll_pitch_angular_speed = (
+                    angular_speed_perpendicular_to_normal(
+                        angular_velocity_world,
+                        root_terrain_normal,
+                    )
+                )
+        else:
+            root_terrain_normal = np.asarray(
+                [0.0, 0.0, 1.0],
+                dtype=np.float64,
+            )
+            root_vertical_velocity = float(qvel[2])
+            root_roll_pitch_angular_speed = float(np.linalg.norm(qvel[3:5]))
         saturated_fraction = float(
             np.mean(np.abs(applied_action) >= self.action_saturation_threshold)
         )
@@ -1410,6 +1699,27 @@ class ProxyGapAntWrapper(gym.Wrapper):
         info["proxygap_root_vertical_velocity_step"] = root_vertical_velocity
         info["proxygap_root_roll_pitch_angular_speed_step"] = (
             root_roll_pitch_angular_speed
+        )
+        info["proxygap_terrain_frame_shaping_enabled"] = bool(
+            self.terrain_frame_shaping_enabled
+        )
+        info["proxygap_terrain_frame_context_valid"] = bool(
+            self._terrain_frame_context_valid
+            if self.terrain_frame_shaping_enabled
+            else False
+        )
+        info["proxygap_terrain_frame_shaping_applied_step"] = bool(
+            self.terrain_frame_shaping_enabled
+            and self._terrain_frame_context_valid
+        )
+        info["proxygap_terrain_frame_normal_world_step"] = (
+            root_terrain_normal.copy()
+        )
+        info["proxygap_terrain_frame_target_heading_rad_step"] = (
+            float(self._terrain_target_heading)
+            if self.terrain_frame_shaping_enabled
+            and self._terrain_target_heading is not None
+            else float("nan")
         )
         info["proxygap_foot_landing_height_threshold"] = (
             self.foot_landing_height_threshold
@@ -1788,6 +2098,12 @@ class ProxyGapAntWrapper(gym.Wrapper):
 
     def _torso_tilt(self) -> float:
         qpos = np.asarray(self.unwrapped.data.qpos, dtype=np.float64)
+        if self.terrain_frame_shaping_enabled:
+            _, _, normal, _ = self._terrain_frame_at(
+                float(qpos[0]),
+                float(qpos[1]),
+            )
+            return quaternion_tilt_relative_to_normal(qpos[3:7], normal)
         return quaternion_tilt_angle(qpos[3:7])
 
     def _torso_pitch(self) -> float:
@@ -2042,6 +2358,7 @@ def make_proxygap_ant_env(
     action_saturation_threshold: float = DEFAULT_ACTION_SATURATION_THRESHOLD,
     augment_previous_applied_action: bool = False,
     action_slew_l2_limit: float | None = None,
+    terrain_frame_shaping_enabled: bool = False,
     step_log_path: str | Path | None = None,
 ) -> ProxyGapAntWrapper:
     """Create Ant-v5 with separately logged objective and diagnostic terms."""
@@ -2133,6 +2450,7 @@ def make_proxygap_ant_env(
         action_saturation_threshold=float(action_saturation_threshold),
         augment_previous_applied_action=bool(augment_previous_applied_action),
         action_slew_l2_limit=action_slew_l2_limit,
+        terrain_frame_shaping_enabled=bool(terrain_frame_shaping_enabled),
         step_log_path=step_log_path,
     )
     if seed is not None:

@@ -8,7 +8,6 @@ stores the checkpoint, map, configuration, rollout and video hashes.
 from __future__ import annotations
 
 import argparse
-import av
 import csv
 import hashlib
 import json
@@ -49,6 +48,24 @@ BLUE = (57, 93, 169)
 TEAL = (36, 138, 119)
 AMBER = (232, 164, 55)
 RED = (204, 67, 58)
+
+_AV_MODULE: Any | None = None
+
+
+def load_video_encoder() -> Any:
+    """Load the optional PyAV dependency only for video I/O."""
+
+    global _AV_MODULE
+    if _AV_MODULE is None:
+        try:
+            import av  # type: ignore[import-not-found]
+        except ModuleNotFoundError as exc:
+            raise RuntimeError(
+                "Video rendering and validation require PyAV; install it in "
+                "the render environment before using these functions."
+            ) from exc
+        _AV_MODULE = av
+    return _AV_MODULE
 
 
 def parse_args() -> argparse.Namespace:
@@ -364,7 +381,7 @@ def draw_overlay(
 
 
 def encode_frame(stream: Any, container: Any, image: Image.Image) -> None:
-    frame = av.VideoFrame.from_ndarray(
+    frame = load_video_encoder().VideoFrame.from_ndarray(
         np.asarray(image.convert("RGB"), dtype=np.uint8), format="rgb24"
     )
     for packet in stream.encode(frame):
@@ -399,7 +416,7 @@ def validate_video(path: Path, *, expected_width: int, expected_height: int) -> 
     decoded = 0
     first_shape: tuple[int, ...] | None = None
     last_shape: tuple[int, ...] | None = None
-    with av.open(str(path), mode="r") as container:
+    with load_video_encoder().open(str(path), mode="r") as container:
         video_stream = container.streams.video[0]
         average_rate = float(video_stream.average_rate)
         for frame in container.decode(video=0):
@@ -526,7 +543,9 @@ def main() -> None:
     # start marker over the robot.  Start and goal remain explicit in the
     # topographic inset and this setting cannot affect MuJoCo dynamics.
     scene_option.sitegroup[2] = 0
-    container = av.open(str(video_path), mode="w", options={"movflags": "+faststart"})
+    container = load_video_encoder().open(
+        str(video_path), mode="w", options={"movflags": "+faststart"}
+    )
     stream = container.add_stream("libx264", rate=args.fps)
     stream.width = WIDTH
     stream.height = HEIGHT
