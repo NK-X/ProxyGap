@@ -1,24 +1,43 @@
 # ProxyGap Status
 
-Last updated: 18 August 2026
+Last updated: 20 August 2026
+
+## Final integrated result
+
+The current delivery is a hierarchical **known-map** result. An archived V4
+bidirectional expert, PAIR0 contact contract and waypoint planner completed
+two route contracts across three new reset seeds each: **6/6 arrivals, 0
+falls, 0 torso-ground contacts and 0 duration-corrected sustained-slip
+events**. Three preference-labelled videos were reproduced exactly from the
+formal traces and decoded frame by frame.
+
+- Final result: [`docs/V4_PAIR0_MULTIOBJECTIVE_FULL_MAP_FINAL_REPORT_20260820_CN.md`](docs/V4_PAIR0_MULTIOBJECTIVE_FULL_MAP_FINAL_REPORT_20260820_CN.md)
+- Delivery summary: [`docs/OVERNIGHT_OPTIMISATION_AND_DELIVERY_REPORT_20260820_CN.md`](docs/OVERNIGHT_OPTIMISATION_AND_DELIVERY_REPORT_20260820_CN.md)
+- Presentation draft: [`deliverables/ProxyGap_Final_Presentation_Draft_20260820.pptx`](deliverables/ProxyGap_Final_Presentation_Draft_20260820.pptx)
+- Report draft: [`deliverables/ProxyGap_Final_Report_Draft_20260820.docx`](deliverables/ProxyGap_Final_Report_Draft_20260820.docx)
+
+The result is not unseen-map generalisation, global route optimality,
+biological natural gait or electrical-energy optimisation. Representative
+successful runs still contain 9.25–10.02% complete control intervals without
+foot contact.
 
 ## Canonical version
 
-**V2 is the current research direction.** Its immediate gate is to define a
-measurable, task-appropriate quadrupedal gait before selecting another shaping
-or constraint candidate.
+**V2 remains the canonical reward-research direction.** The later Project V3
+terrain integration is reported separately so its planner and contact changes
+are not confused with one frozen reward experiment.
 
 | Workstream | Public status | Next gate |
 |---|---|---|
-| Intended task and safety requirements | Conceptually defined | Freeze measurable thresholds and aggregation |
-| Specified gait/contact pattern | Scientifically unresolved | Map Ant-v5 legs and contacts; define coordination metrics |
-| Default-reward construct audit | Development evidence exists | Re-evaluate under the frozen V2 behaviour contract |
-| Reward-shaping mechanisms | Development only | Permit only bounded candidates derived from diagnosed gaps |
-| External constraints | Development only | Separate safety enforcement from soft preferences |
+| Intended task and safety requirements | Frozen for the final known-map mission | Retain arrival/dwell and five-substep safety definitions |
+| Specified gait/contact pattern | Support improved; biological gait unresolved | Validate duty factor, phase and airborne exposure across speeds |
+| Default-reward construct audit | Stage-1 development evidence | Replicate with independent training seeds |
+| Reward-shaping mechanisms | Bounded interventions and rejected failures retained | Avoid further unconstrained reward scanning |
+| External constraints | Separated from preference ranking | Retain explicit controller-versus-policy attribution |
 | Body-dynamics replication protocol | Public protocol and code available; local outputs are outside this release | Do not infer a public result from the protocol alone |
-| Final mitigation candidate | Not frozen | Pass a predeclared development gate |
-| Held-out formal comparison | Not authorised | Preserve reserved training seeds |
-| Real hardware, terrain and disturbances | Out of scope | None for this project |
+| Final mitigation candidate | Frozen for the reported integration | Do not overwrite checkpoint, routes or final manifests |
+| Formal known-map comparison | 6/6 reset-seed episodes completed | Add unseen maps and independent training seeds |
+| Real hardware and disturbances | Out of scope | Future work only |
 
 ## Latest reward iterations
 
@@ -50,7 +69,7 @@ with V2 development runs as if both came from one preregistered design.
 
 ## Public-release boundary
 
-The public repository contains code, protocols, configurations, tests,
-lightweight reviewed summaries and sanitised indexes. Newly generated models,
-logs, full videos, recovery records and unreviewed result tables are not part
-of this release.
+The final release adds only the hash-audited checkpoint, formal traces, videos,
+reports and editable presentation materials supporting the reported result.
+Smoke, failed, superseded, recovery, cache and unrelated local files remain
+outside the release.
