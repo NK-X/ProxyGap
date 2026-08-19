@@ -1,0 +1,89 @@
+{
+  "schema_version": "proxygap-v4-pair0-multiobjective-full-map-video-v1",
+  "config_id": "v4_pair0_multiobjective_full_map_video_v1_20260820",
+  "status": "frozen_read_only_three_objective_formal_replay_video",
+  "formal_evidence": {
+    "root": "artifacts/dev/v4_pair0_multiobjective_full_map_final_v1_20260820/attempt_0",
+    "manifest_sha256": "0bf2817cbdaadc02929da91bae7acb04371ff9cf1ec43e1ab4efa3a8a4a08d83",
+    "summary_sha256": "085a21e9edc1063332720bdbf043d95dca32919fa37748997aa8d56be51c88cc",
+    "frozen_config_sha256": "18a377013dc45b31619a256ae172ec6d0066c4d0a02cce1d0a691c1ee8a9fe6f"
+  },
+  "source": {
+    "checkpoint": "artifacts/dev/curved_gait_tangent_v4_canonical_frame_20260818/runs/seed_43301/models/checkpoint_1024000.zip",
+    "checkpoint_sha256": "6a0f6081e6aff4c85201242e53c44b0d057e96167336002da3a6e862fe134b6a",
+    "checkpoint_timesteps": 1024000,
+    "pair0_scene": "artifacts/dev/post_seal_full_map_eval_v1_20260819/attempt_0/task_scenes/spawn_0_0.000_pair0.xml",
+    "pair0_scene_sha256": "0b75be52ac76ef0147fb6f5e9eccce025067490d144892006c8098dfe1e5be46",
+    "canonical_evaluation_config": "configs/post_seal_full_map_eval_v1_20260819.json",
+    "canonical_evaluation_config_sha256": "2378d1b80d418d348e6aaa636e090e2c15c3652a7d60ee6ef431ba28a71482d0",
+    "fixed_map_config": "configs/fixed_quad_terrain_v2_training_20260818.json",
+    "fixed_map_config_sha256": "f27ae1abc12d43f4d452772f787e9a9116762a924e781f8f65ddb8afbb14fe83",
+    "heights": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/heights_m.npy",
+    "heights_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c"
+  },
+  "episodes": [
+    {
+      "objective_id": "time_priority",
+      "display_name": "TIME PRIORITY",
+      "weights_time_energy": [0.8, 0.2],
+      "contract_id": "time_and_balanced",
+      "evaluation_seed": 690223864,
+      "control_trace": "time_and_balanced/seed_690223864/control_trace.csv",
+      "control_trace_sha256": "9e718378c23ebb83c7d9ad1ee31e03d8d714d6a1a1ac11aa1f00eae1757f6ed0",
+      "substep_trace": "time_and_balanced/seed_690223864/substep_trace.csv",
+      "substep_trace_sha256": "ac64a2ba036c25520622ef39296cbf2846183de745f9b36cf5f21bbcbfcf460f",
+      "result": "time_and_balanced/seed_690223864/result.json",
+      "result_sha256": "88e46a082bd8b1250a6f089c58dbc1689533b283de34116b20063bf5644d0b1d"
+    },
+    {
+      "objective_id": "balanced",
+      "display_name": "BALANCED",
+      "weights_time_energy": [0.5, 0.5],
+      "contract_id": "time_and_balanced",
+      "evaluation_seed": 1864999454,
+      "control_trace": "time_and_balanced/seed_1864999454/control_trace.csv",
+      "control_trace_sha256": "e9b84af4573dede2b130591816d9d116f34aecb1a393a78b4304682648450330",
+      "substep_trace": "time_and_balanced/seed_1864999454/substep_trace.csv",
+      "substep_trace_sha256": "219838d1a15158df4d9db9741b2207b597a69beedb0f45a6a7dc80f7be5c69f2",
+      "result": "time_and_balanced/seed_1864999454/result.json",
+      "result_sha256": "1649f2101a8d63217455cd6f56d97060229f297bda9590bd3587f9d82f60b6f1"
+    },
+    {
+      "objective_id": "energy_priority",
+      "display_name": "ENERGY PRIORITY",
+      "weights_time_energy": [0.2, 0.8],
+      "contract_id": "energy_priority",
+      "evaluation_seed": 952993985,
+      "control_trace": "energy_priority/seed_952993985/control_trace.csv",
+      "control_trace_sha256": "6759cad8d27234dc98bf1896c446899f6a3ed43b424f5f6f498a441157e4b1cb",
+      "substep_trace": "energy_priority/seed_952993985/substep_trace.csv",
+      "substep_trace_sha256": "6e0f95f7a42fd535c9879f61ce52622ba4048ee3195ca743182bc949b6761231",
+      "result": "energy_priority/seed_952993985/result.json",
+      "result_sha256": "62845c06f70e304b16c2d165b7d221b4c03c539585415634f9680956d2d42189"
+    }
+  ],
+  "visualisation": {
+    "overview_profile": "configs/fixed_goal_dual_view_relief_v2_20260819.json",
+    "overview_profile_sha256": "e61dcc700889aaa6bd11afb6ee3af65262b9b00cfc01ca927e1b9e68478aa4f3",
+    "width": 1280,
+    "height": 720,
+    "fps": 20,
+    "render_stride_control_steps": 20,
+    "playback_speed_factor": 20,
+    "intro_seconds": 1.0,
+    "outro_seconds": 1.5,
+    "crf": 18,
+    "preset": "fast",
+    "planned_route_colour": [70, 220, 230],
+    "actual_route_colour": [255, 143, 31]
+  },
+  "execution": {
+    "output_root": "artifacts/dev/v4_pair0_multiobjective_full_map_video_v1_20260820",
+    "fail_if_output_root_exists": true,
+    "training_permitted": false,
+    "checkpoint_write_permitted": false,
+    "formal_evidence_mutation_permitted": false,
+    "failure_record_name": "FAILURE_RECORD.json"
+  },
+  "claim_boundary": "The videos are exact read-only replays of three successful formal episodes on one previously inspected frozen map. Objectives select among a 15-candidate development bank. Mechanical work is a comparable proxy, not electrical battery energy. The videos do not establish global route optimality or unseen-map generalisation."
+}

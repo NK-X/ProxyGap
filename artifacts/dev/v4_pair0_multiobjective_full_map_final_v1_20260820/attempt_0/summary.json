@@ -1,0 +1,80 @@
+{
+  "status": "final_multiobjective_evaluation_complete",
+  "all_objectives_passed": true,
+  "unique_contract_count": 2,
+  "formal_seed_count": 3,
+  "episode_count": 6,
+  "objectives": {
+    "time_priority": {
+      "weights_time_energy": [
+        0.8,
+        0.2
+      ],
+      "contract_id": "time_and_balanced",
+      "episode_count": 3,
+      "success_count": 3,
+      "all_passed": true,
+      "mean_elapsed_seconds": 264.55,
+      "mean_positive_mechanical_work_j": 55651.43076874129,
+      "mean_path_length_m": 153.22607119509874,
+      "total_duration_corrected_slip_events": 0,
+      "fall_count": 0,
+      "passed": true
+    },
+    "balanced": {
+      "weights_time_energy": [
+        0.5,
+        0.5
+      ],
+      "contract_id": "time_and_balanced",
+      "episode_count": 3,
+      "success_count": 3,
+      "all_passed": true,
+      "mean_elapsed_seconds": 264.55,
+      "mean_positive_mechanical_work_j": 55651.43076874129,
+      "mean_path_length_m": 153.22607119509874,
+      "total_duration_corrected_slip_events": 0,
+      "fall_count": 0,
+      "passed": true
+    },
+    "energy_priority": {
+      "weights_time_energy": [
+        0.2,
+        0.8
+      ],
+      "contract_id": "energy_priority",
+      "episode_count": 3,
+      "success_count": 3,
+      "all_passed": true,
+      "mean_elapsed_seconds": 259.3666666666667,
+      "mean_positive_mechanical_work_j": 55134.17240866661,
+      "mean_path_length_m": 152.14430950448744,
+      "total_duration_corrected_slip_events": 0,
+      "fall_count": 0,
+      "passed": true
+    }
+  },
+  "contract_summary": {
+    "time_and_balanced": {
+      "episode_count": 3,
+      "success_count": 3,
+      "all_passed": true,
+      "mean_elapsed_seconds": 264.55,
+      "mean_positive_mechanical_work_j": 55651.43076874129,
+      "mean_path_length_m": 153.22607119509874,
+      "total_duration_corrected_slip_events": 0,
+      "fall_count": 0
+    },
+    "energy_priority": {
+      "episode_count": 3,
+      "success_count": 3,
+      "all_passed": true,
+      "mean_elapsed_seconds": 259.3666666666667,
+      "mean_positive_mechanical_work_j": 55134.17240866661,
+      "mean_path_length_m": 152.14430950448744,
+      "total_duration_corrected_slip_events": 0,
+      "fall_count": 0
+    }
+  },
+  "claim_boundary": "Three fresh evaluation seeds on one previously inspected frozen map. Passing supports repeatable reachability for these two selected route contracts, not unseen-map generalisation, global optimality, natural-gait validation, or electrical battery-energy efficiency."
+}
