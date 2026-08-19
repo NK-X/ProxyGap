@@ -29,6 +29,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--model", type=Path, required=True)
     parser.add_argument("--training-seed", type=int, required=True)
     parser.add_argument("--checkpoint-timesteps", type=int, required=True)
+    parser.add_argument("--evaluation-seed-base", type=int)
     parser.add_argument("--device", choices=("cpu", "cuda"), default="cpu")
     parser.add_argument("--output", type=Path, required=True)
     return parser.parse_args()
@@ -50,7 +51,10 @@ def main() -> None:
     if output_path.exists():
         raise RuntimeError(f"Refusing to overwrite existing evaluation: {output_path}")
     config = json.loads(config_path.read_text(encoding="utf-8"))
-    validate_config(config, require_local_base=True)
+    # A frozen final checkpoint is self-contained for evaluation.  The source
+    # planar checkpoint is required when creating or resuming training, but it
+    # must not prevent an otherwise reproducible read-only evaluation.
+    validate_config(config, require_local_base=False)
     model = PPO.load(model_path, device=args.device)
     rows = evaluate(
         model,
@@ -58,6 +62,7 @@ def main() -> None:
         training_seed=args.training_seed,
         checkpoint_timesteps=args.checkpoint_timesteps,
         smoke=False,
+        evaluation_seed_base=args.evaluation_seed_base,
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     write_rows(output_path, rows)

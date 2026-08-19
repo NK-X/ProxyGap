@@ -1,0 +1,2 @@
+# Keep archived experiment evidence byte-identical across operating systems.
+artifacts/** -text

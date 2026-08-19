@@ -1,0 +1,30 @@
+{
+  "source_observation_dimension": 118,
+  "target_observation_dimension": 122,
+  "action_dimension": 8,
+  "copied_parameter_tensors": [
+    "log_std",
+    "mlp_extractor.policy_net.0.bias",
+    "mlp_extractor.policy_net.2.weight",
+    "mlp_extractor.policy_net.2.bias",
+    "mlp_extractor.value_net.0.bias",
+    "mlp_extractor.value_net.2.weight",
+    "mlp_extractor.value_net.2.bias",
+    "action_net.weight",
+    "action_net.bias",
+    "value_net.weight",
+    "value_net.bias"
+  ],
+  "expanded_parameter_tensors": [
+    "mlp_extractor.policy_net.0.weight",
+    "mlp_extractor.value_net.0.weight"
+  ],
+  "new_foot_contact_columns_initialised_to_zero": 4,
+  "initialisation": "append_contact_observation",
+  "optimizer_state_restored": false,
+  "source_num_timesteps_restored": 1941504,
+  "source_model": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\curved_gait_tangent_v21_curve_progress_recovery_pilot_20260818\\runs\\seed_43811\\models\\checkpoint_1941504.zip",
+  "source_model_sha256": "1e79e7a6f97fa5c1d880a36e011590599982bf219943aa807b5fa21cd1c00025",
+  "initial_action_max_abs_error": 5.960464477539063e-08,
+  "training_seed": 43812
+}

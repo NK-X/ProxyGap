@@ -1,0 +1,198 @@
+{
+  "status": "candidate_fixed_map_v2_awaiting_user_approval",
+  "policy_rollout_executed": false,
+  "geometry": {
+    "terrain_id": "fixed_quad_terrain_v2_complex_diagonal",
+    "deterministic_analytic_map": true,
+    "replaces_rejected_candidate": "fixed_quad_terrain_v1",
+    "artificial_safe_diagonal_corridor": false,
+    "map_width_m": 80.0,
+    "map_length_m": 80.0,
+    "map_area_m2": 6400.0,
+    "previous_map_area_m2": 1600.0,
+    "area_ratio_to_previous": 4.0,
+    "quadrant_side_m": 40.0,
+    "rows": 1025,
+    "cols": 1025,
+    "cell_spacing_m": 0.078125,
+    "minimum_height_m": -3.0,
+    "maximum_height_m": 3.0,
+    "height_range_m": 6.0,
+    "maximum_gradient": 0.6784786606648358,
+    "maximum_gradient_degrees": 34.15605497896072,
+    "direct_route_neighbourhood_half_width_m": 2.0,
+    "maximum_gradient_within_direct_route_neighbourhood": 0.6622387230737844,
+    "maximum_gradient_within_direct_route_neighbourhood_degrees": 33.51406821624019,
+    "direct_route_feature_sequence": [
+      "start pad",
+      "rolling incline",
+      "convex hill and crest",
+      "concave depression",
+      "saddle with cross-slope reversal",
+      "broad ridge ascent and descent",
+      "concave goal approach",
+      "goal pad"
+    ],
+    "start_xy_m": [
+      -34.0,
+      -34.0
+    ],
+    "goal_xy_m": [
+      34.0,
+      34.0
+    ],
+    "straight_line_distance_m": 96.16652224137046,
+    "start_boundary_clearance_m": 6.0,
+    "goal_boundary_clearance_m": 6.0,
+    "contour_interval_m": 0.5,
+    "fixed_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "condim": 3,
+    "quadrant_structures": {
+      "Q1_south_west": "rolling terraces",
+      "Q2_south_east": "oblique ridges and saddle",
+      "Q3_north_west": "ring basin with broken rim",
+      "Q4_north_east": "unequal twin peaks and curved pass"
+    },
+    "quadrant_metrics": {
+      "Q1_south_west_rolling_terraces": {
+        "sha256_float64": "ca576885fdf69e3ea75eebb15fb79a34f570e5de6d2bd5394f16e3d016edd8ed",
+        "minimum_height_m": -2.8463018600208927,
+        "maximum_height_m": 3.0,
+        "height_standard_deviation_m": 1.2828171997737012,
+        "gradient_rms_per_cell": 0.021909085506251234,
+        "curvature_rms_per_cell2": 0.000778359993605879
+      },
+      "Q2_south_east_ridges_saddle": {
+        "sha256_float64": "78e54cb4dc171a5724f66e745ab9325912fece4c6e75021d95835987b2fd6abb",
+        "minimum_height_m": -3.0,
+        "maximum_height_m": 2.4068885981958803,
+        "height_standard_deviation_m": 1.1107466428430157,
+        "gradient_rms_per_cell": 0.018562499711284274,
+        "curvature_rms_per_cell2": 0.0005237330403771042
+      },
+      "Q3_north_west_ring_basin": {
+        "sha256_float64": "c06937a4df4d1a864c1a1a409d8348a9bcf0aee1e69442b2293384a0d02cc42f",
+        "minimum_height_m": -2.66383811935484,
+        "maximum_height_m": 2.143719186824055,
+        "height_standard_deviation_m": 1.0000696135697447,
+        "gradient_rms_per_cell": 0.02467318909867439,
+        "curvature_rms_per_cell2": 0.0007587077446546058
+      },
+      "Q4_north_east_twin_peaks_pass": {
+        "sha256_float64": "252b7531d1dc61c75f51583c9eb0093c5f65b08711d8216525994ebb7d9c2241",
+        "minimum_height_m": -1.1100400965138661,
+        "maximum_height_m": 2.696864213810453,
+        "height_standard_deviation_m": 0.8014903476443916,
+        "gradient_rms_per_cell": 0.015271384592659447,
+        "curvature_rms_per_cell2": 0.0004371104219482058
+      },
+      "pairwise_normalised_correlations": {
+        "Q1_south_west_rolling_terraces__vs__Q2_south_east_ridges_saddle": 0.18796352998290142,
+        "Q1_south_west_rolling_terraces__vs__Q3_north_west_ring_basin": -0.0757854000971993,
+        "Q1_south_west_rolling_terraces__vs__Q4_north_east_twin_peaks_pass": 0.47843016752064504,
+        "Q2_south_east_ridges_saddle__vs__Q3_north_west_ring_basin": -0.44339210394070994,
+        "Q2_south_east_ridges_saddle__vs__Q4_north_east_twin_peaks_pass": -0.12061239340617441,
+        "Q3_north_west_ring_basin__vs__Q4_north_east_twin_peaks_pass": 0.07878505660617283
+      }
+    },
+    "maximum_pairwise_quadrant_correlation": 0.47843016752064504,
+    "direct_diagonal_profile": {
+      "sample_count": 801,
+      "minimum_height_m": -1.9350379211765891,
+      "maximum_height_m": 2.1990454641608705,
+      "height_range_m": 4.13408338533746,
+      "maximum_absolute_grade": 0.48799376312788123,
+      "maximum_absolute_grade_degrees": 26.01208729680868,
+      "meaningful_uphill_downhill_reversals": 6,
+      "uphill_sample_fraction_above_0_015_grade": 0.6179775280898876,
+      "downhill_sample_fraction_below_minus_0_015_grade": 0.3233458177278402,
+      "maximum_absolute_cross_grade": 0.40218081823897245,
+      "maximum_absolute_cross_grade_degrees": 21.909045383124916,
+      "meaningful_cross_slope_sign_reversals": 3
+    }
+  },
+  "compiled_contact": {
+    "floor_friction": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "floor_condim": 3
+  },
+  "files": {
+    "height_array": {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\fixed_quad_terrain_v2_review\\scene\\heights_m.npy",
+      "sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+      "size_bytes": 8405128
+    },
+    "hfield": {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\fixed_quad_terrain_v2_review\\scene\\terrain.hfield",
+      "sha256": "d1632c89688f459f5e7abe9d1cc9b5af7f22230b1b19290f737ae3fed849f3db",
+      "size_bytes": 4202508
+    },
+    "contour_texture": {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\fixed_quad_terrain_v2_review\\scene\\terrain_contours.png",
+      "sha256": "2eea099308dda75d79b10b44c91b8544d56fe0a6a4e0d0e7e6131c3e9e1abf06",
+      "size_bytes": 384371
+    },
+    "mujoco_xml": {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\fixed_quad_terrain_v2_review\\scene\\ant_fixed_quad_terrain.xml",
+      "sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+      "size_bytes": 6146
+    },
+    "topographic_review": {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\fixed_quad_terrain_v2_review\\fixed_quad_terrain_topdown.png",
+      "sha256": "03e8050e08130d85d49e40d9913205e3887c1fbc8d84015e1510e8c350a8ddd2",
+      "size_bytes": 842236
+    },
+    "overview_review": {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\fixed_quad_terrain_v2_review\\fixed_quad_terrain_overview.png",
+      "sha256": "1db5d6993868de85c0e2ef26ccd19812cccf5678daebca34a4517d027fa33c65",
+      "size_bytes": 476037
+    },
+    "diagonal_review": {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\fixed_quad_terrain_v2_review\\fixed_quad_terrain_diagonal.png",
+      "sha256": "95344c1d5f909dd13a015347a4b131c6948258e18e4b14d1de059ee029013587",
+      "size_bytes": 501095
+    },
+    "start_review": {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\fixed_quad_terrain_v2_review\\fixed_quad_terrain_start.png",
+      "sha256": "8954f1b198e9cbd5832f35413ff85f9f2a49459dbd1c2ab05588b771fc1ac6a5",
+      "size_bytes": 356812
+    },
+    "diagonal_profile_csv": {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\fixed_quad_terrain_v2_review\\fixed_quad_diagonal_profile.csv",
+      "sha256": "abff9df811c0e332cc9a8bbec49a10016e88d377d2f1c47731baab22e8e54ac7",
+      "size_bytes": 35069
+    },
+    "diagonal_profile_png": {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\fixed_quad_terrain_v2_review\\fixed_quad_diagonal_profile.png",
+      "sha256": "e7df3ab807e62b9af97d86967adb7a8e172e7bd83262edc117a26292f3049825",
+      "size_bytes": 14357
+    },
+    "review_sheet": {
+      "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\fixed_quad_terrain_v2_review\\fixed_quad_terrain_review_sheet.png",
+      "sha256": "a9acea002721d259c0db06fcb195fe47613f5ba36af6ce88fea2fbedd47fd55e",
+      "size_bytes": 1188668
+    }
+  },
+  "qa": {
+    "area_exactly_four_times_previous": true,
+    "side_length_doubled": true,
+    "spatial_resolution_preserved": true,
+    "four_unique_quadrant_hashes": true,
+    "quadrant_correlation_below_0_90": true,
+    "start_and_goal_form_diagonal": true,
+    "no_artificial_safe_diagonal_corridor": true,
+    "direct_route_height_range_exceeds_1_m": true,
+    "direct_route_has_multiple_grade_reversals": true,
+    "direct_route_has_cross_slope_reversal": true,
+    "fixed_friction_verified_in_compiled_model": true,
+    "true_contours_derived_from_height_array": true,
+    "policy_test_deferred_until_user_approval": true
+  }
+}

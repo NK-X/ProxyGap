@@ -1,0 +1,80 @@
+{
+  "schema_version": "proxygap-slope-contact-diagnostic-v1",
+  "trace": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_training_20260818\\seed_62801\\videos\\representative_seed_74803\\fixed_map_final_policy_seed_74803_trace.csv",
+  "steps": 900,
+  "terrain_slope_degrees_all_steps": {
+    "n": 900,
+    "mean": 8.071532459187589,
+    "median": 0.017185308595573757,
+    "minimum": 0.0,
+    "maximum": 33.48510974175492
+  },
+  "terrain_slope_degrees_airborne_steps": {
+    "n": 683,
+    "mean": 7.97271581023527,
+    "median": 0.02080598020769261,
+    "minimum": 0.0,
+    "maximum": 33.48510974175492
+  },
+  "terrain_slope_degrees_contact_steps": {
+    "n": 217,
+    "mean": 8.382554446443045,
+    "median": 0.010183846236956427,
+    "minimum": 0.0,
+    "maximum": 33.470959543320475
+  },
+  "signed_goal_direction_slope_degrees": {
+    "n": 900,
+    "mean": 6.8455642709741955,
+    "median": 0.0020734355075781976,
+    "minimum": -2.093493847436371,
+    "maximum": 29.74117592641863
+  },
+  "signed_actual_motion_slope_degrees": {
+    "n": 899,
+    "mean": 1.0102735543577124,
+    "median": 0.0,
+    "minimum": -32.682248255985705,
+    "maximum": 33.430094277264345
+  },
+  "airborne_fraction_all_steps": 0.7588888888888888,
+  "airborne_fraction_first_5_seconds": 0.76,
+  "airborne_fraction_after_5_seconds": 0.75875,
+  "airborne_steps_on_local_slope_below_5_degrees": 485,
+  "airborne_fraction_occurring_below_5_degrees": 0.7101024890190337,
+  "airborne_steps_on_local_slope_below_10_degrees": 507,
+  "airborne_fraction_occurring_below_10_degrees": 0.7423133235724744,
+  "by_local_slope_bin": [
+    {
+      "slope_bin_degrees": "[0, 5)",
+      "steps": 640,
+      "fraction_of_video_steps": 0.7111111111111111,
+      "airborne_fraction_within_bin": 0.7578125
+    },
+    {
+      "slope_bin_degrees": "[5, 10)",
+      "steps": 25,
+      "fraction_of_video_steps": 0.027777777777777776,
+      "airborne_fraction_within_bin": 0.88
+    },
+    {
+      "slope_bin_degrees": "[10, 15)",
+      "steps": 10,
+      "fraction_of_video_steps": 0.011111111111111112,
+      "airborne_fraction_within_bin": 0.9
+    },
+    {
+      "slope_bin_degrees": "[15, 20)",
+      "steps": 17,
+      "fraction_of_video_steps": 0.01888888888888889,
+      "airborne_fraction_within_bin": 0.7647058823529411
+    },
+    {
+      "slope_bin_degrees": "[20, inf)",
+      "steps": 208,
+      "fraction_of_video_steps": 0.2311111111111111,
+      "airborne_fraction_within_bin": 0.7403846153846154
+    }
+  ],
+  "interpretation_boundary": "This is a descriptive single-episode association. Local heightfield slope does not identify the causal contribution of friction, controller commands, reset transients or contact-detection rules."
+}

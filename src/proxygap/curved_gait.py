@@ -51,9 +51,9 @@ class CurvedGaitCommandWrapper(gym.Wrapper):
     """Train locomotion under tangent velocity and yaw-rate commands.
 
     Observation append order is ``vx_command, vy_command, yaw_rate_command,
-    sin_heading_error, cos_heading_error``.  The first two command columns are
-    intentionally identical to the selected planar policy interface, allowing
-    its 115-dimensional policy to transfer into this 118-dimensional policy.
+    sin_heading_error, cos_heading_error`` followed, when explicitly enabled,
+    by the four binary foot-contact indicators.  The optional contact columns
+    expose support state without prescribing a named gait or route geometry.
     """
 
     def __init__(
@@ -89,6 +89,7 @@ class CurvedGaitCommandWrapper(gym.Wrapper):
         heading_termination_threshold: float = math.radians(20.0),
         heading_termination_consecutive_steps: int = 5,
         heading_termination_enabled: bool = True,
+        augment_foot_contact_mask: bool = False,
     ) -> None:
         super().__init__(env)
         if profile not in CURVE_PROFILES:
@@ -192,11 +193,22 @@ class CurvedGaitCommandWrapper(gym.Wrapper):
             heading_termination_consecutive_steps
         )
         self.heading_termination_enabled = bool(heading_termination_enabled)
+        self.augment_foot_contact_mask = bool(augment_foot_contact_mask)
         if not isinstance(self.observation_space, gym.spaces.Box):
             raise TypeError("curved gait wrapper requires a Box observation space")
         dtype = self.observation_space.dtype
         speed_limit = max(1.0, self.speed_max)
         yaw_rate_limit = max(1.0, self.speed_max * self.max_abs_curvature)
+        optional_contact_low = (
+            np.zeros(4, dtype=dtype)
+            if self.augment_foot_contact_mask
+            else np.asarray([], dtype=dtype)
+        )
+        optional_contact_high = (
+            np.ones(4, dtype=dtype)
+            if self.augment_foot_contact_mask
+            else np.asarray([], dtype=dtype)
+        )
         self.observation_space = gym.spaces.Box(
             low=np.concatenate(
                 (
@@ -205,6 +217,7 @@ class CurvedGaitCommandWrapper(gym.Wrapper):
                         [-speed_limit, -speed_limit, -yaw_rate_limit, -1.0, -1.0],
                         dtype=dtype,
                     ),
+                    optional_contact_low,
                 )
             ),
             high=np.concatenate(
@@ -214,6 +227,7 @@ class CurvedGaitCommandWrapper(gym.Wrapper):
                         [speed_limit, speed_limit, yaw_rate_limit, 1.0, 1.0],
                         dtype=dtype,
                     ),
+                    optional_contact_high,
                 )
             ),
             dtype=dtype,
@@ -274,6 +288,7 @@ class CurvedGaitCommandWrapper(gym.Wrapper):
         self._heading_violation_run = 0
         self._heading_constraint_terminated = False
         self._external_yaw_rate_command = 0.0
+        self._foot_contact_mask = np.zeros(4, dtype=np.float64)
         self._objective_return = 0.0
         self._outer_shaping_sum = 0.0
         self._tracking_reward_sum = 0.0
@@ -292,6 +307,7 @@ class CurvedGaitCommandWrapper(gym.Wrapper):
         observation, info = self.env.reset(**kwargs)
         self._last_base_observation = np.asarray(observation).copy()
         self._reset_state()
+        self._update_foot_contact_mask(info)
         rng = self.unwrapped.np_random
         self._target_speed = float(rng.uniform(self.speed_min, self.speed_max))
         self._target_lateral_speed = self.fixed_lateral_speed
@@ -341,6 +357,7 @@ class CurvedGaitCommandWrapper(gym.Wrapper):
         observation, inner_reward, terminated, truncated, info = self.env.step(action)
         self._last_base_observation = np.asarray(observation).copy()
         info = dict(info)
+        self._update_foot_contact_mask(info)
         qvel = np.asarray(self.unwrapped.data.qvel, dtype=np.float64)
         velocity_xy = qvel[:2].copy()
         actual_yaw_rate = float(qvel[5])
@@ -567,7 +584,8 @@ class CurvedGaitCommandWrapper(gym.Wrapper):
         if self.profile != "external":
             raise RuntimeError("external curve commands require profile='external'")
         values = np.asarray(observation)
-        if values.shape == (118,):
+        augmented_dimension = 122 if self.augment_foot_contact_mask else 118
+        if values.shape == (augmented_dimension,):
             if not hasattr(self, "_last_base_observation"):
                 raise RuntimeError("external command requires a reset observation")
             base_observation = np.asarray(self._last_base_observation)
@@ -575,7 +593,10 @@ class CurvedGaitCommandWrapper(gym.Wrapper):
             base_observation = values
             self._last_base_observation = values.copy()
         else:
-            raise ValueError("external command requires a 113- or 118-value observation")
+            raise ValueError(
+                "external command requires a 113-value base observation or "
+                f"a {augmented_dimension}-value augmented observation"
+            )
         target_speed = self._positive(speed, "external speed")
         target_lateral_speed = float(lateral_speed)
         target_yaw_rate = float(yaw_rate)
@@ -622,7 +643,24 @@ class CurvedGaitCommandWrapper(gym.Wrapper):
             ],
             dtype=values.dtype,
         )
-        return np.concatenate((values, command))
+        if not self.augment_foot_contact_mask:
+            return np.concatenate((values, command))
+        return np.concatenate((values, command, self._foot_contact_mask)).astype(
+            values.dtype,
+            copy=False,
+        )
+
+    def _update_foot_contact_mask(self, info: dict[str, Any]) -> None:
+        """Capture the contact state associated with the current observation."""
+        if not self.augment_foot_contact_mask:
+            return
+        raw_mask = info.get("proxygap_foot_contact_mask_step")
+        if raw_mask is None:
+            raise KeyError("foot-contact observation requires contact diagnostics")
+        mask = np.asarray(raw_mask, dtype=np.float64)
+        if mask.shape != (4,):
+            raise ValueError("foot-contact observation requires four foot indicators")
+        self._foot_contact_mask = mask.copy()
 
     def _observation_in_command_frame(self, observation: np.ndarray) -> np.ndarray:
         """Express world-vector fields in the target-tangent frame.
@@ -681,6 +719,10 @@ class CurvedGaitCommandWrapper(gym.Wrapper):
             "proxygap_curve_profile": self.profile,
             "proxygap_curve_command_frame": self.command_frame,
             "proxygap_curve_observation_frame": self.observation_frame,
+            "proxygap_curve_foot_contact_observation_enabled": (
+                self.augment_foot_contact_mask
+            ),
+            "proxygap_curve_foot_contact_mask": self._foot_contact_mask.copy(),
             "proxygap_curve_command_xy": self._command_xy.copy(),
             "proxygap_curve_yaw_rate_command": self._yaw_rate_command,
             "proxygap_curve_target_heading": self._target_heading,
@@ -758,6 +800,7 @@ def make_curved_gait_env(
     render_mode: str | None = None,
     xml_file: str | Path | None = None,
     max_episode_steps: int | None = None,
+    terminate_when_unhealthy: bool = True,
     orientation_shaping_weight: float = 0.1,
     orientation_shaping_scale: float = 1.0,
     orientation_shaping_function: str = "cosine",
@@ -771,6 +814,10 @@ def make_curved_gait_env(
     foot_lateral_velocity_shaping_scale: float = 1.0,
     foot_vertical_velocity_shaping_weight: float = 0.025,
     foot_vertical_velocity_shaping_scale: float = 1.0,
+    airborne_shaping_weight: float = 0.0,
+    foot_contact_gap_shaping_weight: float = 0.0,
+    foot_contact_gap_grace_seconds: float = 0.5,
+    foot_contact_gap_scale_seconds: float = 0.5,
     foot_geom_names: Sequence[str] = DEFAULT_FOOT_GEOM_NAMES,
     augment_previous_applied_action: bool = True,
     **curve_kwargs: Any,
@@ -783,6 +830,7 @@ def make_curved_gait_env(
         render_mode=render_mode,
         xml_file=xml_file,
         max_episode_steps=max_episode_steps,
+        terminate_when_unhealthy=terminate_when_unhealthy,
         orientation_shaping_weight=orientation_shaping_weight,
         orientation_shaping_scale=orientation_shaping_scale,
         orientation_shaping_function=orientation_shaping_function,
@@ -809,6 +857,10 @@ def make_curved_gait_env(
             foot_vertical_velocity_shaping_weight
         ),
         foot_vertical_velocity_shaping_scale=foot_vertical_velocity_shaping_scale,
+        airborne_shaping_weight=airborne_shaping_weight,
+        foot_contact_gap_shaping_weight=foot_contact_gap_shaping_weight,
+        foot_contact_gap_grace_seconds=foot_contact_gap_grace_seconds,
+        foot_contact_gap_scale_seconds=foot_contact_gap_scale_seconds,
         pitch_balance_shaping_weight=0.0,
         foot_geom_names=tuple(foot_geom_names),
         augment_previous_applied_action=augment_previous_applied_action,
@@ -866,4 +918,59 @@ def transfer_planar_policy_to_curved_gait(
         "copied_parameter_tensors": copied,
         "expanded_parameter_tensors": expanded,
         "new_curve_command_columns_initialised_to_zero": 3,
+    }
+
+
+def transfer_curved_policy_with_contact_observation(
+    source_model: PPO,
+    target_model: PPO,
+) -> dict[str, Any]:
+    """Copy a curved policy and zero-initialise four appended contact inputs."""
+    source_dimension = int(source_model.observation_space.shape[0])
+    target_dimension = int(target_model.observation_space.shape[0])
+    appended_columns = 4
+    if target_dimension != source_dimension + appended_columns:
+        raise ValueError("contact-aware policy must append exactly four columns")
+    source_state = source_model.policy.state_dict()
+    target_state = target_model.policy.state_dict()
+    copied: list[str] = []
+    expanded: list[str] = []
+    for name, source_value in source_state.items():
+        if name not in target_state:
+            raise KeyError(f"Target policy is missing source parameter: {name}")
+        target_value = target_state[name]
+        if target_value.shape == source_value.shape:
+            target_state[name] = source_value.detach().clone()
+            copied.append(name)
+            continue
+        first_layer = name in {
+            "mlp_extractor.policy_net.0.weight",
+            "mlp_extractor.value_net.0.weight",
+        }
+        compatible = (
+            first_layer
+            and target_value.ndim == 2
+            and source_value.ndim == 2
+            and target_value.shape[0] == source_value.shape[0]
+            and target_value.shape[1]
+            == source_value.shape[1] + appended_columns
+        )
+        if not compatible:
+            raise ValueError(
+                f"Unsupported contact transfer shape for {name}: "
+                f"{tuple(source_value.shape)} -> {tuple(target_value.shape)}"
+            )
+        expanded_value = target_value.detach().clone()
+        expanded_value.zero_()
+        expanded_value[:, : source_value.shape[1]] = source_value.detach()
+        target_state[name] = expanded_value
+        expanded.append(name)
+    target_model.policy.load_state_dict(target_state, strict=True)
+    return {
+        "source_observation_dimension": source_dimension,
+        "target_observation_dimension": target_dimension,
+        "action_dimension": int(target_model.action_space.shape[0]),
+        "copied_parameter_tensors": copied,
+        "expanded_parameter_tensors": expanded,
+        "new_foot_contact_columns_initialised_to_zero": appended_columns,
     }

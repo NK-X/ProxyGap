@@ -55,6 +55,7 @@ from .curved_gait import (
     CurvedGaitCommandWrapper,
     make_curved_gait_env,
     pseudo_huber_penalty,
+    transfer_curved_policy_with_contact_observation,
     transfer_planar_policy_to_curved_gait,
 )
 from .selection import (
@@ -116,5 +117,6 @@ __all__ = [
     "CurvedGaitCommandWrapper",
     "make_curved_gait_env",
     "pseudo_huber_penalty",
+    "transfer_curved_policy_with_contact_observation",
     "transfer_planar_policy_to_curved_gait",
 ]

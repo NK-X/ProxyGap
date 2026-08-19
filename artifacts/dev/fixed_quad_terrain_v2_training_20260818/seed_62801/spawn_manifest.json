@@ -1,0 +1,42 @@
+[
+  {
+    "spawn_fraction": 0.0,
+    "x_m": -34.0,
+    "y_m": -34.0,
+    "terrain_height_m": -1.9348310229819923,
+    "gradient_x": -0.005898527666695688,
+    "gradient_y": -0.005898527666695688,
+    "gradient_degrees": 0.4779375773693289,
+    "scene_sha256": "bc72dd66e6b171c0444e8e55d19b145b0a2095d4b584e407df9d76c4033096a7"
+  },
+  {
+    "spawn_fraction": 0.25,
+    "x_m": -17.0,
+    "y_m": -17.0,
+    "terrain_height_m": 0.2438624112168618,
+    "gradient_x": -0.3183421132252597,
+    "gradient_y": -0.143288693189856,
+    "gradient_degrees": 19.24428046542515,
+    "scene_sha256": "0c35bb7b48a0dfefb4ba0c68af96bee3ba7e6915f47cbc33ef78d95c9aa4c0cb"
+  },
+  {
+    "spawn_fraction": 0.5,
+    "x_m": 0.0,
+    "y_m": 0.0,
+    "terrain_height_m": 0.07135157357268185,
+    "gradient_x": 0.013781651851297205,
+    "gradient_y": 0.008585573005135405,
+    "gradient_degrees": 0.9302400993994606,
+    "scene_sha256": "f7e7ec5883401c746baee0939582191e3a3048b0637463e88d471cedcb090f75"
+  },
+  {
+    "spawn_fraction": 0.75,
+    "x_m": 17.0,
+    "y_m": 17.0,
+    "terrain_height_m": 2.1959660941769066,
+    "gradient_x": -0.08732839308262734,
+    "gradient_y": 0.05388678004971598,
+    "gradient_degrees": 5.858953315055485,
+    "scene_sha256": "d9915a1adceab0ead27b47a24a7f6e07e515699918cde5acd967dd9aa47411a4"
+  }
+]

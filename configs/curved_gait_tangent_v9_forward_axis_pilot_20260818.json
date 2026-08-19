@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "config_id": "curved_gait_tangent_v9_forward_axis_pilot_20260818",
+  "status": "frozen_user_requested_development",
+  "formal_launch": "prohibited",
+  "environment": "Ant-v5",
+  "algorithm": "PPO continuation with strengthened tangent cross-axis velocity regularisation",
+  "purpose": "Remove the V4 policy's systematic sideways velocity while preserving its forward-and-yaw interface.",
+  "supersedes": "curved_gait_tangent_v8_contact_gap_pilot_20260818",
+  "revision_reason": "Under a straight command the frozen policy kept torso heading within about 6.4 degrees RMS but accumulated a 29 degree net displacement direction error and 0.37 m/s cross-axis velocity RMS. This explains why route tracking makes the body crab by about 24 degrees.",
+  "base_policy": {
+    "configuration": "configs/curved_gait_tangent_v4_canonical_frame_20260818.json",
+    "condition_id": "C1__TANGENT_GAIT_TRAIN",
+    "training_seed": 43301,
+    "checkpoint_timesteps": 1024000,
+    "model_path": "artifacts/dev/curved_gait_tangent_v4_canonical_frame_20260818/runs/seed_43301/models/checkpoint_1024000.zip",
+    "model_sha256": "6a0f6081e6aff4c85201242e53c44b0d057e96167336002da3a6e862fe134b6a",
+    "observation_dimension": 118,
+    "action_dimension": 8,
+    "pitch_balance_reward_enabled": false
+  },
+  "commands": {
+    "command_frame": "body_tangent",
+    "observation_frame": "target_tangent",
+    "observation_append_order": [
+      "v_forward_command",
+      "v_lateral_command",
+      "yaw_rate_command",
+      "sin_heading_error",
+      "cos_heading_error"
+    ],
+    "target_observation_dimension": 118,
+    "global_path_position_in_observation": false,
+    "global_path_position_reward_enabled": false,
+    "environment_dt_seconds": 0.05,
+    "curvature_slew_rate_per_m_per_s": 0.10,
+    "segment_steps_interval": [140, 240],
+    "warmup_steps": 40,
+    "s_curve_period_steps": 300
+  },
+  "reward": {
+    "planar_velocity_tracking_weight": 0.75,
+    "planar_velocity_tracking_scale_m_per_s": 0.5,
+    "planar_velocity_tracking_function": "pseudo_huber",
+    "cross_axis_velocity_weight": 1.0,
+    "cross_axis_velocity_scale_m_per_s": 0.4,
+    "heading_alignment_weight": 1.5,
+    "heading_alignment_scale_degrees": 10.0,
+    "heading_alignment_function": "bounded_squared",
+    "yaw_rate_tracking_weight": 1.0,
+    "yaw_rate_tracking_scale_rad_per_s": 0.15,
+    "yaw_rate_tracking_function": "bounded_squared",
+    "heading_tolerance_degrees": 5.0,
+    "heading_termination_threshold_degrees": 20.0,
+    "heading_termination_consecutive_steps": 5,
+    "training_heading_termination_enabled": false,
+    "evaluation_heading_termination_enabled": true,
+    "replace_ant_positive_x_reward": true
+  },
+  "preserved_pre_pitch_reward": {
+    "ctrl_cost_weight": 0.5,
+    "orientation_shaping_weight": 0.1,
+    "orientation_shaping_function": "cosine",
+    "orientation_shaping_scale": 1.0,
+    "action_rate_shaping_weight": 0.2,
+    "vertical_velocity_shaping_weight": 0.05,
+    "vertical_velocity_shaping_scale": 1.014092584749083,
+    "roll_pitch_angular_velocity_shaping_weight": 0.05,
+    "roll_pitch_angular_velocity_shaping_scale": 1.9893176307304792,
+    "foot_landing_height_threshold_m": 0.03,
+    "foot_lateral_velocity_shaping_weight_per_foot": 0.025,
+    "foot_lateral_velocity_shaping_scale_m_per_s": 1.0,
+    "foot_vertical_velocity_shaping_weight_per_foot": 0.025,
+    "foot_vertical_velocity_shaping_scale_m_per_s": 1.0,
+    "augment_previous_applied_action": true,
+    "airborne_shaping_weight": 0.0,
+    "foot_contact_gap_shaping_weight": 0.0,
+    "pitch_balance_shaping_weight": 0.0
+  },
+  "transfer": {
+    "initialisation": "continue_same_observation_policy",
+    "source_observation_dimension": 118,
+    "target_observation_dimension": 118,
+    "policy_parameter_tensors_restored": true,
+    "optimizer_state_restored": true,
+    "required_initial_action_parity_tolerance": 1e-7
+  },
+  "curriculum": [
+    {
+      "name": "forward_axis_variable_curvature",
+      "target_timesteps": 1089536,
+      "max_abs_curvature_per_m": 0.35,
+      "speed_interval_m_per_s": [0.7, 0.9]
+    }
+  ],
+  "timesteps_per_policy": 1089536,
+  "training_seeds": [43801],
+  "evaluation_seed_base": 53811,
+  "evaluation_max_episode_steps": 600,
+  "evaluation_speed_m_per_s": 0.8,
+  "evaluation_profiles": [
+    {"name": "straight", "profile": "straight", "max_abs_curvature_per_m": 0.0},
+    {"name": "gentle_left", "profile": "constant_left", "max_abs_curvature_per_m": 0.12},
+    {"name": "gentle_right", "profile": "constant_right", "max_abs_curvature_per_m": 0.12},
+    {"name": "medium_left", "profile": "constant_left", "max_abs_curvature_per_m": 0.25},
+    {"name": "medium_right", "profile": "constant_right", "max_abs_curvature_per_m": 0.25},
+    {"name": "s_curve", "profile": "s_curve", "max_abs_curvature_per_m": 0.25}
+  ],
+  "ppo": {
+    "n_steps": 512,
+    "batch_size": 1024,
+    "n_epochs": 10,
+    "learning_rate": 0.00003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.001,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "policy": "MlpPolicy",
+    "policy_kwargs": {"net_arch": [64, 64], "activation_fn": "Tanh"},
+    "device": "cpu",
+    "torch_num_threads": 2
+  },
+  "execution": {
+    "output_root": "artifacts/dev/curved_gait_tangent_v9_forward_axis_pilot_20260818",
+    "parallel_environments_per_seed": 4,
+    "subprocess_start_method": "spawn"
+  },
+  "pilot_design": {
+    "single_changed_training_signal": "cross-axis velocity weight increased from 0.2 to 1.0",
+    "additional_training_timesteps": 65536,
+    "decision_rule": "Retain only if straight and elliptical cross-axis motion and body crab improve without material loss of route completion, stability, contact participation or flight metrics.",
+    "claim_boundary": "One continuation run is a development diagnostic, not evidence of generalisation or statistical superiority."
+  },
+  "claim_boundary": "The policy still receives only local forward speed, zero lateral speed, yaw rate and heading error commands; no route coordinates enter the policy."
+}

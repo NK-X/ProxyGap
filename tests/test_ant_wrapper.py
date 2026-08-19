@@ -481,6 +481,148 @@ def test_four_foot_landing_velocity_shaping_is_height_gated_and_reconciled() -> 
     env.close()
 
 
+def test_contact_force_slip_and_actuator_diagnostics_are_separate_from_reward() -> None:
+    env = make_proxygap_ant_env(
+        ctrl_cost_weight=0.5,
+        condition_id="contact_diagnostics",
+        seed=121,
+    )
+    env.reset(seed=121)
+    reward = 0.0
+    info: dict[str, object] = {}
+    for _ in range(25):
+        _, reward, terminated, truncated, info = env.step(np.zeros(8))
+        if terminated or truncated:
+            break
+    for name in (
+        "proxygap_foot_contact_mask_step",
+        "proxygap_foot_contact_counts_step",
+        "proxygap_foot_normal_forces_n_step",
+        "proxygap_foot_tangential_forces_n_step",
+        "proxygap_foot_contact_tangential_speeds_m_per_s_step",
+        "proxygap_foot_contact_slip_distance_m_step",
+    ):
+        assert np.asarray(info[name]).shape == (4,)
+    for name in (
+        "proxygap_actuator_joint_torques_n_m_step",
+        "proxygap_actuator_joint_velocities_rad_per_s_step",
+        "proxygap_actuator_mechanical_powers_w_step",
+    ):
+        assert np.asarray(info[name]).shape == (8,)
+    assert math.isclose(reward, float(info["reward_base_proxy"]))
+    summary = env.episode_summary()
+    assert summary["actuator_joint_names"] == [
+        "hip_4",
+        "ankle_4",
+        "hip_1",
+        "ankle_1",
+        "hip_2",
+        "ankle_2",
+        "hip_3",
+        "ankle_3",
+    ]
+    assert len(summary["foot_contact_duty_fraction_by_foot"]) == 4
+    assert len(summary["foot_contact_transition_count_by_foot"]) == 4
+    assert len(summary["longest_foot_no_contact_run_steps_by_foot"]) == 4
+    assert len(summary["support_count_step_counts_0_to_4"]) == 5
+    assert len(summary["support_mask_step_counts_0_to_15"]) == 16
+    assert sum(summary["support_count_step_counts_0_to_4"]) == summary[
+        "episode_length"
+    ]
+    assert all(
+        0.0 <= value <= 1.0
+        for value in summary["foot_contact_duty_fraction_by_foot"]
+    )
+    assert all(
+        value >= 0.0
+        for value in summary[
+            "foot_sampled_normal_force_time_integral_n_s_by_foot"
+        ]
+    )
+    assert all(
+        value >= 0.0
+        for value in summary["actuator_abs_mechanical_work_j_by_actuator"]
+    )
+    assert 0.0 <= summary["airborne_step_fraction"] <= 1.0
+    env.close()
+
+
+def test_airborne_shaping_uses_actual_contact_mask_and_is_separately_logged() -> None:
+    env = make_proxygap_ant_env(
+        ctrl_cost_weight=0.5,
+        condition_id="airborne_shaping",
+        seed=122,
+        airborne_shaping_weight=0.2,
+    )
+    env.reset(seed=122)
+    zeros = np.zeros(4, dtype=np.float64)
+    env._foot_contact_diagnostics = lambda: (
+        np.zeros(4, dtype=bool),
+        np.zeros(4, dtype=np.int64),
+        zeros.copy(),
+        zeros.copy(),
+        zeros.copy(),
+    )
+    _, reward, _, _, info = env.step(np.zeros(env.action_space.shape))
+    assert info["airborne_penalty"] == 1.0
+    assert math.isclose(info["reward_airborne_shaping"], -0.2)
+    assert math.isclose(
+        reward,
+        info["reward_base_proxy"] + info["reward_shaping"],
+    )
+    summary = env.episode_summary()
+    assert summary["airborne_step_count"] == 1
+    assert summary["airborne_shaping_weight"] == 0.2
+    assert math.isclose(summary["reward_airborne_shaping_sum"], -0.2)
+    env.close()
+
+
+def test_negative_airborne_shaping_weight_is_rejected() -> None:
+    with np.testing.assert_raises(ValueError):
+        make_proxygap_ant_env(
+            condition_id="invalid_airborne_shaping",
+            airborne_shaping_weight=-0.1,
+        )
+
+
+def test_contact_gap_shaping_penalises_each_foot_after_its_grace_period() -> None:
+    env = make_proxygap_ant_env(
+        condition_id="contact_gap_shaping",
+        seed=123,
+        foot_contact_gap_shaping_weight=0.2,
+        foot_contact_gap_grace_seconds=0.0,
+        foot_contact_gap_scale_seconds=0.05,
+    )
+    env.reset(seed=123)
+    zeros = np.zeros(4, dtype=np.float64)
+    env._foot_contact_diagnostics = lambda: (
+        np.zeros(4, dtype=bool),
+        np.zeros(4, dtype=np.int64),
+        zeros.copy(),
+        zeros.copy(),
+        zeros.copy(),
+    )
+    _, reward, _, _, info = env.step(np.zeros(env.action_space.shape))
+    expected_penalty = math.tanh(1.0) ** 2
+    assert math.isclose(info["foot_contact_gap_penalty"], expected_penalty)
+    assert math.isclose(
+        info["reward_foot_contact_gap_shaping"],
+        -0.2 * expected_penalty,
+    )
+    assert math.isclose(
+        reward,
+        info["reward_base_proxy"] + info["reward_shaping"],
+    )
+    summary = env.episode_summary()
+    assert summary["foot_contact_gap_grace_seconds"] == 0.0
+    assert summary["foot_contact_gap_scale_seconds"] == 0.05
+    assert all(
+        math.isclose(value, expected_penalty)
+        for value in summary["foot_contact_gap_penalty_sum_by_foot"]
+    )
+    env.close()
+
+
 def test_cosine_orientation_shaping_is_added_without_changing_base_reward() -> None:
     env = make_proxygap_ant_env(
         ctrl_cost_weight=0.5,
@@ -936,6 +1078,9 @@ def test_gzip_step_log_contains_reconstructable_fields(tmp_path) -> None:
     assert rows[0]["action_change_defined_step"] == "False"
     assert rows[0]["torso_height"] != ""
     assert rows[0]["termination_category"] == "none"
+    assert len(json.loads(rows[0]["foot_contact_mask_step"])) == 4
+    assert len(json.loads(rows[0]["foot_normal_forces_n_step"])) == 4
+    assert len(json.loads(rows[0]["actuator_joint_torques_n_m_step"])) == 8
 
 
 def test_prospective_ppo_config_requires_all_resolved_parameters() -> None:

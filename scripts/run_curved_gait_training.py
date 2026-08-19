@@ -25,6 +25,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from proxygap.curved_gait import (  # noqa: E402
     CURVE_PROFILES,
     make_curved_gait_env,
+    transfer_curved_policy_with_contact_observation,
     transfer_planar_policy_to_curved_gait,
 )
 from proxygap.experiment import write_rows  # noqa: E402
@@ -83,10 +84,23 @@ def validate_config(config: dict[str, Any], *, require_local_base: bool) -> None
         "sin_heading_error",
         "cos_heading_error",
     ]
+    contact_observation_enabled = bool(
+        commands.get("augment_foot_contact_mask", False)
+    )
+    if contact_observation_enabled:
+        expected_order += [
+            "left_ankle_contact",
+            "right_ankle_contact",
+            "third_ankle_contact",
+            "fourth_ankle_contact",
+        ]
     if commands["observation_append_order"] != expected_order:
         raise ValueError("curve command observation order changed")
-    if int(commands["target_observation_dimension"]) != 118:
-        raise ValueError("curved gait observation dimension must be 118")
+    expected_dimension = 122 if contact_observation_enabled else 118
+    if int(commands["target_observation_dimension"]) != expected_dimension:
+        raise ValueError(
+            f"curved gait observation dimension must be {expected_dimension}"
+        )
     if commands["global_path_position_in_observation"] is not False:
         raise ValueError("global path position must not enter the policy")
     if commands["global_path_position_reward_enabled"] is not False:
@@ -166,11 +180,26 @@ def common_env_kwargs(config: dict[str, Any]) -> dict[str, Any]:
         "foot_vertical_velocity_shaping_scale": float(
             preserved["foot_vertical_velocity_shaping_scale_m_per_s"]
         ),
+        "airborne_shaping_weight": float(
+            preserved.get("airborne_shaping_weight", 0.0)
+        ),
+        "foot_contact_gap_shaping_weight": float(
+            preserved.get("foot_contact_gap_shaping_weight", 0.0)
+        ),
+        "foot_contact_gap_grace_seconds": float(
+            preserved.get("foot_contact_gap_grace_seconds", 0.5)
+        ),
+        "foot_contact_gap_scale_seconds": float(
+            preserved.get("foot_contact_gap_scale_seconds", 0.5)
+        ),
         "augment_previous_applied_action": bool(
             preserved["augment_previous_applied_action"]
         ),
         "command_frame": str(commands.get("command_frame", "world_tangent")),
         "observation_frame": str(commands.get("observation_frame", "world")),
+        "augment_foot_contact_mask": bool(
+            commands.get("augment_foot_contact_mask", False)
+        ),
         "curvature_slew_rate": float(
             commands["curvature_slew_rate_per_m_per_s"]
         ),
@@ -289,6 +318,7 @@ def evaluate(
     training_seed: int,
     checkpoint_timesteps: int,
     smoke: bool,
+    evaluation_seed_base: int | None = None,
 ) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     profiles = list(config["evaluation_profiles"])
@@ -297,7 +327,12 @@ def evaluate(
     max_steps = 160 if smoke else int(config["evaluation_max_episode_steps"])
     speed = float(config["evaluation_speed_m_per_s"])
     for index, profile in enumerate(profiles):
-        evaluation_seed = int(config["evaluation_seed_base"]) + index
+        seed_base = (
+            int(config["evaluation_seed_base"])
+            if evaluation_seed_base is None
+            else int(evaluation_seed_base)
+        )
+        evaluation_seed = seed_base + index
         env = make_curved_gait_env(
             condition_id=f"C1__EVAL_{profile['name'].upper()}",
             seed=evaluation_seed,
@@ -493,14 +528,27 @@ def main() -> None:
         model = make_ppo_from_config(env, ppo_config, seed=seed)
         transfer_manifest = transfer_planar_policy_to_curved_gait(source_model, model)
         transfer_manifest["initialisation"] = initialisation
+    elif initialisation == "append_contact_observation":
+        model = make_ppo_from_config(env, ppo_config, seed=seed)
+        transfer_manifest = transfer_curved_policy_with_contact_observation(
+            source_model,
+            model,
+        )
+        model.num_timesteps = int(source_model.num_timesteps)
+        transfer_manifest["initialisation"] = initialisation
+        transfer_manifest["optimizer_state_restored"] = False
+        transfer_manifest["source_num_timesteps_restored"] = int(
+            model.num_timesteps
+        )
     else:
         raise ValueError(f"unsupported policy initialisation: {initialisation}")
     initial_observations = env.reset()
-    source_input = (
-        initial_observations[0]
-        if initialisation == "continue_same_observation_policy"
-        else initial_observations[0, :-3]
-    )
+    if initialisation == "continue_same_observation_policy":
+        source_input = initial_observations[0]
+    elif initialisation == "expand_planar_observation":
+        source_input = initial_observations[0, :-3]
+    else:
+        source_input = initial_observations[0, :-4]
     source_action, _ = source_model.predict(source_input, deterministic=True)
     target_action, _ = model.predict(initial_observations[0], deterministic=True)
     parity_error = float(np.max(np.abs(source_action - target_action)))

@@ -1,0 +1,2 @@
+4774ff9c84f4886dc73afdc2223d3d76364468a8eb23a72de908dd7991fbfab3  fixed_quad_terrain_v2_approved_bundle.zip
+ed231c5838d9f9a8a7678fe8f8442d8f65a7852768fe8d085a68b75aa5e49a29  APPROVED_MAP_MANIFEST.md

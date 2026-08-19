@@ -80,6 +80,17 @@ STEP_LOG_SCHEMA = [
     "foot_landing_active_count_step",
     "foot_landing_mask_step",
     "foot_contact_point_heights_step",
+    "foot_contact_mask_step",
+    "foot_contact_counts_step",
+    "foot_normal_forces_n_step",
+    "foot_tangential_forces_n_step",
+    "foot_contact_tangential_speeds_m_per_s_step",
+    "foot_contact_slip_distance_m_step",
+    "airborne_penalty_step",
+    "reward_airborne_shaping_step",
+    "foot_contact_gap_penalty_step",
+    "foot_contact_gap_penalties_step",
+    "reward_foot_contact_gap_shaping_step",
     "foot_lateral_velocities_step",
     "foot_vertical_velocities_step",
     "foot_lateral_velocity_penalty_step",
@@ -99,6 +110,9 @@ STEP_LOG_SCHEMA = [
     "pitch_balance_event_neutral_steps_step",
     "pitch_balance_event_score_step",
     "reward_pitch_balance_shaping_step",
+    "actuator_joint_torques_n_m_step",
+    "actuator_joint_velocities_rad_per_s_step",
+    "actuator_mechanical_powers_w_step",
     "terminated",
     "truncated",
     "termination_category",
@@ -396,6 +410,10 @@ class ProxyGapAntWrapper(gym.Wrapper):
         foot_lateral_velocity_shaping_scale: float = 1.0,
         foot_vertical_velocity_shaping_weight: float = 0.0,
         foot_vertical_velocity_shaping_scale: float = 1.0,
+        airborne_shaping_weight: float = 0.0,
+        foot_contact_gap_shaping_weight: float = 0.0,
+        foot_contact_gap_grace_seconds: float = 0.5,
+        foot_contact_gap_scale_seconds: float = 0.5,
         pitch_balance_shaping_weight: float = 0.0,
         foot_geom_names: tuple[str, ...] = DEFAULT_FOOT_GEOM_NAMES,
         common_rescore_ctrl_cost_weight: float = DEFAULT_COMMON_RESCORE_CTRL_WEIGHT,
@@ -502,6 +520,16 @@ class ProxyGapAntWrapper(gym.Wrapper):
         self.foot_vertical_velocity_shaping_scale = float(
             foot_vertical_velocity_shaping_scale
         )
+        self.airborne_shaping_weight = float(airborne_shaping_weight)
+        self.foot_contact_gap_shaping_weight = float(
+            foot_contact_gap_shaping_weight
+        )
+        self.foot_contact_gap_grace_seconds = float(
+            foot_contact_gap_grace_seconds
+        )
+        self.foot_contact_gap_scale_seconds = float(
+            foot_contact_gap_scale_seconds
+        )
         self.pitch_balance_shaping_weight = float(pitch_balance_shaping_weight)
         if (
             not np.isfinite(self.foot_landing_height_threshold)
@@ -517,10 +545,24 @@ class ProxyGapAntWrapper(gym.Wrapper):
                 "foot_vertical_velocity_shaping_weight",
                 self.foot_vertical_velocity_shaping_weight,
             ),
+            ("airborne_shaping_weight", self.airborne_shaping_weight),
+            (
+                "foot_contact_gap_shaping_weight",
+                self.foot_contact_gap_shaping_weight,
+            ),
             ("pitch_balance_shaping_weight", self.pitch_balance_shaping_weight),
         ):
             if weight < 0 or not np.isfinite(weight):
                 raise ValueError(f"{name} must be finite and non-negative")
+        if (
+            not np.isfinite(self.foot_contact_gap_grace_seconds)
+            or self.foot_contact_gap_grace_seconds < 0
+            or not np.isfinite(self.foot_contact_gap_scale_seconds)
+            or self.foot_contact_gap_scale_seconds <= 0
+        ):
+            raise ValueError(
+                "foot contact gap grace must be non-negative and scale positive"
+            )
         bounded_squared_signal_penalty(
             0.0, scale=self.foot_lateral_velocity_shaping_scale
         )
@@ -548,6 +590,8 @@ class ProxyGapAntWrapper(gym.Wrapper):
         foot_shaping_enabled = (
             self.foot_lateral_velocity_shaping_weight > 0
             or self.foot_vertical_velocity_shaping_weight > 0
+            or self.airborne_shaping_weight > 0
+            or self.foot_contact_gap_shaping_weight > 0
             or self.pitch_balance_shaping_weight > 0
         )
         if missing and foot_shaping_enabled:
@@ -565,6 +609,28 @@ class ProxyGapAntWrapper(gym.Wrapper):
                     "foot landing shaping currently requires capsule geometries: "
                     f"{non_capsules}"
                 )
+        actuator_joint_ids = np.asarray(
+            self.unwrapped.model.actuator_trnid[:, 0], dtype=np.int64
+        )
+        if np.any(actuator_joint_ids < 0):
+            raise ValueError("ProxyGap Ant diagnostics require joint actuators")
+        self._actuator_joint_dof_addresses = np.asarray(
+            self.unwrapped.model.jnt_dofadr[actuator_joint_ids], dtype=np.int64
+        )
+        if len(set(self._actuator_joint_dof_addresses.tolist())) != len(
+            self._actuator_joint_dof_addresses
+        ):
+            raise ValueError("ProxyGap Ant diagnostics require one actuator per joint")
+        self.actuator_joint_names = tuple(
+            str(
+                mujoco.mj_id2name(
+                    self.unwrapped.model,
+                    mujoco.mjtObj.mjOBJ_JOINT,
+                    int(joint_id),
+                )
+            )
+            for joint_id in actuator_joint_ids
+        )
         self.common_rescore_ctrl_cost_weight = float(common_rescore_ctrl_cost_weight)
         self.effort_distance_min = float(effort_distance_min)
         self.action_saturation_threshold = float(action_saturation_threshold)
@@ -640,6 +706,12 @@ class ProxyGapAntWrapper(gym.Wrapper):
         self._foot_lateral_velocity_penalty_sum = 0.0
         self._reward_foot_vertical_velocity_shaping_sum = 0.0
         self._foot_vertical_velocity_penalty_sum = 0.0
+        self._reward_airborne_shaping_sum = 0.0
+        self._reward_foot_contact_gap_shaping_sum = 0.0
+        self._foot_contact_gap_penalty_sum = 0.0
+        self._foot_contact_gap_penalty_sum_by_foot = np.zeros(
+            4, dtype=np.float64
+        )
         self._foot_landing_active_count_sum = 0
         self._foot_landing_active_count_by_foot = np.zeros(4, dtype=np.int64)
         self._foot_lateral_velocity_penalty_sum_by_foot = np.zeros(
@@ -647,6 +719,34 @@ class ProxyGapAntWrapper(gym.Wrapper):
         )
         self._foot_vertical_velocity_penalty_sum_by_foot = np.zeros(
             4, dtype=np.float64
+        )
+        self._foot_contact_step_count_by_foot = np.zeros(4, dtype=np.int64)
+        self._foot_contact_transition_count_by_foot = np.zeros(4, dtype=np.int64)
+        self._current_foot_no_contact_run_steps = np.zeros(4, dtype=np.int64)
+        self._longest_foot_no_contact_run_steps = np.zeros(4, dtype=np.int64)
+        self._previous_foot_contact_mask = np.zeros(4, dtype=bool)
+        self._support_count_step_counts = np.zeros(5, dtype=np.int64)
+        self._support_mask_step_counts = np.zeros(16, dtype=np.int64)
+        self._foot_normal_force_time_integral_by_foot = np.zeros(
+            4, dtype=np.float64
+        )
+        self._foot_tangential_force_time_integral_by_foot = np.zeros(
+            4, dtype=np.float64
+        )
+        self._foot_contact_slip_distance_by_foot = np.zeros(4, dtype=np.float64)
+        self._foot_contact_slip_speed_max_by_foot = np.zeros(4, dtype=np.float64)
+        self._airborne_step_count = 0
+        self._current_airborne_run_steps = 0
+        self._longest_airborne_run_steps = 0
+        actuator_count = len(self.actuator_joint_names)
+        self._actuator_abs_torque_time_integral = np.zeros(
+            actuator_count, dtype=np.float64
+        )
+        self._actuator_positive_mechanical_work = np.zeros(
+            actuator_count, dtype=np.float64
+        )
+        self._actuator_negative_mechanical_work_abs = np.zeros(
+            actuator_count, dtype=np.float64
         )
         self._pitch_balance_tracker = PitchBalanceEventTracker(foot_count=4)
         self._reward_pitch_balance_shaping_sum = 0.0
@@ -680,18 +780,43 @@ class ProxyGapAntWrapper(gym.Wrapper):
         self._foot_lateral_velocity_penalty_sum = 0.0
         self._reward_foot_vertical_velocity_shaping_sum = 0.0
         self._foot_vertical_velocity_penalty_sum = 0.0
+        self._reward_airborne_shaping_sum = 0.0
+        self._reward_foot_contact_gap_shaping_sum = 0.0
+        self._foot_contact_gap_penalty_sum = 0.0
+        self._foot_contact_gap_penalty_sum_by_foot.fill(0.0)
         self._foot_landing_active_count_sum = 0
         self._foot_landing_active_count_by_foot.fill(0)
         self._foot_lateral_velocity_penalty_sum_by_foot.fill(0.0)
         self._foot_vertical_velocity_penalty_sum_by_foot.fill(0.0)
+        self._foot_contact_step_count_by_foot.fill(0)
+        self._foot_contact_transition_count_by_foot.fill(0)
+        self._current_foot_no_contact_run_steps.fill(0)
+        self._longest_foot_no_contact_run_steps.fill(0)
+        self._support_count_step_counts.fill(0)
+        self._support_mask_step_counts.fill(0)
+        self._foot_normal_force_time_integral_by_foot.fill(0.0)
+        self._foot_tangential_force_time_integral_by_foot.fill(0.0)
+        self._foot_contact_slip_distance_by_foot.fill(0.0)
+        self._foot_contact_slip_speed_max_by_foot.fill(0.0)
+        self._airborne_step_count = 0
+        self._current_airborne_run_steps = 0
+        self._longest_airborne_run_steps = 0
+        self._actuator_abs_torque_time_integral.fill(0.0)
+        self._actuator_positive_mechanical_work.fill(0.0)
+        self._actuator_negative_mechanical_work_abs.fill(0.0)
         self._reward_pitch_balance_shaping_sum = 0.0
         initial_grounded = self._foot_landing_kinematics()[3]
         self._pitch_balance_tracker.reset(initial_grounded=initial_grounded)
+        initial_foot_contact_mask = self._foot_contact_diagnostics()[0]
+        self._previous_foot_contact_mask = initial_foot_contact_mask.copy()
         x_position, y_position = self._root_xy(info)
         self.metrics.reset(initial_x=x_position, initial_y=y_position)
         self._episode_index += 1
         self._step_index = 0
         info = dict(info)
+        info["proxygap_foot_contact_mask_step"] = (
+            initial_foot_contact_mask.copy()
+        )
         info.update(self._prefixed_summary())
         return self._augment_observation(observation), info
 
@@ -745,6 +870,101 @@ class ProxyGapAntWrapper(gym.Wrapper):
             vertical_velocities[index] = float(velocity[2])
         landing_mask = heights <= self.foot_landing_height_threshold
         return heights, lateral_velocities, vertical_velocities, landing_mask
+
+    def _foot_contact_diagnostics(
+        self,
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+        """Measure actual world-ground contacts for each distal foot geometry.
+
+        MuJoCo contact forces are sampled after each control step. Their force
+        time integrals support within-simulation participation comparisons, but
+        are not a substitute for high-rate force-plate measurements.
+        """
+        foot_count = len(self.foot_geom_names)
+        contact_mask = np.zeros(foot_count, dtype=bool)
+        contact_counts = np.zeros(foot_count, dtype=np.int64)
+        normal_forces = np.zeros(foot_count, dtype=np.float64)
+        tangential_forces = np.zeros(foot_count, dtype=np.float64)
+        tangential_speeds = np.zeros(foot_count, dtype=np.float64)
+        if not self._foot_geom_ids:
+            return (
+                contact_mask,
+                contact_counts,
+                normal_forces,
+                tangential_forces,
+                tangential_speeds,
+            )
+
+        model = self.unwrapped.model
+        data = self.unwrapped.data
+        qvel = np.asarray(data.qvel, dtype=np.float64)
+        foot_lookup = {
+            int(geom_id): index for index, geom_id in enumerate(self._foot_geom_ids)
+        }
+        for contact_index in range(int(data.ncon)):
+            contact = data.contact[contact_index]
+            geom_1 = int(contact.geom1)
+            geom_2 = int(contact.geom2)
+            if geom_1 in foot_lookup:
+                foot_geom, other_geom = geom_1, geom_2
+            elif geom_2 in foot_lookup:
+                foot_geom, other_geom = geom_2, geom_1
+            else:
+                continue
+            if int(model.geom_bodyid[other_geom]) != 0:
+                continue
+            foot_index = foot_lookup[foot_geom]
+            contact_mask[foot_index] = True
+            contact_counts[foot_index] += 1
+            contact_force = np.zeros(6, dtype=np.float64)
+            mujoco.mj_contactForce(model, data, contact_index, contact_force)
+            normal_forces[foot_index] += max(0.0, float(contact_force[0]))
+            tangential_forces[foot_index] += float(
+                np.linalg.norm(contact_force[1:3])
+            )
+
+            jacobian_position = np.zeros((3, model.nv), dtype=np.float64)
+            jacobian_rotation = np.zeros((3, model.nv), dtype=np.float64)
+            mujoco.mj_jac(
+                model,
+                data,
+                jacobian_position,
+                jacobian_rotation,
+                np.asarray(contact.pos, dtype=np.float64),
+                int(model.geom_bodyid[foot_geom]),
+            )
+            contact_velocity = jacobian_position @ qvel
+            contact_normal = np.asarray(contact.frame[:3], dtype=np.float64).copy()
+            contact_normal /= max(float(np.linalg.norm(contact_normal)), EPSILON)
+            tangent_velocity = contact_velocity - float(
+                np.dot(contact_velocity, contact_normal)
+            ) * contact_normal
+            tangential_speeds[foot_index] = max(
+                tangential_speeds[foot_index],
+                float(np.linalg.norm(tangent_velocity)),
+            )
+        return (
+            contact_mask,
+            contact_counts,
+            normal_forces,
+            tangential_forces,
+            tangential_speeds,
+        )
+
+    def _actuator_diagnostics(
+        self,
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Return joint torque, joint speed and signed mechanical power."""
+        data = self.unwrapped.data
+        joint_torques = np.asarray(
+            data.qfrc_actuator[self._actuator_joint_dof_addresses],
+            dtype=np.float64,
+        ).copy()
+        joint_velocities = np.asarray(
+            data.qvel[self._actuator_joint_dof_addresses],
+            dtype=np.float64,
+        ).copy()
+        return joint_torques, joint_velocities, joint_torques * joint_velocities
 
     def step(
         self,
@@ -887,6 +1107,43 @@ class ProxyGapAntWrapper(gym.Wrapper):
             foot_vertical_velocities,
             foot_landing_mask,
         ) = self._foot_landing_kinematics()
+        (
+            foot_contact_mask,
+            foot_contact_counts,
+            foot_normal_forces,
+            foot_tangential_forces,
+            foot_contact_tangential_speeds,
+        ) = self._foot_contact_diagnostics()
+        environment_dt = float(self.unwrapped.dt)
+        next_foot_no_contact_run_steps = np.where(
+            foot_contact_mask,
+            0,
+            self._current_foot_no_contact_run_steps + 1,
+        )
+        foot_contact_gap_excess_seconds = np.maximum(
+            next_foot_no_contact_run_steps * environment_dt
+            - self.foot_contact_gap_grace_seconds,
+            0.0,
+        )
+        foot_contact_gap_penalties = np.square(
+            np.tanh(
+                foot_contact_gap_excess_seconds
+                / self.foot_contact_gap_scale_seconds
+            )
+        )
+        foot_contact_gap_penalty = float(np.mean(foot_contact_gap_penalties))
+        foot_contact_gap_shaping_reward = (
+            -self.foot_contact_gap_shaping_weight
+            * foot_contact_gap_penalty
+        )
+        foot_contact_slip_distance = (
+            foot_contact_tangential_speeds * environment_dt
+        )
+        (
+            actuator_joint_torques,
+            actuator_joint_velocities,
+            actuator_mechanical_powers,
+        ) = self._actuator_diagnostics()
         foot_lateral_velocity_penalties = np.asarray(
             [
                 bounded_squared_signal_penalty(
@@ -931,6 +1188,10 @@ class ProxyGapAntWrapper(gym.Wrapper):
             -self.foot_vertical_velocity_shaping_weight
             * foot_vertical_velocity_penalty
         )
+        airborne_penalty = float(not np.any(foot_contact_mask))
+        airborne_shaping_reward = (
+            -self.airborne_shaping_weight * airborne_penalty
+        )
         pitch_balance_event = self._pitch_balance_tracker.update(
             foot_landing_mask,
             torso_pitch,
@@ -952,6 +1213,8 @@ class ProxyGapAntWrapper(gym.Wrapper):
             + roll_pitch_angular_velocity_shaping_reward
             + foot_lateral_velocity_shaping_reward
             + foot_vertical_velocity_shaping_reward
+            + airborne_shaping_reward
+            + foot_contact_gap_shaping_reward
             + pitch_balance_shaping_reward
         )
         self._reward_forward_tracking_sum += forward_tracking_reward
@@ -974,6 +1237,12 @@ class ProxyGapAntWrapper(gym.Wrapper):
             foot_vertical_velocity_shaping_reward
         )
         self._foot_vertical_velocity_penalty_sum += foot_vertical_velocity_penalty
+        self._reward_airborne_shaping_sum += airborne_shaping_reward
+        self._reward_foot_contact_gap_shaping_sum += (
+            foot_contact_gap_shaping_reward
+        )
+        self._foot_contact_gap_penalty_sum += foot_contact_gap_penalty
+        self._foot_contact_gap_penalty_sum_by_foot += foot_contact_gap_penalties
         self._reward_pitch_balance_shaping_sum += pitch_balance_shaping_reward
         self._foot_landing_active_count_sum += int(np.sum(foot_landing_mask))
         self._foot_landing_active_count_by_foot += foot_landing_mask.astype(np.int64)
@@ -982,6 +1251,60 @@ class ProxyGapAntWrapper(gym.Wrapper):
         )
         self._foot_vertical_velocity_penalty_sum_by_foot += (
             foot_vertical_velocity_penalties
+        )
+        self._foot_contact_step_count_by_foot += foot_contact_mask.astype(np.int64)
+        contact_transitions = np.logical_and(
+            foot_contact_mask,
+            np.logical_not(self._previous_foot_contact_mask),
+        )
+        self._foot_contact_transition_count_by_foot += contact_transitions.astype(
+            np.int64
+        )
+        self._current_foot_no_contact_run_steps = (
+            next_foot_no_contact_run_steps
+        )
+        self._longest_foot_no_contact_run_steps = np.maximum(
+            self._longest_foot_no_contact_run_steps,
+            self._current_foot_no_contact_run_steps,
+        )
+        support_count = int(np.sum(foot_contact_mask))
+        support_mask_index = int(
+            sum(
+                (1 << index) if active else 0
+                for index, active in enumerate(foot_contact_mask)
+            )
+        )
+        self._support_count_step_counts[support_count] += 1
+        self._support_mask_step_counts[support_mask_index] += 1
+        self._previous_foot_contact_mask = foot_contact_mask.copy()
+        self._foot_normal_force_time_integral_by_foot += (
+            foot_normal_forces * environment_dt
+        )
+        self._foot_tangential_force_time_integral_by_foot += (
+            foot_tangential_forces * environment_dt
+        )
+        self._foot_contact_slip_distance_by_foot += foot_contact_slip_distance
+        self._foot_contact_slip_speed_max_by_foot = np.maximum(
+            self._foot_contact_slip_speed_max_by_foot,
+            foot_contact_tangential_speeds,
+        )
+        if np.any(foot_contact_mask):
+            self._current_airborne_run_steps = 0
+        else:
+            self._airborne_step_count += 1
+            self._current_airborne_run_steps += 1
+            self._longest_airborne_run_steps = max(
+                self._longest_airborne_run_steps,
+                self._current_airborne_run_steps,
+            )
+        self._actuator_abs_torque_time_integral += (
+            np.abs(actuator_joint_torques) * environment_dt
+        )
+        self._actuator_positive_mechanical_work += (
+            np.maximum(actuator_mechanical_powers, 0.0) * environment_dt
+        )
+        self._actuator_negative_mechanical_work_abs += (
+            np.maximum(-actuator_mechanical_powers, 0.0) * environment_dt
         )
         observed_reward = float(base_reward) + shaping_reward
         common_rescored_reward = float(
@@ -1020,6 +1343,12 @@ class ProxyGapAntWrapper(gym.Wrapper):
             foot_vertical_velocity_shaping_reward
         )
         info["foot_vertical_velocity_penalty"] = foot_vertical_velocity_penalty
+        info["airborne_penalty"] = airborne_penalty
+        info["reward_airborne_shaping"] = float(airborne_shaping_reward)
+        info["foot_contact_gap_penalty"] = foot_contact_gap_penalty
+        info["reward_foot_contact_gap_shaping"] = float(
+            foot_contact_gap_shaping_reward
+        )
         info["reward_pitch_balance_shaping"] = float(
             pitch_balance_shaping_reward
         )
@@ -1119,6 +1448,18 @@ class ProxyGapAntWrapper(gym.Wrapper):
         info["proxygap_foot_contact_point_heights_step"] = (
             foot_contact_point_heights.copy()
         )
+        info["proxygap_foot_contact_mask_step"] = foot_contact_mask.copy()
+        info["proxygap_foot_contact_counts_step"] = foot_contact_counts.copy()
+        info["proxygap_foot_normal_forces_n_step"] = foot_normal_forces.copy()
+        info["proxygap_foot_tangential_forces_n_step"] = (
+            foot_tangential_forces.copy()
+        )
+        info["proxygap_foot_contact_tangential_speeds_m_per_s_step"] = (
+            foot_contact_tangential_speeds.copy()
+        )
+        info["proxygap_foot_contact_slip_distance_m_step"] = (
+            foot_contact_slip_distance.copy()
+        )
         info["proxygap_foot_lateral_velocities_step"] = (
             foot_lateral_velocities.copy()
         )
@@ -1130,6 +1471,15 @@ class ProxyGapAntWrapper(gym.Wrapper):
         )
         info["proxygap_foot_vertical_velocity_penalties_step"] = (
             foot_vertical_velocity_penalties.copy()
+        )
+        info["proxygap_actuator_joint_torques_n_m_step"] = (
+            actuator_joint_torques.copy()
+        )
+        info["proxygap_actuator_joint_velocities_rad_per_s_step"] = (
+            actuator_joint_velocities.copy()
+        )
+        info["proxygap_actuator_mechanical_powers_w_step"] = (
+            actuator_mechanical_powers.copy()
         )
         info["proxygap_lateral_offset_step"] = lateral_offset
         info["proxygap_torso_height_step"] = torso_height
@@ -1197,6 +1547,17 @@ class ProxyGapAntWrapper(gym.Wrapper):
                 roll_pitch_angular_velocity_shaping_reward
             ),
             foot_contact_point_heights=foot_contact_point_heights,
+            foot_contact_mask=foot_contact_mask,
+            foot_contact_counts=foot_contact_counts,
+            foot_normal_forces=foot_normal_forces,
+            foot_tangential_forces=foot_tangential_forces,
+            foot_contact_tangential_speeds=foot_contact_tangential_speeds,
+            foot_contact_slip_distance=foot_contact_slip_distance,
+            airborne_penalty=airborne_penalty,
+            airborne_shaping_reward=airborne_shaping_reward,
+            foot_contact_gap_penalty=foot_contact_gap_penalty,
+            foot_contact_gap_penalties=foot_contact_gap_penalties,
+            foot_contact_gap_shaping_reward=foot_contact_gap_shaping_reward,
             foot_lateral_velocities=foot_lateral_velocities,
             foot_vertical_velocities=foot_vertical_velocities,
             foot_landing_mask=foot_landing_mask,
@@ -1212,6 +1573,9 @@ class ProxyGapAntWrapper(gym.Wrapper):
             ),
             pitch_balance_event=pitch_balance_event,
             pitch_balance_shaping_reward=pitch_balance_shaping_reward,
+            actuator_joint_torques=actuator_joint_torques,
+            actuator_joint_velocities=actuator_joint_velocities,
+            actuator_mechanical_powers=actuator_mechanical_powers,
             info=info,
             terminated=terminated,
             truncated=truncated,
@@ -1227,6 +1591,7 @@ class ProxyGapAntWrapper(gym.Wrapper):
 
     def episode_summary(self) -> dict[str, Any]:
         summary = self.metrics.summary()
+        episode_length = int(summary["episode_length"])
         summary.update(self._constraint_summary())
         summary.update(
             {
@@ -1263,6 +1628,53 @@ class ProxyGapAntWrapper(gym.Wrapper):
                 "foot_landing_height_threshold": self.foot_landing_height_threshold,
                 "foot_landing_active_count_sum": self._foot_landing_active_count_sum,
                 "foot_landing_active_count_by_foot": self._foot_landing_active_count_by_foot.tolist(),
+                "foot_contact_step_count_by_foot": self._foot_contact_step_count_by_foot.tolist(),
+                "foot_contact_transition_count_by_foot": self._foot_contact_transition_count_by_foot.tolist(),
+                "foot_contact_duty_fraction_by_foot": (
+                    self._foot_contact_step_count_by_foot / episode_length
+                    if episode_length > 0
+                    else np.zeros(4, dtype=np.float64)
+                ).tolist(),
+                "longest_foot_no_contact_run_steps_by_foot": self._longest_foot_no_contact_run_steps.tolist(),
+                "longest_foot_no_contact_run_seconds_by_foot": (
+                    self._longest_foot_no_contact_run_steps
+                    * self.metrics.environment_dt
+                ).tolist(),
+                "support_count_step_counts_0_to_4": self._support_count_step_counts.tolist(),
+                "support_count_step_fractions_0_to_4": (
+                    self._support_count_step_counts / episode_length
+                    if episode_length > 0
+                    else np.zeros(5, dtype=np.float64)
+                ).tolist(),
+                "support_mask_step_counts_0_to_15": self._support_mask_step_counts.tolist(),
+                "foot_sampled_normal_force_time_integral_n_s_by_foot": self._foot_normal_force_time_integral_by_foot.tolist(),
+                "foot_sampled_tangential_force_time_integral_n_s_by_foot": self._foot_tangential_force_time_integral_by_foot.tolist(),
+                "foot_contact_slip_distance_m_by_foot": self._foot_contact_slip_distance_by_foot.tolist(),
+                "foot_contact_slip_speed_max_m_per_s_by_foot": self._foot_contact_slip_speed_max_by_foot.tolist(),
+                "airborne_step_count": int(self._airborne_step_count),
+                "airborne_step_fraction": (
+                    self._airborne_step_count / episode_length
+                    if episode_length > 0
+                    else 0.0
+                ),
+                "longest_airborne_run_steps": int(self._longest_airborne_run_steps),
+                "longest_airborne_run_seconds": self._longest_airborne_run_steps * self.metrics.environment_dt,
+                "airborne_shaping_weight": self.airborne_shaping_weight,
+                "reward_airborne_shaping_sum": self._reward_airborne_shaping_sum,
+                "foot_contact_gap_shaping_weight": self.foot_contact_gap_shaping_weight,
+                "foot_contact_gap_grace_seconds": self.foot_contact_gap_grace_seconds,
+                "foot_contact_gap_scale_seconds": self.foot_contact_gap_scale_seconds,
+                "reward_foot_contact_gap_shaping_sum": self._reward_foot_contact_gap_shaping_sum,
+                "foot_contact_gap_penalty_sum": self._foot_contact_gap_penalty_sum,
+                "foot_contact_gap_penalty_sum_by_foot": self._foot_contact_gap_penalty_sum_by_foot.tolist(),
+                "actuator_joint_names": list(self.actuator_joint_names),
+                "actuator_abs_torque_time_integral_n_m_s_by_actuator": self._actuator_abs_torque_time_integral.tolist(),
+                "actuator_positive_mechanical_work_j_by_actuator": self._actuator_positive_mechanical_work.tolist(),
+                "actuator_negative_mechanical_work_abs_j_by_actuator": self._actuator_negative_mechanical_work_abs.tolist(),
+                "actuator_abs_mechanical_work_j_by_actuator": (
+                    self._actuator_positive_mechanical_work
+                    + self._actuator_negative_mechanical_work_abs
+                ).tolist(),
                 "foot_lateral_velocity_shaping_weight": self.foot_lateral_velocity_shaping_weight,
                 "foot_lateral_velocity_shaping_scale": self.foot_lateral_velocity_shaping_scale,
                 "reward_foot_lateral_velocity_shaping_sum": self._reward_foot_lateral_velocity_shaping_sum,
@@ -1481,6 +1893,44 @@ class ProxyGapAntWrapper(gym.Wrapper):
                 np.asarray(values["foot_contact_point_heights"]).tolist(),
                 separators=(",", ":"),
             ),
+            "foot_contact_mask_step": json.dumps(
+                np.asarray(values["foot_contact_mask"], dtype=bool).tolist(),
+                separators=(",", ":"),
+            ),
+            "foot_contact_counts_step": json.dumps(
+                np.asarray(values["foot_contact_counts"], dtype=np.int64).tolist(),
+                separators=(",", ":"),
+            ),
+            "foot_normal_forces_n_step": json.dumps(
+                np.asarray(values["foot_normal_forces"]).tolist(),
+                separators=(",", ":"),
+            ),
+            "foot_tangential_forces_n_step": json.dumps(
+                np.asarray(values["foot_tangential_forces"]).tolist(),
+                separators=(",", ":"),
+            ),
+            "foot_contact_tangential_speeds_m_per_s_step": json.dumps(
+                np.asarray(values["foot_contact_tangential_speeds"]).tolist(),
+                separators=(",", ":"),
+            ),
+            "foot_contact_slip_distance_m_step": json.dumps(
+                np.asarray(values["foot_contact_slip_distance"]).tolist(),
+                separators=(",", ":"),
+            ),
+            "airborne_penalty_step": values["airborne_penalty"],
+            "reward_airborne_shaping_step": values[
+                "airborne_shaping_reward"
+            ],
+            "foot_contact_gap_penalty_step": values[
+                "foot_contact_gap_penalty"
+            ],
+            "foot_contact_gap_penalties_step": json.dumps(
+                np.asarray(values["foot_contact_gap_penalties"]).tolist(),
+                separators=(",", ":"),
+            ),
+            "reward_foot_contact_gap_shaping_step": values[
+                "foot_contact_gap_shaping_reward"
+            ],
             "foot_lateral_velocities_step": json.dumps(
                 np.asarray(values["foot_lateral_velocities"]).tolist(),
                 separators=(",", ":"),
@@ -1526,6 +1976,18 @@ class ProxyGapAntWrapper(gym.Wrapper):
             "pitch_balance_event_neutral_steps_step": values["pitch_balance_event"]["neutral_steps"],
             "pitch_balance_event_score_step": values["pitch_balance_event"]["score"],
             "reward_pitch_balance_shaping_step": values["pitch_balance_shaping_reward"],
+            "actuator_joint_torques_n_m_step": json.dumps(
+                np.asarray(values["actuator_joint_torques"]).tolist(),
+                separators=(",", ":"),
+            ),
+            "actuator_joint_velocities_rad_per_s_step": json.dumps(
+                np.asarray(values["actuator_joint_velocities"]).tolist(),
+                separators=(",", ":"),
+            ),
+            "actuator_mechanical_powers_w_step": json.dumps(
+                np.asarray(values["actuator_mechanical_powers"]).tolist(),
+                separators=(",", ":"),
+            ),
             "terminated": values["terminated"],
             "truncated": values["truncated"],
             "termination_category": values["termination_category"],
@@ -1544,6 +2006,7 @@ def make_proxygap_ant_env(
     render_mode: str | None = None,
     xml_file: str | Path | None = None,
     max_episode_steps: int | None = None,
+    terminate_when_unhealthy: bool = True,
     forward_progress_shaping_weight: float = 0.0,
     lateral_drift_shaping_weight: float = 0.0,
     lateral_drift_shaping_scale: float = 1.0,
@@ -1568,6 +2031,10 @@ def make_proxygap_ant_env(
     foot_lateral_velocity_shaping_scale: float = 1.0,
     foot_vertical_velocity_shaping_weight: float = 0.0,
     foot_vertical_velocity_shaping_scale: float = 1.0,
+    airborne_shaping_weight: float = 0.0,
+    foot_contact_gap_shaping_weight: float = 0.0,
+    foot_contact_gap_grace_seconds: float = 0.5,
+    foot_contact_gap_scale_seconds: float = 0.5,
     pitch_balance_shaping_weight: float = 0.0,
     foot_geom_names: tuple[str, ...] = DEFAULT_FOOT_GEOM_NAMES,
     common_rescore_ctrl_cost_weight: float = DEFAULT_COMMON_RESCORE_CTRL_WEIGHT,
@@ -1581,6 +2048,7 @@ def make_proxygap_ant_env(
     kwargs: dict[str, Any] = {
         "ctrl_cost_weight": float(ctrl_cost_weight),
         "render_mode": render_mode,
+        "terminate_when_unhealthy": bool(terminate_when_unhealthy),
     }
     temporary_xml_path: Path | None = None
     if xml_file is not None:
@@ -1652,6 +2120,12 @@ def make_proxygap_ant_env(
         foot_vertical_velocity_shaping_scale=float(
             foot_vertical_velocity_shaping_scale
         ),
+        airborne_shaping_weight=float(airborne_shaping_weight),
+        foot_contact_gap_shaping_weight=float(
+            foot_contact_gap_shaping_weight
+        ),
+        foot_contact_gap_grace_seconds=float(foot_contact_gap_grace_seconds),
+        foot_contact_gap_scale_seconds=float(foot_contact_gap_scale_seconds),
         pitch_balance_shaping_weight=float(pitch_balance_shaping_weight),
         foot_geom_names=tuple(foot_geom_names),
         common_rescore_ctrl_cost_weight=float(common_rescore_ctrl_cost_weight),

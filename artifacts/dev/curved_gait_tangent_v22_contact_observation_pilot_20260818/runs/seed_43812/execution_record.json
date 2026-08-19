@@ -1,0 +1,29 @@
+{
+  "status": "complete",
+  "smoke": false,
+  "training_seed": 43812,
+  "parallel_environments": 4,
+  "rollout_size": 2048,
+  "device": "cpu",
+  "cuda_device_name": null,
+  "config_path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+  "config_sha256": "0d20c29caffb7206924e6520b6e52b718c86aac5cdaad1d01a4361c0b5ce3a7f",
+  "source_model_sha256": "1e79e7a6f97fa5c1d880a36e011590599982bf219943aa807b5fa21cd1c00025",
+  "completed_timesteps": 2203648,
+  "final_model": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\curved_gait_tangent_v22_contact_observation_pilot_20260818\\runs\\seed_43812\\models\\checkpoint_2203648.zip",
+  "final_model_sha256": "a111311edba7bc13671d3cb742c0d3b3edda7849332011f8cd6d220b8dadb1b7",
+  "selection_summary": {
+    "profiles": [
+      "straight",
+      "gentle_left",
+      "gentle_right",
+      "medium_left",
+      "medium_right",
+      "s_curve"
+    ],
+    "mean_non_straight_heading_error_rms_rad": 0.19238433626405627,
+    "mean_non_straight_heading_within_tolerance_fraction": 0.22673496725532377,
+    "mean_non_straight_cross_axis_velocity_rms_m_per_s": 0.33159498136629684,
+    "heading_constraint_terminations": 5
+  }
+}

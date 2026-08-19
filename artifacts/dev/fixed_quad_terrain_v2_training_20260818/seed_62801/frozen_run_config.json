@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "config_id": "fixed_quad_terrain_v2_training_20260818",
+  "status": "frozen_user_approved_map_pilot",
+  "formal_generalisation_claim": "prohibited",
+  "purpose": "Fine-tune the V22 contact-aware local locomotion policy on the approved fixed 80 m by 80 m map and test corner-to-corner completion, fall, airborne and slip outcomes.",
+  "approved_map": {
+    "frozen_root": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818",
+    "xml_path": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/ant_fixed_quad_terrain.xml",
+    "xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182",
+    "heights_path": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/heights_m.npy",
+    "heights_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+    "hfield_sha256": "d1632c89688f459f5e7abe9d1cc9b5af7f22230b1b19290f737ae3fed849f3db",
+    "map_half_extent_m": 40.0,
+    "start_xy_m": [-34.0, -34.0],
+    "goal_xy_m": [34.0, 34.0],
+    "fixed_friction": [1.0, 0.5, 0.5],
+    "condim": 3
+  },
+  "base_policy": {
+    "configuration": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+    "model_path": "artifacts/dev/curved_gait_tangent_v22_contact_observation_pilot_20260818/runs/seed_43812/models/checkpoint_2203648.zip",
+    "model_sha256": "a111311edba7bc13671d3cb742c0d3b3edda7849332011f8cd6d220b8dadb1b7",
+    "source_timesteps": 2203648,
+    "observation_dimension": 122,
+    "action_dimension": 8
+  },
+  "task_adapter": {
+    "policy_observes_global_position": false,
+    "policy_observes_goal_coordinates": false,
+    "high_level_controller_uses_global_position": true,
+    "local_policy_interface": "forward speed plus yaw-rate and target-heading error",
+    "additional_task_reward": 0.0,
+    "maximum_abs_curvature_per_m": 0.35,
+    "yaw_gain_per_second": 1.5,
+    "slow_radius_m": 5.0,
+    "arrival_radius_m": 1.5,
+    "hold_radius_m": 2.0,
+    "hold_seconds": 2.0,
+    "hold_speed_m_per_s": 0.05,
+    "terrain_relative_healthy_clearance_m": [0.18, 1.40],
+    "maximum_healthy_tilt_degrees": 80.0,
+    "unhealthy_grace_steps": 5,
+    "slip_speed_threshold_m_per_s": 0.20
+  },
+  "training": {
+    "training_seed": 62801,
+    "parallel_environments": 4,
+    "spawn_fractions": [0.0, 0.25, 0.5, 0.75],
+    "max_episode_steps": 900,
+    "stages": [
+      {
+        "name": "fixed_map_stability_131k",
+        "additional_target_timesteps": 131072,
+        "cruise_speed_m_per_s": 0.55
+      },
+      {
+        "name": "fixed_map_traversal_262k",
+        "additional_target_timesteps": 262144,
+        "cruise_speed_m_per_s": 0.70
+      }
+    ]
+  },
+  "evaluation": {
+    "full_route_max_episode_steps": 3600,
+    "cruise_speed_m_per_s": 0.70,
+    "validation_seeds": [73801, 73802, 73803],
+    "paired_test_seeds": [74801, 74802, 74803, 74804, 74805],
+    "deterministic_policy": true,
+    "final_checkpoint_rule": "last predeclared training-budget checkpoint; no best-seed selection"
+  },
+  "ppo": {
+    "n_steps": 512,
+    "batch_size": 1024,
+    "n_epochs": 10,
+    "learning_rate": 0.00003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.001,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "normalize_advantage": true,
+    "device": "cpu",
+    "torch_num_threads": 2
+  },
+  "execution": {
+    "output_root": "artifacts/dev/fixed_quad_terrain_v2_training_20260818",
+    "subprocess_start_method": "spawn"
+  },
+  "claim_boundary": "This is one fixed-map fine-tuning run. It can establish engineering feasibility or failure on the approved map under the recorded reset seeds, but it cannot establish generalisation to unseen maps or seed-robust algorithmic superiority."
+}

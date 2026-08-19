@@ -1,0 +1,37 @@
+{
+  "schema_version": "proxygap-terrain-config-v2",
+  "config_id": "ant-v5-smooth-hfield-pilot-slope-20260818",
+  "terrain": {
+    "rows": 513,
+    "cols": 513,
+    "half_extent_x_m": 8.0,
+    "half_extent_y_m": 8.0,
+    "base_height_m": 0.0,
+    "base_depth_m": 0.5,
+    "spawn_flat_radius_m": 0.9,
+    "spawn_transition_width_m": 1.1,
+    "boundary_flat_width_m": 1.5,
+    "max_abs_height_m": 0.18,
+    "max_slope": 0.35,
+    "max_curvature_per_m": 0.8,
+    "safety_scale": 0.92,
+    "design_grid_resolution": 513,
+    "slope_gradient_range": [0.025, 0.08],
+    "broad_feature_amplitude_m": [0.06, 0.14],
+    "broad_feature_width_m": [2.2, 3.6],
+    "hill_count_range": [2, 5],
+    "hill_amplitude_m": [0.025, 0.075],
+    "hill_width_m": [1.1, 2.2],
+    "max_feature_aspect_ratio": 1.45,
+    "minimum_feature_width_m": 1.1,
+    "ground_friction": [1.0, 0.5, 0.5],
+    "ground_condim": 3
+  },
+  "seed_plan": {
+    "master_seed": 20260818,
+    "train_count": 64,
+    "validation_count": 16,
+    "test_count": 16,
+    "terrain_kind": "slope"
+  }
+}

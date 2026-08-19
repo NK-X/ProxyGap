@@ -1,0 +1,124 @@
+{
+  "claim_boundary": "This is one fixed-map fine-tuning run. It can establish engineering feasibility or failure on the approved map under the recorded reset seeds, but it cannot establish generalisation to unseen maps or seed-robust algorithmic superiority.",
+  "map_height_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+  "training_seed": 62801,
+  "added_training_timesteps": 262144,
+  "paired_evaluation_seeds": [
+    74801,
+    74802,
+    74803,
+    74804,
+    74805
+  ],
+  "baseline": {
+    "episodes": 5,
+    "successes": 0,
+    "qualified_episodes": 0,
+    "falls": 2,
+    "net_progress_m": {
+      "n": 5,
+      "mean": 0.9590339928455706,
+      "sample_sd": 0.7141950696373192,
+      "minimum": 0.01723134821438066,
+      "maximum": 1.869006067060468
+    },
+    "best_progress_m": {
+      "n": 5,
+      "mean": 2.7970983539863257,
+      "sample_sd": 0.4817172712484808,
+      "minimum": 2.0462966376232714,
+      "maximum": 3.2380223215449178
+    },
+    "airborne_step_fraction": {
+      "n": 5,
+      "mean": 0.7330218362295964,
+      "sample_sd": 0.030209357389932506,
+      "minimum": 0.6961111111111111,
+      "maximum": 0.7661111111111111
+    },
+    "contact_speed_exceedance_fraction": {
+      "n": 5,
+      "mean": 0.20992913374133745,
+      "sample_sd": 0.01563097689967884,
+      "minimum": 0.1947222222222222,
+      "maximum": 0.23333333333333334
+    },
+    "maximum_contact_slip_speed_m_per_s": {
+      "n": 5,
+      "mean": 4.109439469917995,
+      "sample_sd": 0.8454623329505533,
+      "minimum": 2.6994509614896827,
+      "maximum": 4.697950061647053
+    },
+    "maximum_torso_tilt_rad": {
+      "n": 5,
+      "mean": 1.1955208455681507,
+      "sample_sd": 0.41226573472799316,
+      "minimum": 0.7093948326705576,
+      "maximum": 1.6394264766378808
+    }
+  },
+  "final": {
+    "episodes": 5,
+    "successes": 0,
+    "qualified_episodes": 0,
+    "falls": 3,
+    "net_progress_m": {
+      "n": 5,
+      "mean": 1.673314768638275,
+      "sample_sd": 0.6007946391439394,
+      "minimum": 0.9771006540173062,
+      "maximum": 2.400023489747781
+    },
+    "best_progress_m": {
+      "n": 5,
+      "mean": 2.839863105414372,
+      "sample_sd": 0.16541840677331943,
+      "minimum": 2.688643606024783,
+      "maximum": 3.033536347300185
+    },
+    "airborne_step_fraction": {
+      "n": 5,
+      "mean": 0.7165159405269315,
+      "sample_sd": 0.025078031394531724,
+      "minimum": 0.6881487889273357,
+      "maximum": 0.7491666666666666
+    },
+    "contact_speed_exceedance_fraction": {
+      "n": 5,
+      "mean": 0.21022294791222879,
+      "sample_sd": 0.026468556715263634,
+      "minimum": 0.16911764705882354,
+      "maximum": 0.24080604534005037
+    },
+    "maximum_contact_slip_speed_m_per_s": {
+      "n": 5,
+      "mean": 4.440220751774843,
+      "sample_sd": 0.4142961427620067,
+      "minimum": 3.8992047769201497,
+      "maximum": 4.9172911847226235
+    },
+    "maximum_torso_tilt_rad": {
+      "n": 5,
+      "mean": 1.423344751061041,
+      "sample_sd": 0.473438544804006,
+      "minimum": 0.8967178892502179,
+      "maximum": 1.832163271629844
+    }
+  },
+  "paired_final_minus_baseline_net_progress_m": {
+    "n": 5,
+    "mean": 0.7142807757927045,
+    "sample_sd": 0.5504130374132603,
+    "minimum": -0.09576797935203274,
+    "maximum": 1.389965860828056
+  },
+  "representative_trace_verification": {
+    "representative_seed": 74803,
+    "baseline_net_progress_difference_m": 0.0,
+    "final_net_progress_difference_m": 0.0,
+    "reproduced_within_1e_9_m": true
+  },
+  "primary_outcome": "failed_to_complete_corner_to_corner_route",
+  "figure": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\fixed_quad_terrain_v2_training_20260818\\seed_62801\\report\\fixed_map_training_results.png"
+}

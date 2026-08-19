@@ -16,6 +16,7 @@ from proxygap import (  # noqa: E402
     make_curved_gait_env,
     make_planar_transition_env,
     pseudo_huber_penalty,
+    transfer_curved_policy_with_contact_observation,
     transfer_planar_policy_to_curved_gait,
 )
 from proxygap.planar_transition import (  # noqa: E402
@@ -23,6 +24,7 @@ from proxygap.planar_transition import (  # noqa: E402
     quaternion_yaw_angle,
 )
 from run_curved_gait_training import validate_config  # noqa: E402
+from render_figure_eight_route_video import figure_eight_route  # noqa: E402
 
 
 CONFIG = ROOT / "configs" / "curved_gait_tangent_v1_20260818.json"
@@ -80,6 +82,30 @@ def test_curve_observation_contains_only_local_motion_command() -> None:
     summary = env.episode_summary()
     assert summary["curve_uses_global_path_position_reward"] is False
     assert abs(summary["curve_reward_reconciliation_error"]) < 1e-9
+    env.close()
+
+
+def test_optional_contact_observation_matches_current_contact_diagnostics() -> None:
+    env = make_curved_gait_env(
+        profile="straight",
+        speed_min=0.8,
+        speed_max=0.8,
+        max_abs_curvature=0.0,
+        heading_termination_enabled=False,
+        augment_foot_contact_mask=True,
+    )
+    observation, info = env.reset(seed=819)
+    assert observation.shape == (122,)
+    np.testing.assert_array_equal(
+        observation[-4:],
+        np.asarray(info["proxygap_foot_contact_mask_step"], dtype=float),
+    )
+    observation, _, _, _, info = env.step(np.zeros(8))
+    np.testing.assert_array_equal(
+        observation[-4:],
+        np.asarray(info["proxygap_foot_contact_mask_step"], dtype=float),
+    )
+    assert info["proxygap_curve_foot_contact_observation_enabled"] is True
     env.close()
 
 
@@ -286,6 +312,51 @@ def test_planar_policy_transfer_adds_only_three_zero_columns() -> None:
     target_env.close()
 
 
+def test_curved_policy_transfer_adds_four_zero_contact_columns() -> None:
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    ppo = dict(config["ppo"])
+    ppo["device"] = "cpu"
+    ppo["batch_size"] = 64
+    source_env = make_curved_gait_env(
+        profile="straight",
+        speed_min=0.8,
+        speed_max=0.8,
+        max_abs_curvature=0.0,
+        heading_termination_enabled=False,
+    )
+    target_env = make_curved_gait_env(
+        profile="straight",
+        speed_min=0.8,
+        speed_max=0.8,
+        max_abs_curvature=0.0,
+        heading_termination_enabled=False,
+        augment_foot_contact_mask=True,
+    )
+    source_model = make_ppo_from_config(source_env, ppo, seed=31)
+    target_model = make_ppo_from_config(target_env, ppo, seed=32)
+    manifest = transfer_curved_policy_with_contact_observation(
+        source_model,
+        target_model,
+    )
+    source_observation, _ = source_env.reset(seed=33)
+    target_observation, _ = target_env.reset(seed=33)
+    np.testing.assert_allclose(target_observation[:-4], source_observation)
+    source_action, _ = source_model.predict(
+        source_observation,
+        deterministic=True,
+    )
+    target_action, _ = target_model.predict(
+        target_observation,
+        deterministic=True,
+    )
+    np.testing.assert_allclose(target_action, source_action, atol=1e-7, rtol=0.0)
+    assert manifest["source_observation_dimension"] == 118
+    assert manifest["target_observation_dimension"] == 122
+    assert manifest["new_foot_contact_columns_initialised_to_zero"] == 4
+    source_env.close()
+    target_env.close()
+
+
 def test_curved_gait_config_preserves_gait_and_excludes_path_reward() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     validate_config(config, require_local_base=False)
@@ -333,3 +404,24 @@ def test_long_horizon_continuation_keeps_route_outside_policy() -> None:
     assert config["evaluation_max_episode_steps"] == 2000
     assert config["commands"]["segment_steps_interval"] == [600, 1000]
     assert config["commands"]["global_path_position_in_observation"] is False
+
+
+def test_ellipse_figure_eight_has_shared_tangent_and_varying_curvature() -> None:
+    points, tangents, curvatures, spacing, split_index = figure_eight_route(
+        5.0,
+        4.0,
+        points_per_loop=500,
+    )
+    np.testing.assert_allclose(points[0], [0.0, 0.0], atol=1e-12)
+    np.testing.assert_allclose(points[split_index], [0.0, 0.0], atol=1e-12)
+    np.testing.assert_allclose(tangents[0], [0.0, -1.0], atol=1e-12)
+    np.testing.assert_allclose(tangents[split_index], [0.0, -1.0], atol=1e-12)
+    assert np.all(curvatures[: split_index + 1] > 0.0)
+    assert np.all(curvatures[split_index + 1 :] < 0.0)
+    assert not math.isclose(
+        float(np.min(np.abs(curvatures))),
+        float(np.max(np.abs(curvatures))),
+    )
+    assert math.isclose(float(np.max(np.abs(curvatures))), 5.0 / 4.0**2)
+    assert math.isclose(float(np.min(np.abs(curvatures))), 4.0 / 5.0**2)
+    assert spacing > 0.0

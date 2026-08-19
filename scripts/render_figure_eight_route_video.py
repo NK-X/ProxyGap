@@ -55,6 +55,18 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--model", type=Path, required=True)
     parser.add_argument("--radius", type=float, default=4.0)
+    parser.add_argument(
+        "--semi-major",
+        type=float,
+        default=None,
+        help="Horizontal semi-axis for both ellipses; requires --semi-minor.",
+    )
+    parser.add_argument(
+        "--semi-minor",
+        type=float,
+        default=None,
+        help="Vertical semi-axis for both ellipses; requires --semi-major.",
+    )
     parser.add_argument("--speed", type=float, default=0.8)
     parser.add_argument("--lookahead", type=float, default=0.8)
     parser.add_argument(
@@ -86,37 +98,104 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def figure_eight_route(radius: float, *, points_per_loop: int = 1000):
-    """Return two tangent circles, starting at their centre intersection.
+def _uniform_arc_phases(
+    horizontal_radius: float,
+    vertical_radius: float,
+    *,
+    points_per_loop: int,
+) -> tuple[np.ndarray, float]:
+    """Return approximately uniform arc-length samples for one ellipse."""
+    if math.isclose(horizontal_radius, vertical_radius):
+        phases = np.linspace(0.0, 2.0 * math.pi, points_per_loop + 1)
+        return phases, 2.0 * math.pi * horizontal_radius
+    dense_count = max(20_000, points_per_loop * 20)
+    dense_phase = np.linspace(0.0, 2.0 * math.pi, dense_count + 1)
+    dense_points = np.column_stack(
+        (
+            horizontal_radius * np.cos(dense_phase),
+            vertical_radius * np.sin(dense_phase),
+        )
+    )
+    cumulative = np.concatenate(
+        (
+            [0.0],
+            np.cumsum(np.linalg.norm(np.diff(dense_points, axis=0), axis=1)),
+        )
+    )
+    target = np.linspace(0.0, float(cumulative[-1]), points_per_loop + 1)
+    return np.interp(target, cumulative, dense_phase), float(cumulative[-1])
 
-    The right circle is traversed counter-clockwise and the left circle
-    clockwise. Both branches have the same -Y tangent at the intersection.
+
+def figure_eight_route(
+    horizontal_radius: float,
+    vertical_radius: float | None = None,
+    *,
+    points_per_loop: int = 1000,
+):
+    """Return two tangent circles or ellipses from their centre intersection.
+
+    The right loop is traversed counter-clockwise and the left loop clockwise.
+    Both branches have the same -Y tangent at the intersection. Samples are
+    approximately uniform in arc length so controller lookahead remains metric.
     """
-    right_phase = np.linspace(0.0, 2.0 * math.pi, points_per_loop + 1)
-    left_phase = np.linspace(0.0, 2.0 * math.pi, points_per_loop + 1)[1:]
+    vertical_radius = (
+        horizontal_radius if vertical_radius is None else vertical_radius
+    )
+    if horizontal_radius <= 0 or vertical_radius <= 0 or points_per_loop < 4:
+        raise ValueError("ellipse radii and points_per_loop must be positive")
+    right_phase, perimeter = _uniform_arc_phases(
+        horizontal_radius,
+        vertical_radius,
+        points_per_loop=points_per_loop,
+    )
+    left_phase = right_phase[1:]
     right = np.column_stack(
         (
-            radius - radius * np.cos(right_phase),
-            -radius * np.sin(right_phase),
+            horizontal_radius - horizontal_radius * np.cos(right_phase),
+            -vertical_radius * np.sin(right_phase),
         )
     )
     left = np.column_stack(
         (
-            -radius + radius * np.cos(left_phase),
-            -radius * np.sin(left_phase),
+            -horizontal_radius + horizontal_radius * np.cos(left_phase),
+            -vertical_radius * np.sin(left_phase),
         )
     )
     positions = np.vstack((right, left))
-    right_tangent = np.column_stack((np.sin(right_phase), -np.cos(right_phase)))
-    left_tangent = np.column_stack((-np.sin(left_phase), -np.cos(left_phase)))
-    tangents = np.vstack((right_tangent, left_tangent))
-    curvatures = np.concatenate(
+    right_derivative = np.column_stack(
         (
-            np.full(len(right), 1.0 / radius),
-            np.full(len(left), -1.0 / radius),
+            horizontal_radius * np.sin(right_phase),
+            -vertical_radius * np.cos(right_phase),
         )
     )
-    spacing = 2.0 * math.pi * radius / points_per_loop
+    left_derivative = np.column_stack(
+        (
+            -horizontal_radius * np.sin(left_phase),
+            -vertical_radius * np.cos(left_phase),
+        )
+    )
+    right_tangent = right_derivative / np.linalg.norm(
+        right_derivative, axis=1, keepdims=True
+    )
+    left_tangent = left_derivative / np.linalg.norm(
+        left_derivative, axis=1, keepdims=True
+    )
+    tangents = np.vstack((right_tangent, left_tangent))
+    right_denominator = (
+        (horizontal_radius * np.sin(right_phase)) ** 2
+        + (vertical_radius * np.cos(right_phase)) ** 2
+    ) ** 1.5
+    left_denominator = (
+        (horizontal_radius * np.sin(left_phase)) ** 2
+        + (vertical_radius * np.cos(left_phase)) ** 2
+    ) ** 1.5
+    curvatures = np.concatenate(
+        (
+            horizontal_radius * vertical_radius / right_denominator,
+            -horizontal_radius * vertical_radius / left_denominator,
+        )
+    )
+    spacing = perimeter / points_per_loop
     return positions, tangents, curvatures, spacing, points_per_loop
 
 
@@ -203,7 +282,17 @@ def overlay(frame: np.ndarray, *, record: dict[str, Any], total_steps: int) -> n
 
 def main() -> None:
     args = parse_args()
-    if args.radius <= 0 or args.speed <= 0 or args.lookahead <= 0 or args.max_steps <= 0:
+    if (args.semi_major is None) != (args.semi_minor is None):
+        raise ValueError("--semi-major and --semi-minor must be supplied together")
+    horizontal_radius = args.radius if args.semi_major is None else args.semi_major
+    vertical_radius = args.radius if args.semi_minor is None else args.semi_minor
+    if (
+        horizontal_radius <= 0
+        or vertical_radius <= 0
+        or args.speed <= 0
+        or args.lookahead <= 0
+        or args.max_steps <= 0
+    ):
         raise ValueError("route/controller values must be positive")
     if (
         args.axis_feedback_gain < 0
@@ -215,15 +304,18 @@ def main() -> None:
         or args.yaw_rate_limit <= 0
     ):
         raise ValueError("controller gains and limits must be non-negative")
-    route_curvature = 1.0 / args.radius
-    if route_curvature > 0.35 + 1e-12:
-        raise ValueError("route radius exceeds the V4 training curvature limit")
     config_path = args.config.resolve()
     model_path = args.model.resolve()
     output_path = args.output.resolve()
     config = json.loads(config_path.read_text(encoding="utf-8"))
     kwargs = env_kwargs(config)
-    points, tangents, curvatures, spacing, split_index = figure_eight_route(args.radius)
+    points, tangents, curvatures, spacing, split_index = figure_eight_route(
+        horizontal_radius,
+        vertical_radius,
+    )
+    route_curvature = float(np.max(np.abs(curvatures)))
+    if route_curvature > 0.35 + 1e-12:
+        raise ValueError("route curvature exceeds the V4 training limit")
     render_mode = None if args.dry_run else "rgb_array"
     xml_file = None if args.dry_run else route_xml(points)
     if not args.dry_run:
@@ -468,7 +560,11 @@ def main() -> None:
     final_position = records[-1]["position_xy"] if records else np.zeros(2)
     manifest = {
         "status": "complete",
-        "route": "two tangent circles; centre start; right loop then left loop",
+        "route": (
+            "two tangent circles; centre start; right loop then left loop"
+            if math.isclose(horizontal_radius, vertical_radius)
+            else "two tangent ellipses; centre start; right loop then left loop"
+        ),
         "route_coordinates_enter_policy": False,
         "route_position_reward_enabled": False,
         "high_level_controller": (
@@ -483,9 +579,23 @@ def main() -> None:
         "start_position_xy": [0.0, 0.0],
         "start_heading_degrees": -90.0,
         "loop_order": ["right_counter_clockwise", "left_clockwise"],
-        "radius_m": args.radius,
-        "route_length_m": 4.0 * math.pi * args.radius,
-        "route_curvature_abs_per_m": route_curvature,
+        "radius_m": (
+            horizontal_radius
+            if math.isclose(horizontal_radius, vertical_radius)
+            else None
+        ),
+        "semi_major_m": horizontal_radius,
+        "semi_minor_m": vertical_radius,
+        "route_length_m": float(
+            np.sum(np.linalg.norm(np.diff(points, axis=0), axis=1))
+        ),
+        "route_curvature_abs_per_m": (
+            route_curvature
+            if math.isclose(horizontal_radius, vertical_radius)
+            else None
+        ),
+        "route_curvature_abs_min_per_m": float(np.min(np.abs(curvatures))),
+        "route_curvature_abs_max_per_m": route_curvature,
         "commanded_speed_m_per_s": args.speed,
         "lookahead_m": args.lookahead,
         "controller_mode": args.controller_mode,
