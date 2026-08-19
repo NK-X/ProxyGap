@@ -11,7 +11,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from proxygap.fixed_goal_terrain import file_sha256
+from proxygap.fixed_goal_terrain import FixedGoalTerrainWrapper, file_sha256
 from run_fixed_goal_terrain_training import (
     make_task_env,
     prepare_task_scenes,
@@ -133,3 +133,31 @@ def test_optional_local_terrain_preview_adds_only_thirteen_finite_values(
     assert np.all(np.isfinite(next_observation[-13:]))
     assert step_info["proxygap_local_terrain_observation_enabled"] is True
     env.close()
+
+
+def test_hold_annulus_cannot_establish_success_before_true_arrival() -> None:
+    wrapper = object.__new__(FixedGoalTerrainWrapper)
+    wrapper.arrival_radius = 1.5
+    wrapper.hold_radius = 2.0
+    wrapper.required_hold_steps = 3
+    wrapper._goal_entered = False
+    wrapper._goal_hold_run_steps = 0
+    wrapper._longest_goal_hold_run_steps = 0
+    wrapper._task_success = False
+    wrapper._success_step = None
+    wrapper._task_steps = 10
+
+    for _ in range(4):
+        wrapper._update_goal_state(1.6)
+    assert wrapper._goal_entered is False
+    assert wrapper._goal_hold_run_steps == 0
+    assert wrapper._task_success is False
+
+    wrapper._update_goal_state(1.4)
+    wrapper._update_goal_state(1.8)
+    wrapper._task_steps = 13
+    wrapper._update_goal_state(1.9)
+    assert wrapper._goal_entered is True
+    assert wrapper._longest_goal_hold_run_steps == 3
+    assert wrapper._task_success is True
+    assert wrapper._success_step == 13

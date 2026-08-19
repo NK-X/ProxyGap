@@ -1,0 +1,20 @@
+{
+  "schema_version": "proxygap-fixed-map-candidate-screen-v1",
+  "configuration": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\fixed_map_reach_a_corrected_replication_v2_20260819.json",
+  "configuration_sha256": "d477af60cc9b3ca39efeefa380c2b02c218bd12d6daec0a25da7c43d4e2c7b11",
+  "fixed_map_height_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+  "spawn_metadata": [
+    {
+      "spawn_fraction": 0.0,
+      "x_m": -34.0,
+      "y_m": -34.0,
+      "terrain_height_m": -1.9348310229819923,
+      "gradient_x": -0.005898527666695688,
+      "gradient_y": -0.005898527666695688,
+      "gradient_degrees": 0.4779375773693289,
+      "scene_sha256": "bc72dd66e6b171c0444e8e55d19b145b0a2095d4b584e407df9d76c4033096a7"
+    }
+  ],
+  "episodes": 5,
+  "claim_boundary": "Success requires prior entry within 1.5 m and then a continuous 2 s stay within 2.0 m. Safety qualification additionally requires no fall, no four-foot airborne violation and no sustained slip."
+}

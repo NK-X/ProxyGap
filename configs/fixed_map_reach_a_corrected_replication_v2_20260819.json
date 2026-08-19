@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "config_id": "fixed_map_reach_a_corrected_replication_v2_20260819",
+  "status": "development_engineering_replication",
+  "purpose": "Re-evaluate the Reach-A controller after correcting success so the robot must enter the 1.5 m arrival circle before the 2.0 m hold hysteresis can count.",
+  "fixed_map_config": "configs/fixed_quad_terrain_v2_training_20260818.json",
+  "evaluation_seeds": [74801, 74802, 74803, 74804, 74805],
+  "horizon_steps": 12000,
+  "cruise_speed_m_per_s": 0.5,
+  "terminate_on_success": true,
+  "save_step_traces": true,
+  "trace_stride_steps": 10,
+  "controller_conditions": [
+    {
+      "name": "reach_a_yaw",
+      "yaw_gain_per_second": 0.75,
+      "yaw_deadband_degrees": 0.0,
+      "maximum_abs_curvature_per_m": 0.35,
+      "curvature_speed_reduction_gain": 0.0,
+      "minimum_turn_speed_fraction": 1.0
+    }
+  ],
+  "candidates": [
+    {
+      "name": "fixed_map_final_2465792",
+      "configuration": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+      "model_path": "artifacts/dev/fixed_quad_terrain_v2_training_20260818/seed_62801/models/checkpoint_2465792.zip",
+      "model_sha256": "d69ae7a45efdad14a72426ea49c300a670b8c4b92558a97577b3b4130d649abb"
+    }
+  ],
+  "output_root": "artifacts/dev/fixed_map_reach_a_corrected_replication_v2_20260819",
+  "claim_boundary": "Success requires prior entry within 1.5 m and then a continuous 2 s stay within 2.0 m. Safety qualification additionally requires no fall, no four-foot airborne violation and no sustained slip."
+}

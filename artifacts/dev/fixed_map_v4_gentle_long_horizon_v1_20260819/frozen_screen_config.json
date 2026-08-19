@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "config_id": "fixed_map_v4_gentle_long_horizon_v1_20260819",
+  "status": "development_diagnostic",
+  "purpose": "Determine whether the robust V4 plus gentle-yaw candidate is obstacle-limited or only horizon-limited on the approved fixed map, without training or reward changes.",
+  "fixed_map_config": "configs/fixed_quad_terrain_v2_training_20260818.json",
+  "evaluation_seeds": [75901, 75902, 75903],
+  "horizon_steps": 3600,
+  "cruise_speed_m_per_s": 0.7,
+  "save_step_traces": true,
+  "trace_stride_steps": 10,
+  "controller_conditions": [
+    {
+      "name": "gentle_yaw",
+      "yaw_gain_per_second": 0.45,
+      "yaw_deadband_degrees": 5.0,
+      "maximum_abs_curvature_per_m": 0.18,
+      "curvature_speed_reduction_gain": 0.4,
+      "minimum_turn_speed_fraction": 0.65
+    }
+  ],
+  "candidates": [
+    {
+      "name": "v4_canonical",
+      "configuration": "configs/curved_gait_tangent_v4_canonical_frame_20260818.json",
+      "model_path": "artifacts/dev/curved_gait_tangent_v4_canonical_frame_20260818/runs/seed_43301/models/checkpoint_1024000.zip",
+      "model_sha256": "6a0f6081e6aff4c85201242e53c44b0d057e96167336002da3a6e862fe134b6a"
+    }
+  ],
+  "output_root": "artifacts/dev/fixed_map_v4_gentle_long_horizon_v1_20260819",
+  "claim_boundary": "This is a three-seed development diagnostic on one fixed map. It does not establish generalisation or statistical superiority."
+}

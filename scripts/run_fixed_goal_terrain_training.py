@@ -224,6 +224,13 @@ def make_task_env(
         cruise_speed_m_per_s=cruise_speed,
         maximum_abs_curvature_per_m=float(task["maximum_abs_curvature_per_m"]),
         yaw_gain_per_second=float(task["yaw_gain_per_second"]),
+        yaw_deadband_degrees=float(task.get("yaw_deadband_degrees", 0.0)),
+        curvature_speed_reduction_gain=float(
+            task.get("curvature_speed_reduction_gain", 0.0)
+        ),
+        minimum_turn_speed_fraction=float(
+            task.get("minimum_turn_speed_fraction", 1.0)
+        ),
         slow_radius_m=float(task["slow_radius_m"]),
         arrival_radius_m=float(task["arrival_radius_m"]),
         hold_radius_m=float(task["hold_radius_m"]),

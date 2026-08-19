@@ -49,6 +49,9 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
         cruise_speed_m_per_s: float,
         maximum_abs_curvature_per_m: float,
         yaw_gain_per_second: float = 1.5,
+        yaw_deadband_degrees: float = 0.0,
+        curvature_speed_reduction_gain: float = 0.0,
+        minimum_turn_speed_fraction: float = 1.0,
         slow_radius_m: float = 5.0,
         arrival_radius_m: float = 1.5,
         hold_radius_m: float = 2.0,
@@ -104,7 +107,22 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
             maximum_abs_curvature_per_m,
             "maximum_abs_curvature_per_m",
         )
-        self.yaw_gain = self._positive(yaw_gain_per_second, "yaw_gain_per_second")
+        self.yaw_gain = self._non_negative(
+            yaw_gain_per_second,
+            "yaw_gain_per_second",
+        )
+        self.yaw_deadband = math.radians(
+            self._non_negative(yaw_deadband_degrees, "yaw_deadband_degrees")
+        )
+        if self.yaw_deadband >= math.pi:
+            raise ValueError("yaw_deadband_degrees must be below 180 degrees")
+        self.curvature_speed_reduction_gain = self._non_negative(
+            curvature_speed_reduction_gain,
+            "curvature_speed_reduction_gain",
+        )
+        self.minimum_turn_speed_fraction = float(minimum_turn_speed_fraction)
+        if not 0.0 < self.minimum_turn_speed_fraction <= 1.0:
+            raise ValueError("minimum_turn_speed_fraction must lie in (0, 1]")
         self.slow_radius = self._positive(slow_radius_m, "slow_radius_m")
         self.arrival_radius = self._positive(arrival_radius_m, "arrival_radius_m")
         self.hold_radius = self._positive(hold_radius_m, "hold_radius_m")
@@ -170,6 +188,13 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
         result = float(value)
         if not np.isfinite(result) or result <= 0.0:
             raise ValueError(f"{label} must be positive and finite")
+        return result
+
+    @staticmethod
+    def _non_negative(value: float, label: str) -> float:
+        result = float(value)
+        if not np.isfinite(result) or result < 0.0:
+            raise ValueError(f"{label} must be finite and non-negative")
         return result
 
     @staticmethod
@@ -323,6 +348,32 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
     def _distance_to_goal(self, position: np.ndarray) -> float:
         return float(np.linalg.norm(self.goal_xy - position))
 
+    def _update_goal_state(self, distance: float) -> None:
+        """Advance the arrival-plus-hold state without accepting the hold annulus alone.
+
+        ``hold_radius`` is intentionally larger than ``arrival_radius`` to
+        provide hysteresis after a genuine arrival.  It must not independently
+        establish success, otherwise an agent can stop in the annulus between
+        the two radii and be recorded as having reached the goal.
+        """
+        if distance <= self.arrival_radius:
+            self._goal_entered = True
+        if self._goal_entered and distance <= self.hold_radius:
+            self._goal_hold_run_steps += 1
+        else:
+            self._goal_hold_run_steps = 0
+        self._longest_goal_hold_run_steps = max(
+            self._longest_goal_hold_run_steps,
+            self._goal_hold_run_steps,
+        )
+        if (
+            not self._task_success
+            and self._goal_entered
+            and self._goal_hold_run_steps >= self.required_hold_steps
+        ):
+            self._task_success = True
+            self._success_step = self._task_steps
+
     def _lateral_deviation(self, position: np.ndarray) -> float:
         direction = self.goal_xy - self.start_xy
         offset = position - self.start_xy
@@ -343,13 +394,28 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
             speed_scale = min(1.0, max(self.hold_speed / self.cruise_speed, distance / self.slow_radius))
             target_speed = self.cruise_speed * speed_scale
             maximum_yaw_rate = target_speed * self.maximum_abs_curvature
+            effective_heading_error = math.copysign(
+                max(0.0, abs(heading_error) - self.yaw_deadband),
+                heading_error,
+            )
             yaw_rate = float(
                 np.clip(
-                    self.yaw_gain * heading_error,
+                    self.yaw_gain * effective_heading_error,
                     -maximum_yaw_rate,
                     maximum_yaw_rate,
                 )
             )
+            if maximum_yaw_rate > 0.0 and self.curvature_speed_reduction_gain > 0.0:
+                turn_fraction = min(1.0, abs(yaw_rate) / maximum_yaw_rate)
+                turn_speed_fraction = max(
+                    self.minimum_turn_speed_fraction,
+                    1.0 - self.curvature_speed_reduction_gain * turn_fraction,
+                )
+                target_speed *= turn_speed_fraction
+                maximum_yaw_rate = target_speed * self.maximum_abs_curvature
+                yaw_rate = float(
+                    np.clip(yaw_rate, -maximum_yaw_rate, maximum_yaw_rate)
+                )
         command_observation = self.env.set_external_curve_command(
             observation,
             target_heading=target_heading,
@@ -402,22 +468,7 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
             lateral_deviation,
         )
 
-        if distance <= self.arrival_radius:
-            self._goal_entered = True
-        if distance <= self.hold_radius:
-            self._goal_hold_run_steps += 1
-        else:
-            self._goal_hold_run_steps = 0
-        self._longest_goal_hold_run_steps = max(
-            self._longest_goal_hold_run_steps,
-            self._goal_hold_run_steps,
-        )
-        if (
-            not self._task_success
-            and self._goal_hold_run_steps >= self.required_hold_steps
-        ):
-            self._task_success = True
-            self._success_step = self._task_steps
+        self._update_goal_state(distance)
 
         qpos = np.asarray(self.unwrapped.data.qpos, dtype=np.float64)
         terrain_height = self._terrain_height(float(qpos[0]), float(qpos[1]))
@@ -510,6 +561,8 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
             "proxygap_fixed_goal_success": self._task_success,
             "proxygap_fixed_goal_spawn_fraction": self.spawn_fraction,
             "proxygap_fixed_goal_cruise_speed_m_per_s": self.cruise_speed,
+            "proxygap_fixed_goal_yaw_gain_per_second": self.yaw_gain,
+            "proxygap_fixed_goal_yaw_deadband_rad": self.yaw_deadband,
             "proxygap_terrain_relative_unhealthy_run_steps": self._terrain_unhealthy_run_steps,
             "proxygap_local_terrain_observation_enabled": (
                 self.augment_local_terrain_observation

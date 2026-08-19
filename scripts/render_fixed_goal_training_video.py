@@ -60,6 +60,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--intro-seconds", type=float, default=1.5)
     parser.add_argument("--outro-seconds", type=float, default=1.5)
     parser.add_argument("--fps", type=int, default=FPS)
+    parser.add_argument(
+        "--render-stride",
+        type=int,
+        default=1,
+        help="Render every Nth 20 Hz physics step while retaining every step in the trace.",
+    )
+    parser.add_argument("--cruise-speed", type=float)
+    parser.add_argument("--yaw-gain", type=float)
+    parser.add_argument("--maximum-curvature", type=float)
     parser.add_argument("--crf", type=int, default=18)
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--overwrite", action="store_true")
@@ -228,6 +237,7 @@ def draw_overlay(
     camera_valley_depth: float,
     airborne: bool,
     terminated: bool,
+    success: bool,
     evaluation_seed: int,
 ) -> Image.Image:
     image = Image.fromarray(rgb, mode="RGB")
@@ -329,8 +339,12 @@ def draw_overlay(
     )
 
     contact_exceeded = maximum_contact_speed > slip_threshold
-    status_colour = RED if terminated or airborne or contact_exceeded else TEAL
-    if terminated:
+    status_colour = (
+        TEAL if success else RED if terminated or airborne or contact_exceeded else TEAL
+    )
+    if success:
+        status = "GOAL SUCCESS"
+    elif terminated:
         status = "TERMINATED / FALL"
     elif airborne:
         status = "FOUR-FOOT AIRBORNE"
@@ -413,6 +427,8 @@ def main() -> None:
         raise ValueError("physical-seconds must be at least 10 for an acceptance video")
     if args.fps != FPS:
         raise ValueError("fps must equal the 20 Hz environment control rate")
+    if args.render_stride <= 0:
+        raise ValueError("render-stride must be positive")
     run_root = args.run_root.expanduser().resolve()
     config_path = run_root / "frozen_run_config.json"
     execution_path = run_root / "execution_record.json"
@@ -421,6 +437,12 @@ def main() -> None:
         if not path.is_file():
             raise FileNotFoundError(path)
     config = json.loads(config_path.read_text(encoding="utf-8"))
+    if args.yaw_gain is not None:
+        config["task_adapter"]["yaw_gain_per_second"] = float(args.yaw_gain)
+    if args.maximum_curvature is not None:
+        config["task_adapter"]["maximum_abs_curvature_per_m"] = float(
+            args.maximum_curvature
+        )
     execution = json.loads(execution_path.read_text(encoding="utf-8"))
     v22_config_path = ROOT / config["base_policy"]["configuration"]
     v22_config = json.loads(v22_config_path.read_text(encoding="utf-8"))
@@ -467,7 +489,11 @@ def main() -> None:
         seed=args.evaluation_seed,
         spawn_fraction=0.0,
         max_episode_steps=requested_steps,
-        cruise_speed=float(config["evaluation"]["cruise_speed_m_per_s"]),
+        cruise_speed=(
+            float(args.cruise_speed)
+            if args.cruise_speed is not None
+            else float(config["evaluation"]["cruise_speed_m_per_s"])
+        ),
         terminate_on_success=True,
     )
     observation, info = env.reset(seed=args.evaluation_seed)
@@ -556,6 +582,7 @@ def main() -> None:
             camera_valley_depth=initial_valley_depth,
             airborne=False,
             terminated=False,
+            success=False,
             evaluation_seed=args.evaluation_seed,
         )
         encode_frame(stream, container, frame)
@@ -565,6 +592,7 @@ def main() -> None:
 
     termination_reason = "requested_video_horizon"
     completed_steps = 0
+    rendered_rollout_frames = 0
     for step in range(1, requested_steps + 1):
         action, _ = policy.predict(observation, deterministic=True)
         observation, reward, terminated, truncated, info = env.step(action)
@@ -628,32 +656,48 @@ def main() -> None:
             ),
             scene_option=scene_option,
         )
-        frame = draw_overlay(
-            np.asarray(renderer.render(), dtype=np.uint8),
-            mode="rollout",
-            physical_time=step * actual_dt,
-            requested_seconds=args.physical_seconds,
-            position=position,
-            start=start,
-            goal=goal,
-            trail=trail,
-            map_base=map_base,
-            half_extent=half_extent,
-            distance=distance,
-            best_progress=best_progress,
-            torso_tilt_degrees=math.degrees(torso_tilt),
-            support_count=int(contact_mask.sum()) if contact_mask.shape == (4,) else 0,
-            maximum_contact_speed=maximum_contact_speed,
-            slip_threshold=float(config["task_adapter"]["slip_speed_threshold_m_per_s"]),
-            camera_valley_depth=valley_depth,
-            airborne=airborne,
-            terminated=bool(terminated),
-            evaluation_seed=args.evaluation_seed,
+        should_render = (
+            step == 1
+            or step % args.render_stride == 0
+            or terminated
+            or truncated
         )
-        encode_frame(stream, container, frame)
-        last_frame = frame
-        if step in {requested_steps // 3, 2 * requested_steps // 3, requested_steps}:
-            keyframes.append((f"Physical rollout t={step * actual_dt:.1f} s", frame.copy()))
+        if should_render:
+            success = bool(info.get("proxygap_fixed_goal_success", False))
+            frame = draw_overlay(
+                np.asarray(renderer.render(), dtype=np.uint8),
+                mode="rollout",
+                physical_time=step * actual_dt,
+                requested_seconds=args.physical_seconds,
+                position=position,
+                start=start,
+                goal=goal,
+                trail=trail,
+                map_base=map_base,
+                half_extent=half_extent,
+                distance=distance,
+                best_progress=best_progress,
+                torso_tilt_degrees=math.degrees(torso_tilt),
+                support_count=int(contact_mask.sum()) if contact_mask.shape == (4,) else 0,
+                maximum_contact_speed=maximum_contact_speed,
+                slip_threshold=float(config["task_adapter"]["slip_speed_threshold_m_per_s"]),
+                camera_valley_depth=valley_depth,
+                airborne=airborne,
+                terminated=bool(terminated),
+                success=success,
+                evaluation_seed=args.evaluation_seed,
+            )
+            encode_frame(stream, container, frame)
+            rendered_rollout_frames += 1
+            last_frame = frame
+            if step in {
+                requested_steps // 3,
+                2 * requested_steps // 3,
+                requested_steps,
+            } or terminated or truncated:
+                keyframes.append(
+                    (f"Physical rollout t={step * actual_dt:.1f} s", frame.copy())
+                )
         if terminated or truncated:
             termination_reason = "terminated" if terminated else "time_limit"
             break
@@ -683,7 +727,7 @@ def main() -> None:
     )
 
     qa = validate_video(video_path, expected_width=WIDTH, expected_height=HEIGHT)
-    total_frames = intro_frames + completed_steps + outro_frames
+    total_frames = intro_frames + rendered_rollout_frames + outro_frames
     if qa["decoded_frames"] != total_frames:
         raise RuntimeError(
             f"Decoded frame count {qa['decoded_frames']} differs from encoded count {total_frames}"
@@ -710,6 +754,8 @@ def main() -> None:
             "frames": total_frames,
             "duration_seconds": total_frames / args.fps,
             "physical_rollout_seconds": completed_steps * actual_dt,
+            "render_stride_physics_steps": args.render_stride,
+            "playback_speed_factor": args.render_stride,
         },
         "rollout": {
             "model": str(model_path),
@@ -722,7 +768,17 @@ def main() -> None:
             "height_array_sha256": sha256(heights_path),
             "evaluation_seed": args.evaluation_seed,
             "deterministic_policy": True,
-            "commanded_speed_m_per_s": float(config["evaluation"]["cruise_speed_m_per_s"]),
+            "commanded_speed_m_per_s": (
+                float(args.cruise_speed)
+                if args.cruise_speed is not None
+                else float(config["evaluation"]["cruise_speed_m_per_s"])
+            ),
+            "yaw_gain_per_second": float(
+                config["task_adapter"]["yaw_gain_per_second"]
+            ),
+            "maximum_abs_curvature_per_m": float(
+                config["task_adapter"]["maximum_abs_curvature_per_m"]
+            ),
             "completed_steps": completed_steps,
             "termination_reason": termination_reason,
             "initial_distance_m": initial_distance,

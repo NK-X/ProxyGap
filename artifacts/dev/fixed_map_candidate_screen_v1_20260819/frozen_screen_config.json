@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "config_id": "fixed_map_candidate_screen_v1_20260819",
+  "status": "development_diagnostic",
+  "purpose": "Screen existing 8-DOF checkpoints and yaw-controller settings on the approved fixed map before changing reward, energy or morphology.",
+  "fixed_map_config": "configs/fixed_quad_terrain_v2_training_20260818.json",
+  "evaluation_seeds": [75801, 75802, 75803],
+  "horizon_steps": 900,
+  "cruise_speed_m_per_s": 0.7,
+  "controller_conditions": [
+    {
+      "name": "yaw_disabled",
+      "yaw_gain_per_second": 0.0,
+      "yaw_deadband_degrees": 0.0,
+      "maximum_abs_curvature_per_m": 0.35,
+      "curvature_speed_reduction_gain": 0.0,
+      "minimum_turn_speed_fraction": 1.0
+    },
+    {
+      "name": "gentle_yaw",
+      "yaw_gain_per_second": 0.45,
+      "yaw_deadband_degrees": 5.0,
+      "maximum_abs_curvature_per_m": 0.18,
+      "curvature_speed_reduction_gain": 0.4,
+      "minimum_turn_speed_fraction": 0.65
+    },
+    {
+      "name": "current_yaw",
+      "yaw_gain_per_second": 1.5,
+      "yaw_deadband_degrees": 0.0,
+      "maximum_abs_curvature_per_m": 0.35,
+      "curvature_speed_reduction_gain": 0.0,
+      "minimum_turn_speed_fraction": 1.0
+    }
+  ],
+  "candidates": [
+    {
+      "name": "v4_canonical",
+      "configuration": "configs/curved_gait_tangent_v4_canonical_frame_20260818.json",
+      "model_path": "artifacts/dev/curved_gait_tangent_v4_canonical_frame_20260818/runs/seed_43301/models/checkpoint_1024000.zip",
+      "model_sha256": "6a0f6081e6aff4c85201242e53c44b0d057e96167336002da3a6e862fe134b6a"
+    },
+    {
+      "name": "v11_low_airborne",
+      "configuration": "configs/curved_gait_tangent_v11_flat_support_pilot_20260818.json",
+      "model_path": "artifacts/dev/curved_gait_tangent_v11_flat_support_pilot_20260818/runs/seed_43801/models/checkpoint_1155072.zip",
+      "model_sha256": "b53c56ab502f69457f45d70a9b95886a63de4bd52e4b9c96601b4b69923cb960"
+    },
+    {
+      "name": "v16_progress_recovery",
+      "configuration": "configs/curved_gait_tangent_v16_progress_recovery_pilot_20260818.json",
+      "model_path": "artifacts/dev/curved_gait_tangent_v16_progress_recovery_pilot_20260818/runs/seed_43806/models/checkpoint_1417216.zip",
+      "model_sha256": "56e93e52b42e6c1770225146d2c263e76d8818f81e1320633957153959b15de4"
+    },
+    {
+      "name": "v21_curve_progress",
+      "configuration": "configs/curved_gait_tangent_v21_curve_progress_recovery_pilot_20260818.json",
+      "model_path": "artifacts/dev/curved_gait_tangent_v21_curve_progress_recovery_pilot_20260818/runs/seed_43811/models/checkpoint_1941504.zip",
+      "model_sha256": "1e79e7a6f97fa5c1d880a36e011590599982bf219943aa807b5fa21cd1c00025"
+    },
+    {
+      "name": "v22_contact_observation",
+      "configuration": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+      "model_path": "artifacts/dev/curved_gait_tangent_v22_contact_observation_pilot_20260818/runs/seed_43812/models/checkpoint_2203648.zip",
+      "model_sha256": "a111311edba7bc13671d3cb742c0d3b3edda7849332011f8cd6d220b8dadb1b7"
+    },
+    {
+      "name": "fixed_map_failed_baseline",
+      "configuration": "configs/curved_gait_tangent_v22_contact_observation_pilot_20260818.json",
+      "model_path": "artifacts/dev/fixed_quad_terrain_v2_training_20260818/seed_62801/models/checkpoint_2465792.zip",
+      "model_sha256": "d69ae7a45efdad14a72426ea49c300a670b8c4b92558a97577b3b4130d649abb"
+    }
+  ],
+  "output_root": "artifacts/dev/fixed_map_candidate_screen_v1_20260819",
+  "claim_boundary": "This paired development screen selects a starting checkpoint and controller for further pilots. It is not evidence of generalisation or algorithmic superiority."
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "proxygap-fixed-map-candidate-screen-v1",
+  "configuration": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\configs\\fixed_map_candidate_screen_v1_20260819.json",
+  "configuration_sha256": "bf0d3f23fb3c2fb154302ffa1997adb22b6e7eab45dd4876e3e0dcae64e4533d",
+  "fixed_map_height_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+  "spawn_metadata": [
+    {
+      "spawn_fraction": 0.0,
+      "x_m": -34.0,
+      "y_m": -34.0,
+      "terrain_height_m": -1.9348310229819923,
+      "gradient_x": -0.005898527666695688,
+      "gradient_y": -0.005898527666695688,
+      "gradient_degrees": 0.4779375773693289,
+      "scene_sha256": "bc72dd66e6b171c0444e8e55d19b145b0a2095d4b584e407df9d76c4033096a7"
+    }
+  ],
+  "episodes": 54,
+  "claim_boundary": "This paired development screen selects a starting checkpoint and controller for further pilots. It is not evidence of generalisation or algorithmic superiority."
+}
