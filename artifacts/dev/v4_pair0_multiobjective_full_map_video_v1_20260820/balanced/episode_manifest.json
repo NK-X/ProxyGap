@@ -1,0 +1,84 @@
+{
+  "schema_version": "proxygap-v4-pair0-multiobjective-video-episode-v1",
+  "status": "final_verified_exact_formal_replay",
+  "objective": "balanced",
+  "weights_time_energy": [
+    0.5,
+    0.5
+  ],
+  "contract_id": "time_and_balanced",
+  "evaluation_seed": 1864999454,
+  "formal_result": {
+    "regime": "time_and_balanced",
+    "weights_time_energy": null,
+    "termination_reason": "arrival_and_two_second_spatial_hold",
+    "control_steps": 5262,
+    "elapsed_seconds": 263.1,
+    "arrival_entered": true,
+    "spatial_hold_success": true,
+    "safety_qualified_completion": true,
+    "finite": true,
+    "fall": false,
+    "torso_ground_any": false,
+    "sustained_nonfoot_contact": false,
+    "duration_corrected_slip_event_count": 0,
+    "duration_corrected_sustained_slip_substep_count": 0,
+    "qualified_slip_candidate_substep_count": 96,
+    "full_control_zero_foot_fraction": 0.09768148992778411,
+    "zero_foot_substep_fraction": 0.33956670467502853,
+    "mean_support_count": 0.9339794754846066,
+    "force_qualified_supported_substep_count": 16449,
+    "initial_goal_distance_m": 96.14882011595657,
+    "minimum_goal_distance_m": 1.3063219699080535,
+    "final_goal_distance_m": 1.377377627786698,
+    "path_length_m": 154.33866891445825,
+    "route_progress_m": 109.41424242135339,
+    "cumulative_squared_action": 1522.2667858680388,
+    "actuator_abs_torque_time_integral_total_n_m_s": 48214.11585093039,
+    "actuator_positive_mechanical_work_total_j": 56068.07845937655,
+    "actuator_abs_mechanical_work_total_j": 63879.65293629775,
+    "energy_status": "measurement_only_not_electrical_battery_energy",
+    "evaluation_seed": 1864999454,
+    "route_sha256": "2292d7dd74022fd3706c8763b947b597f86fc5bd3b219af96e2171e1cb389395"
+  },
+  "exactness": {
+    "state_mismatch_count": 0,
+    "substep_mismatch_count": 0,
+    "control_rows": 5262,
+    "physics_substep_rows": 26310
+  },
+  "video": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\v4_pair0_multiobjective_full_map_video_v1_20260820\\balanced\\v4_pair0_balanced_seed_1864999454_full_map_relief_v1.mp4",
+    "sha256": "073a419dd2cfd8c159c9bdc27b81912e7839cf2250bb896b10e90cf4f6b37ce8",
+    "width": 1280,
+    "height": 720,
+    "fps": 20,
+    "frames": 315,
+    "duration_seconds": 15.75,
+    "playback_speed_factor": 20,
+    "qa": {
+      "decoded_frames": 315,
+      "first_frame_shape": [
+        720,
+        1280,
+        3
+      ],
+      "last_frame_shape": [
+        720,
+        1280,
+        3
+      ],
+      "average_frame_rate": 20.0,
+      "decoded_duration_seconds": 15.75
+    }
+  },
+  "files": {
+    "replay_trace": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\v4_pair0_multiobjective_full_map_video_v1_20260820\\balanced\\v4_pair0_balanced_seed_1864999454_full_map_relief_v1_replay_control_trace.csv",
+    "replay_trace_sha256": "dcacf3080d1c1a77475618a08ca474c52ff9c823dd905e8d653d07928fdc266c",
+    "final_frame": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\v4_pair0_multiobjective_full_map_video_v1_20260820\\balanced\\v4_pair0_balanced_seed_1864999454_full_map_relief_v1_final_frame.png",
+    "final_frame_sha256": "ac3867e1f243cb4db182e51ac3f3b2afa3a7b6ff8142fe689fa01bf8cdc71fe3",
+    "contact_sheet": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\v4_pair0_multiobjective_full_map_video_v1_20260820\\balanced\\v4_pair0_balanced_seed_1864999454_full_map_relief_v1_contact_sheet.png",
+    "contact_sheet_sha256": "8eec2ac6a2afab24e5d99aea4215aa91505d783c83df42e7b0fa900fd169ba45"
+  },
+  "claim_boundary": "The videos are exact read-only replays of three successful formal episodes on one previously inspected frozen map. Objectives select among a 15-candidate development bank. Mechanical work is a comparable proxy, not electrical battery energy. The videos do not establish global route optimality or unseen-map generalisation."
+}

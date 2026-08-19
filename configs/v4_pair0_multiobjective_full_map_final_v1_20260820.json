@@ -1,0 +1,97 @@
+{
+  "schema_version": "proxygap-v4-pair0-multiobjective-full-map-final-v1",
+  "config_id": "v4_pair0_multiobjective_full_map_final_v1_20260820",
+  "status": "frozen_final_three_seed_two_unique_route_contract_evaluation",
+  "source": {
+    "checkpoint": "artifacts/dev/curved_gait_tangent_v4_canonical_frame_20260818/runs/seed_43301/models/checkpoint_1024000.zip",
+    "checkpoint_sha256": "6a0f6081e6aff4c85201242e53c44b0d057e96167336002da3a6e862fe134b6a",
+    "checkpoint_timesteps": 1024000,
+    "native_observation_dimension": 118,
+    "evaluation_observation_dimension": 135,
+    "action_dimension": 8,
+    "post_seal_evaluation_config": "configs/post_seal_full_map_eval_v1_20260819.json",
+    "post_seal_evaluation_config_sha256": "2378d1b80d418d348e6aaa636e090e2c15c3652a7d60ee6ef431ba28a71482d0",
+    "fixed_map_config": "configs/fixed_quad_terrain_v2_training_20260818.json",
+    "fixed_map_config_sha256": "f27ae1abc12d43f4d452772f787e9a9116762a924e781f8f65ddb8afbb14fe83",
+    "pair0_scene": "artifacts/dev/post_seal_full_map_eval_v1_20260819/attempt_0/task_scenes/spawn_0_0.000_pair0.xml",
+    "pair0_scene_sha256": "0b75be52ac76ef0147fb6f5e9eccce025067490d144892006c8098dfe1e5be46",
+    "heights": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/heights_m.npy",
+    "heights_sha256": "59e60ddd91d799f44f84aa74a2ecff122ac01b1c7c7ea13fe14b032bc176eb9c",
+    "hfield": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/terrain.hfield",
+    "hfield_sha256": "d1632c89688f459f5e7abe9d1cc9b5af7f22230b1b19290f737ae3fed849f3db",
+    "approved_xml": "artifacts/frozen/fixed_quad_terrain_v2_approved_20260818/map/scene/ant_fixed_quad_terrain.xml",
+    "approved_xml_sha256": "af2514abb2558789caaf0cd8ee3792909a3dd77946f373b5fd2c8222fbb5f182"
+  },
+  "candidate_selection": {
+    "selection": "artifacts/dev/v4_multiobjective_candidate_selection_v1_20260820/selection.json",
+    "selection_sha256": "212b78865714332cf28c9c1dc5dc1b8f7fb74883f03ef1ebee3789161c31f20b",
+    "feasible_candidate_count": 15,
+    "formula": "w_time*(T/T_min)+w_energy*(W_positive/W_positive_min)",
+    "time_reference_seconds": 238.85,
+    "positive_mechanical_work_reference_j": 49894.279053087565,
+    "objectives": {
+      "time_priority": {"weights_time_energy": [0.8, 0.2], "contract_id": "time_and_balanced"},
+      "balanced": {"weights_time_energy": [0.5, 0.5], "contract_id": "time_and_balanced"},
+      "energy_priority": {"weights_time_energy": [0.2, 0.8], "contract_id": "energy_priority"}
+    }
+  },
+  "route_contracts": {
+    "time_and_balanced": {
+      "route": "artifacts/dev/v4_route_cost_grid_v1_20260819/s1p50_t1p00/route_waypoints.csv",
+      "route_sha256": "2292d7dd74022fd3706c8763b947b597f86fc5bd3b219af96e2171e1cb389395",
+      "planner_slope_cost_weight": 1.5,
+      "planner_turn_cost_m_per_rad": 1.0,
+      "cruise_speed_m_per_s": 0.5,
+      "minimum_slope_speed_m_per_s": 0.28
+    },
+    "energy_priority": {
+      "route": "artifacts/dev/v4_pair0_multiobjective_routes_engineering_v1_20260819/balanced/route_waypoints.csv",
+      "route_sha256": "1efd9ed6e3a317cd44aeb403856730829c45b2948e5166708c460b5812b7bc37",
+      "planner_slope_cost_weight": 1.0,
+      "planner_turn_cost_m_per_rad": 1.0,
+      "cruise_speed_m_per_s": 0.5,
+      "minimum_slope_speed_m_per_s": 0.28
+    }
+  },
+  "evaluation": {
+    "formal_seeds": [690223864, 1864999454, 952993985],
+    "seed_derivations": [
+      {"replicate": 1, "sha256": "2923faf8d9160d406920748e18ff2160b8d49ce809469afdf22e8eafbe577bb3", "seed": 690223864},
+      {"replicate": 2, "sha256": "ef29a21d205ce35046c7ac12e9706131d213ea345dfc40790688423b28a5edc8", "seed": 1864999454},
+      {"replicate": 3, "sha256": "38cd88c16b44138c0c346bd2c2bb0fa11fce00afce9cd44679b07ddd5aef4da3", "seed": 952993985}
+    ],
+    "horizon_control_steps": 12000,
+    "physics_timestep_seconds": 0.01,
+    "physics_substeps_per_control_step": 5,
+    "lookahead_m": 3.0,
+    "maximum_abs_curvature_per_m": 0.2,
+    "yaw_gain_per_second": 0.75,
+    "slope_speed_full_below_degrees": 6.0,
+    "slope_speed_minimum_at_degrees": 16.0,
+    "deterministic_policy": true
+  },
+  "success_and_safety": {
+    "arrival_radius_m": 1.5,
+    "hold_radius_m": 2.0,
+    "hold_seconds": 2.0,
+    "require_arrival_before_hold": true,
+    "maximum_fall_count": 0,
+    "maximum_torso_ground_count": 0,
+    "maximum_sustained_nonfoot_contact_count": 0,
+    "nonfoot_sustained_seconds": 0.2,
+    "maximum_duration_corrected_slip_event_count": 0,
+    "duration_corrected_slip_speed_m_per_s": 0.2,
+    "duration_corrected_slip_minimum_force_n": 1.0,
+    "duration_corrected_slip_landing_grace_seconds": 0.1,
+    "duration_corrected_slip_sustained_seconds": 0.2,
+    "zero_foot_contact_is_reported_not_a_failure_gate": true
+  },
+  "execution": {
+    "training_permitted": false,
+    "checkpoint_write_permitted": false,
+    "fixed_map_source_mutation_permitted": false,
+    "formal_output_root": "artifacts/dev/v4_pair0_multiobjective_full_map_final_v1_20260820/attempt_0",
+    "fail_if_output_root_exists": true
+  },
+  "claim_boundary": "Three fresh evaluation seeds on one previously inspected frozen map. Passing supports repeatable reachability for these two selected route contracts, not unseen-map generalisation, global optimality, natural-gait validation, or electrical battery-energy efficiency."
+}

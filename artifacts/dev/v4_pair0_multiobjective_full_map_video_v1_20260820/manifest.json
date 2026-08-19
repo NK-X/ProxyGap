@@ -1,0 +1,122 @@
+{
+  "schema_version": "proxygap-v4-pair0-multiobjective-video-root-v1",
+  "status": "final_verified_three_objective_exact_formal_replays",
+  "configuration_sha256": "51e50c4c105d164f55c605fc91780263b9451356e99e60403aff582579f7f2e7",
+  "formal_manifest_sha256": "0bf2817cbdaadc02929da91bae7acb04371ff9cf1ec43e1ab4efa3a8a4a08d83",
+  "checkpoint_sha256_before_after": "6a0f6081e6aff4c85201242e53c44b0d057e96167336002da3a6e862fe134b6a",
+  "episode_count": 3,
+  "all_formal_episodes_successful": true,
+  "all_duration_corrected_slip_event_counts_zero": true,
+  "all_replays_exact": true,
+  "training_performed": false,
+  "checkpoint_written": false,
+  "formal_evidence_modified": false,
+  "wall_seconds": 491.27741180000885,
+  "runtime": {
+    "python": "3.12.13",
+    "mujoco": "3.11.0"
+  },
+  "episodes": [
+    {
+      "objective": "time_priority",
+      "seed": 690223864,
+      "video_sha256": "a558886d4671525172f38ff54d84effd8bcffbf0db6fa94a50e0516f10b0808f",
+      "episode_manifest": "time_priority/episode_manifest.json"
+    },
+    {
+      "objective": "balanced",
+      "seed": 1864999454,
+      "video_sha256": "073a419dd2cfd8c159c9bdc27b81912e7839cf2250bb896b10e90cf4f6b37ce8",
+      "episode_manifest": "balanced/episode_manifest.json"
+    },
+    {
+      "objective": "energy_priority",
+      "seed": 952993985,
+      "video_sha256": "c47c8a3a54a676808802766896778cecee4e1d8e88432df8c8ffe9342be14c23",
+      "episode_manifest": "energy_priority/episode_manifest.json"
+    }
+  ],
+  "claim_boundary": "The videos are exact read-only replays of three successful formal episodes on one previously inspected frozen map. Objectives select among a 15-candidate development bank. Mechanical work is a comparable proxy, not electrical battery energy. The videos do not establish global route optimality or unseen-map generalisation.",
+  "artifact_inventory_excludes_manifest_and_digest": [
+    {
+      "relative_path": "balanced/episode_manifest.json",
+      "bytes": 4095,
+      "sha256": "90ba88e3b7cf67760fb49a1d02d9c742db48d25c2ffc53e2faab7384a634e94c"
+    },
+    {
+      "relative_path": "balanced/v4_pair0_balanced_seed_1864999454_full_map_relief_v1.mp4",
+      "bytes": 3341074,
+      "sha256": "073a419dd2cfd8c159c9bdc27b81912e7839cf2250bb896b10e90cf4f6b37ce8"
+    },
+    {
+      "relative_path": "balanced/v4_pair0_balanced_seed_1864999454_full_map_relief_v1_contact_sheet.png",
+      "bytes": 249599,
+      "sha256": "8eec2ac6a2afab24e5d99aea4215aa91505d783c83df42e7b0fa900fd169ba45"
+    },
+    {
+      "relative_path": "balanced/v4_pair0_balanced_seed_1864999454_full_map_relief_v1_final_frame.png",
+      "bytes": 427132,
+      "sha256": "ac3867e1f243cb4db182e51ac3f3b2afa3a7b6ff8142fe689fa01bf8cdc71fe3"
+    },
+    {
+      "relative_path": "balanced/v4_pair0_balanced_seed_1864999454_full_map_relief_v1_replay_control_trace.csv",
+      "bytes": 1485759,
+      "sha256": "dcacf3080d1c1a77475618a08ca474c52ff9c823dd905e8d653d07928fdc266c"
+    },
+    {
+      "relative_path": "energy_priority/episode_manifest.json",
+      "bytes": 4150,
+      "sha256": "31e540ee7f173fefeff8c7182e110c38cb9047c17db2efae29e81dc5eaf397c1"
+    },
+    {
+      "relative_path": "energy_priority/v4_pair0_energy_priority_seed_952993985_full_map_relief_v1.mp4",
+      "bytes": 3530447,
+      "sha256": "c47c8a3a54a676808802766896778cecee4e1d8e88432df8c8ffe9342be14c23"
+    },
+    {
+      "relative_path": "energy_priority/v4_pair0_energy_priority_seed_952993985_full_map_relief_v1_contact_sheet.png",
+      "bytes": 252220,
+      "sha256": "cc591849138327f0d675aeaa4552541e071856f68e6c2070c6f4c86f0f580d10"
+    },
+    {
+      "relative_path": "energy_priority/v4_pair0_energy_priority_seed_952993985_full_map_relief_v1_final_frame.png",
+      "bytes": 434222,
+      "sha256": "1f963a48371a8e82757510e8245be4809862ce9b55dd86c5abb9a08cb6227033"
+    },
+    {
+      "relative_path": "energy_priority/v4_pair0_energy_priority_seed_952993985_full_map_relief_v1_replay_control_trace.csv",
+      "bytes": 1559183,
+      "sha256": "5644f0b424274488d53ce51ec1bad50fab4d1b25973d763c7414d15a4ffa26c1"
+    },
+    {
+      "relative_path": "frozen_video_config.json",
+      "bytes": 4987,
+      "sha256": "51e50c4c105d164f55c605fc91780263b9451356e99e60403aff582579f7f2e7"
+    },
+    {
+      "relative_path": "time_priority/episode_manifest.json",
+      "bytes": 4130,
+      "sha256": "91b544251598fb9baea0a92380e587ea7a2c509a0cbfaa6daa8b0e015d423250"
+    },
+    {
+      "relative_path": "time_priority/v4_pair0_time_priority_seed_690223864_full_map_relief_v1.mp4",
+      "bytes": 3244134,
+      "sha256": "a558886d4671525172f38ff54d84effd8bcffbf0db6fa94a50e0516f10b0808f"
+    },
+    {
+      "relative_path": "time_priority/v4_pair0_time_priority_seed_690223864_full_map_relief_v1_contact_sheet.png",
+      "bytes": 251671,
+      "sha256": "313fea678470626dbf10695d14b292e6b1678c177bce1ea6670f852e25f235a5"
+    },
+    {
+      "relative_path": "time_priority/v4_pair0_time_priority_seed_690223864_full_map_relief_v1_final_frame.png",
+      "bytes": 431815,
+      "sha256": "aab2926b8cc696b774b2b482478463ffb40ada23fd1293242e711dd407e0faf7"
+    },
+    {
+      "relative_path": "time_priority/v4_pair0_time_priority_seed_690223864_full_map_relief_v1_replay_control_trace.csv",
+      "bytes": 1412235,
+      "sha256": "6eb3d08beb2557b30e9b3a5092b1be7bfb41f924ba815b1d5712a38be429f297"
+    }
+  ]
+}

@@ -1,2 +1,10 @@
 # Keep archived experiment evidence byte-identical across operating systems.
 artifacts/** -text
+
+# These final V4 protocols and their direct frozen inputs are byte-hashed.
+# Preserve their repository bytes while leaving legacy CRLF contracts unchanged.
+configs/v4_pair0_multiobjective_full_map_final_v1_20260820.json -text
+configs/v4_pair0_multiobjective_full_map_video_v1_20260820.json -text
+configs/post_seal_full_map_eval_v1_20260819.json -text
+configs/fixed_quad_terrain_v2_training_20260818.json -text
+configs/fixed_goal_dual_view_relief_v2_20260819.json -text

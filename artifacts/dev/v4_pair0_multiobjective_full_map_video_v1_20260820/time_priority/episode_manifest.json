@@ -1,0 +1,84 @@
+{
+  "schema_version": "proxygap-v4-pair0-multiobjective-video-episode-v1",
+  "status": "final_verified_exact_formal_replay",
+  "objective": "time_priority",
+  "weights_time_energy": [
+    0.8,
+    0.2
+  ],
+  "contract_id": "time_and_balanced",
+  "evaluation_seed": 690223864,
+  "formal_result": {
+    "regime": "time_and_balanced",
+    "weights_time_energy": null,
+    "termination_reason": "arrival_and_two_second_spatial_hold",
+    "control_steps": 5018,
+    "elapsed_seconds": 250.9,
+    "arrival_entered": true,
+    "spatial_hold_success": true,
+    "safety_qualified_completion": true,
+    "finite": true,
+    "fall": false,
+    "torso_ground_any": false,
+    "sustained_nonfoot_contact": false,
+    "duration_corrected_slip_event_count": 0,
+    "duration_corrected_sustained_slip_substep_count": 0,
+    "qualified_slip_candidate_substep_count": 92,
+    "full_control_zero_foot_fraction": 0.09246711837385413,
+    "zero_foot_substep_fraction": 0.32598644878437627,
+    "mean_support_count": 0.9544838581108012,
+    "force_qualified_supported_substep_count": 16035,
+    "initial_goal_distance_m": 96.1207101275924,
+    "minimum_goal_distance_m": 1.2265279070000608,
+    "final_goal_distance_m": 1.23269819349889,
+    "path_length_m": 147.21628839344484,
+    "route_progress_m": 109.41424242135339,
+    "cumulative_squared_action": 1419.5718054817837,
+    "actuator_abs_torque_time_integral_total_n_m_s": 45484.85295591527,
+    "actuator_positive_mechanical_work_total_j": 52196.16774635739,
+    "actuator_abs_mechanical_work_total_j": 59282.54093450852,
+    "energy_status": "measurement_only_not_electrical_battery_energy",
+    "evaluation_seed": 690223864,
+    "route_sha256": "2292d7dd74022fd3706c8763b947b597f86fc5bd3b219af96e2171e1cb389395"
+  },
+  "exactness": {
+    "state_mismatch_count": 0,
+    "substep_mismatch_count": 0,
+    "control_rows": 5018,
+    "physics_substep_rows": 25090
+  },
+  "video": {
+    "path": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\v4_pair0_multiobjective_full_map_video_v1_20260820\\time_priority\\v4_pair0_time_priority_seed_690223864_full_map_relief_v1.mp4",
+    "sha256": "a558886d4671525172f38ff54d84effd8bcffbf0db6fa94a50e0516f10b0808f",
+    "width": 1280,
+    "height": 720,
+    "fps": 20,
+    "frames": 302,
+    "duration_seconds": 15.1,
+    "playback_speed_factor": 20,
+    "qa": {
+      "decoded_frames": 302,
+      "first_frame_shape": [
+        720,
+        1280,
+        3
+      ],
+      "last_frame_shape": [
+        720,
+        1280,
+        3
+      ],
+      "average_frame_rate": 20.0,
+      "decoded_duration_seconds": 15.1
+    }
+  },
+  "files": {
+    "replay_trace": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\v4_pair0_multiobjective_full_map_video_v1_20260820\\time_priority\\v4_pair0_time_priority_seed_690223864_full_map_relief_v1_replay_control_trace.csv",
+    "replay_trace_sha256": "6eb3d08beb2557b30e9b3a5092b1be7bfb41f924ba815b1d5712a38be429f297",
+    "final_frame": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\v4_pair0_multiobjective_full_map_video_v1_20260820\\time_priority\\v4_pair0_time_priority_seed_690223864_full_map_relief_v1_final_frame.png",
+    "final_frame_sha256": "aab2926b8cc696b774b2b482478463ffb40ada23fd1293242e711dd407e0faf7",
+    "contact_sheet": "C:\\Users\\18522\\Documents\\nn\\ProxyGap_curve_reproduction_20260818\\artifacts\\dev\\v4_pair0_multiobjective_full_map_video_v1_20260820\\time_priority\\v4_pair0_time_priority_seed_690223864_full_map_relief_v1_contact_sheet.png",
+    "contact_sheet_sha256": "313fea678470626dbf10695d14b292e6b1678c177bce1ea6670f852e25f235a5"
+  },
+  "claim_boundary": "The videos are exact read-only replays of three successful formal episodes on one previously inspected frozen map. Objectives select among a 15-candidate development bank. Mechanical work is a comparable proxy, not electrical battery energy. The videos do not establish global route optimality or unseen-map generalisation."
+}
