@@ -1,9 +1,15 @@
 from __future__ import annotations
 
+import copy
 import json
 from pathlib import Path
+import sys
 
 import numpy as np
+
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
 
 from proxygap.fixed_goal_terrain import file_sha256
 from run_fixed_goal_terrain_training import (
@@ -13,7 +19,6 @@ from run_fixed_goal_terrain_training import (
 )
 
 
-ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "configs" / "fixed_quad_terrain_v2_training_20260818.json"
 
 
@@ -89,3 +94,42 @@ def test_terrain_value_recovers_fixed_start_and_goal_heights() -> None:
     goal_height = terrain_value(heights, 34.0, 34.0, extent)
     assert np.isclose(start_height, -1.9348310229819923, atol=1e-10)
     assert np.isclose(goal_height, 0.2951027006509664, atol=1e-10)
+
+
+def test_optional_local_terrain_preview_adds_only_thirteen_finite_values(
+    tmp_path: Path,
+) -> None:
+    config, v22 = load_configs()
+    preview_config = copy.deepcopy(config)
+    preview_config["task_adapter"].update(
+        {
+            "augment_local_terrain_observation": True,
+            "terrain_preview_longitudinal_m": [0.5, 1.0, 1.5],
+            "terrain_preview_lateral_m": [-0.4, 0.0, 0.4],
+        }
+    )
+    output = tmp_path / "terrain_preview_task"
+    output.mkdir()
+    scenes, _ = prepare_task_scenes(preview_config, output, [0.0])
+    env = make_task_env(
+        preview_config,
+        v22,
+        xml_path=scenes[0],
+        seed=902,
+        spawn_fraction=0.0,
+        max_episode_steps=5,
+        cruise_speed=0.55,
+        terminate_on_success=False,
+    )
+    observation, info = env.reset(seed=902)
+    assert observation.shape == (135,)
+    assert np.all(np.isfinite(observation[-13:]))
+    assert env.observation_space.contains(observation)
+    assert info["proxygap_local_terrain_observation_enabled"] is True
+    next_observation, _, _, _, step_info = env.step(
+        np.zeros(8, dtype=np.float64)
+    )
+    assert next_observation.shape == (135,)
+    assert np.all(np.isfinite(next_observation[-13:]))
+    assert step_info["proxygap_local_terrain_observation_enabled"] is True
+    env.close()

@@ -59,6 +59,9 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
         maximum_healthy_tilt_degrees: float = 80.0,
         unhealthy_grace_steps: int = 5,
         slip_speed_threshold_m_per_s: float = 0.20,
+        augment_local_terrain_observation: bool = False,
+        terrain_preview_longitudinal_m: Sequence[float] = (0.5, 1.0, 1.5),
+        terrain_preview_lateral_m: Sequence[float] = (-0.4, 0.0, 0.4),
     ) -> None:
         super().__init__(env)
         self.heights_path = Path(heights_path).resolve()
@@ -72,6 +75,25 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
         if self.heights.ndim != 2 or min(self.heights.shape) < 2:
             raise ValueError("Terrain heights must be a two-dimensional grid")
         self.map_half_extent_m = self._positive(map_half_extent_m, "map_half_extent_m")
+        self.augment_local_terrain_observation = bool(
+            augment_local_terrain_observation
+        )
+        self.terrain_preview_longitudinal = self._preview_axis(
+            terrain_preview_longitudinal_m,
+            "terrain_preview_longitudinal_m",
+            require_positive=True,
+        )
+        self.terrain_preview_lateral = self._preview_axis(
+            terrain_preview_lateral_m,
+            "terrain_preview_lateral_m",
+            require_positive=False,
+        )
+        spacing = 2.0 * self.map_half_extent_m / (self.heights.shape[0] - 1)
+        self._terrain_dz_dy, self._terrain_dz_dx = np.gradient(
+            self.heights,
+            spacing,
+            spacing,
+        )
         self.start_xy = self._xy(start_xy_m, "start_xy_m")
         self.goal_xy = self._xy(goal_xy_m, "goal_xy_m")
         if not 0.0 <= float(spawn_fraction) < 1.0:
@@ -107,6 +129,38 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
             slip_speed_threshold_m_per_s,
             "slip_speed_threshold_m_per_s",
         )
+        if self.augment_local_terrain_observation:
+            if not isinstance(self.observation_space, gym.spaces.Box):
+                raise TypeError("local terrain preview requires a Box observation space")
+            dtype = self.observation_space.dtype
+            height_span = max(float(np.ptp(self.heights)), 1e-6)
+            preview_count = (
+                len(self.terrain_preview_longitudinal)
+                * len(self.terrain_preview_lateral)
+            )
+            terrain_low = np.concatenate(
+                (
+                    np.full(preview_count, -height_span, dtype=dtype),
+                    np.full(3, -1.0, dtype=dtype),
+                    np.asarray([-math.pi / 2.0], dtype=dtype),
+                )
+            )
+            terrain_high = np.concatenate(
+                (
+                    np.full(preview_count, height_span, dtype=dtype),
+                    np.full(3, 1.0, dtype=dtype),
+                    np.asarray([math.pi / 2.0], dtype=dtype),
+                )
+            )
+            self.observation_space = gym.spaces.Box(
+                low=np.concatenate(
+                    (np.asarray(self.observation_space.low, dtype=dtype), terrain_low)
+                ),
+                high=np.concatenate(
+                    (np.asarray(self.observation_space.high, dtype=dtype), terrain_high)
+                ),
+                dtype=dtype,
+            )
         dt = float(self.unwrapped.dt)
         self.required_hold_steps = max(1, int(math.ceil(self.hold_seconds / dt)))
         self._reset_metrics()
@@ -123,6 +177,22 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
         result = np.asarray(value, dtype=np.float64)
         if result.shape != (2,) or not np.all(np.isfinite(result)):
             raise ValueError(f"{label} must contain two finite values")
+        return result
+
+    @staticmethod
+    def _preview_axis(
+        value: Sequence[float],
+        label: str,
+        *,
+        require_positive: bool,
+    ) -> tuple[float, float, float]:
+        result = tuple(float(item) for item in value)
+        if len(result) != 3 or not np.all(np.isfinite(result)):
+            raise ValueError(f"{label} must contain three finite values")
+        if require_positive and any(item <= 0.0 for item in result):
+            raise ValueError(f"{label} values must be positive")
+        if any(left >= right for left, right in zip(result, result[1:])):
+            raise ValueError(f"{label} values must be strictly increasing")
         return result
 
     def set_task_speed(self, cruise_speed_m_per_s: float) -> None:
@@ -161,6 +231,9 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
         self._last_position = np.asarray([float("nan"), float("nan")])
 
     def _terrain_height(self, x: float, y: float) -> float:
+        return self._terrain_value(self.heights, x, y)
+
+    def _terrain_value(self, values: np.ndarray, x: float, y: float) -> float:
         rows, cols = self.heights.shape
         extent = self.map_half_extent_m
         col_f = np.clip((x + extent) / (2.0 * extent) * (cols - 1), 0, cols - 1)
@@ -169,12 +242,79 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
         row0 = min(int(math.floor(row_f)), rows - 2)
         tx = float(col_f - col0)
         ty = float(row_f - row0)
-        z00 = float(self.heights[row0, col0])
-        z10 = float(self.heights[row0, col0 + 1])
-        z01 = float(self.heights[row0 + 1, col0])
-        z11 = float(self.heights[row0 + 1, col0 + 1])
+        z00 = float(values[row0, col0])
+        z10 = float(values[row0, col0 + 1])
+        z01 = float(values[row0 + 1, col0])
+        z11 = float(values[row0 + 1, col0 + 1])
         return (1.0 - ty) * ((1.0 - tx) * z00 + tx * z10) + ty * (
             (1.0 - tx) * z01 + tx * z11
+        )
+
+    def _local_terrain_observation(
+        self,
+        position: np.ndarray,
+        target_heading: float,
+    ) -> np.ndarray:
+        forward = np.asarray(
+            [math.cos(target_heading), math.sin(target_heading)],
+            dtype=np.float64,
+        )
+        left = np.asarray([-forward[1], forward[0]], dtype=np.float64)
+        reference_height = self._terrain_height(float(position[0]), float(position[1]))
+        relative_heights: list[float] = []
+        for longitudinal in self.terrain_preview_longitudinal:
+            for lateral in self.terrain_preview_lateral:
+                sample = position + longitudinal * forward + lateral * left
+                relative_heights.append(
+                    self._terrain_height(float(sample[0]), float(sample[1]))
+                    - reference_height
+                )
+
+        gradient = np.asarray(
+            [
+                self._terrain_value(
+                    self._terrain_dz_dx,
+                    float(position[0]),
+                    float(position[1]),
+                ),
+                self._terrain_value(
+                    self._terrain_dz_dy,
+                    float(position[0]),
+                    float(position[1]),
+                ),
+            ],
+            dtype=np.float64,
+        )
+        normal_world = np.asarray([-gradient[0], -gradient[1], 1.0])
+        normal_world /= np.linalg.norm(normal_world)
+        normal_target_frame = np.asarray(
+            [
+                float(np.dot(normal_world[:2], forward)),
+                float(np.dot(normal_world[:2], left)),
+                float(normal_world[2]),
+            ],
+            dtype=np.float64,
+        )
+        signed_forward_slope = math.atan(float(np.dot(gradient, forward)))
+        return np.concatenate(
+            (
+                np.asarray(relative_heights, dtype=np.float64),
+                normal_target_frame,
+                np.asarray([signed_forward_slope], dtype=np.float64),
+            )
+        )
+
+    def _append_local_terrain_observation(
+        self,
+        observation: np.ndarray,
+        position: np.ndarray,
+        target_heading: float,
+    ) -> np.ndarray:
+        if not self.augment_local_terrain_observation:
+            return observation
+        terrain = self._local_terrain_observation(position, target_heading)
+        return np.concatenate(
+            (np.asarray(observation), terrain.astype(observation.dtype, copy=False))
         )
 
     def _position(self) -> np.ndarray:
@@ -210,12 +350,17 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
                     maximum_yaw_rate,
                 )
             )
-        return self.env.set_external_curve_command(
+        command_observation = self.env.set_external_curve_command(
             observation,
             target_heading=target_heading,
             yaw_rate=yaw_rate,
             speed=target_speed,
             lateral_speed=0.0,
+        )
+        return self._append_local_terrain_observation(
+            command_observation,
+            position,
+            target_heading,
         )
 
     def reset(self, **kwargs: Any) -> tuple[np.ndarray, dict[str, Any]]:
@@ -339,6 +484,18 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
         info.update(self._live_info())
         if not (terminated or truncated):
             observation = self._command_observation(observation)
+        elif self.augment_local_terrain_observation:
+            vector = self.goal_xy - position
+            target_heading = (
+                float(math.atan2(vector[1], vector[0]))
+                if float(np.linalg.norm(vector)) > self.arrival_radius
+                else quaternion_yaw_angle(np.asarray(self.unwrapped.data.qpos[3:7]))
+            )
+            observation = self._append_local_terrain_observation(
+                observation,
+                position,
+                target_heading,
+            )
         if terminated or truncated:
             summary = self.episode_summary()
             info.update({f"proxygap_{key}": value for key, value in summary.items()})
@@ -354,6 +511,9 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
             "proxygap_fixed_goal_spawn_fraction": self.spawn_fraction,
             "proxygap_fixed_goal_cruise_speed_m_per_s": self.cruise_speed,
             "proxygap_terrain_relative_unhealthy_run_steps": self._terrain_unhealthy_run_steps,
+            "proxygap_local_terrain_observation_enabled": (
+                self.augment_local_terrain_observation
+            ),
         }
 
     def episode_summary(self) -> dict[str, Any]:
@@ -398,6 +558,9 @@ class FixedGoalTerrainWrapper(gym.Wrapper):
                 ),
                 "fixed_goal_qualified_no_fall_no_airborne_no_slip": qualified,
                 "fixed_goal_cruise_speed_m_per_s": self.cruise_speed,
+                "fixed_goal_local_terrain_observation_enabled": (
+                    self.augment_local_terrain_observation
+                ),
                 "fixed_goal_route_lateral_deviation_rms_m": math.sqrt(
                     self._lateral_deviation_squared_sum / elapsed
                 ),

@@ -236,6 +236,23 @@ def make_task_env(
         maximum_healthy_tilt_degrees=float(task["maximum_healthy_tilt_degrees"]),
         unhealthy_grace_steps=int(task["unhealthy_grace_steps"]),
         slip_speed_threshold_m_per_s=float(task["slip_speed_threshold_m_per_s"]),
+        augment_local_terrain_observation=bool(
+            task.get("augment_local_terrain_observation", False)
+        ),
+        terrain_preview_longitudinal_m=tuple(
+            float(value)
+            for value in task.get(
+                "terrain_preview_longitudinal_m",
+                [0.5, 1.0, 1.5],
+            )
+        ),
+        terrain_preview_lateral_m=tuple(
+            float(value)
+            for value in task.get(
+                "terrain_preview_lateral_m",
+                [-0.4, 0.0, 0.4],
+            )
+        ),
     )
 
 
