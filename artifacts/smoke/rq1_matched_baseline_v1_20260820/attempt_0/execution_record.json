@@ -1,0 +1,43 @@
+{
+  "status": "complete",
+  "scientific_stage": "engineering_smoke",
+  "smoke": true,
+  "config_path": "D:\\StudyAgentLab\\Projects\\RLgroupwork\\ExternalRuns\\rq1-matched-baseline-formal-20260820-r3\\ProxyGap\\configs\\rq1_matched_baseline_v1_20260820.json",
+  "config_sha256": "036bce3b2b676792f3f4fb321d8aedd942214a60e9b7b1d704d93b95ffc01b15",
+  "source_hashes": {
+    "configs\\rq1_matched_baseline_v1_20260820.json": "036bce3b2b676792f3f4fb321d8aedd942214a60e9b7b1d704d93b95ffc01b15",
+    "scripts\\run_rq1_matched_baseline_v1_20260820.py": "0b7c0139f6254a3cbfbf41caaeb18474ceb64251434def02086a884036242271",
+    "src\\proxygap\\ant_wrapper.py": "d698dbc44a02411f70feadce0c45f4f68996920440b3f3b7e2c092113c546dea",
+    "src\\proxygap\\experiment.py": "cca5fa0597745065078eb7c38402c1c6dc7302c084a640c6c31d35e675c67d87",
+    "src\\proxygap\\metrics.py": "97a9172ed38b3eaa1cb13ce59e9eb1feedcae33e2d5a07b5694c027c7c5f5646",
+    "protocols\\RQ1_MATCHED_BASELINE_PROTOCOL_V1_20260820.md": "31d20da845abff43a05b9509d4b217260f90fd52fc033bd7182e45d8602610da"
+  },
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+    "packages": {
+      "gymnasium": "1.3.0",
+      "mujoco": "3.11.0",
+      "numpy": "2.5.1",
+      "stable-baselines3": "2.9.0",
+      "torch": "2.13.0+cpu"
+    }
+  },
+  "tasks": 2,
+  "max_workers": 2,
+  "task_order": [
+    {
+      "condition_id": "D0_DEFAULT_REWARD",
+      "training_seed": 62401
+    },
+    {
+      "condition_id": "S1_STAGE1_SHAPED",
+      "training_seed": 62401
+    }
+  ],
+  "scientific_status": "engineering_smoke_complete",
+  "failures": [],
+  "runtime_rows": 2,
+  "evaluation_rows": 4
+}

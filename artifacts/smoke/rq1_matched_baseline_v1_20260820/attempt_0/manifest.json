@@ -1,0 +1,85 @@
+{
+  "file_count": 16,
+  "files": [
+    {
+      "path": "execution_record.json",
+      "bytes": 1851,
+      "sha256": "f883b8010206d0ee2dd1112f2876940439c09d6de769dd4364a41976c90db0b1"
+    },
+    {
+      "path": "frozen_run_config.json",
+      "bytes": 8664,
+      "sha256": "036bce3b2b676792f3f4fb321d8aedd942214a60e9b7b1d704d93b95ffc01b15"
+    },
+    {
+      "path": "logs/evaluation_metrics_full.csv",
+      "bytes": 17443,
+      "sha256": "4195af25a549402bc88441ff14455c61eb4ef2ce32e890c8dbf5ee4a7e17158f"
+    },
+    {
+      "path": "logs/training_runtime.csv",
+      "bytes": 2282,
+      "sha256": "8653d702af20c06e35a7534f1916d138c686bb7ac0873f1e651f52f23127f888"
+    },
+    {
+      "path": "runs/seed_62401/D0_DEFAULT_REWARD/logs/evaluation_metrics.csv",
+      "bytes": 7039,
+      "sha256": "9253a392d71a1ceda94d8b481eeb6c1858e081ada77432011d7c6d5f344602a3"
+    },
+    {
+      "path": "runs/seed_62401/D0_DEFAULT_REWARD/logs/evaluation_metrics_full.csv",
+      "bytes": 10933,
+      "sha256": "cb42ba410aa967c3d208887759ca4c6659b05fa69b03a207d1768761f11ce73a"
+    },
+    {
+      "path": "runs/seed_62401/D0_DEFAULT_REWARD/logs/evaluation_summary.csv",
+      "bytes": 3323,
+      "sha256": "e370d66590ef45acd643df28ad4fc0a384d6eb2c7869667e3eac626d93873c47"
+    },
+    {
+      "path": "runs/seed_62401/D0_DEFAULT_REWARD/logs/training.monitor.csv",
+      "bytes": 503,
+      "sha256": "f3cc789c4d0a07cb1245fa9d28dad7e5270c8793fe81a8b40bd6610bda2377c2"
+    },
+    {
+      "path": "runs/seed_62401/D0_DEFAULT_REWARD/logs/training_runtime.csv",
+      "bytes": 1706,
+      "sha256": "82c3d7e5faca5561009ed1ce95b832e7f8b0beddcb674bba2cdb7f4905b87eb1"
+    },
+    {
+      "path": "runs/seed_62401/D0_DEFAULT_REWARD/models/D0_DEFAULT_REWARD/checkpoint_004096.zip",
+      "bytes": 318049,
+      "sha256": "60776b6c80166049f8bc100fabc3536efa768cf51259a899e2eb2649a4f39f23"
+    },
+    {
+      "path": "runs/seed_62401/S1_STAGE1_SHAPED/logs/evaluation_metrics.csv",
+      "bytes": 7366,
+      "sha256": "a686537447d0c55704c6e3efe22dd67a15fef0b001f11f8d0b75c19edb10ec54"
+    },
+    {
+      "path": "runs/seed_62401/S1_STAGE1_SHAPED/logs/evaluation_metrics_full.csv",
+      "bytes": 11273,
+      "sha256": "5aa60e69b8537801da51fdc5298ac4f025065dc2ed2640cdcc973eef7ad7166d"
+    },
+    {
+      "path": "runs/seed_62401/S1_STAGE1_SHAPED/logs/evaluation_summary.csv",
+      "bytes": 3401,
+      "sha256": "603b470b51fb7a41e1222dbea53ddbb4e8b25e4c88b06fc7cd697b243e6809fb"
+    },
+    {
+      "path": "runs/seed_62401/S1_STAGE1_SHAPED/logs/training.monitor.csv",
+      "bytes": 1065,
+      "sha256": "7991db4b5edd41601d5afba17a29d246d9450d762309d5936edc61e2b5efb29e"
+    },
+    {
+      "path": "runs/seed_62401/S1_STAGE1_SHAPED/logs/training_runtime.csv",
+      "bytes": 1711,
+      "sha256": "0e8e1cfb21da68f7b11130897f9e8cbe841486c029ba19e2b1cadac0a828ae02"
+    },
+    {
+      "path": "runs/seed_62401/S1_STAGE1_SHAPED/models/S1_STAGE1_SHAPED/checkpoint_004096.zip",
+      "bytes": 319005,
+      "sha256": "cabe30f14a11a4a1af1b7b06d54d4c4d9ac51b5c6f253cda17a61eb21a41bdf7"
+    }
+  ]
+}

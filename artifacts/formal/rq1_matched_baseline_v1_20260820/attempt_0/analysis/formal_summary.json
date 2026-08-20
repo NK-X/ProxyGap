@@ -1,0 +1,21 @@
+{
+  "status": "formally_evaluated_resource_limited",
+  "decision": {
+    "independent_training_pairs": 3,
+    "improved_pair_counts_out_of_3": {
+      "target_speed_abs_error_m_per_s": 3,
+      "direction_error_degrees": 3,
+      "forward_path_efficiency": 2,
+      "normalised_action_roughness": 3
+    },
+    "safety_non_worse_pair_count_out_of_3": 0,
+    "quality_metrics_passing_2_of_3_rule_out_of_4": 4,
+    "safety_gate_pass": false,
+    "quality_gate_pass": true,
+    "joint_descriptive_gate_pass": false,
+    "inferential_status": "descriptive_only_n_3_minimum_two_sided_sign_test_p_0p25"
+  },
+  "claim_boundary": "The three-training-seed design is descriptive and conditional on flat-ground Ant-v5. It cannot establish biological natural gait, algorithm-family generality, equivalence, rare-failure rates, hardware transfer or a population-level causal effect beyond the frozen package comparison.",
+  "analysis_unit": "independent training seed",
+  "evaluation_episodes_are_nested": true
+}
